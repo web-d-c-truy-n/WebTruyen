@@ -1,7 +1,9 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
+<p id="HovaTen"></p>
+<p id="Mail"></p>
+<p id="SDT"></p>
 <input id="tk" type="text" placeholder="tài khoản" />
 <input id="mk" type="text" placeholder="mật khẩu" />
 <input type="button" value="đăng nhập" />
@@ -12,8 +14,10 @@
             let tk = $("#tk").val()
             let mk = $("#mk").val()
             let rs = await API.login(tk, mk)
-            console.log(rs)
-            alert(rs?"Đăng nhập thành công":"Đăng nhập thất bại")
+            $("#HovaTen").text(rs.HovaTen)
+            $("#Mail").text(rs.Mail)
+            $("#SDT").text(rs.SDT)
+            alert(rs.msg)
         })
     </script>    
 }
