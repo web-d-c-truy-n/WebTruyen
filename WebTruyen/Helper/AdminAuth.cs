@@ -15,9 +15,10 @@ namespace WebTruyen.Helper
 
         public static bool login(string username, string mk)
         {
+            mk = Commons.MD5(mk);
             webtruyenptEntities db = new webtruyenptEntities();
-            Admin taiKhoan = db.Admins.Where(x => x.Username == username && x.Password == mk)?.First();
-            if (taiKhoan != null)
+            List<Admin> taiKhoan = db.Admins.Where(x => x.Username == username && x.Password == mk).ToList();
+            if (taiKhoan != null && taiKhoan.Count >0)
             {
                 HttpContext.Current.Session["admin"] = taiKhoan;
                 return true;
