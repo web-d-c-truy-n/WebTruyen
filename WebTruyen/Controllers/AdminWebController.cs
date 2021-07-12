@@ -13,5 +13,13 @@ namespace WebTruyen.Controllers
         {
             return View();
         }
+        public ActionResult LoginAdmin()
+        {
+            return View();
+        }
+        public ActionResult ThemAdmin()
+        {
+            return View();
+        }
     }
 }
