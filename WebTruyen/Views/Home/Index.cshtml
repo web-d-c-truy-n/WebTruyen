@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<input id="tk" type="text" placeholder="tài khoản" />
+<input id="mk" type="text" placeholder="mật khẩu" />
+<input type="button" value="đăng nhập" />
+@section scripts{
+    <script src="~/Scripts/getAPI.js" type="text/javascript"></script>
+    <script>
+        $("input[type=button]").click(async function () {
+            let tk = $("#tk").val()
+            let mk = $("#mk").val()
+            let rs = await API.login(tk, mk)
+            console.log(rs)
+            alert(rs?"Đăng nhập thành công":"Đăng nhập thất bại")
+        })
+    </script>    
+}

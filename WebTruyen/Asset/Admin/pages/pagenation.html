@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id = "page"></div>
+    <script>
+        let el
+let css2
+let pnum
+let psize
+let aj 
+function Pagination(element, css, pagenum, pagesize, ajax) {
+    //let ul = '<ul class="' + css.ul + '"></ul>'
+    //let li = '<li class="' + css.li + '><a class="' + css.a + '" href="#">1</a></li>'
+    //let el = $(ul).appendTo(element)
+    //for (let i = 0; i < 5; i++) {
+    //    if (i + pagenum > pagesize) break
+    //    if (i == 3) {
+    //        $('<li class="' + css.li + '><a class="' + css.a + '" href="#">...</a></li>').appendTo(element + " ul")
+    //    } else {
+    //        $('<li class="' + css.li + '><a class="' + css.a + '" href="#">' + (i + pagenum) + '</a></li>').appendTo(element + " ul")
+    //    }
+    //}
+    el = element
+    css2 = css
+    pnum = pagenum
+    psize = pagesize
+    aj = ajax
+    let html = '<ul class="'+css.ul+'">' +
+        '<li class="page-item" onclick = "clickpage(' + (pagenum - 1) + ')"> <a class="page-link" href="#">Previous</a></li>';
+    for (let i = 0; i < 5; i++) {
+        if (i + pagenum > pagesize) break
+        if (i == 0) {
+            html += '<li class="'+css.li+'"><a class="'+css.a+'" href="#">' + (i + pagenum) + '</a></li>'
+        } else {
+            html += '<li class="'+css.li+'" onclick = "clickpage(' + (pagenum + i)+ ')"><a class="'+css.a+'" href="#">' + (i + pagenum) + '</a></li>'
+        }
+        
+        if (i == 4) {
+            html += '<li class="'+css.li+'"><a class="'+css.a+'" href="#">...</a></li>'
+        }
+    }
+    html += '<li class="'+css.li+'" onclick = "clickpage(' + (pagenum + 1) + ')"><a class="'+css.a+'" href="#">Next</a></li>' +
+            '</ul >';
+    $(element).html(html)
+    $.get(ajax.url+'?page='+pagenum, ajax.success(data,success))
+}
+function clickpage(pagenum) {
+    if(pagenum > 0 && pagenum <= psize)    
+    Pagination(el, css2, pagenum, psize,aj)
+}
+$(document).ready(function () {    
+    Pagination("#page", {ul: 'pagination', li: 'page-item', a: 'page-link'}, 1, 10,aj)
+});
+    </script>
+</body>
+</html>
