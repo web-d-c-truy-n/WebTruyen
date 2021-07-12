@@ -14,6 +14,10 @@
             let rs = await API.login(tk, mk)
             console.log(rs)
             alert(rs?"Đăng nhập thành công":"Đăng nhập thất bại")
+            $("#HovaTen").text(rs.HovaTen)
+            $("#Mail").text(rs.Mail)
+            $("#SDT").text(rs.SDT)
+            alert(rs.msg)
         })
     </script>    
 }
