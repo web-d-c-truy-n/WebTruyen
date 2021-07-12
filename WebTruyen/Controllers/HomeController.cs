@@ -22,6 +22,6 @@ namespace WebTruyen.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }//ffff
+        }
     }
 }
