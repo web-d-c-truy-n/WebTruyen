@@ -13,11 +13,8 @@
         $("input[type=button]").click(async function () {
             let tk = $("#tk").val()
             let mk = $("#mk").val()
-            let rs = await API.login(tk, mk)
-            $("#HovaTen").text(rs.HovaTen)
-            $("#Mail").text(rs.Mail)
-            $("#SDT").text(rs.SDT)
-            alert(rs.msg)
+            let rs = await API.loginAdmin(tk, mk)
+            alert(rs?"Đăng nhập thành công":"Đăng nhập thất bại")
         })
     </script>
 }
