@@ -68,6 +68,6 @@ namespace WebTruyen.Controllers
             Helper.AdminAuth.logout();
             return Json(true);
         }
-
+        
     }
 }
