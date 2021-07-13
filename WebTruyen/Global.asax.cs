@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-
+using WebTruyen.Models;
 namespace WebTruyen
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -16,6 +16,11 @@ namespace WebTruyen
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Application["DungChung"] = new CommonInfo();
+        }
+        protected void Session_Start()
+        {
+            Session["UserAdmin"] = " ";
         }
     }
 }

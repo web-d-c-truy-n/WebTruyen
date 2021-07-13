@@ -146,6 +146,8 @@
     <Compile Include="Models\ChuongTruyen.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CommonInfo.cs" />
+    <Compile Include="Models\CustomAuthor.cs" />
     <Compile Include="Models\Luotthich.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
