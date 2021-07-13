@@ -2739,6 +2739,7 @@
     <Content Include="Views\AdminWeb\LoginAdmin.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\AdminWeb\ThemAdmin.cshtml" />
+    <Content Include="Views\AdminWeb\QLTaiKhoan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

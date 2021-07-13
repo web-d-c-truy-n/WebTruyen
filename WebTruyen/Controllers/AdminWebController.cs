@@ -68,6 +68,10 @@ namespace WebTruyen.Controllers
             Helper.AdminAuth.logout();
             return Json(true);
         }
-        
+        // trang quản lý tài khoản
+        public ActionResult QLTaiKhoan()
+        {
+            return View();
+        }
     }
 }
