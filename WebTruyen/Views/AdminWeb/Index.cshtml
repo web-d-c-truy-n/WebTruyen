@@ -579,8 +579,6 @@
         $(document).ready(function () {
             $("#dangxuat").click(async function () {
                 debugger
-                let username =$("#username").val()
-                let password = $("#password").val()
                 let dangxuat = await API.logoutAdmin()
                window.location.href = "@Url.Action("LoginAdmin","AdminWeb")"
             })
