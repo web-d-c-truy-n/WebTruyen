@@ -1,0 +1,919 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="pingback" href="./xmlrpc.php">
+    <title>HOME 2 – Madara Demo</title>
+    <meta name="robots" content="max-image-preview:large">
+    <script type="text/javascript">
+    </script>
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" id="ionicons-css" href="~/Asset/Web/wp-content/themes/madara/css/fonts/ionicons/css/ionicons.min.css?ver=4.5.10" type="text/css" media="all">
+    <link rel="stylesheet" id="madara-icons-css" href="~/Asset/Web/wp-content/themes/madara/css/fonts/ct-icon/ct-icon.css?ver=5.7.2" type="text/css" media="all">
+    <link rel="stylesheet" id="bootstrap-css" href="~/Asset/Web/wp-content/themes/madara/css/bootstrap.min.css?ver=4.3.1" type="text/css" media="all">
+    <link rel="stylesheet" id="slick-css" href="~/Asset/Web/wp-content/themes/madara/js/slick/slick.css?ver=1.9.0" type="text/css" media="all">
+    <link rel="stylesheet" id="slick-theme-css" href="~/Asset/Web/wp-content/themes/madara/js/slick/slick-theme.css?ver=5.7.2" type="text/css" media="all">
+    <link rel="stylesheet" id="loaders-css" href="~/Asset/Web/wp-content/themes/madara/css/loaders.min.css?ver=5.7.2" type="text/css" media="all">
+    <link rel="stylesheet" id="madara-css-css" href="~/Asset/Web/wp-content/themes/madara/style.css?ver=1.6.6" type="text/css" media="all">
+    <style id="madara-css-inline-css" type="text/css">
+        .c-blog__heading.style-2 i {
+            background: -webkit-linear-gradient(left, #00d2ff 40%,#3a7bd5);
+            background: -o-linear-gradient(right, #00d2ff 40%,#3a7bd5);
+            background: -moz-linear-gradient(right, #00d2ff 40%,#3a7bd5);
+            background: linear-gradient(to right, #00d2ff 40%,#3a7bd5);
+            ;
+        }
+
+            .c-blog__heading.style-2 i:after, .settings-page .nav-tabs-wrap ul.nav-tabs li.active:after {
+                border-left-color: #3a7bd5;
+            }
+
+        .site-header .main-navigation.style-1, .widget-heading, .widget.background:after, .c-blog__heading.style-2 i, .tab-wrap .c-nav-tabs ul.c-tabs-content li.active a:after, .tab-wrap .c-nav-tabs ul.c-tabs-content li:hover a:after, .tab-wrap .c-nav-tabs ul.c-tabs-content li a:after, .related-heading.font-nav, .c-blog__heading.style-3, .settings-page .nav-tabs-wrap ul.nav-tabs li.active a, .off-canvas {
+            background: -webkit-linear-gradient(left, #00d2ff 40%,#3a7bd5);
+            background: -o-linear-gradient(right, #00d2ff 40%,#3a7bd5);
+            background: -moz-linear-gradient(right, #00d2ff 40%,#3a7bd5);
+            background: linear-gradient(to right, #00d2ff 40%,#3a7bd5);
+            ;
+        }
+
+            .widget-heading:after, .related-heading.font-nav:after, .genres_wrap .c-blog__heading.style-3.active:after {
+                border-top-color: #00d2ff;
+            }
+
+        body.modal-open .modal .modal-content a:hover, .tab-wrap .c-nav-tabs ul.c-tabs-content li.active a, .tab-wrap .c-nav-tabs ul.c-tabs-content li:hover a, body.search.search-results .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-summary .post-content .post-content_item .summary-content:not(.release-year) a:hover, body.search.search-results .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-summary .post-content .post-content_item .summary-content.release-year a:hover, .c-blog-post .entry-header .entry-meta .post-on:before, .manga-slider .slider__container .slick-dots li.slick-active button:before, .manga-slider .slider__container .slick-dots li button:hover:before, body.manga-page .profile-manga .tab-summary .summary_content_wrap .summary_content .post-status .manga-action .count-comment .action_icon a i, body.manga-page .profile-manga .tab-summary .summary_content_wrap .summary_content .post-status .manga-action .add-bookmark .action_icon a i, body.manga-page .profile-manga .tab-summary .summary_content_wrap .summary_content .post-status .manga-action .count-comment .action_detail a i, body.manga-page .profile-manga .tab-summary .summary_content_wrap .summary_content .post-status .manga-action .add-bookmark .action_detail a i, body.manga-page .profile-manga .post-title a, body.manga-page .content-readmore:hover, body.text-ui-light.manga-page .content-readmore:hover, .genres_wrap .genres__collapse .genres ul li a:hover, .genres_wrap .genres__collapse .genres ul li a:hover:before, .c-blog-post .entry-header .entry-meta .post-on .posted-on a:hover, body.search .c-search-header__wrapper #search-advanced .search-advanced-form .form-group.checkbox-group .checkbox label:hover, .site-header .main-navigation .search-navigation .menu-search .open-search-main-menu, .c-btn.c-btn_style-2, body.search .c-search-header__wrapper .search-content .btn-search-adv, body.reading-manga .entry-header .entry-header_wrap .action-icon ul li a, body.reading-manga .c-select-bottom .entry-header_wrap .action-icon ul li a, .widget.c-released .released-item-wrap ul.list-released li a:hover, body.manga-page .profile-manga .post-title h1, .genres_wrap .genres__collapse #genres ul li:hover a, .genres_wrap .genres__collapse #genres ul li:hover a:before, input[type=checkbox]:checked + label:before, input[type=radio]:checked + label:before, .genres_wrap a.btn-genres, .c-breadcrumb .breadcrumb li a:hover, body.search.search-results .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-summary .post-content .post-content_item.mg_genres .summary-content, body.page .c-page-content .c-page .c-page__content .page-content-listing .page-listing-item .page-item-detail .item-summary .list-chapter .chapter-item .vol a:hover, #hover-infor .item_thumb .post-title a, body.manga-page .version-chap:before, body.manga-page .content-readmore:hover, body.manga-page .chapter-readmore:hover, .icon-load-info, .c-blog-post .entry-header .entry-meta .post-on .c-blog__date .post-category a:hover, .woocommerce ul.products li.product .price, .woocommerce div.entry-summary p.price, .woocommerce div.entry-summary form.cart .variations .label, .woocommerce div.entry-summary form.cart .quantity-text, .widget_product_categories .product-categories li a:hover, .woocommerce ul.products li.product h2:hover, .woocommerce .c-woo-breadcrumb a:hover, .site-header .c-sub-header-nav .c-sub-nav_wrap .c-modal_item .c-user_item .c-user_menu a:hover, .site-header .c-sub-header-nav .c-sub-nav_wrap .sub-nav_content .sub-nav_list li:hover > a, .settings-page .action i.ion-ios-close:hover:before, .settings-page .list-chapter .chapter-item a:hover, .settings-page .tabs-content-wrap .tab-group-item .tab-item .history-content .item-infor .chapter span a, .settings-page .nav-tabs-wrap ul.nav-tabs li:not(.active):hover a, .main-color,
+        .site-header .c-sub-header-nav .c-sub-nav_wrap .sub-nav_content .sub-nav_list li.menu-item-has-children.active > a, .woocommerce .woocommerce-ordering:after, .text-ui-light .widget.c-popular .popular-item-wrap .popular-content .chapter-item .chapter a:hover, body.text-ui-light .settings-page .list-chapter .chapter-item .chapter a:hover, body.search.text-ui-light .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-meta .latest-chap .chapter a:hover {
+            color: #00d2ff;
+        }
+
+        .c-blog__heading.style-2 i:after {
+            border-right-color: #00d2ff !important
+        }
+
+        body.page.text-ui-light .c-page-content .c-page .c-page__content .page-content-listing .page-listing-item .page-item-detail .item-summary .list-chapter .chapter-item .chapter a:hover, .text-ui-light .widget.c-popular .popular-item-wrap .popular-content .chapter-item .chapter a:hover, #hover-infor .item_thumb .post-title a {
+            color: #FFFFFF
+        }
+
+        .navigation-ajax .load-ajax:not(.show-loading):hover, .listing-chapters_wrap .has-child .wp-manga-chapter:before, .c-wg-button-wrap .btn:hover, body.manga-page .page-content-listing.single-page .listing-chapters_wrap ul.main.version-chap .wp-manga-chapter:before, .site-header .search-main-menu form input[type=submit], .form-submit input[type=submit], #comments.comments-area #respond.comment-respond .comment-form .form-submit #submit, .c-btn.c-btn_style-1, .settings-page input[type="submit"], .settings-page .remove-all #delete-bookmark-manga, body.manga-page .page-content-listing.single-page .listing-chapters_wrap > ul.main.version-chap li .wp-manga-chapter:before, .woocommerce ul.products li.product .button, .woocommerce span.onsale, .woocommerce .widget_price_filter .price_slider_amount .button:not(:hover), .woocommerce .woocommerce-pagination .page-numbers li span.current, .woocommerce .woocommerce-pagination .page-numbers li .prev:hover, .woocommerce .woocommerce-pagination .page-numbers li .next:hover, .woocommerce div.entry-summary form.cart .single_add_to_cart_button {
+            background: #00d2ff;
+        }
+
+        .navigation-ajax .load-ajax:not(.show-loading):hover, .popular-slider .slider__container .slider__item .slider__content .slider__content_item .chapter-item .chapter a:hover, body.search .c-search-header__wrapper .search-content .btn-search-adv.collapsed, .c-btn.c-btn_style-2, body.search .c-search-header__wrapper .search-content .btn-search-adv, .genres_wrap a.btn-genres, .wpcf7-validation-errors, .text-ui-light.woocommerce-page input[type="text"]:focus, .text-ui-light.woocommerce-page input[type="email"]:focus, .text-ui-light.woocommerce-page input[type="search"]:focus, .text-ui-light.woocommerce-page input[type="url"]:focus, .text-ui-light.woocommerce-page input[type="password"]:focus, .text-ui-light.woocommerce-page input[type="tel"]:focus, .text-ui-light.woocommerce-page .input-text:focus, .text-ui-light.woocommerce-page input[type="text"]:active, .text-ui-light.woocommerce-page input[type="email"]:active, .text-ui-light.woocommerce-page input[type="search"]:active, .text-ui-light.woocommerce-page input[type="url"]:active, .text-ui-light.woocommerce-page input[type="password"]:active, .text-ui-light.woocommerce-page input[type="tel"]:active, .text-ui-light.woocommerce-page .input-text:active, .text-ui-light.woocommerce-page input[type="text"]:hover, .text-ui-light.woocommerce-page input[type="email"]:hover, .text-ui-light.woocommerce-page input[type="search"]:hover, .text-ui-light.woocommerce-page input[type="url"]:hover, .text-ui-light.woocommerce-page input[type="password"]:hover, .text-ui-light.woocommerce-page input[type="tel"]:hover, .text-ui-light.woocommerce-page .input-text:hover, .text-ui-light.woocommerce-page select.orderby:hover {
+            border-color: #00d2ff;
+        }
+
+        .site-header .c-sub-header-nav .c-sub-nav_wrap .sub-nav_content .sub-nav_list > li.menu-item-has-children > ul.sub-menu, .site-header .c-sub-header-nav .c-sub-nav_wrap .c-modal_item .c-user_item .c-user_menu {
+            border-bottom-color: #00d2ff;
+        }
+
+        .widget.widget_tag_cloud .tag-cloud-link:hover, body.page .c-page-content .c-page .c-page__content .page-content-listing .page-listing-item .page-item-detail .item-summary .list-chapter .chapter-item .chapter:hover, .popular-slider .slider__container .slider__item .slider__content .slider__content_item .chapter-item .chapter a:hover, .widget.c-popular .popular-item-wrap .popular-content .chapter-item .chapter:hover, .site-footer .top-footer .wrap_social_account ul.social_account__item li a, .site-content .main-col .item-tags ul li a:hover, .popular-slider .slider__container .slick-arrow:hover, .widget.background.widget_tag_cloud .tag-cloud-link:hover, .wp-pagenavi a:hover, body.search.search-results .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-meta .latest-chap .chapter:hover, .go-to-top:hover, .widget.c-popular .widget-view-more, body.search .c-search-header__wrapper .search-content .search-form .search-submit, body.reading-manga .entry-header .select-pagination .nav-links .nav-next a:not(:hover), body.reading-manga .c-select-bottom .select-pagination .nav-links .nav-next a:not(:hover), body.reading-manga .entry-header .entry-header_wrap .action-icon ul li:hover a, body.reading-manga .c-select-bottom .entry-header_wrap .action-icon ul li:hover a, .widget.c-released .released-search form [type="submit"], body.manga-page .profile-manga .tab-summary .loader-inner > div, .wpcf7-submit, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce .woocommerce-cart-form .cart button.button, .woocommerce .cart input.button:not(:hover), #adult_modal .modal-footer .btn.btn-primary:not(:hover), body.reading-manga .entry-header .select-pagination .nav-links > * a, body.reading-manga .c-select-bottom .select-pagination .nav-links > * a, .settings-page .list-chapter .chapter-item .chapter:hover, body.modal-open .modal .modal-content .modal-body .login .submit .wp-submit:not(:hover), .settings-page .tabs-content-wrap .my_account_orders a.button.view, .main-bg, #madara-comments.comments-area #respond.comment-respond .comment-form .form-submit #submit, body.search .c-search-header__wrapper .search-content .btn-search-adv {
+            background-color: #00d2ff;
+        }
+
+        :root {
+            --madara-main-color: #00d2ff
+        }
+
+        body.search.search-results .search-wrap .tab-content-wrap .c-tabs-item .c-tabs-item__content .tab-meta .latest-chap .chapter:hover a, .wp-pagenavi a:hover {
+            color: #FFF !important
+        }
+
+        .item-thumb .quick-chapter-link {
+            background: #00d2ff;
+        }
+
+        .page-content-listing.single-page li.wp-manga-chapter.unread a {
+            color: #00d2ff
+        }
+
+        #pageloader.spinners {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99999;
+            background: #222
+        }
+
+        p.madara-unyson {
+            color: #FF0000;
+        }
+
+        .table.table-hover.list-bookmark tr:last-child td {
+            text-align: center;
+        }
+
+        #adminmenu .wp-submenu li.current {
+            display: none !important;
+        }
+
+        .show_tgmpa_version {
+            float: right;
+            padding: 0em 1.5em 0.5em 0;
+        }
+
+        .tgmpa > h2 {
+            font-size: 23px;
+            font-weight: 400;
+            line-height: 29px;
+            margin: 0;
+            padding: 9px 15px 4px 0;
+        }
+
+        .update-php {
+            width: 100%;
+            height: 98%;
+            min-height: 850px;
+            padding-top: 1px;
+        }
+
+        .c-blog-post .entry-content .entry-content_wrap .read-container img.alignleft {
+            margin: 10px 30px 10px 0 !important;
+        }
+
+        .c-blog-post .entry-content .entry-content_wrap .read-container img.alignright {
+            margin: 10px 0px 10px 30px !important;
+        }
+
+        .read-container i.fas.fa-spinner.fa-spin {
+            font-size: 31px;
+            color: #888;
+        }
+
+        .c-blog-post .entry-content .entry-content_wrap .read-container img {
+            cursor: pointer;
+        }
+
+        .choose-avatar .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.72);
+            z-index: 1;
+            display: none;
+        }
+
+            .choose-avatar .loading-overlay i.fas.fa-spinner {
+                font-size: 40px;
+                color: #ec3348;
+            }
+
+            .choose-avatar .loading-overlay .loading-icon {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+            }
+
+        .choose-avatar.uploading .loading-overlay {
+            display: block;
+        }
+
+        .site-header .c-sub-header-nav .entry-header {
+            display: none;
+            margin-bottom: 15px;
+        }
+
+        .site-header .c-sub-header-nav.sticky .entry-header {
+            display: block;
+        }
+
+        .site-header .c-sub-header-nav.hide-sticky-menu.sticky .c-sub-nav_wrap {
+            display: none;
+        }
+
+        .site-header .c-sub-header-nav.hide-sticky-menu .entry-header {
+            margin-top: 15px;
+        }
+    </style>
+    @Styles.Render("~/Asset/Web/wp-content/themes")
+    <script type="text/javascript" src="~/Asset/Web/wp-includes/js/jquery/jquery.min.js?ver=3.5.1" id="jquery-core-js"></script>
+    <script type="text/javascript" src="~/Asset/Web/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2" id="jquery-migrate-js"></script>
+    <link rel="https://api.w.org/" href="./wp-json/">
+    <link rel="alternate" type="application/json" href="./wp-json/wp/v2/pages/14">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="./xmlrpc.php?rsd">
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="~/Asset/Web/wp-includes/wlwmanifest.xml">
+    <meta name="generator" content="WordPress 5.7.2">
+    <meta name="generator" content="WooCommerce 5.3.0">
+    <link rel="canonical" href="./home-2/">
+    <link rel="shortlink" href="./?p=14">
+    <noscript>
+        <style>
+            .woocommerce-product-gallery {
+                opacity: 1 !important;
+            }
+        </style>
+    </noscript>
+    <meta property="og:image" content="~/Asset/Web/wp-content/themes/madara/images/logo.png">
+    <meta property="og:site_name" content="Madara Demo">
+    <meta property="fb:app_id" content="">
+    <meta property="og:title" content="Madara Demo | HOME 2">
+    <meta property="og:description" content="Manga WordPress Theme">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="Demo">
+    <meta name="twitter:title" content="Madara Demo | HOME 2">
+    <meta name="twitter:description" content="Manga WordPress Theme">
+    <meta name="twitter:image" content="~/Asset/Web/wp-content/themes/madara/images/logo.png">
+    <meta name="description" content="Manga WordPress Theme">
+    <meta name="generator" content="Powered by Madara - A powerful multi-purpose theme by Madara">
+</head>
+<body>
+    <div class="wrap">
+        <div class="body-wrap">
+            <header class="site-header">
+                <div class="c-header__top">
+                    <ul class="search-main-menu">
+                        <li>
+                            <form id="blog-post-search" class="ajax manga-search-form" action="./" method="get">
+                                <input type="text" placeholder="Search..." name="s" value="" class="manga-search-field ui-autocomplete-input" autocomplete="off">
+                                <input type="submit" value="Search">
+                                <div class="loader-inner line-scale">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                                <input type="hidden" name="post_type" value="wp-manga"><input type="hidden" name="post_type" value="wp-manga"><ul id="ui-id-1" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul>
+                            </form>
+                        </li>
+                    </ul>
+                    <div class="main-navigation style-1 ">
+                        <div class="container custom-width">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="main-navigation_wrap">
+                                        <div class="wrap_branding">
+                                            <a class="logo" href="./" title="Madara Demo">
+                                                <img class="img-responsive" src="~/Asset/Web/wp-content/themes/madara/images/logo.png" alt="Madara Demo">
+                                            </a>
+                                        </div>
+
+                                        <div class="main-menu">
+                                            <ul class="nav navbar-nav main-navbar">
+                                                <li id="menu-item-27" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-27">
+                                                    <a href="/">HOME</a>
+                                                    <ul class="sub-menu">
+                                                        <li id="menu-item-25" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-14 current_page_item menu-item-25"><a href="./home-2/" aria-current="page">HOME 2</a></li>
+                                                        <li id="menu-item-24" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24"><a href="./home-3/">HOME 3</a></li>
+                                                        <li id="menu-item-341" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-341"><a href="./home-4/">HOME 4 – REV SLIDER</a></li>
+                                                        <li id="menu-item-402" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-402"><a href="./home-dark/">HOME DARK</a></li>
+                                                        <li id="menu-item-1846" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1846"><a href="./home-shortcode/">Home Shortcode</a></li>
+                                                        <li id="menu-item-934" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-934"><a href="./listing-big-thumbnail/">LISTING – BIG THUMBNAIL</a></li>
+                                                        <li id="menu-item-852" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-852"><a href="./listing-simple-list/">LISTING – SIMPLE LIST</a></li>
+                                                        <li id="menu-item-500" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-500"><a href="./home-single-manga/">SINGLE MANGA</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-110">
+                                                    <a href="./manga/">MANGA</a>
+                                                    <ul class="sub-menu">
+                                                        <li id="menu-item-410" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-410"><a href="/manga/?genres_collapse=on">ARCHIVES – SHOW GENRES</a></li>
+                                                        <li id="menu-item-409" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-409"><a href="/manga">ARCHIVES – HIDE GENRES</a></li>
+                                                        <li id="menu-item-386" class="menu-item menu-item-type-post_type menu-item-object-wp-manga menu-item-386"><a href="./manga/hajime-boyfriend/">SINGLE MANGA</a></li>
+                                                        <li id="menu-item-403" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-403">
+                                                            <a href="#">MANGA READING</a>
+                                                            <ul class="sub-menu">
+                                                                <li id="menu-item-453" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-453"><a href="/manga/massa-consectetur-mattis/">VIDEO CHAPTER</a></li>
+                                                                <li id="menu-item-457" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-457"><a href="./manga/manga-text-chapter/">TEXT CHAPTER</a></li>
+                                                                <li id="menu-item-404" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-404"><a href="/manga/ykataza-yin-wang-shynakimiz/?display=wp-manga&amp;chapter=chapter-1&amp;style=paged">LIGHT VERSION</a></li>
+                                                                <li id="menu-item-405" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-405"><a href="/manga/dakimi-katawi-yakimimono-hajimazu-kyousou/?display=wp-manga&amp;chapter=chapter-1&amp;style=list&amp;body_schema=dark">DARK VERSION</a></li>
+                                                                <li id="menu-item-346" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-346"><a href="/manga/miharu-rokujou/?display=wp-manga&amp;chapter=chapter-1_1&amp;style=list">LIST STYLE</a></li>
+                                                                <li id="menu-item-345" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-345"><a href="/manga/miharu-rokujou/?display=wp-manga&amp;chapter=chapter-1_1&amp;style=paged">PAGED STYLE</a></li>
+                                                                <li id="menu-item-413" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-413"><a href="/manga/kahana-no-shou/?host=local&amp;display=wp-manga&amp;chapter=chapter-1&amp;style=paged">MULTI HOST</a></li>
+                                                                <li id="menu-item-387" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-387"><a href="/manga/hajime-boyfriend/?display=wp-manga&amp;chapter=chapter-1&amp;style=paged">HOST LOCAL</a></li>
+                                                                <li id="menu-item-388" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-388"><a href="/manga/nasama-okima/?display=wp-manga&amp;chapter=chapter-2&amp;style=paged">HOST AMAZON</a></li>
+                                                                <li id="menu-item-407" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-407"><a href="/manga/kagasarete-nairantou/?display=wp-manga&amp;chapter=chapter-1&amp;style=paged">HOST PICASA</a></li>
+                                                                <li id="menu-item-408" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-408"><a href="/manga/kahana-no-shou/?display=wp-manga&amp;chapter=chapter-1&amp;style=paged">HOST IMGUR</a></li>
+                                                                <li id="menu-item-1850" class="menu-item menu-item-type-post_type menu-item-object-wp-manga menu-item-1850"><a href="./manga/kyojin-shingeki-no/">18+ MANGA</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li id="menu-item-347" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-347"><a href="/?s=&amp;post_type=wp-manga">MANGA ADVANCED SEARCH</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li id="menu-item-23" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23"><a href="./blog/">BLOG</a></li>
+                                                <li id="menu-item-75" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-75">
+                                                    <a href="./about-us/">ABOUT US</a>
+                                                    <ul class="sub-menu">
+                                                        <li id="menu-item-22" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22"><a href="./contact/">CONTACT US</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li id="menu-item-596" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-596">
+                                                    <a href="./shop/"><i class="fas fa-shopping-bag"></i>  SHOP</a>
+                                                    <ul class="sub-menu">
+                                                        <li id="menu-item-595" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-595"><a href="./cart/"><i class="fas fa-shopping-cart"></i> CART</a></li>
+                                                        <li id="menu-item-594" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-594"><a href="./checkout/"><i class="far fa-credit-card"></i> CHECKOUT</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="search-navigation search-sidebar">
+
+
+                                            <div id="manga-search-3" class="widget col-12 col-md-12   default no-icon  manga-widget widget-manga-search">
+                                                <div class="widget__inner manga-widget widget-manga-search__inner c-widget-wrap">
+                                                    <div class="widget-content">
+                                                        <div class="search-navigation__wrap">
+
+                                                            <script>
+                                                                jQuery(document).ready(function ($) {
+                                                                    if ($('.c-header__top .manga-search-form').length !== 0 && $('.c-header__top .manga-search-form.search-form').length !== 0) {
+
+                                                                        $('form#blog-post-search').append('<input type="hidden" name="post_type" value="wp-manga">');
+
+                                                                        $('form#blog-post-search').addClass("manga-search-form");
+
+                                                                        $('form#blog-post-search input[name="s"]').addClass("manga-search-field");
+
+                                                                        $('form.manga-search-form.ajax input.manga-search-field').each(function () {
+
+                                                                            var searchIcon = $(this).parent().children('.ion-ios-search-strong');
+
+                                                                            var append = $(this).parent();
+
+                                                                            $(this).autocomplete({
+                                                                                appendTo: append,
+                                                                                source: function (request, resp) {
+                                                                                    $.ajax({
+                                                                                        url: manga.ajax_url,
+                                                                                        type: 'POST',
+                                                                                        dataType: 'json',
+                                                                                        data: {
+                                                                                            action: 'wp-manga-search-manga',
+                                                                                            title: request.term,
+                                                                                        },
+                                                                                        success: function (data) {
+                                                                                            resp($.map(data.data, function (item) {
+                                                                                                if (true == data.success) {
+                                                                                                    return {
+                                                                                                        label: item.title,
+                                                                                                        value: item.title,
+                                                                                                        url: item.url,
+                                                                                                        type: item.type
+                                                                                                    }
+                                                                                                } else {
+                                                                                                    return {
+                                                                                                        label: item.message,
+                                                                                                        value: item.message,
+                                                                                                        type: item.type,
+                                                                                                        click: false
+                                                                                                    }
+                                                                                                }
+                                                                                            }))
+                                                                                        }
+                                                                                    });
+                                                                                },
+                                                                                select: function (e, ui) {
+                                                                                    if (ui.item.url) {
+                                                                                        window.location.href = ui.item.url;
+                                                                                    } else {
+                                                                                        if (ui.item.click) {
+                                                                                            return true;
+                                                                                        } else {
+                                                                                            return false;
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                open: function (e, ui) {
+                                                                                    var acData = $(this).data('uiAutocomplete');
+                                                                                    acData.menu.element.addClass('manga-autocomplete').find('li div').each(function () {
+                                                                                        var $self = $(this),
+                                                                                            keyword = $.trim(acData.term).split(' ').join('|');
+                                                                                        $self.html($self.text().replace(new RegExp("(" + keyword + ")", "gi"), '<span class="manga-text-highlight">$1</span>'));
+                                                                                    });
+                                                                                }
+                                                                            }).autocomplete("instance")._renderItem = function (ul, item) {
+                                                                                return $("<li class='search-item'>")
+                                                                                    .append("<div class='manga-type-" + item.type + "'>" + item.label + "</div>")
+                                                                                    .appendTo(ul);
+                                                                            };
+                                                                        });
+                                                                    }
+                                                                });
+                                                            </script>
+                                                            <ul class="main-menu-search nav-menu">
+                                                                <li class="menu-search">
+                                                                    <a href="javascript:;" class="open-search-main-menu">
+                                                                        <i class="icon ion-ios-search"></i>
+                                                                        <i class="icon ion-android-close"></i>
+                                                                    </a>
+                                                                    <ul class="search-main-menu">
+                                                                        <li>
+                                                                            <form class="manga-search-form search-form ajax" action="./" method="get">
+                                                                                <input class="manga-search-field ui-autocomplete-input" type="text" placeholder="Search..." name="s" value="" autocomplete="off">
+                                                                                <input type="hidden" name="post_type" value="wp-manga"> <i class="icon ion-ios-search"></i>
+                                                                                <div class="loader-inner ball-clip-rotate-multiple">
+                                                                                    <div></div>
+                                                                                    <div></div>
+                                                                                </div>
+                                                                                <input type="submit" value="Search">
+                                                                                <ul id="ui-id-2" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul>
+                                                                            </form>
+                                                                        </li>
+                                                                    </ul>
+                                                                </li>
+                                                            </ul>
+
+                                                            <div class="link-adv-search">
+                                                                <a href="./?s=&amp;post_type=wp-manga">Advanced</a>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="c-togle__menu">
+                                            <button type="button" class="menu_icon__open">
+                                                <span></span> <span></span> <span></span>
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="mobile-menu menu-collapse off-canvas">
+                    <div class="close-nav">
+                        <button class="menu_icon__close">
+                            <span></span> <span></span>
+                        </button>
+                    </div>
+
+
+                    <div class="c-modal_item">
+                        <!-- Button trigger modal -->
+                        <span class="c-modal_sign-in">
+                            <a href="#" data-toggle="modal" data-target="#form-login" class="btn-active-modal">Sign in</a>
+                        </span>
+
+                        <span class="c-modal_sign-up">
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#form-sign-up" class="btn-active-modal">Sign up</a>
+                        </span>
+
+                    </div>
+
+
+                    <nav class="off-menu">
+                        <ul id="menu-main-menu-1" class="nav navbar-nav main-navbar">
+                            <li id="nav-menu-item-27" class="main-menu-item menu-item-depth-0 menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children parent dropdown hiden-sub-canvas">
+                                <a href="/" class="menu-link dropdown-toggle disabled main-menu-link" data-toggle="dropdown">HOME </a>
+                                <ul class="dropdown-menu menu-depth-1">
+                                    <li id="nav-menu-item-25" class="sub-menu-item menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-14 current_page_item"><a href="./home-2/" class="menu-link  sub-menu-link">HOME 2 </a></li>
+                                    <li id="nav-menu-item-24" class="sub-menu-item menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="./home-3/" class="menu-link  sub-menu-link">HOME 3 </a></li>
+                                    <li id="nav-menu-item-341" class="sub-menu-item menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="./home-4/" class="menu-link  sub-menu-link">HOME 4 – REV SLIDER </a></li>
+                                    <li id="nav-menu-item-402" class="sub-menu-item menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="./home-dark/" class="menu-link  sub-menu-link">HOME DARK </a></li>
+                                    <li id="nav-menu-item-1846" class="sub-menu-item menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="./home-shortcode/" class="menu-link  sub-menu-link">Home Shortcode </a></li>
+                                    <li id="nav-menu-item-934" class="sub-menu-item menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="./listing-big-thumbnail/" class="menu-link  sub-menu-link">LISTING – BIG THUMBNAIL </a></li>
+                                    <li id="nav-menu-item-852" class="sub-menu-item menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="./listing-simple-list/" class="menu-link  sub-menu-link">LISTING – SIMPLE LIST </a></li>
+                                    <li id="nav-menu-item-500" class="sub-menu-item menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="./home-single-manga/" class="menu-link  sub-menu-link">SINGLE MANGA </a></li>
+
+                                </ul>
+                                <i class="fa fa-caret-right" aria-hidden="true"></i>
+                            </li>
+                            <li id="nav-menu-item-110" class="main-menu-item menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children parent dropdown hiden-sub-canvas">
+                                <a href="./manga/" class="menu-link dropdown-toggle disabled main-menu-link" data-toggle="dropdown">MANGA </a>
+                                <ul class="dropdown-menu menu-depth-1">
+                                    <li id="nav-menu-item-410" class="sub-menu-item menu-item-depth-1 menu-item menu-item-type-custom menu-item-object-custom"><a href="/manga/?genres_collapse=on" class="menu-link  sub-menu-link">ARCHIVES – SHOW GENRES </a></li>
+                                    <li id="nav-menu-item-409" class="sub-menu-item menu-item-depth-1 menu-item menu-item-type-custom menu-item-object-custom"><a href="/manga" class="menu-link  sub-menu-link">ARCHIVES – HIDE GENRES </a></li>
+                                    <li id="nav-menu-item-386" class="sub-menu-item menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-wp-manga"><a href="./manga/hajime-boyfriend/" class="menu-link  sub-menu-link">SINGLE MANGA </a></li>
+                                    <li id="nav-menu-item-403" class="sub-menu-item menu-item-depth-1 menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children parent dropdown-submenu hiden-sub-canvas">
+                                        <a href="#" class="menu-link  sub-menu-link">MANGA READING </a>
+                                        <ul class="dropdown-menu menu-depth-2">
+                                            <li id="nav-menu-item-453" class="sub-menu-item menu-item-depth-2 menu-item menu-item-type-custom menu-item-object-custom"><a href="/manga/massa-consectetur-mattis/" class="menu-link  sub-menu-link">VIDEO CHAPTER </a></li>
+                                            <li id="nav-menu-item-457" class="sub-menu-item menu-item-depth-2 menu-item menu-item-type-custom menu-item-object-custom"><a href="./manga/manga-text-chapter/" class="menu-link  sub-menu-link">TEXT CHAPTER </a></li>
+                                            <li id="nav-menu-item-404" class="sub-menu-item menu-item-depth-2 menu-item menu-item-type-custom menu-item-object-custom"><a href="/manga/ykataza-yin-wang-shynakimiz/?display=wp-manga&amp;chapter=chapter-1&amp;style=paged" class="menu-link  sub-menu-link">LIGHT VERSION </a></li>
+                                            <li id="nav-menu-item-405" class="sub-menu-item menu-item-depth-2 menu-item menu-item-type-custom menu-item-object-custom"><a href="/manga/dakimi-katawi-yakimimono-hajimazu-kyousou/?display=wp-manga&amp;chapter=chapter-1&amp;style=list&amp;body_schema=dark" class="menu-link  sub-menu-link">DARK VERSION </a></li>
+                                            <li id="nav-menu-item-346" class="sub-menu-item menu-item-depth-2 menu-item menu-item-type-custom menu-item-object-custom"><a href="/manga/miharu-rokujou/?display=wp-manga&amp;chapter=chapter-1_1&amp;style=list" class="menu-link  sub-menu-link">LIST STYLE </a></li>
+                                            <li id="nav-menu-item-345" class="sub-menu-item menu-item-depth-2 menu-item menu-item-type-custom menu-item-object-custom"><a href="/manga/miharu-rokujou/?display=wp-manga&amp;chapter=chapter-1_1&amp;style=paged" class="menu-link  sub-menu-link">PAGED STYLE </a></li>
+                                            <li id="nav-menu-item-413" class="sub-menu-item menu-item-depth-2 menu-item menu-item-type-custom menu-item-object-custom"><a href="/manga/kahana-no-shou/?host=local&amp;display=wp-manga&amp;chapter=chapter-1&amp;style=paged" class="menu-link  sub-menu-link">MULTI HOST </a></li>
+                                            <li id="nav-menu-item-387" class="sub-menu-item menu-item-depth-2 menu-item menu-item-type-custom menu-item-object-custom"><a href="/manga/hajime-boyfriend/?display=wp-manga&amp;chapter=chapter-1&amp;style=paged" class="menu-link  sub-menu-link">HOST LOCAL </a></li>
+                                            <li id="nav-menu-item-388" class="sub-menu-item menu-item-depth-2 menu-item menu-item-type-custom menu-item-object-custom"><a href="/manga/nasama-okima/?display=wp-manga&amp;chapter=chapter-2&amp;style=paged" class="menu-link  sub-menu-link">HOST AMAZON </a></li>
+                                            <li id="nav-menu-item-407" class="sub-menu-item menu-item-depth-2 menu-item menu-item-type-custom menu-item-object-custom"><a href="/manga/kagasarete-nairantou/?display=wp-manga&amp;chapter=chapter-1&amp;style=paged" class="menu-link  sub-menu-link">HOST PICASA </a></li>
+                                            <li id="nav-menu-item-408" class="sub-menu-item menu-item-depth-2 menu-item menu-item-type-custom menu-item-object-custom"><a href="/manga/kahana-no-shou/?display=wp-manga&amp;chapter=chapter-1&amp;style=paged" class="menu-link  sub-menu-link">HOST IMGUR </a></li>
+                                            <li id="nav-menu-item-1850" class="sub-menu-item menu-item-depth-2 menu-item menu-item-type-post_type menu-item-object-wp-manga"><a href="./manga/kyojin-shingeki-no/" class="menu-link  sub-menu-link">18+ MANGA </a></li>
+
+                                        </ul>
+                                        <i class="fa fa-caret-right" aria-hidden="true"></i>
+                                    </li>
+                                    <li id="nav-menu-item-347" class="sub-menu-item menu-item-depth-1 menu-item menu-item-type-custom menu-item-object-custom"><a href="/?s=&amp;post_type=wp-manga" class="menu-link  sub-menu-link">MANGA ADVANCED SEARCH </a></li>
+
+                                </ul>
+                                <i class="fa fa-caret-right" aria-hidden="true"></i>
+                            </li>
+                            <li id="nav-menu-item-23" class="main-menu-item menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page"><a href="./blog/" class="menu-link  main-menu-link">BLOG </a></li>
+                            <li id="nav-menu-item-75" class="main-menu-item menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children parent dropdown hiden-sub-canvas">
+                                <a href="./about-us/" class="menu-link dropdown-toggle disabled main-menu-link" data-toggle="dropdown">ABOUT US </a>
+                                <ul class="dropdown-menu menu-depth-1">
+                                    <li id="nav-menu-item-22" class="sub-menu-item menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="./contact/" class="menu-link  sub-menu-link">CONTACT US </a></li>
+
+                                </ul>
+                                <i class="fa fa-caret-right" aria-hidden="true"></i>
+                            </li>
+                            <li id="nav-menu-item-596" class="main-menu-item menu-item-depth-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children parent dropdown hiden-sub-canvas">
+                                <a href="./shop/" class="menu-link dropdown-toggle disabled main-menu-link" data-toggle="dropdown"><i class="fas fa-shopping-bag"></i>  SHOP </a>
+                                <ul class="dropdown-menu menu-depth-1">
+                                    <li id="nav-menu-item-595" class="sub-menu-item menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="./cart/" class="menu-link  sub-menu-link"><i class="fas fa-shopping-cart"></i> CART </a></li>
+                                    <li id="nav-menu-item-594" class="sub-menu-item menu-item-depth-1 menu-item menu-item-type-post_type menu-item-object-page"><a href="./checkout/" class="menu-link  sub-menu-link"><i class="far fa-credit-card"></i> CHECKOUT </a></li>
+
+                                </ul>
+                                <i class="fa fa-caret-right" aria-hidden="true"></i>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="clone-header" style="height: 0px;"></div><div class="c-sub-header-nav with-border">
+                    <div class="container custom-width">
+                        <div class="c-sub-nav_wrap">
+                            <div class="sub-nav_content">
+                                <ul class="sub-nav_list list-inline second-menu">
+                                    <li id="menu-item-54" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-54"><a href="./manga-genre/romance/">Romance</a></li>
+                                    <li id="menu-item-32" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-32"><a href="./manga-genre/comedy/">Comedy</a></li>
+                                    <li id="menu-item-58" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-58"><a href="./manga-genre/shoujo/">Shoujo</a></li>
+                                    <li id="menu-item-36" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-36"><a href="./manga-genre/drama/">Drama</a></li>
+                                    <li id="menu-item-55" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-55"><a href="./manga-genre/school-life/">School Life</a></li>
+                                    <li id="menu-item-60" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-60"><a href="./manga-genre/shounen/">Shounen</a></li>
+                                    <li id="menu-item-28" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-28"><a href="./manga-genre/action/">Action</a></li>
+                                    <li id="menu-item-72" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children parent menu-item-72">
+                                        <a href="#">MORE</a>
+                                        <ul class="sub-menu">
+                                            <li id="menu-item-29" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-29"><a href="./manga-genre/adult/">Adult</a></li>
+                                            <li id="menu-item-30" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-30"><a href="./manga-genre/adventure/">Adventure</a></li>
+                                            <li id="menu-item-31" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-31"><a href="./manga-genre/anime/">Anime</a></li>
+                                            <li id="menu-item-33" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-33"><a href="./manga-genre/comic/">Comic</a></li>
+                                            <li id="menu-item-34" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-34"><a href="./manga-genre/cooking/">Cooking</a></li>
+                                            <li id="menu-item-35" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-35"><a href="./manga-genre/doujinshi/">Doujinshi</a></li>
+                                            <li id="menu-item-37" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-37"><a href="./manga-genre/ecchi/">Ecchi</a></li>
+                                            <li id="menu-item-38" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-38"><a href="./manga-genre/fantasy/">Fantasy</a></li>
+                                            <li id="menu-item-39" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-39"><a href="./manga-genre/gender-bender/">Gender Bender</a></li>
+                                            <li id="menu-item-40" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-40"><a href="./manga-genre/harem/">Harem</a></li>
+                                            <li id="menu-item-41" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-41"><a href="./manga-genre/historical/">Historical</a></li>
+                                            <li id="menu-item-42" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-42"><a href="./manga-genre/horror/">Horror</a></li>
+                                            <li id="menu-item-43" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-43"><a href="./manga-genre/josei/">Josei</a></li>
+                                            <li id="menu-item-44" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-44"><a href="./manga-genre/live-action/">Live action</a></li>
+                                            <li id="menu-item-45" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-45"><a href="./manga-genre/manga/">Manga</a></li>
+                                            <li id="menu-item-46" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-46"><a href="./manga-genre/manhua/">Manhua</a></li>
+                                            <li id="menu-item-47" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-47"><a href="./manga-genre/manhwa/">Manhwa</a></li>
+                                            <li id="menu-item-48" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-48"><a href="./manga-genre/martial-arts/">Martial Arts</a></li>
+                                            <li id="menu-item-49" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-49"><a href="./manga-genre/mature/">Mature</a></li>
+                                            <li id="menu-item-50" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-50"><a href="./manga-genre/mecha/">Mecha</a></li>
+                                            <li id="menu-item-51" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-51"><a href="./manga-genre/mystery/">Mystery</a></li>
+                                            <li id="menu-item-52" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-52"><a href="./manga-genre/one-shot/">One shot</a></li>
+                                            <li id="menu-item-53" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-53"><a href="./manga-genre/psychological/">Psychological</a></li>
+                                            <li id="menu-item-56" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-56"><a href="./manga-genre/sci-fi/">Sci-fi</a></li>
+                                            <li id="menu-item-57" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-57"><a href="./manga-genre/seinen/">Seinen</a></li>
+                                            <li id="menu-item-59" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-59"><a href="./manga-genre/shoujo-ai/">Shoujo Ai</a></li>
+                                            <li id="menu-item-61" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-61"><a href="./manga-genre/shounen-ai/">Shounen Ai</a></li>
+                                            <li id="menu-item-62" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-62"><a href="./manga-genre/slice-of-life/">Slice of Life</a></li>
+                                            <li id="menu-item-63" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-63"><a href="./manga-genre/smut/">Smut</a></li>
+                                            <li id="menu-item-64" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-64"><a href="./manga-genre/soft-yaoi/">Soft Yaoi</a></li>
+                                            <li id="menu-item-65" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-65"><a href="./manga-genre/soft-yuri/">Soft Yuri</a></li>
+                                            <li id="menu-item-66" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-66"><a href="./manga-genre/sports/">Sports</a></li>
+                                            <li id="menu-item-68" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-68"><a href="./manga-genre/tragedy/">Tragedy</a></li>
+                                            <li id="menu-item-67" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-67"><a href="./manga-genre/supernatural/">Supernatural</a></li>
+                                            <li id="menu-item-69" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-69"><a href="./manga-genre/webtoon/">Webtoon</a></li>
+                                            <li id="menu-item-70" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-70"><a href="./manga-genre/yaoi/">Yaoi</a></li>
+                                            <li id="menu-item-71" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-71"><a href="./manga-genre/yuri/">Yuri</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <i class="mobile-icon icon ion-md-more"></i>
+
+                                </ul>
+                            </div>
+
+                            <div class="c-modal_item">
+                                <!-- Button trigger modal -->
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#form-login" class="btn-active-modal">Sign in</a>
+                                <a href="javascript:void(0)" data-toggle="modal" data-target="#form-sign-up" class="btn-active-modal">Sign up</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </header>
+            @RenderBody()
+            <footer class="site-footer">
+
+                <div class="ad c-ads custom-code footer-ads col-md-12"><img src="~/Asset/Web/wp-content/uploads/2017/10/ads-1.jpg" alt="Madara Ads Footer"></div>
+                <div class="top-footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="wrap_social_account">
+                                    <ul class="list-inline social_account__item"><li><a class="social-icons" target="_blank" rel="noopener" href="#" title="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li><li><a class="social-icons" target="_blank" rel="noopener" href="#" title="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a></li><li><a class="social-icons" target="_blank" rel="noopener" href="#" title="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li><li><a class="social-icons" target="_blank" rel="noopener" href="#" title="Tumblr"><i class="fab fa-tumblr" aria-hidden="true"></i></a></li><li><a class="social-icons" target="_blank" rel="noopener" href="#" title="Pinterest"><i class="fab fa-pinterest" aria-hidden="true"></i></a></li><li><a class="social-icons" target="_blank" rel="noopener" href="#" title="Youtube"><i class="fab fa-youtube" aria-hidden="true"></i></a></li><li><a class="social-icons" target="_blank" rel="noopener" href="#" title="Flickr"><i class="fab fa-flickr" aria-hidden="true"></i></a></li></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bottom-footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="nav-footer">
+                                    <ul class="list-inline font-nav">
+                                        <li id="menu-item-76" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-76"><a href="/">HOME</a></li>
+                                        <li id="menu-item-79" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-79"><a href="./blog/">BLOG</a></li>
+                                        <li id="menu-item-78" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-78"><a href="./contact/">CONTACT US</a></li>
+                                        <li id="menu-item-77" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-77"><a href="./about-us/">ABOUT US</a></li>
+                                        <li id="menu-item-80" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-80"><a href="#">COOKIE POLICY</a></li>
+                                    </ul>
+                                </div>
+                                <div class="copyright">
+                                    <p>© 2021 Madara Inc. All rights reserved</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </footer>
+            <div class="ad c-ads custom-code wall-ads-control wall-ads-left"><img src="~/Asset/Web/wp-content/uploads/2018/02/side-ad-01.jpg" alt="Madara Ads Wall Ads Left"></div>
+            <div class="ad c-ads custom-code wall-ads-control wall-ads-right"><img src="~/Asset/Web/wp-content/uploads/2018/02/side-ad-02.jpg" alt="Madara Ads Wall Ads Right"></div>
+            <div id="hover-infor" style="display: none; position: absolute; top: 926px; z-index: 99999; left: 677px;" class=""></div>
+        </div>
+    </div>
+    <div class="wp-manga-section">
+        <input type="hidden" name="bookmarking" value="0">
+        <div class="modal fade" id="form-login" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="login" class="login">
+                            <h3>
+                                <a href="./" title="Madara Demo" tabindex="-1">Sign in</a>
+                            </h3>
+                            <p class="message login"></p>
+                            <meta name="robots" content="max-image-preview:large">
+                            <link rel="dns-prefetch" href="//s.w.org">
+                            <script type="text/javascript" src="~/Asset/Web/wp-includes/js/wp-embed.min.js?ver=5.7.2" id="wp-embed-js"></script>
+                            <form name="loginform" id="loginform" method="post">
+                                <p>
+                                    <label>
+                                        Username or Email Address *                                    <br> <input type="text" name="log" class="input user_login" value="" size="20">
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Password *                                    <br> <input type="password" autocomplete="" name="pwd" class="input user_pass" value="" size="20">
+                                    </label>
+                                </p>
+                                <p>
+                                </p>
+                                <p class="forgetmenot">
+                                    <label>
+                                        <input name="rememberme" type="checkbox" id="rememberme" value="forever">Remember Me
+                                    </label>
+                                </p>
+                                <p class="submit">
+                                    <input type="submit" name="wp-submit" class="button button-primary button-large wp-submit" value="Log In">                                <input type="hidden" name="redirect_to" value="./wp-admin/">
+                                    <input type="hidden" name="testcookie" value="1">
+                                </p>
+                            </form>
+                            <p class="nav">
+                                <a href="javascript:avoid(0)" class="to-reset">Lost your password?</a>
+                            </p>
+                            <p class="backtoblog">
+                                <a href="javascript:void(0)">← Back to Madara Demo</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="form-sign-up" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="sign-up" class="login">
+                            <h3>
+                                <a href="./" title="Madara Demo" tabindex="-1">Sign Up</a>
+                            </h3>
+                            <p class="message register">Register For This Site.</p>
+                            <form name="registerform" id="registerform" novalidate="novalidate">
+                                <p>
+                                    <label>
+                                        Username *                                    <br>
+                                        <input type="text" name="user_sign-up" class="input user_login" value="" size="20">
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Email Address *                                    <br>
+                                        <input type="email" name="email_sign-up" class="input user_email" value="" size="20">
+                                    </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Password *<br>
+                                        <input type="password" name="pass_sign-up" autocomplete="" class="input user_pass" value="" size="25">
+                                    </label>
+                                </p>
+                                <p>
+                                </p>
+
+                                <input type="hidden" name="redirect_to" value="">
+                                <p class="submit">
+                                    <input type="submit" name="wp-submit" class="button button-primary button-large wp-submit" value="Register">
+                                </p>
+                            </form>
+                            <p class="nav">
+                                <a href="javascript:void(0)" class="to-login">Log in</a>
+                                |
+                                <a href="javascript:void(0)" class="to-reset">Lost your password?</a>
+                            </p>
+                            <p class="backtoblog">
+                                <a href="javascript:void(0)">← Back to Madara Demo</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="form-reset" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="reset" class="login">
+                            <h3>
+                                <a href="javascript:void(0)" class="to-reset">Lost your password?</a>
+                            </h3>
+                            <p class="message reset">Please enter your username or email address. You will receive a link to create a new password via email.</p>
+                            <form name="resetform" id="resetform" method="post">
+                                <p>
+                                    <label>
+                                        Username or Email Address                                    <br>
+                                        <input type="text" name="user_reset" id="user_reset" class="input" value="" size="20">
+                                    </label>
+                                </p>
+                                <p class="submit">
+                                    <input type="submit" name="wp-submit" class="button button-primary button-large wp-submit" value="Get New Password">
+                                    <input type="hidden" name="testcookie" value="1">
+                                </p>
+                            </form>
+                            <p>
+                                <a class="backtoblog" href="javascript:void(0)">← Back to  Madara Demo</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="go-to-top">
+        <i class="icon ion-md-arrow-up"></i>
+    </div>
+    <script>
+        jQuery(document).ready(function ($) {
+            $('.woocommerce .quantity').on('click', '.minus', function (e) {
+                var $inputQty = $(this).parent().find('input.qty');
+                var val = parseInt($inputQty.val());
+                var step = $inputQty.attr('step');
+                step = 'undefined' !== typeof (step) ? parseInt(step) : 1;
+                if (val > 0) {
+                    $inputQty.val(val - step).change();
+                }
+            });
+            $('.woocommerce .quantity').on('click', '.plus', function (e) {
+                var $inputQty = $(this).parent().find('input.qty');
+                var val = parseInt($inputQty.val());
+                var step = $inputQty.attr('step');
+                step = 'undefined' !== typeof (step) ? parseInt(step) : 1;
+                $inputQty.val(val + step).change();
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        (function () {
+            var c = document.body.className;
+            c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+            document.body.className = c;
+        })();
+    </script>
+    <script type="text/javascript" id="wc-add-to-cart-js-extra">
+    </script>
+    <script type="text/javascript" id="woocommerce-js-extra">
+    </script>
+    <script type="text/javascript" id="wc-cart-fragments-js-extra">
+    </script>
+    <script type="text/javascript" src="~/Asset/Web/wp-content/themes/madara/js/core.js?ver=5.7.2" id="madara-core-js"></script>
+    <script type="text/javascript" src="~/Asset/Web/wp-content/themes/madara/js/smoothscroll.js?ver=1.4.10" id="smoothscroll-js"></script>
+    <script type="text/javascript" src="~/Asset/Web/wp-content/themes/madara/js/lazysizes/lazysizes.min.js?ver=5.3.2" id="lazysizes-js"></script>
+    <script type="text/javascript" src="~/Asset/Web/wp-content/themes/madara/js/bootstrap.min.js?ver=4.6.0" id="bootstrap-js"></script>
+    <script type="text/javascript" src="~/Asset/Web/wp-content/themes/madara/js/shuffle.min.js?ver=5.3.0" id="shuffle-js"></script>
+    <script type="text/javascript" src="~/Asset/Web/wp-includes/js/imagesloaded.min.js?ver=4.1.4" id="imagesloaded-js"></script>
+    <script type="text/javascript" src="~/Asset/Web/wp-content/themes/madara/js/aos.js?ver=5.7.2" id="aos-js"></script>
+    <script type="text/javascript" id="madara-js-js-extra">
+    </script>
+    <script type="text/javascript" src="~/Asset/Web/wp-content/themes/madara/js/template.js?ver=1.6.6" id="madara-js-js"></script>
+    <script type="text/javascript" src="~/Asset/Web/wp-content/themes/madara/js/ajax.js?ver=5.7.2" id="madara-ajax-js"></script>
+    <script type="text/javascript" id="wp-manga-login-ajax-js-extra">
+    </script>
+    <script type="text/javascript" src="~/Asset/Web/wp-includes/js/jquery/ui/core.min.js?ver=1.12.1" id="jquery-ui-core-js"></script>
+    <script type="text/javascript" src="~/Asset/Web/wp-includes/js/jquery/ui/menu.min.js?ver=1.12.1" id="jquery-ui-menu-js"></script>
+    <script type="text/javascript" src="~/Asset/Web/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=7.4.4" id="wp-polyfill-js"></script>
+    <script type="text/javascript" id="wp-polyfill-js-after">
+        ('fetch' in window) || document.write('<script src="~/Asset/Web/wp-includes/js/dist/vendor/wp-polyfill-fetch.min.js?ver=3.0.0"></scr' + 'ipt>'); (document.contains) || document.write('<script src="~/Asset/Web/wp-includes/js/dist/vendor/wp-polyfill-node-contains.min.js?ver=3.42.0"></scr' + 'ipt>'); (window.DOMRect) || document.write('<script src="~/Asset/Web/wp-includes/js/dist/vendor/wp-polyfill-dom-rect.min.js?ver=3.42.0"></scr' + 'ipt>'); (window.URL && window.URL.prototype && window.URLSearchParams) || document.write('<script src="~/Asset/Web/wp-includes/js/dist/vendor/wp-polyfill-url.min.js?ver=3.6.4"></scr' + 'ipt>'); (window.FormData && window.FormData.prototype.keys) || document.write('<script src="~/Asset/Web/wp-includes/js/dist/vendor/wp-polyfill-formdata.min.js?ver=3.0.12"></scr' + 'ipt>'); (Element.prototype.matches && Element.prototype.closest) || document.write('<script src="~/Asset/Web/wp-includes/js/dist/vendor/wp-polyfill-element-closest.min.js?ver=2.0.2"></scr' + 'ipt>'); ('objectFit' in document.documentElement.style) || document.write('<script src="~/Asset/Web/wp-includes/js/dist/vendor/wp-polyfill-object-fit.min.js?ver=2.3.4"></scr' + 'ipt>');
+    </script>
+    <script type="text/javascript" src="~/Asset/Web/wp-includes/js/dist/dom-ready.min.js?ver=eb19f7980f0268577acb5c2da5457de3" id="wp-dom-ready-js"></script>
+    <script type="text/javascript" src="~/Asset/Web/wp-includes/js/dist/hooks.min.js?ver=50e23bed88bcb9e6e14023e9961698c1" id="wp-hooks-js"></script>
+    <script type="text/javascript" src="~/Asset/Web/wp-includes/js/dist/i18n.min.js?ver=db9a9a37da262883343e941c3731bc67" id="wp-i18n-js"></script>
+    <script type="text/javascript" id="wp-i18n-js-after">
+        wp.i18n.setLocaleData({ 'text direction\u0004ltr': ['ltr'] });
+    </script>
+    <script type="text/javascript" id="wp-a11y-js-translations">
+        (function (domain, translations) {
+            var localeData = translations.locale_data[domain] || translations.locale_data.messages;
+            localeData[""].domain = domain;
+            wp.i18n.setLocaleData(localeData, domain);
+        })("default", { "locale_data": { "messages": { "": {} } } });
+    </script>
+    <script type="text/javascript" src="~/Asset/Web/wp-includes/js/dist/a11y.min.js?ver=5e00de7a43b31bbb9eaf685f089a3903" id="wp-a11y-js"></script>
+    <script type="text/javascript" id="jquery-ui-autocomplete-js-extra">
+        var uiAutocompleteL10n = { "noResults": "No results found.", "oneResult": "1 result found. Use up and down arrow keys to navigate.", "manyResults": "%d results found. Use up and down arrow keys to navigate.", "itemSelected": "Item selected." };
+    </script>
+    <script type="text/javascript" src="~/Asset/Web/wp-includes/js/jquery/ui/autocomplete.min.js?ver=1.12.1" id="jquery-ui-autocomplete-js"></script>
+    <script type="text/javascript" id="wp-manga-js-extra">
+        var mangaReadingAjax = { "isEnable": "1" };
+    </script>
+    <script type="text/javascript" id="madara_ajax_hover_content-js-extra">
+    </script>
+    <script type="text/javascript" src="~/Asset/Web/wp-content/themes/madara/js/manga-hover.js?ver=5.7.2" id="madara_ajax_hover_content-js"></script>
+    <script type="text/javascript" src="~/Asset/Web/wp-content/themes/madara/js/slick/slick.min.js?ver=1.9.0" id="slick-js"></script>
+    @Scripts.Render("~/Asset/Web/wp-includes/js")
+    <p id="a11y-speak-intro-text" class="a11y-speak-intro-text" style="position: absolute;margin: -1px;padding: 0;height: 1px;width: 1px;overflow: hidden;clip: rect(1px, 1px, 1px, 1px);-webkit-clip-path: inset(50%);clip-path: inset(50%);border: 0;word-wrap: normal !important;" hidden="hidden">Notifications</p>
+    <div id="a11y-speak-assertive" class="a11y-speak-region" style="position: absolute;margin: -1px;padding: 0;height: 1px;width: 1px;overflow: hidden;clip: rect(1px, 1px, 1px, 1px);-webkit-clip-path: inset(50%);clip-path: inset(50%);border: 0;word-wrap: normal !important;" aria-live="assertive" aria-relevant="additions text" aria-atomic="true"></div>
+    <div id="a11y-speak-polite" class="a11y-speak-region" style="position: absolute;margin: -1px;padding: 0;height: 1px;width: 1px;overflow: hidden;clip: rect(1px, 1px, 1px, 1px);-webkit-clip-path: inset(50%);clip-path: inset(50%);border: 0;word-wrap: normal !important;" aria-live="polite" aria-relevant="additions text" aria-atomic="true"></div>
+    <div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div>
+    <div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div>
+    <div role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></div>
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -2414,6 +2414,37 @@
     <Content Include="Asset\Admin\vendor\popper.js\umd\popper-utils.min.js" />
     <Content Include="Asset\Admin\vendor\popper.js\umd\popper.js" />
     <Content Include="Asset\Admin\vendor\popper.js\umd\popper.min.js" />
+    <Content Include="Asset\Web\wp-content\themes\madara\css\bootstrap.min.css" />
+    <Content Include="Asset\Web\wp-content\themes\madara\css\fonts\ct-icon\ct-icon.css" />
+    <Content Include="Asset\Web\wp-content\themes\madara\css\fonts\ionicons\css\ionicons.min.css" />
+    <Content Include="Asset\Web\wp-content\themes\madara\css\loaders.min.css" />
+    <Content Include="Asset\Web\wp-content\themes\madara\js\ajax.js" />
+    <Content Include="Asset\Web\wp-content\themes\madara\js\aos.js" />
+    <Content Include="Asset\Web\wp-content\themes\madara\js\bootstrap.min.js" />
+    <Content Include="Asset\Web\wp-content\themes\madara\js\core.js" />
+    <Content Include="Asset\Web\wp-content\themes\madara\js\lazysizes\lazysizes.min.js" />
+    <Content Include="Asset\Web\wp-content\themes\madara\js\manga-hover.js" />
+    <Content Include="Asset\Web\wp-content\themes\madara\js\shuffle.min.js" />
+    <Content Include="Asset\Web\wp-content\themes\madara\js\slick\ajax-loader.gif" />
+    <Content Include="Asset\Web\wp-content\themes\madara\js\slick\slick-theme.css" />
+    <Content Include="Asset\Web\wp-content\themes\madara\js\slick\slick.css" />
+    <Content Include="Asset\Web\wp-content\themes\madara\js\slick\slick.min.js" />
+    <Content Include="Asset\Web\wp-content\themes\madara\js\smoothscroll.js" />
+    <Content Include="Asset\Web\wp-content\themes\madara\js\template.js" />
+    <Content Include="Asset\Web\wp-content\themes\madara\style.css" />
+    <Content Include="Asset\Web\wp-includes\js\dist\a11y.min.js" />
+    <Content Include="Asset\Web\wp-includes\js\dist\dom-ready.min.js" />
+    <Content Include="Asset\Web\wp-includes\js\dist\hooks.min.js" />
+    <Content Include="Asset\Web\wp-includes\js\dist\i18n.min.js" />
+    <Content Include="Asset\Web\wp-includes\js\dist\vendor\wp-polyfill.min.js" />
+    <Content Include="Asset\Web\wp-includes\js\imagesloaded.min.js" />
+    <Content Include="Asset\Web\wp-includes\js\jquery\jquery-migrate.min.js" />
+    <Content Include="Asset\Web\wp-includes\js\jquery\jquery.min.js" />
+    <Content Include="Asset\Web\wp-includes\js\jquery\ui\autocomplete.min.js" />
+    <Content Include="Asset\Web\wp-includes\js\jquery\ui\core.min.js" />
+    <Content Include="Asset\Web\wp-includes\js\jquery\ui\menu.min.js" />
+    <Content Include="Asset\Web\wp-includes\js\wp-embed.min.js" />
+    <Content Include="Asset\Web\wp-includes\js\wp-emoji-release.min.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -2708,6 +2739,11 @@
     <Content Include="Asset\Admin\vendor\jquery.cookie\component.json" />
     <Content Include="Asset\Admin\vendor\jquery.cookie\cookie.jquery.json" />
     <Content Include="Asset\Admin\vendor\popper.js\umd\popper.js.flow" />
+    <Content Include="Asset\Web\wp-content\themes\madara\css\fonts\ionicons\fonts\ionicons.ttf" />
+    <Content Include="Asset\Web\wp-content\themes\madara\css\fonts\ionicons\fonts\ionicons.woff" />
+    <Content Include="Asset\Web\wp-content\themes\madara\css\fonts\ionicons\fonts\ionicons.woff2" />
+    <Content Include="Asset\Web\wp-content\themes\madara\js\slick\fonts\slick.ttf" />
+    <Content Include="Asset\Web\wp-content\themes\madara\js\slick\fonts\slick.woff" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\getAPI.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -2740,6 +2776,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\AdminWeb\ThemAdmin.cshtml" />
     <Content Include="Views\AdminWeb\QLTaiKhoan.cshtml" />
+    <Content Include="Views\Shared\_Layoutwebindex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
