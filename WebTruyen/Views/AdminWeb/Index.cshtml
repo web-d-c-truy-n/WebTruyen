@@ -574,5 +574,16 @@
         <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
 </section>
+@section js{    
+    <script>
+        $(document).ready(function () {
+            $("#dangxuat").click(async function () {
+                debugger
+                let dangxuat = await API.logoutAdmin()
+               window.location.href = "@Url.Action("LoginAdmin","AdminWeb")"
+            })
+        })
+    </script>    
+}
 
 
