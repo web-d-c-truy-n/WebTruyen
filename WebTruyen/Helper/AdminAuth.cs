@@ -28,9 +28,9 @@ namespace WebTruyen.Helper
                 return false;
             }
         }
-        public static TaiKhoan user()
+        public static Admin user()
         {
-            return (TaiKhoan)HttpContext.Current.Session["admin"];
+            return (Admin)HttpContext.Current.Session["admin"];
         }
         public static void logout()
         {

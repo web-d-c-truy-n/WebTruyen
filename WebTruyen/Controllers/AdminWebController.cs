@@ -8,59 +8,21 @@ namespace WebTruyen.Controllers
 {
     public class AdminWebController : Controller
     {
-       webtruyenptEntities wt = new webtruyenptEntities();
+        private webtruyenptEntities db;
+
+        public AdminWebController() {
+            {
+                db = new webtruyenptEntities();
+            } }
+
         // GET: AdminWeb
         public ActionResult Index()
         {
             return View();
         }
-        [HttpGet]
-        public ActionResult LoginAdmin()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult LoginAdmin(FormCollection collection)
-        {
-            var tendn = collection["username"];
-            var matkhau = collection["password"];
-            if (String.IsNullOrEmpty(tendn))
-            {
-                ViewData["Loi1"] = "Phải nhập tên đăng nhập";
-            }
-            else if (String.IsNullOrEmpty(matkhau))
-            {
-                ViewData["Loi2"] = "Phải nhập mật khẩu";
-            }
-            else
-            {
-                //Gán giá trị cho đối tượng được tạo mới (admin)
-                Admin ad = wt.Admins.SingleOrDefault(n => n.Username == tendn && n.Password == matkhau);
-                if (ad != null)
-                {
-                    Session["Taikhoanadmin"] = ad;
-                    return RedirectToAction("Index", "AdminWeb");
-                }
-                else
-                    ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng";
-            }
-            return View();
-        }
         public ActionResult ThemAdmin()
         {
             return View();
-        }
-        // đăng nhập
-        public ActionResult Login(string tk, string mk)
-        {
-            if (Helper.AdminAuth.login(tk, mk))
-            {
-                return Json(true);
-            }
-            else
-            {
-                return Json(false);
-            }
         }
         // đăng xuất
         public ActionResult Logout()
@@ -72,6 +34,34 @@ namespace WebTruyen.Controllers
         public ActionResult QLTaiKhoan()
         {
             return View();
+        }
+        
+        // lấy danh sách tài khoản
+        [HttpPost]
+        public ActionResult dsTaiKhoan(int page, int pagesize)
+        {
+            List<TaiKhoan> taiKhoans = db.TaiKhoans.OrderBy(x => x.MaTK).Skip((page -1)* pagesize).Take(pagesize).ToList();
+            var data = taiKhoans.Select(x => new
+            {
+                x.MaTK,x.HovaTen, x.Mail, x.SDT, x.TinhTrang,
+                NgayTao = x.NgayTao.ToString("dd/MM/yyyy")
+            });
+            return Json(data,JsonRequestBehavior.AllowGet);
+        }
+        // xem thông tin tài khoản
+        public ActionResult ttTaiKhoan(int id)
+        {
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            return View(taiKhoan);
+        }
+        // danh sách tác phẩm
+        [HttpPost]
+        public ActionResult dsTacPham(int page, int pagesize)
+        {
+            var data = (from tr in db.Truyens join tl in db.TheLoais 
+                        on tr.MaLoai equals tl.MaLoai
+                        select new {tr.MaTruyen, tr.TacGiaGoc, tr.TenTruyen, Luotthich = tr.Luotthiches.Count }).Take(pagesize).ToList();
+            return Json(data);
         }
     }
 }

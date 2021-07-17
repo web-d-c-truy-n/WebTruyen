@@ -37,5 +37,23 @@ namespace WebTruyen.Controllers
             Auth.logout();
             return Json(true);
         }
+        // đăng nhập Admin
+        [HttpPost]
+        public ActionResult LoginAdmin(string tk, string mk)
+        {
+            if (Helper.AdminAuth.login(tk, mk))
+            {
+                return Json(true);
+            }
+            else
+            {
+                return Json(false);
+            }
+        }
+        [HttpGet]
+        public ActionResult LoginAdmin()
+        {
+            return View();
+        }
     }
 }

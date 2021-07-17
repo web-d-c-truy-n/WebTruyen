@@ -16,7 +16,6 @@ namespace WebTruyen
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Application["DungChung"] = new CommonInfo();
         }
         protected void Session_Start()
         {

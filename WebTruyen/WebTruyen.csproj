@@ -110,6 +110,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Tynamix.ObjectFiller, Version=1.5.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tynamix.ObjectFiller.1.5.6\lib\net452\Tynamix.ObjectFiller.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -131,6 +134,7 @@
     <Compile Include="Controllers\AdminWebController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\TacGiaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -146,8 +150,7 @@
     <Compile Include="Models\ChuongTruyen.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CommonInfo.cs" />
-    <Compile Include="Models\CustomAuthor.cs" />
+    <Compile Include="Helper\CustomAuthor.cs" />
     <Compile Include="Models\Luotthich.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -2772,18 +2775,19 @@
     <Content Include="Views\Shared\_LayoutAdminWeb.cshtml" />
     <Content Include="Views\AdminWeb\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutLoginAdmin.cshtml" />
-    <Content Include="Views\AdminWeb\LoginAdmin.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\AdminWeb\ThemAdmin.cshtml" />
     <Content Include="Views\AdminWeb\QLTaiKhoan.cshtml" />
     <Content Include="Views\Shared\_Layoutwebindex.cshtml" />
+    <Content Include="Views\Home\testAPT.cshtml" />
+    <Content Include="Views\Login\LoginAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="playerAction\Admin\" />
     <Folder Include="playerAction\IP\" />
     <Folder Include="playerAction\TaiKhoan\" />
-    <Folder Include="Views\Login\" />
+    <Folder Include="Views\TacGia\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

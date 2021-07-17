@@ -14,18 +14,18 @@
 
             <form action="~/Asset/Admin/index3.html" method="post">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Tên tài khoản" id="username"required >
+                    <input type="text" class="form-control" placeholder="Tên tài khoản" id="username" required>
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
                     <p id="thongBao">
-                        
+
                     </p>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Mật khẩu"id="password" required>
+                    <input type="password" class="form-control" placeholder="Mật khẩu" id="password" required>
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -61,12 +61,12 @@
     </div>
     <!-- /.card -->
 </div>
-@section js{    
+@section js{
     <script>
         $(document).ready(function () {
             $("#dangnhap").click(async function () {
                 debugger
-                let username =$("#username").val() 
+                let username =$("#username").val()
                 let password = $("#password").val()
                 let daDangNhap = await API.loginAdmin(username, password)
                 if (!daDangNhap) {
@@ -77,7 +77,7 @@
                 }
             })
         })
-    </script>    
+    </script>
 }
 
 

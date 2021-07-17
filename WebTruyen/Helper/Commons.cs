@@ -55,9 +55,14 @@ namespace WebTruyen.Helper
     {
         public const int admin = 0;
     }
-
+    public struct vtTacGia
+    {
+        public const int tacGia = 0;
+        public const int dichGia = 1;
+    }
     public struct ttTaiKhoan
     {
+        public const int binhThuong = 0;
         public const int biKhoa30p = 1;
         public const int biKhoa1h = 2;
         public const int biKhoanVV = 3;
