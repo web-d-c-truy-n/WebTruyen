@@ -17,7 +17,7 @@ namespace WebTruyen.Controllers
         {
             string msg = Auth.login(tk, mk);
             TaiKhoan taiKhoan = Auth.user();
-            return Json(new { taiKhoan?.Mail, taiKhoan?.HovaTen, taiKhoan?.SDT, msg = "Đăng nhập thành công" });
+            return Json(new { taiKhoan?.Mail, taiKhoan?.HovaTen, taiKhoan?.SDT, msg});
         }
         // đăng ký
         [HttpPost]
