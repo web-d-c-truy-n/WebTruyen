@@ -1,4 +1,4 @@
-﻿
+﻿@using WebTruyen.Models;
 @{
     Layout = null;
 }
@@ -432,11 +432,9 @@
                                                                     </ul>
                                                                 </li>
                                                             </ul>
-
                                                             <div class="link-adv-search">
-                                                                <a href="./?s=&amp;post_type=wp-manga">Advanced</a>
+                                                                <a href="#" id="tendangnhap">Advanced</a>
                                                             </div>
-
                                                         </div>
 
                                                     </div>
@@ -607,10 +605,14 @@
                                 </ul>
                             </div>
 
-                            <div class="c-modal_item">
+                            <div class="c-modal_item" id="dadangnhap">
                                 <!-- Button trigger modal -->
                                 <a href="javascript:void(0)" data-toggle="modal" data-target="#form-login" class="btn-active-modal">Sign in</a>
                                 <a href="javascript:void(0)" data-toggle="modal" data-target="#form-sign-up" class="btn-active-modal">Sign up</a>
+                            </div>
+                            <div class="c-modal_item" id="dangxuat">
+                                <!-- Button trigger modal -->
+                                <a href="" class="btn-active-modal">Đăng Xuất</a>                                
                             </div>
                         </div>
 
@@ -734,24 +736,33 @@
                                 <p>
                                     <label>
                                         Username *                                    <br>
-                                        <input type="text" name="user_sign-up" class="input user_login" value="" size="20">
+                                        <input type="text" name="user_sign-up" class="input user_login" value="" size="20" id="usernamedangki">
                                     </label>
                                 </p>
                                 <p>
                                     <label>
                                         Email Address *                                    <br>
-                                        <input type="email" name="email_sign-up" class="input user_email" value="" size="20">
+                                        <input type="email" name="email_sign-up" class="input user_email" value="" size="20" id="emaildangki">
                                     </label>
                                 </p>
                                 <p>
                                     <label>
                                         Password *<br>
-                                        <input type="password" name="pass_sign-up" autocomplete="" class="input user_pass" value="" size="25">
+                                        <input type="password" name="pass_sign-up" autocomplete="" class="input user_pass" value="" size="25" id="passworddangki">
                                     </label>
+                                </p>
+                                <p>
+                                    <label>
+                                        Phone *<br>
+                                        <input type="tel" name="tel_sign-up" autocomplete="" class="input user_pass" value="" size="25" id="sdtdangki">
+                                    </label>
+                                </p>
+                                <p id="#thongBao">
+
                                 </p>
                                 <input type="hidden" name="redirect_to" value="">
                                 <p class="submit">
-                                    <input type="submit" name="wp-submit" class="button button-primary button-large wp-submit" value="Register">
+                                    <input type="submit" name="wp-submit" class="button button-primary button-large wp-submit" value="Register" id="dangki">
                                 </p>
                             </form>
                             <p class="nav">

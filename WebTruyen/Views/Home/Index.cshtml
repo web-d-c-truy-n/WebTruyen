@@ -4,8 +4,8 @@
     Layout = "~/Views/Shared/_Layoutwebindex.cshtml";
 }
 <style>
-    .modal-dialog{
-        background-color:darkgrey;
+    .modal-dialog {
+        background-color: darkgrey;
     }
 </style>
 <div class="c-sidebar c-top-sidebar" style="background-image:url(./wp-content/uploads/2017/10/gplaypattern.png);  padding:50px 0px 5px 0px ; ">
@@ -3253,7 +3253,7 @@
     </div>
 </div>
 @section js{
-    <script src="~/Scripts/getAPI.js"></script>    
+    <script src="~/Scripts/getAPI.js"></script>
     <script>
         $(document).ready(function () {
             $("#dangnhap").click(async function () {
@@ -3263,10 +3263,39 @@
                 let dangnhap = await API.login(username, password)
                 if (dangnhap.msg == "Đăng nhập thành công") {
                     $(".close").click()
+                    $("#dadangnhap").hide()
+                    $("#dangxuat").show()
                 }
                 else {
                     $("#thongBao").text(dangnhap.msg)
                 }
+                $("#tendangnhap").text(dangnhap.HovaTen);
+            })
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#dangki").click(async function () {
+                debugger
+                let usernamedangki = $("#usernamedangki").val();
+                let passworddangki = $("#passworddangki").val();
+                let emaildangki = $("#emaildangki").val();
+                let sdtdangki = $("#sdtdangki").val();
+                let dangki = await API.register(usernamedangki, passworddangki, emaildangki, sdtdangki)
+                if (dangki.msg == "Đăng kí thành công") {
+                    $(".close").click()
+                    $("#dadangnhap").hide()
+                    $("#dangxuat").show()
+                }
+                else {
+                    $("#thongBao").text(dangki.msg)
+                }
+                $("#tendangnhap").text(dangnhap.HovaTen);
+            })
+            $("dangxuat").click(async function() {
+                 debugger
+                let dangxuat = await API.logout()
+               window.location.href = "@Url.Action("Index","Home")"
             })
         })
     </script>
