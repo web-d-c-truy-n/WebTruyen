@@ -33,7 +33,8 @@ namespace WebTruyen.Controllers
         // trang quản lý tài khoản
         public ActionResult QLTaiKhoan()
         {
-            return View();
+            var listTaiKhoanAdmin = new webtruyenptEntities().TaiKhoans.ToList();
+            return View(listTaiKhoanAdmin);
         }
         
         // lấy danh sách tài khoản
