@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Trangchu";
+    ViewBag.Title = "Trang chủ";
     Layout = "~/Views/Shared/_Layoutwebindex.cshtml";
 }
 <style>
@@ -3252,6 +3252,21 @@
         </div>
     </div>
 </div>
-
-
+@section js{
+    <script src="~/Scripts/getAPI.js"></script>    
+    <script>
+        $(document).ready(function () {
+            $("#dangnhap").click(async function () {
+                let username = $("username").val();
+                let password = $("password").val();
+                let dangnhap = await API.login(username, password)
+                if (dangnhap.msg == "Đăng nhập thành công") {
+                        $(".close").click()               
+                }
+                else {
+                    $("#thongBao").text(dangnhap.msg)
+                }        
+        })
+    </script>
+}
 

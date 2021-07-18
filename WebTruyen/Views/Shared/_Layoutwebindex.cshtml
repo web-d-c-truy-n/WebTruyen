@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="./xmlrpc.php">
-    <title>HOME 2 – Madara Demo</title>
+    <title>@ViewBag.Title</title>
     <meta name="robots" content="max-image-preview:large">
     <script type="text/javascript">
     </script>
@@ -241,6 +241,7 @@
     <meta name="twitter:image" content="~/Asset/Web/wp-content/themes/madara/images/logo.png">
     <meta name="description" content="Manga WordPress Theme">
     <meta name="generator" content="Powered by Madara - A powerful multi-purpose theme by Madara">
+    @RenderSection("css", required: false)
 </head>
 <body>
     <div class="wrap">
@@ -320,13 +321,6 @@
                                                     <a href="./about-us/">ABOUT US</a>
                                                     <ul class="sub-menu">
                                                         <li id="menu-item-22" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22"><a href="./contact/">CONTACT US</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li id="menu-item-596" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-596">
-                                                    <a href="./shop/"><i class="fas fa-shopping-bag"></i>  SHOP</a>
-                                                    <ul class="sub-menu">
-                                                        <li id="menu-item-595" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-595"><a href="./cart/"><i class="fas fa-shopping-cart"></i> CART</a></li>
-                                                        <li id="menu-item-594" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-594"><a href="./checkout/"><i class="far fa-credit-card"></i> CHECKOUT</a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -689,29 +683,27 @@
                             <meta name="robots" content="max-image-preview:large">
                             <link rel="dns-prefetch" href="//s.w.org">
                             <script type="text/javascript" src="~/Asset/Web/wp-includes/js/wp-embed.min.js?ver=5.7.2" id="wp-embed-js"></script>
-                            <form name="loginform" id="loginform" method="post">
-                                <p>
-                                    <label>
-                                        Username or Email Address *                                    <br> <input type="text" name="log" class="input user_login" value="" size="20">
-                                    </label>
-                                </p>
-                                <p>
-                                    <label>
-                                        Password *                                    <br> <input type="password" autocomplete="" name="pwd" class="input user_pass" value="" size="20">
-                                    </label>
-                                </p>
-                                <p>
-                                </p>
-                                <p class="forgetmenot">
-                                    <label>
-                                        <input name="rememberme" type="checkbox" id="rememberme" value="forever">Remember Me
-                                    </label>
-                                </p>
-                                <p class="submit">
-                                    <input type="submit" name="wp-submit" class="button button-primary button-large wp-submit" value="Log In">                                <input type="hidden" name="redirect_to" value="./wp-admin/">
-                                    <input type="hidden" name="testcookie" value="1">
-                                </p>
-                            </form>
+                            <p>
+                                <label>
+                                    Username or Email Address *                                    <br> <input type="text" name="log" class="input user_login" value="" size="20" id="username">
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    Password *                                    <br> <input type="password" autocomplete="" name="pwd" class="input user_pass" value="" size="20" id="password">
+                                </label>
+                            </p>
+                            <p>
+                            </p>
+                            <p class="forgetmenot">
+                                <label>
+                                    <input name="rememberme" type="checkbox" id="rememberme" value="forever">Remember Me
+                                </label>
+                            </p>
+                            <p class="submit">
+                                <input type="submit" name="wp-submit" class="button button-primary button-large wp-submit" value="Log In" id="dang">                                <input type="hidden" name="redirect_to" value="./wp-admin/">
+                                <input type="hidden" name="testcookie" value="1">
+                            </p>
                             <p class="nav">
                                 <a href="javascript:avoid(0)" class="to-reset">Lost your password?</a>
                             </p>
@@ -758,9 +750,9 @@
                                         <input type="password" name="pass_sign-up" autocomplete="" class="input user_pass" value="" size="25">
                                     </label>
                                 </p>
-                                <p>
+                                <p id="thongBao">
+                                    
                                 </p>
-
                                 <input type="hidden" name="redirect_to" value="">
                                 <p class="submit">
                                     <input type="submit" name="wp-submit" class="button button-primary button-large wp-submit" value="Register">
@@ -915,5 +907,7 @@
             }
         }
     </script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    @RenderSection("js", required: false)
 </body>
 </html>
