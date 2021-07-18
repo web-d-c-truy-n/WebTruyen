@@ -23,12 +23,22 @@ namespace WebTruyen.Controllers
         [HttpPost]
         public ActionResult Register(TaiKhoan taiKhoan)
         {
-            webtruyenptEntities db = new webtruyenptEntities();
+            webtruyenptEntities db = new webtruyenptEntities();            
+            if (db.TaiKhoans.Where(x=>x.Mail == taiKhoan.Mail).ToList().Count > 0)
+            {
+                return Json(new { msg = "Email đã tồn tại" });
+            }
+            if (db.TaiKhoans.Where(x => x.SDT == taiKhoan.SDT).ToList().Count > 0)
+            {
+                return Json(new { msg = "Số điện thoại đã tồn tại" });
+            }
+            taiKhoan.MatKhau = Helper.Commons.MD5(taiKhoan.MatKhau);
             taiKhoan.NgayTao = DateTime.Now;
             taiKhoan.TinhTrang = 0;
             db.TaiKhoans.Add(taiKhoan);
+            db.SaveChanges();
             Auth.login(taiKhoan);
-            return Json(true);
+            return Json(new { msg = "Đăng ký thành công" });
         }
         // đăng xuất
         [HttpPost]
@@ -36,6 +46,16 @@ namespace WebTruyen.Controllers
         {
             Auth.logout();
             return Json(true);
+        }
+        [HttpPost]
+        public ActionResult TTUserHienTai()
+        {
+            TaiKhoan taiKhoan = Helper.Auth.user();
+            if (taiKhoan != null)
+            {
+                return Json(new { taiKhoan.HovaTen, taiKhoan.Mail, taiKhoan.SDT, NgayTao = taiKhoan.NgayTao.ToString("dd/MM/yyyy"), taiKhoan.MaTK });
+            }
+            return Json(false);
         }
         // đăng nhập Admin
         [HttpPost]

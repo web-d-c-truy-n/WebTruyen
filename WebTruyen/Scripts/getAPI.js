@@ -52,6 +52,23 @@
         })
         return result
     },
+    // lấy thông tin đăng nhập hiện tại
+    TTUserHienTai: async function () {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/Login/TTUserHienTai',
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Đang nhập không thành công: Lỗi hệ thống")
+            }
+        })
+        return result
+    },
     // đăng nhập admin
     loginAdmin: async function (tk, mk) {
         let result = false
@@ -141,6 +158,24 @@
         })
         return result
     },
+    // cập nhật tình trang tài khoản
+    capNhatTinhTrangTK: async function (id, tinhTrang) {
+        let result = null
+        await $.ajax({
+            type: "POST",
+            url: '/AdminWeb/setTinhTrang',
+            data: JSON.stringify({ id: id, tinhTrang: tinhTrang }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Đang nhập không thành công: Lỗi hệ thống")
+            }
+        })
+        return result
+    }
 
 }
 

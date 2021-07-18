@@ -16,8 +16,8 @@
     <p></p>
     <script>
         $(document).ready(async function () {
-            let el = await API.login("nguyenvana@gmail.com", "123456")
-            alert(el.msg)
+            API.login("thuthao@gmail.com","123456")
+            let el = await API.TTUserHienTai()
             console.log(el);
         })
     </script>

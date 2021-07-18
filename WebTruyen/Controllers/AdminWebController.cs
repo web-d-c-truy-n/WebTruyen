@@ -63,5 +63,20 @@ namespace WebTruyen.Controllers
                         select new {tr.MaTruyen, tr.TacGiaGoc, tr.TenTruyen, Luotthich = tr.Luotthiches.Count }).Take(pagesize).ToList();
             return Json(data);
         }
+
+        [HttpPost]
+        public ActionResult setTinhTrang(int id,int tinhTrang)
+        {
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            taiKhoan.TinhTrang = tinhTrang;
+            db.SaveChanges();
+            return Json(true);
+        }
+        [HttpPost]
+        public ActionResult xoaTaiKhoan(int id)
+        {
+            db.TaiKhoans.Remove(db.TaiKhoans.Find(id));
+            return Json(true);
+        }
     }
 }
