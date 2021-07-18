@@ -53,12 +53,12 @@ namespace WebTruyen.Helper
 
     public struct vtAdmin
     {
-        public const int admin = 0;
+        public const int admin = 1;
     }
     public struct vtTacGia
     {
-        public const int tacGia = 0;
-        public const int dichGia = 1;
+        public const int tacGia = 1;
+        public const int dichGia = 2;
     }
     public struct ttTaiKhoan
     {

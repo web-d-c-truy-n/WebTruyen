@@ -143,3 +143,24 @@
     },
 
 }
+
+const ttTaiKhoan = {
+    binhThuong: 0,
+    biKhoa30p: 1,
+    biKhoa1h: 2,
+    biKhoanVV: 3,
+}
+
+const ttTruyen = {
+    dangTH: 1,
+    hoanThanh: 2,
+}
+
+const vtTacGia = {
+    tacGia: 1,
+    dichGia: 2,
+}
+
+const vtAdmin = {
+    admin: 1
+}
