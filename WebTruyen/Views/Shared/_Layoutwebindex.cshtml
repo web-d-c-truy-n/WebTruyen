@@ -1,4 +1,5 @@
 ﻿@using WebTruyen.Models;
+@using WebTruyen.Helper;
 @{
     Layout = null;
 }
@@ -433,7 +434,7 @@
                                                                 </li>
                                                             </ul>
                                                             <div class="link-adv-search">
-                                                                <a href="#" id="tendangnhap">Advanced</a>
+                                                                <a href="#" id="tendangnhap">@(Auth.user()?.HovaTen ?? "Tài Khoản")</a>
                                                             </div>
                                                         </div>
 
@@ -604,16 +605,31 @@
 
                                 </ul>
                             </div>
+                            @if (Auth.user() == null)
+                            {
+                                <div class="c-modal_item" id="dadangnhap">
+                                    <!-- Button trigger modal -->
+                                    <a href="#" data-toggle="modal" data-target="#form-login" class="btn-active-modal">Đăng nhập</a>
+                                    <a href="#" data-toggle="modal" data-target="#form-sign-up" class="btn-active-modal">Đăng ký</a>
+                                </div>
+                                <div class="c-modal_item" id="dangxuat" style="display:none">
+                                    <!-- Button trigger modal -->
+                                    <a href="#" class="btn-active-modal">Đăng Xuất</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="c-modal_item" id="dadangnhap" style="display:none">
+                                    <!-- Button trigger modal -->
+                                    <a href="#" data-toggle="modal" data-target="#form-login" class="btn-active-modal">Đăng nhập</a>
+                                    <a href="#" data-toggle="modal" data-target="#form-sign-up" class="btn-active-modal">Đăng ký</a>
+                                </div>
+                                <div class="c-modal_item" id="dangxuat">
+                                    <!-- Button trigger modal -->
+                                    <a href="#" class="btn-active-modal">Đăng Xuất</a>
+                                </div>
+                            }
 
-                            <div class="c-modal_item" id="dadangnhap">
-                                <!-- Button trigger modal -->
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#form-login" class="btn-active-modal">Sign in</a>
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#form-sign-up" class="btn-active-modal">Sign up</a>
-                            </div>
-                            <div class="c-modal_item" id="dangxuat">
-                                <!-- Button trigger modal -->
-                                <a href="" class="btn-active-modal">Đăng Xuất</a>                                
-                            </div>
                         </div>
 
                     </div>
@@ -732,7 +748,6 @@
                                 <a href="./" title="Madara Demo" tabindex="-1">Sign Up</a>
                             </h3>
                             <p class="message register">Register For This Site.</p>
-                            <form name="registerform" id="registerform" novalidate="novalidate">
                                 <p>
                                     <label>
                                         Username *                                    <br>
@@ -757,14 +772,13 @@
                                         <input type="tel" name="tel_sign-up" autocomplete="" class="input user_pass" value="" size="25" id="sdtdangki">
                                     </label>
                                 </p>
-                                <p id="#thongBao">
-
+                                <p id="thongBaodangky" class="text-danger">
+                                    
                                 </p>
                                 <input type="hidden" name="redirect_to" value="">
                                 <p class="submit">
-                                    <input type="submit" name="wp-submit" class="button button-primary button-large wp-submit" value="Register" id="dangki">
+                                    <input type="button" name="wp-submit" class="button button-primary button-large wp-submit" value="Register" id="dangki">
                                 </p>
-                            </form>
                             <p class="nav">
                                 <a href="javascript:void(0)" class="to-login">Log in</a>
                                 |

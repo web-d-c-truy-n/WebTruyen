@@ -3262,14 +3262,16 @@
                 let password = $("#password").val();
                 let dangnhap = await API.login(username, password)
                 if (dangnhap.msg == "Đăng nhập thành công") {
-                    $(".close").click()
+                    $(".close").each(function () {
+                        $(this).click()
+                    })
                     $("#dadangnhap").hide()
                     $("#dangxuat").show()
+                    $("#tendangnhap").text(dangnhap.HovaTen);
                 }
                 else {
                     $("#thongBao").text(dangnhap.msg)
-                }
-                $("#tendangnhap").text(dangnhap.HovaTen);
+                }                
             })
         })
     </script>
@@ -3281,21 +3283,25 @@
                 let passworddangki = $("#passworddangki").val();
                 let emaildangki = $("#emaildangki").val();
                 let sdtdangki = $("#sdtdangki").val();
-                let dangki = await API.register(usernamedangki, passworddangki, emaildangki, sdtdangki)
-                if (dangki.msg == "Đăng kí thành công") {
+                let dangki = await API.register(usernamedangki, emaildangki, passworddangki, sdtdangki)
+                if (dangki.msg == "Đăng ký thành công") {
                     $(".close").click()
                     $("#dadangnhap").hide()
                     $("#dangxuat").show()
+                    $("#tendangnhap").text(usernamedangki);
                 }
                 else {
-                    $("#thongBao").text(dangki.msg)
-                }
-                $("#tendangnhap").text(dangnhap.HovaTen);
+                    $("#thongBaodangky").text(dangki.msg)
+                }                
             })
-            $("dangxuat").click(async function() {
+            $("#dangxuat").click(async function() {
                  debugger
                 let dangxuat = await API.logout()
-               window.location.href = "@Url.Action("Index","Home")"
+                if (dangxuat) {
+                    $("#dadangnhap").show()
+                    $("#dangxuat").hide()
+                    $("#tendangnhap").text("Tài khoản");
+                }
             })
         })
     </script>

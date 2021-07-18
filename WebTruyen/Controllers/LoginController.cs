@@ -23,7 +23,7 @@ namespace WebTruyen.Controllers
         [HttpPost]
         public ActionResult Register(TaiKhoan taiKhoan)
         {
-            webtruyenptEntities db = new webtruyenptEntities();            
+            webtruyenptEntities db = new webtruyenptEntities();
             if (db.TaiKhoans.Where(x=>x.Mail == taiKhoan.Mail).ToList().Count > 0)
             {
                 return Json(new { msg = "Email đã tồn tại" });
