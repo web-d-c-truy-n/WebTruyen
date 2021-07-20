@@ -58,7 +58,16 @@
                 @Html.DisplayFor(modelItem => item.NgayKhoa)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.MaTK }) |
+                <div class="dropdown" style="color;">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" >
+                        @Html.ActionLink("Edit", "Edit", new { id = item.MaTK }) |
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Khóa 30 phút</a>
+                        <a class="dropdown-item" href="#">Khóa 60 phút</a>
+                        <a class="dropdown-item" href="#">Khóa vĩnh viễn</a>
+                    </div>
+                </div>
                 @Html.ActionLink("Details", "Details", new { id = item.MaTK }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.MaTK })
             </td>
