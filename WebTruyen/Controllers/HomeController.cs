@@ -58,6 +58,13 @@ namespace WebTruyen.Controllers
             db.TacGias.Add(tacGia);
             return Json(true);
         }
-        
+        public ActionResult Tomtat()
+        {
+            return View();
+        }
+        public ActionResult Blog()
+        {
+            return View();
+        }
     }
 }

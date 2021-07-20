@@ -2781,6 +2781,8 @@
     <Content Include="Views\Home\testAPT.cshtml" />
     <Content Include="Views\Login\LoginAdmin.cshtml" />
     <Content Include="Views\AdminWeb\QLTaiKhoan.cshtml" />
+    <Content Include="Views\Home\Tomtat.cshtml" />
+    <Content Include="Views\Home\Blog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

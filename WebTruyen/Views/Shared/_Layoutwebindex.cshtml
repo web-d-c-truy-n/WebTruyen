@@ -28,6 +28,10 @@
             vertical-align: -0.1em !important;
             background: none !important;
             padding: 0 !important;
+
+        }
+        .modal-dialog {
+            background-color: darkgrey;
         }
     </style>
 
@@ -279,50 +283,23 @@
                                         <div class="main-menu">
                                             <ul class="nav navbar-nav main-navbar">
                                                 <li id="menu-item-27" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-27">
-                                                    <a href="/">HOME</a>
-                                                    <ul class="sub-menu">
-                                                        <li id="menu-item-25" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-14 current_page_item menu-item-25"><a href="./home-2/" aria-current="page">HOME 2</a></li>
-                                                        <li id="menu-item-24" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-24"><a href="./home-3/">HOME 3</a></li>
-                                                        <li id="menu-item-341" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-341"><a href="./home-4/">HOME 4 – REV SLIDER</a></li>
-                                                        <li id="menu-item-402" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-402"><a href="./home-dark/">HOME DARK</a></li>
-                                                        <li id="menu-item-1846" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1846"><a href="./home-shortcode/">Home Shortcode</a></li>
-                                                        <li id="menu-item-934" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-934"><a href="./listing-big-thumbnail/">LISTING – BIG THUMBNAIL</a></li>
-                                                        <li id="menu-item-852" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-852"><a href="./listing-simple-list/">LISTING – SIMPLE LIST</a></li>
-                                                        <li id="menu-item-500" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-500"><a href="./home-single-manga/">SINGLE MANGA</a></li>
-                                                    </ul>
+                                                    <a href="@Url.Action("Index","Home")">TRANG CHỦ</a>               
                                                 </li>
                                                 <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-110">
-                                                    <a href="./manga/">MANGA</a>
+                                                    <a href="./manga/">TRUYỆN</a>
                                                     <ul class="sub-menu">
-                                                        <li id="menu-item-410" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-410"><a href="/manga/?genres_collapse=on">ARCHIVES – SHOW GENRES</a></li>
-                                                        <li id="menu-item-409" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-409"><a href="/manga">ARCHIVES – HIDE GENRES</a></li>
-                                                        <li id="menu-item-386" class="menu-item menu-item-type-post_type menu-item-object-wp-manga menu-item-386"><a href="./manga/hajime-boyfriend/">SINGLE MANGA</a></li>
                                                         <li id="menu-item-403" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-403">
-                                                            <a href="#">MANGA READING</a>
+                                                            <a href="#">TRUYỆN</a>
                                                             <ul class="sub-menu">
-                                                                <li id="menu-item-453" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-453"><a href="/manga/massa-consectetur-mattis/">VIDEO CHAPTER</a></li>
-                                                                <li id="menu-item-457" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-457"><a href="./manga/manga-text-chapter/">TEXT CHAPTER</a></li>
-                                                                <li id="menu-item-404" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-404"><a href="/manga/ykataza-yin-wang-shynakimiz/?display=wp-manga&amp;chapter=chapter-1&amp;style=paged">LIGHT VERSION</a></li>
-                                                                <li id="menu-item-405" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-405"><a href="/manga/dakimi-katawi-yakimimono-hajimazu-kyousou/?display=wp-manga&amp;chapter=chapter-1&amp;style=list&amp;body_schema=dark">DARK VERSION</a></li>
-                                                                <li id="menu-item-346" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-346"><a href="/manga/miharu-rokujou/?display=wp-manga&amp;chapter=chapter-1_1&amp;style=list">LIST STYLE</a></li>
-                                                                <li id="menu-item-345" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-345"><a href="/manga/miharu-rokujou/?display=wp-manga&amp;chapter=chapter-1_1&amp;style=paged">PAGED STYLE</a></li>
-                                                                <li id="menu-item-413" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-413"><a href="/manga/kahana-no-shou/?host=local&amp;display=wp-manga&amp;chapter=chapter-1&amp;style=paged">MULTI HOST</a></li>
-                                                                <li id="menu-item-387" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-387"><a href="/manga/hajime-boyfriend/?display=wp-manga&amp;chapter=chapter-1&amp;style=paged">HOST LOCAL</a></li>
-                                                                <li id="menu-item-388" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-388"><a href="/manga/nasama-okima/?display=wp-manga&amp;chapter=chapter-2&amp;style=paged">HOST AMAZON</a></li>
-                                                                <li id="menu-item-407" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-407"><a href="/manga/kagasarete-nairantou/?display=wp-manga&amp;chapter=chapter-1&amp;style=paged">HOST PICASA</a></li>
-                                                                <li id="menu-item-408" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-408"><a href="/manga/kahana-no-shou/?display=wp-manga&amp;chapter=chapter-1&amp;style=paged">HOST IMGUR</a></li>
-                                                                <li id="menu-item-1850" class="menu-item menu-item-type-post_type menu-item-object-wp-manga menu-item-1850"><a href="./manga/kyojin-shingeki-no/">18+ MANGA</a></li>
+                                                                <li id="menu-item-453" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-453"><a href="/manga/massa-consectetur-mattis/">TRUYỆN TRANH</a></li>
+                                                                <li id="menu-item-1850" class="menu-item menu-item-type-post_type menu-item-object-wp-manga menu-item-1850"><a href="./manga/kyojin-shingeki-no/">TRUYỆN CHỮ</a></li>
                                                             </ul>
                                                         </li>
-                                                        <li id="menu-item-347" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-347"><a href="/?s=&amp;post_type=wp-manga">MANGA ADVANCED SEARCH</a></li>
                                                     </ul>
                                                 </li>
-                                                <li id="menu-item-23" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23"><a href="./blog/">BLOG</a></li>
+                                                <li id="menu-item-23" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-23"><a href="@Url.Action("Blog","Home")">BLOG</a></li>
                                                 <li id="menu-item-75" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-75">
-                                                    <a href="./about-us/">ABOUT US</a>
-                                                    <ul class="sub-menu">
-                                                        <li id="menu-item-22" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-22"><a href="./contact/">CONTACT US</a></li>
-                                                    </ul>
+                                                    <a href="@Url.Action("Contact","Home")">LIÊN HỆ</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -661,9 +638,9 @@
 
                                 <div class="nav-footer">
                                     <ul class="list-inline font-nav">
-                                        <li id="menu-item-76" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-76"><a href="/">HOME</a></li>
-                                        <li id="menu-item-79" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-79"><a href="./blog/">BLOG</a></li>
-                                        <li id="menu-item-78" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-78"><a href="./contact/">CONTACT US</a></li>
+                                        <li id="menu-item-76" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-76"><a href="@Url.Action("Index","Home")">HOME</a></li>
+                                        <li id="menu-item-79" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-79"><a href="@Url.Action("Blog","Home")">BLOG</a></li>
+                                        <li id="menu-item-78" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-78"><a href="@Url.Action("Contact","Home")">CONTACT US</a></li>
                                         <li id="menu-item-77" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-77"><a href="./about-us/">ABOUT US</a></li>
                                         <li id="menu-item-80" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-80"><a href="#">COOKIE POLICY</a></li>
                                     </ul>
@@ -930,5 +907,58 @@
     </script>
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     @RenderSection("js", required: false)
+    <script src="~/Scripts/getAPI.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#dangnhap").click(async function () {
+                debugger
+                let username = $("#username").val();
+                let password = $("#password").val();
+                let dangnhap = await API.login(username, password)
+                if (dangnhap.msg == "Đăng nhập thành công") {
+                    $(".close").each(function () {
+                        $(this).click()
+                    })
+                    $("#dadangnhap").hide()
+                    $("#dangxuat").show()
+                    $("#tendangnhap").text(dangnhap.HovaTen);
+                }
+                else {
+                    $("#thongBao").text(dangnhap.msg)
+                }                
+            })
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#dangki").click(async function () {
+                debugger
+                let usernamedangki = $("#usernamedangki").val();
+                let passworddangki = $("#passworddangki").val();
+                let emaildangki = $("#emaildangki").val();
+                let sdtdangki = $("#sdtdangki").val();
+                let dangki = await API.register(usernamedangki, emaildangki, passworddangki, sdtdangki)
+                if (dangki.msg == "Đăng ký thành công") {
+                    $(".close").click()
+                    $("#dadangnhap").hide()
+                    $("#dangxuat").show()
+                    $("#tendangnhap").text(usernamedangki);
+                }
+                else {
+                    $("#thongBaodangky").text(dangki.msg)
+                }                
+            })
+            $("#dangxuat").click(async function() {
+                 debugger
+                let dangxuat = await API.logout()
+                if (dangxuat) {
+                    $("#dadangnhap").show()
+                    $("#dangxuat").hide()
+                    $("#tendangnhap").text("Tài khoản");
+                }
+            })
+        })
+    </script>
 </body>
 </html>
+
