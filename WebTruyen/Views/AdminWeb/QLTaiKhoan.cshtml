@@ -10,16 +10,13 @@
 <table class="table">
     <tr>
         <th>
-           Mã Tài Khoản
+            Mã Tài Khoản
         </th>
         <th>
             Họ và Tên
         </th>
         <th>
             Mail
-        </th>
-        <th>
-            Mật Khẩu
         </th>
         <th>
             Số điện thoại
@@ -36,38 +33,36 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaTK)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HovaTen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Mail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MatKhau)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SDT)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayTao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TinhTrang)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayKhoa)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.MaTK }) |
-            @Html.ActionLink("Details", "Details", new { id = item.MaTK }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.MaTK })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaTK)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HovaTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayTao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TinhTrang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayKhoa)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MaTK }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MaTK }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MaTK })
+            </td>
+        </tr>
+    }
 
 </table>
