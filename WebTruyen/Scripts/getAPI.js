@@ -175,6 +175,13 @@
             }
         })
         return result
+    },
+    layTTTaiKhoan: async function (id) {
+        let result
+        await $.get("/AdminWeb/layTTTaiKhoan/"+id, function (data) {
+            result = data
+        })
+        return result
     }
 
 }
