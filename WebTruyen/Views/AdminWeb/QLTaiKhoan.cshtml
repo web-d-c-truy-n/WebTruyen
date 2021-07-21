@@ -4,9 +4,6 @@
     ViewBag.Title = "Quản lý tài khoản";
     Layout = "~/Views/Shared/_LayoutAdminWeb.cshtml";
 }
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -51,27 +48,68 @@
             <td>
                 @Html.DisplayFor(modelItem => item.NgayTao)
             </td>
-            <td>
+            <td class="tinhtrang">
                 @Html.DisplayFor(modelItem => item.TinhTrang)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NgayKhoa)
             </td>
             <td>
-                <div class="dropdown" style="color;">
+                <div class="dropdown">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" >
                         @Html.ActionLink("Edit", "Edit", new { id = item.MaTK }) |
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Khóa 30 phút</a>
+                        <a class="dropdown-item" href="#" iduser="@item.MaTK" tinhtrang="1">Khóa 30 phút</a>
                         <a class="dropdown-item" href="#">Khóa 60 phút</a>
                         <a class="dropdown-item" href="#">Khóa vĩnh viễn</a>
+                        <a class="dropdown-item" href="#">Hoạtđộng</a>
                     </div>
                 </div>
-                @Html.ActionLink("Details", "Details", new { id = item.MaTK }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.MaTK })
+                <div>
+                    <button type="button" class="btn btn-default">
+                        @Html.ActionLink("Details", "Details", new { id = item.MaTK })
+                    </button>                
+                </div>
+                <div>
+                    <button type="button" class="btn btn-default" id="xoaTK">
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MaTK })
+                    </button>                 
+                </div>
             </td>
         </tr>
     }
 
 </table>
+@section js{
+    <script>
+        $(document).ready(function () {
+            $(".dropdown-item").click(async function () {
+                debugger
+                let userid = $(this).attr("iduser")
+                let tinhtrang = $(this).attr("tinhtrang")
+                let trangthai = await API.capNhatTinhTrangTK(userid, tinhtrang)
+                if (trangthai) {
+                    switch (tinhtrang) {
+                        case 1:
+                            $(this).parent().parent().parent().parent().find(".tinhtrang").text("Khóa 30 phút")
+                        case 2:
+                            $(this).parent().parent().parent().parent().find(".tinhtrang").text("Khóa 60 phút")
+                        case 3:
+                            $(this).parent().parent().parent().parent().find(".tinhtrang").text("Khóa vĩnh viễn")
+                        case 0:
+                            $(this).parent().parent().parent().parent().find(".tinhtrang").text("Hoạt động")
+                    }
+                }
+            })
+        })
+    </script>    
+    <script>
+        $(document).ready(function () {
+            debugger
+            $('#xoaTK').click(function () {
+                $("item").remove();
+        })
+       
+    </script>
+}
