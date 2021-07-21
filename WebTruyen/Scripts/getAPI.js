@@ -182,7 +182,24 @@
             result = data
         })
         return result
-    }
+    },
+    xoaTaiKhoan: async function (id) {
+        let result = null
+        await $.ajax({
+            type: "POST",
+            url: '/AdminWeb/xoaTaiKhoan',
+            data: JSON.stringify({ id: id}),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Đang nhập không thành công: Lỗi hệ thống")
+            }
+        })
+        return result
+    },
 
 }
 
@@ -205,4 +222,23 @@ const vtTacGia = {
 
 const vtAdmin = {
     admin: 1
+}
+
+function tinhTrangTK(so) {
+    let str
+    switch (so) {
+        case 1:
+            str = "Khóa 30 phút";
+            break;
+        case 2:
+            str = "Khóa 60 phút";
+            break;
+        case 3:
+            str = "Khóa vĩnh viễn";
+            break;
+        case 0:
+            str = "Hoạt động";
+            break;
+    }
+    return str;
 }

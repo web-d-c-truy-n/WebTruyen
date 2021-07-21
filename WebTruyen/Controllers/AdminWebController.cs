@@ -78,6 +78,7 @@ namespace WebTruyen.Controllers
         public ActionResult xoaTaiKhoan(int id)
         {
             db.TaiKhoans.Remove(db.TaiKhoans.Find(id));
+            db.SaveChanges();
             return Json(true);
         }
         public ActionResult layTTTaiKhoan(int id)
