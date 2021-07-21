@@ -49,6 +49,7 @@ namespace WebTruyen.Controllers
             });
             return Json(data,JsonRequestBehavior.AllowGet);
         }
+        #region quản lý tài khoản
         // xem thông tin tài khoản
         public ActionResult ttTaiKhoan(int id)
         {
@@ -79,5 +80,18 @@ namespace WebTruyen.Controllers
             db.TaiKhoans.Remove(db.TaiKhoans.Find(id));
             return Json(true);
         }
+        public ActionResult layTTTaiKhoan(int id)
+        {
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            return Json(new {
+                taiKhoan.MaTK,
+                taiKhoan.HovaTen,
+                taiKhoan.Mail,
+                taiKhoan.SDT,
+                taiKhoan.TinhTrang,
+                NgayTao = taiKhoan.NgayTao.ToString("dd/MM/yyyy")
+            }, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
     }
 }
