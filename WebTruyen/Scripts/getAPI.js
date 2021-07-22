@@ -216,6 +216,23 @@
             }
         })
         return result
+    },
+    RegisterTacGia: async function (butDanh, vaiTro) {
+        let result = null
+        await $.ajax({
+            type: "POST",
+            url: '/TacGia/Register',
+            data: JSON.stringify({ butDanh: butDanh, vaiTro: vaiTro }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Đang nhập không thành công: Lỗi hệ thống")
+            }
+        })
+        return result
     }
 
 }
