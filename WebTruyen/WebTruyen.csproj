@@ -2783,6 +2783,7 @@
     <Content Include="Views\AdminWeb\QLTaiKhoan.cshtml" />
     <Content Include="Views\Home\Tomtat.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />
+    <Content Include="Views\Home\ThongtinTK.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

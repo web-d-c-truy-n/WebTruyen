@@ -66,5 +66,9 @@ namespace WebTruyen.Controllers
         {
             return View();
         }
+        public ActionResult ThongtinTK()
+        {
+            return View();
+        }
     }
 }
