@@ -200,6 +200,23 @@
         })
         return result
     },
+    RegisterAdmin: async function (username, Password) {
+        let result = null
+        await $.ajax({
+            type: "POST",
+            url: '/AdminWeb/RegisterAdmin',
+            data: JSON.stringify({ Username: username, Password: Password }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Đang nhập không thành công: Lỗi hệ thống")
+            }
+        })
+        return result
+    }
 
 }
 

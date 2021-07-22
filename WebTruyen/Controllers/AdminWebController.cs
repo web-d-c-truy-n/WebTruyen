@@ -36,7 +36,21 @@ namespace WebTruyen.Controllers
             var listTaiKhoanAdmin = new webtruyenptEntities().TaiKhoans;
             return View(listTaiKhoanAdmin);
         }
-        
+        [HttpPost]
+        public ActionResult RegisterAdmin(Admin admin)
+        {
+            if (db.Admins.Where(x=>x.Username == admin.Username).ToList().Count > 0)
+            {
+                return Json(new { msg = "Tên tài khoản đã tồn tại" });
+            }
+            admin.Password = Helper.Commons.MD5(admin.Password);
+            admin.Vaitro = 0;
+            admin.Ngaytao = DateTime.Now;
+            db.Admins.Add(admin);
+            db.SaveChanges();
+            return Json(new {msg="Đăng ký thành công" });
+        }
+        #region quản lý tài khoản
         // lấy danh sách tài khoản
         [HttpPost]
         public ActionResult dsTaiKhoan(int page, int pagesize)
@@ -48,8 +62,7 @@ namespace WebTruyen.Controllers
                 NgayTao = x.NgayTao.ToString("dd/MM/yyyy")
             });
             return Json(data,JsonRequestBehavior.AllowGet);
-        }
-        #region quản lý tài khoản
+        }       
         // xem thông tin tài khoản
         public ActionResult ttTaiKhoan(int id)
         {
