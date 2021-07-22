@@ -239,7 +239,7 @@
                                                 <div class="tabs-content-wrap">
                                                     <div class="tab-content">
                                                         <div class="tab-pane active">
-                                                            <form method="post" id="form-account-settings" data-force-strong-password="1">
+                                                            
                                                                 <input type="hidden" value="981" name="userID">
                                                                 <input type="hidden" id="_wpnonce" name="_wpnonce" value="c0d5ad0b0f"><input type="hidden" name="_wp_http_referer" value="/user-settings/?tab=account-settings"> <div class="tab-group-item">                                                 
                                                                     <div class="tab-item">
@@ -247,17 +247,11 @@
                                                                             <h3>
                                                                                 Bút danh
                                                                             </h3>
-                                                                        </div>
-                                                                        <div class="form-group row">
-                                                                            <label for="name-input" class="col-md-3">Bút danh hiện tại</label>
-                                                                            <div class="col-md-9">
-                                                                                <span class="show">Tran Huy</span>
-                                                                            </div>
-                                                                        </div>
+                                                                        </div>                                                                       
                                                                         <div class="form-group row">
                                                                             <label for="name-input" class="col-md-3">Bút danh</label>
                                                                             <div class="col-md-9">
-                                                                                <input class="form-control" type="text" value="" name="user-new-name">
+                                                                                <input class="form-control" type="text" value="" name="user-new-name" id="butdanh">
                                                                             </div>
                                                                         </div>
                                                                         
@@ -280,13 +274,13 @@
                                                                         <div class="form-group row">
                                                                             <label for="email-input-submit" class="col-md-3"></label>
                                                                             <div class="col-md-9">
-                                                                                <input class="form-control" type="submit" value="Gửi đi" id="email-input-submit" name="account-form-submit">
+                                                                                <input class="form-control" type="submit" value="Gửi đi" id="guidi" name="account-form-submit" >
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                     
                                                                 </div>
-                                                            </form>
+                                                            
 
                                                         </div>
                                                     </div>
@@ -309,4 +303,23 @@
         </div>
     </div>
 </div>
+@section js{
+    <script src="~/Scripts/getAPI.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#guidi").click(async function () {
+                debugger
+                let butdanh = $("#butdanh").val()
+                let vaitro = parseInt($("#vaitro").val())
+                let guidi = await API.RegisterTacGia(butdanh, vaitro)
+                if (guidi == true) {
+                    alert("Đăng kí tác giả thành công, xin chờ xét duyệt")
+                }
+                else {
+                    alert("Lỗi hệ thống")
+                }
+            })
+        })
+    </script>
+    }
 

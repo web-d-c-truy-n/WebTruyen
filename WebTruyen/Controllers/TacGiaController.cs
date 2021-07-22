@@ -9,6 +9,7 @@ namespace WebTruyen.Controllers
 {
     public class TacGiaController : Controller
     {
+        webtruyenptEntities db = new webtruyenptEntities();
         // GET: TacGia
         public ActionResult Index()
         {
@@ -23,6 +24,8 @@ namespace WebTruyen.Controllers
             tacGia.NgayDangKy = DateTime.Now;
             tacGia.MaTK = Helper.Auth.user().MaTK;
             tacGia.DaDuyet = false;
+            db.TacGias.Add(tacGia);
+            db.SaveChanges();
             return Json(true);
         }
     }

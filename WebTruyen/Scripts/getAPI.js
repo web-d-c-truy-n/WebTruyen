@@ -229,7 +229,7 @@
                 result = data
             },
             error: function () {
-                alert("Đang nhập không thành công: Lỗi hệ thống")
+                alert("Lỗi hệ thống")
             }
         })
         return result
