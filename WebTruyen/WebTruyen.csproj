@@ -2785,6 +2785,9 @@
     <Content Include="Views\Home\Tomtat.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />
     <Content Include="Views\Home\ThongtinTK.cshtml" />
+    <Content Include="Views\Home\Lichsu.cshtml" />
+    <Content Include="Views\Home\Theodoi.cshtml" />
+    <Content Include="Views\Home\DangKiTacGia.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
