@@ -72,5 +72,17 @@ namespace WebTruyen.Controllers
         {
             return View();
         }
+        public ActionResult DangKiTacGia()
+        {
+            return View();
+        }
+        public ActionResult Lichsu()
+        {
+            return View();
+        }
+        public ActionResult Theodoi()
+        {
+            return View();
+        }
     }
 }
