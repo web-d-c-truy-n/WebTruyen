@@ -33,6 +33,7 @@ namespace WebTruyen.Models
         public System.DateTime NgayTao { get; set; }
         public int TinhTrang { get; set; }
         public Nullable<System.DateTime> NgayKhoa { get; set; }
+        public byte[] Avatar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BinhLuan> BinhLuans { get; set; }

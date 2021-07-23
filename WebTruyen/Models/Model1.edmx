@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="webtruyenptModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="webtruyenptModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="MaTK" />
@@ -83,8 +83,8 @@
           <Key>
             <PropertyRef Name="MaTG" />
           </Key>
-          <Property Name="MaTG" Type="int" Nullable="false" />
-          <Property Name="MaTK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaTG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaTK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ButDanh" Type="nvarchar" MaxLength="50" />
           <Property Name="NgayDangKy" Type="datetime" Nullable="false" />
           <Property Name="VaiTro" Type="int" Nullable="false" />
@@ -102,6 +102,7 @@
           <Property Name="NgayTao" Type="datetime" Nullable="false" />
           <Property Name="TinhTrang" Type="int" Nullable="false" />
           <Property Name="NgayKhoa" Type="datetime" />
+          <Property Name="Avatar" Type="varbinary" MaxLength="50" />
         </EntityType>
         <EntityType Name="ThanhVienNhom">
           <Key>
@@ -553,8 +554,7 @@
             <End Role="TruyenTacGia" EntitySet="TruyenTacGia" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="webtruyenptModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -680,6 +680,7 @@
           <NavigationProperty Name="TacGias" Relationship="Self.FK_TacGia_TaiKhoan" FromRole="TaiKhoan" ToRole="TacGia" />
           <NavigationProperty Name="TheodoiTGs" Relationship="Self.FK_TheodoiTG_TaiKhoan" FromRole="TaiKhoan" ToRole="TheodoiTG" />
           <NavigationProperty Name="ThongBaos" Relationship="Self.FK_ThongBao_TaiKhoan" FromRole="TaiKhoan" ToRole="ThongBao" />
+          <Property Name="Avatar" Type="Binary" MaxLength="50" FixedLength="false" />
         </EntityType>
         <EntityType Name="ThanhVienNhom">
           <Key>
@@ -1248,6 +1249,7 @@
           <EntitySetMapping Name="TaiKhoans">
             <EntityTypeMapping TypeName="webtruyenptModel.TaiKhoan">
               <MappingFragment StoreEntitySet="TaiKhoan">
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
                 <ScalarProperty Name="MaTK" ColumnName="MaTK" />
                 <ScalarProperty Name="HovaTen" ColumnName="HovaTen" />
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
