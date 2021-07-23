@@ -7,7 +7,7 @@ using WebTruyen.Models;
 namespace WebTruyen.Models
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public class CustomAuthor : AuthorizeAttribute
+    public class LoginAdmin : AuthorizeAttribute
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {

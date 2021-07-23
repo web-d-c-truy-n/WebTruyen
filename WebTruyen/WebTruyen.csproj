@@ -141,6 +141,7 @@
     <Compile Include="Helper\AdminAuth.cs" />
     <Compile Include="Helper\Auth.cs" />
     <Compile Include="Helper\Commons.cs" />
+    <Compile Include="Helper\Login.cs" />
     <Compile Include="Models\Admin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -150,7 +151,7 @@
     <Compile Include="Models\ChuongTruyen.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Helper\CustomAuthor.cs" />
+    <Compile Include="Helper\LoginAdmin.cs" />
     <Compile Include="Models\Luotthich.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

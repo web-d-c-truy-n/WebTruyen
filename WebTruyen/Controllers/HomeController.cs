@@ -47,6 +47,7 @@ namespace WebTruyen.Controllers
             return View();
         }
         [HttpPost]
+        [Login]
         public ActionResult dkTacGia(string butDanh, int vaiTro)
         {
             TacGia tacGia = new TacGia();
@@ -66,6 +67,7 @@ namespace WebTruyen.Controllers
         {
             return View();
         }
+        [Login]
         public ActionResult ThongtinTK()
         {
             return View();
