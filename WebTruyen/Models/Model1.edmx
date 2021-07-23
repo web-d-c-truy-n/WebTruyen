@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="webtruyenptModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="webtruyenptModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="MaTK" />
@@ -84,7 +84,7 @@
             <PropertyRef Name="MaTG" />
           </Key>
           <Property Name="MaTG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="MaTK" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MaTK" Type="int" Nullable="false" />
           <Property Name="ButDanh" Type="nvarchar" MaxLength="50" />
           <Property Name="NgayDangKy" Type="datetime" Nullable="false" />
           <Property Name="VaiTro" Type="int" Nullable="false" />
@@ -554,7 +554,8 @@
             <End Role="TruyenTacGia" EntitySet="TruyenTacGia" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="webtruyenptModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -579,8 +580,8 @@
           <Property Name="NgayBinhLuan" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PhanHoi" Type="Int32" Nullable="false" />
           <Property Name="SoChuong" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="cacPhanHoi" Relationship="Self.FK_BinhLuan_BinhLuan" FromRole="BinhLuan" ToRole="BinhLuan1" />
-          <NavigationProperty Name="phanHoi" Relationship="Self.FK_BinhLuan_BinhLuan" FromRole="BinhLuan1" ToRole="BinhLuan" />
+          <NavigationProperty Name="BinhLuan1" Relationship="Self.FK_BinhLuan_BinhLuan" FromRole="BinhLuan" ToRole="BinhLuan1" />
+          <NavigationProperty Name="BinhLuan2" Relationship="Self.FK_BinhLuan_BinhLuan" FromRole="BinhLuan1" ToRole="BinhLuan" />
           <NavigationProperty Name="TaiKhoan" Relationship="Self.FK_BinhLuan_TaiKhoan" FromRole="BinhLuan" ToRole="TaiKhoan" />
           <NavigationProperty Name="Truyen" Relationship="Self.FK_BinhLuan_Truyen" FromRole="BinhLuan" ToRole="Truyen" />
         </EntityType>
@@ -651,8 +652,8 @@
           <Key>
             <PropertyRef Name="MaTG" />
           </Key>
-          <Property Name="MaTG" Type="Int32" Nullable="false" />
-          <Property Name="MaTK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaTG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaTK" Type="Int32" Nullable="false" />
           <Property Name="ButDanh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NgayDangKy" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="VaiTro" Type="Int32" Nullable="false" />
@@ -674,13 +675,13 @@
           <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TinhTrang" Type="Int32" Nullable="false" />
           <Property Name="NgayKhoa" Type="DateTime" Precision="3" />
+          <Property Name="Avatar" Type="Binary" MaxLength="50" FixedLength="false" />
           <NavigationProperty Name="BinhLuans" Relationship="Self.FK_BinhLuan_TaiKhoan" FromRole="TaiKhoan" ToRole="BinhLuan" />
           <NavigationProperty Name="Luotthiches" Relationship="Self.FK_Luotthich_TaiKhoan" FromRole="TaiKhoan" ToRole="Luotthich" />
           <NavigationProperty Name="Luotxems" Relationship="Self.FK_Luotxem_TaiKhoan" FromRole="TaiKhoan" ToRole="Luotxem" />
           <NavigationProperty Name="TacGias" Relationship="Self.FK_TacGia_TaiKhoan" FromRole="TaiKhoan" ToRole="TacGia" />
           <NavigationProperty Name="TheodoiTGs" Relationship="Self.FK_TheodoiTG_TaiKhoan" FromRole="TaiKhoan" ToRole="TheodoiTG" />
           <NavigationProperty Name="ThongBaos" Relationship="Self.FK_ThongBao_TaiKhoan" FromRole="TaiKhoan" ToRole="ThongBao" />
-          <Property Name="Avatar" Type="Binary" MaxLength="50" FixedLength="false" />
         </EntityType>
         <EntityType Name="ThanhVienNhom">
           <Key>
@@ -740,8 +741,8 @@
           <Property Name="PhanHoi" Type="Int32" />
           <NavigationProperty Name="NhomTG" Relationship="Self.FK_TraoDoiNhom_NhomTG" FromRole="TraoDoiNhom" ToRole="NhomTG" />
           <NavigationProperty Name="ThanhVienNhom" Relationship="Self.FK_TraoDoiNhom_ThanhVienNhom" FromRole="TraoDoiNhom" ToRole="ThanhVienNhom" />
-          <NavigationProperty Name="cacPhanHoi" Relationship="Self.FK_TraoDoiNhom_TraoDoiNhom" FromRole="TraoDoiNhom" ToRole="TraoDoiNhom1" />
-          <NavigationProperty Name="phanHoi" Relationship="Self.FK_TraoDoiNhom_TraoDoiNhom" FromRole="TraoDoiNhom1" ToRole="TraoDoiNhom" />
+          <NavigationProperty Name="TraoDoiNhom1" Relationship="Self.FK_TraoDoiNhom_TraoDoiNhom" FromRole="TraoDoiNhom" ToRole="TraoDoiNhom1" />
+          <NavigationProperty Name="TraoDoiNhom2" Relationship="Self.FK_TraoDoiNhom_TraoDoiNhom" FromRole="TraoDoiNhom1" ToRole="TraoDoiNhom" />
         </EntityType>
         <EntityType Name="Truyen">
           <Key>
@@ -1249,7 +1250,6 @@
           <EntitySetMapping Name="TaiKhoans">
             <EntityTypeMapping TypeName="webtruyenptModel.TaiKhoan">
               <MappingFragment StoreEntitySet="TaiKhoan">
-                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
                 <ScalarProperty Name="MaTK" ColumnName="MaTK" />
                 <ScalarProperty Name="HovaTen" ColumnName="HovaTen" />
                 <ScalarProperty Name="Mail" ColumnName="Mail" />
@@ -1258,6 +1258,7 @@
                 <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
                 <ScalarProperty Name="NgayKhoa" ColumnName="NgayKhoa" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

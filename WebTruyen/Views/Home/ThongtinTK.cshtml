@@ -98,23 +98,23 @@
                                         <div class="row settings-page">
                                             <div class="col-md-3 col-sm-3">
                                                 <div class="nav-tabs-wrap">
-                                                    <ul class="nav nav-tabs">
+                                                    <ul class="nav nav-tabs" id="menuuser">
                                                         <li class="">
-                                                            <a href="https://tvtruyen.net/user-settings/?tab=bookmark"><i class="fas fa-heart"></i>Truyện yêu thích</a>
+                                                            <a href="#"><i class="fas fa-heart"></i>Truyện yêu thích</a>
                                                         </li>
                                                         <li class="">
-                                                            <a href="https://tvtruyen.net/user-settings/?tab=history"><i class="icon ion-md-alarm"></i>Lịch sử </a>
+                                                            <a href="#"><i class="icon ion-md-alarm"></i>Lịch sử </a>
                                                         </li>
                                                         <li class="">
-                                                            <a href="https://tvtruyen.net/user-settings/?tab=reader-settings"><i class="fas fa-pencil-alt"></i>Đăng kí tác giả </a>
+                                                            <a href="#"><i class="fas fa-pencil-alt"></i>Đăng kí tác giả </a>
                                                         </li>
                                                         <li class="active">
-                                                            <a href="https://tvtruyen.net/user-settings/?tab=account-settings"><i class="icon ion-md-person"></i>Cài đặt tài khoản </a>
+                                                            <a href="#"><i class="icon ion-md-person"></i>Cài đặt tài khoản </a>
                                                         </li>
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <div class="col-md-9 col-sm-9" >
+                                            <div class="col-md-9 col-sm-9" hidden>
                                                 <div class="tabs-content-wrap">
                                                     <div class="tab-content">
                                                         <div class="tab-pane active">
@@ -235,6 +235,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @Html.Partial("DangKiTacGia")
                                         </div>
                                     </div>
                                 </div>
@@ -253,5 +254,27 @@
     </div>
 </div>
 
-
+@section js{
+    <script src="~/Scripts/getAPI.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#guidi").click(async function () {
+                debugger
+                let butdanh = $("#butdanh").val()
+                let vaitro = parseInt($("#vaitro").val())
+                let guidi = await API.RegisterTacGia(butdanh, vaitro)
+                if (guidi == true) {
+                    alert("Đăng kí tác giả thành công, xin chờ xét duyệt")
+                }
+                else {
+                    alert("Lỗi hệ thống")
+                }
+            })
+            $("#menuuser li").click(function () {
+                $("#menuuser li").removeClass("active")
+                $(this).addClass("active")
+            })
+        })
+    </script>
+}
 

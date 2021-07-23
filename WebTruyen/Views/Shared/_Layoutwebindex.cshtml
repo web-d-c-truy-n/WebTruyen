@@ -276,7 +276,7 @@
                                     <div class="main-navigation_wrap">
                                         <div class="wrap_branding">
                                             <a class="logo" href="./" title="Madara Demo">
-                                                <img class="img-responsive" src="~/Asset/Web/wp-content/themes/madara/images/logo.png" alt="Madara Demo">
+                                                <img class="img-responsive" src="~/Asset/Web/wp-content/themes/madara/logo.png" alt="Madara Demo" style="height:50px; width:50px">
                                             </a>
                                         </div>
 
@@ -410,8 +410,19 @@
                                                                     </ul>
                                                                 </li>
                                                             </ul>
+
                                                             <div class="link-adv-search">
                                                                 <a href="#" id="tendangnhap">@(Auth.user()?.HovaTen ?? "Tài Khoản")</a>
+                                                            </div>
+                                                            <div id="usermenu" style="display:none;" class="collapse show">
+                                                                <ul class="c-user_menu">
+                                                                    <li>
+                                                                        <a href="@Url.Action("ThongtinTK","Home")">Thiết lập người dùng</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="@Url.Action("DangKiTacGia","Home")">Đăng kí tác giả</a>
+                                                                    </li>
+                                                                </ul>
                                                             </div>
                                                         </div>
 
@@ -956,6 +967,9 @@
                     $("#dangxuat").hide()
                     $("#tendangnhap").text("Tài khoản");
                 }
+            })
+            $("#tendangnhap").click(function () {
+                $("#usermenu").show()
             })
         })
     </script>

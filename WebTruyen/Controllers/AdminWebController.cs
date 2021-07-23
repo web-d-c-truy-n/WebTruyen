@@ -107,5 +107,10 @@ namespace WebTruyen.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
         #endregion
+        public ActionResult DSTacGia()
+        {
+            var listTacGia = new webtruyenptEntities().TacGias;
+            return View(listTacGia);
+        }
     }
 }

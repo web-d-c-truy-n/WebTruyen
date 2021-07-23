@@ -222,7 +222,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="@Url.Action("DSTacGia","AdminWeb")" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Danh sách tác giả</p>
                                     </a>
@@ -284,13 +284,7 @@
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Quản lý tài khoản</p>
                                     </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Thêm tài khoản</p>
-                                    </a>
-                                </li>
+                                </li>                            
                             </ul>
                         </li>
                         <li class="nav-item">
@@ -343,5 +337,6 @@
         <script src="~/Scripts/getAPI.js"></script>
         @RenderSection("js", required: false)
     </div>
+
 </body>
 </html>
