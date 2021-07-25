@@ -1,4 +1,5 @@
-﻿
+﻿@using WebTruyen.Helper
+@using WebTruyen.Models
 @{
     ViewBag.Title = "ThongtinTK";
     Layout = "~/Views/Shared/_Layoutwebindex.cshtml";
@@ -106,7 +107,24 @@
                                                             <a href="#"><i class="icon ion-md-alarm"></i>Lịch sử </a>
                                                         </li>
                                                         <li class="">
-                                                            <a href="#"><i class="fas fa-pencil-alt"></i>Đăng kí tác giả </a>
+                                                            @{
+                                                                List<TacGia> tacGias = Auth.user().TacGias.ToList();
+                                                                if (tacGias.Count > 0)
+                                                                {
+                                                                    if (tacGias.First().DaDuyet == false)
+                                                                    {
+                                                                        <a href="#"><i class="fas fa-pencil-alt"></i>Đăng kí tác giả </a>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <a href="#"><i class="fas fa-pencil-alt"></i>Tác giả </a>
+                                                                    }
+                                                                }else{
+                                                                        <a href="#"><i class="fas fa-pencil-alt"></i>Đăng kí tác giả </a>
+                                                                }
+
+                                                            }
+
                                                         </li>
                                                         <li class="active">
                                                             <a href="#"><i class="icon ion-md-person"></i>Cài đặt tài khoản </a>

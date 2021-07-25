@@ -412,18 +412,9 @@
                                                             </ul>
 
                                                             <div class="link-adv-search">
-                                                                <a href="#" id="tendangnhap">@(Auth.user()?.HovaTen ?? "Tài Khoản")</a>
+                                                                <a href="@Url.Action("ThongtinTK","Home")" id="tendangnhap">@(Auth.user()?.HovaTen ?? "Tài Khoản")</a>
                                                             </div>
-                                                            <div id="usermenu" style="display:none;" class="collapse show">
-                                                                <ul class="c-user_menu">
-                                                                    <li>
-                                                                        <a href="@Url.Action("ThongtinTK","Home")">Thiết lập người dùng</a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="@Url.Action("DangKiTacGia","Home")">Đăng kí tác giả</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
+                                                       
                                                         </div>
 
                                                     </div>
@@ -968,9 +959,7 @@
                     $("#tendangnhap").text("Tài khoản");
                 }
             })
-            $("#tendangnhap").click(function () {
-                $("#usermenu").show()
-            })
+           
         })
     </script>
 </body>

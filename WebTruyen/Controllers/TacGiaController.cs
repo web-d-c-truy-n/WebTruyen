@@ -28,5 +28,9 @@ namespace WebTruyen.Controllers
             db.SaveChanges();
             return Json(true);
         }
+        public ActionResult TrangTacGia()
+        {
+            return View();
+        }
     }
 }
