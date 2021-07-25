@@ -44,7 +44,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.VaiTro)
         </td>
-        <td>
+        <td id="daduyet">
             @Html.DisplayFor(modelItem => item.DaDuyet)
         </td>
         <td>
@@ -53,7 +53,7 @@
                     @Html.ActionLink("Xét duyệt", "Edit", new { id = item.MaTK }) |
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Duyệt</a>
+                    <a class="dropdown-item" href="#" id="xetduyet" iduser="@item.MaTG">Duyệt</a>
                 </div>
             </div>
             <div>
@@ -77,7 +77,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Thông tin tài khoản</h4>
+                <h4 class="modal-title">Thông tin tác giả</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -95,19 +95,19 @@
                                             <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
                                         </div>
 
-                                        <h3 class="profile-username text-center tenTK">Nina Mcintire</h3>
+                                        <h3 class="profile-username text-center butdanh">Nina Mcintire</h3>
 
                                         <p class="text-muted text-center ">Software Engineer</p>
 
                                         <ul class="list-group list-group-unbordered mb-3">
                                             <li class="list-group-item">
-                                                <b>Số điện thoại</b> <a class="float-right sdtTK">1,322</a>
+                                                <b>Ngày đăng kí</b> <a class="float-right ngaydangki">1,322</a>
                                             </li>
                                             <li class="list-group-item">
-                                                <b>Email</b> <a class="float-right emailTK">543</a>
+                                                <b>Vai trò</b> <a class="float-right vaitro">543</a>
                                             </li>
                                             <li class="list-group-item">
-                                                <b>Tình trạng</b> <a class="float-right tinhtrang2">13,287</a>
+                                                <b>Tình trạng</b> <a class="float-right daduyet">13,287</a>
 
                                             </li>
                                         </ul>
@@ -125,8 +125,9 @@
                                 <div class="card">
                                     <div class="card-header p-2">
                                         <ul class="nav nav-pills">
-                                            <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
-                                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#tttaikhoan" data-toggle="tab">Tài khoản</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Tác phẩm</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Cài đặt</a></li>
                                         </ul>
                                     </div><!-- /.card-header -->
                                     <div class="card-body">
@@ -279,6 +280,16 @@
                                                 </form>
                                             </div>
                                             <!-- /.tab-pane -->
+                                            <div class="tab-pane" id="tttaikhoan">
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">Tên Tài Khoản<a class="float-right" id="hoten">13,287</a></li>
+                                                    <li class="list-group-item">Mail<a class="float-right" id="mail">13,287</a></li>
+                                                    <li class="list-group-item">Số điện thoại<a class="float-right" id="sdt">13,287</a></li>
+                                                    <li class="list-group-item">Ngày tạo<a class="float-right" id="ngaytao">13,287</a></li>
+                                                    <li class="list-group-item">Tình trạng<a class="float-right" id="tinhtrang">13,287</a></li>
+                                                </ul>
+                                            </div>
+
                                         </div>
                                         <!-- /.tab-content -->
                                     </div><!-- /.card-body -->
@@ -300,3 +311,33 @@
         </div>
     </div>
 </div>
+@section js{
+    <script>
+        $(document).ready(function () {
+            $("#xetduyet").click(async function () {
+                debugger
+                let userid = $(this).attr("iduser")
+                let daduyet = await API.XetDuyetTG(userid)
+                if (daduyet == true) {
+
+                    alert("Đã duyệt tác giả")
+                }
+            })
+            $(".thongtin").click(async function () {
+                let userid = $(this).attr("iduser")
+                let thongtin = await API.LayThongTinTG(userid)
+                $(".butdanh").text(thongtin.ButDanh);
+                $(".ngaydangki").text(thongtin.NgayDangKy);
+                $(".vaitro").text(vaitroTg(thongtin.VaiTro));
+                $(".daduyet").text(thongtin.DaDuyet ? "Đã duyệt" : "Chưa duyệt");
+                let thongtintk = await API.layTTTaiKhoan(thongtin.MaTK)
+                $("#hoten").text(thongtintk.HovaTen);
+                $("#mail").text(thongtintk.Mail);
+                $("#sdt").text(thongtintk.SDT);
+                $("#ngaytao").text(thongtintk.NgayTao);
+                $("#tinhtrang").text(tinhTrangTK(thongtintk.TinhTrang));
+            })
+
+        })
+    </script>
+    }

@@ -117,12 +117,13 @@ namespace WebTruyen.Controllers
         {
             TacGia tacGia = db.TacGias.Find(id);
             tacGia.DaDuyet = true;
+            db.SaveChanges();
             return Json(true);
         }
         public ActionResult LayThongTinTG(int id)
         {
             TacGia tacGia = db.TacGias.Find(id);
-            return Json(new { tacGia });
+            return Json(new { tacGia.MaTG, tacGia.MaTK, NgayDangKy = tacGia.NgayDangKy.ToString("dd/MM/yyyy"), tacGia.DaDuyet, tacGia.ButDanh, tacGia.VaiTro }, JsonRequestBehavior.AllowGet);
         }
     }
 }

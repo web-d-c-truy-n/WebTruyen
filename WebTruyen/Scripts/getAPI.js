@@ -300,3 +300,15 @@ function tinhTrangTK(so) {
     }
     return str;
 }
+function vaitroTg(so) {
+    let vt
+    switch (so) {
+        case 1:
+            vt = "Tác giả";
+            break;
+        case 2:
+            vt = "Dịch giả";
+            break;
+    }
+    return vt;
+}
