@@ -283,7 +283,7 @@
                                         <div class="main-menu">
                                             <ul class="nav navbar-nav main-navbar">
                                                 <li id="menu-item-27" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-27">
-                                                    <a href="@Url.Action("Index","Home")">TRANG CHỦ</a>               
+                                                    <a href="@Url.Action("Index","Home")">TRANG CHỦ</a>
                                                 </li>
                                                 <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-110">
                                                     <a href="./manga/">TRUYỆN</a>
@@ -414,7 +414,7 @@
                                                             <div class="link-adv-search">
                                                                 <a href="@Url.Action("ThongtinTK","Home")" id="tendangnhap">@(Auth.user()?.HovaTen ?? "Tài Khoản")</a>
                                                             </div>
-                                                       
+
                                                         </div>
 
                                                     </div>
@@ -727,37 +727,37 @@
                                 <a href="./" title="Madara Demo" tabindex="-1">Sign Up</a>
                             </h3>
                             <p class="message register">Register For This Site.</p>
-                                <p>
-                                    <label>
-                                        Username *                                    <br>
-                                        <input type="text" name="user_sign-up" class="input user_login" value="" size="20" id="usernamedangki">
-                                    </label>
-                                </p>
-                                <p>
-                                    <label>
-                                        Email Address *                                    <br>
-                                        <input type="email" name="email_sign-up" class="input user_email" value="" size="20" id="emaildangki">
-                                    </label>
-                                </p>
-                                <p>
-                                    <label>
-                                        Password *<br>
-                                        <input type="password" name="pass_sign-up" autocomplete="" class="input user_pass" value="" size="25" id="passworddangki">
-                                    </label>
-                                </p>
-                                <p>
-                                    <label>
-                                        Phone *<br>
-                                        <input type="tel" name="tel_sign-up" autocomplete="" class="input user_pass" value="" size="25" id="sdtdangki">
-                                    </label>
-                                </p>
-                                <p id="thongBaodangky" class="text-danger">
-                                    
-                                </p>
-                                <input type="hidden" name="redirect_to" value="">
-                                <p class="submit">
-                                    <input type="button" name="wp-submit" class="button button-primary button-large wp-submit" value="Register" id="dangki">
-                                </p>
+                            <p>
+                                <label>
+                                    Username *                                    <br>
+                                    <input type="text" name="user_sign-up" class="input user_login" value="" size="20" id="usernamedangki">
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    Email Address *                                    <br>
+                                    <input type="email" name="email_sign-up" class="input user_email" value="" size="20" id="emaildangki">
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    Password *<br>
+                                    <input type="password" name="pass_sign-up" autocomplete="" class="input user_pass" value="" size="25" id="passworddangki">
+                                </label>
+                            </p>
+                            <p>
+                                <label>
+                                    Phone *<br>
+                                    <input type="tel" name="tel_sign-up" autocomplete="" class="input user_pass" value="" size="25" id="sdtdangki">
+                                </label>
+                            </p>
+                            <p id="thongBaodangky" class="text-danger">
+
+                            </p>
+                            <input type="hidden" name="redirect_to" value="">
+                            <p class="submit">
+                                <input type="button" name="wp-submit" class="button button-primary button-large wp-submit" value="Register" id="dangki">
+                            </p>
                             <p class="nav">
                                 <a href="javascript:void(0)" class="to-login">Log in</a>
                                 |
@@ -908,15 +908,18 @@
         }
     </script>
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    @RenderSection("js", required: false)
     <script src="~/Scripts/getAPI.js"></script>
+    <script src="~/Scripts/AjaxEffect.js"></script>
+    @RenderSection("js", required: false)
     <script>
         $(document).ready(function () {
             $("#dangnhap").click(async function () {
                 debugger
                 let username = $("#username").val();
                 let password = $("#password").val();
+                $($(this).parents(".modal-content")).ajaxOn()
                 let dangnhap = await API.login(username, password)
+                $($(this).parents(".modal-content")).ajaxOff()
                 if (dangnhap.msg == "Đăng nhập thành công") {
                     $(".close").each(function () {
                         $(this).click()
@@ -927,7 +930,7 @@
                 }
                 else {
                     $("#thongBao").text(dangnhap.msg)
-                }                
+                }
             })
         })
     </script>
@@ -939,7 +942,10 @@
                 let passworddangki = $("#passworddangki").val();
                 let emaildangki = $("#emaildangki").val();
                 let sdtdangki = $("#sdtdangki").val();
+                let h = $(".modal-content").height()
+                $($(this).parents(".modal-content")).ajaxOn()
                 let dangki = await API.register(usernamedangki, emaildangki, passworddangki, sdtdangki)
+                $($(this).parents(".modal-content")).ajaxOff()
                 if (dangki.msg == "Đăng ký thành công") {
                     $(".close").click()
                     $("#dadangnhap").hide()
@@ -948,18 +954,20 @@
                 }
                 else {
                     $("#thongBaodangky").text(dangki.msg)
-                }                
+                }
             })
-            $("#dangxuat").click(async function() {
-                 debugger
+            $("#dangxuat").click(async function () {
+                debugger
+                $("body").ajaxOn()
                 let dangxuat = await API.logout()
+                $("body").ajaxOff()
                 if (dangxuat) {
                     $("#dadangnhap").show()
                     $("#dangxuat").hide()
                     $("#tendangnhap").text("Tài khoản");
                 }
             })
-           
+
         })
     </script>
 </body>

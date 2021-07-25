@@ -9,7 +9,7 @@
 <div class="site-content">
     <div class="c-page-content style-2">
         <div class="content-area">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row ">
                     <div class="col-md-12 col-sm-12">
                         <div class="c-sidebar">
@@ -23,13 +23,13 @@
                                 <div class="entry-header">
                                     <div class="entry-header_wrap">
                                         <div class="entry-title">
-                                            <h1 class="item-title h2">User Settings</h1>
+                                            <h1 class="item-title h2">Trang tác giả</h1>
                                         </div>
                                         <div class="entry-meta">
                                             <div class="post-on">
                                                 <span class="font-meta">posted on</span>
                                                 <div class="c-blog__date">
-                                                    <span class="posted-on"> <a href="https://tvtruyen.net/user-settings/" rel="bookmark">04/10/2017</a></span>
+                                                    <span class="posted-on"> <a href="##" rel="bookmark">@DateTime.Now.ToString("dd/MM/yyyy")</a></span>
                                                     <span class="post-category"><br></span>
                                                 </div>
                                             </div>
@@ -103,24 +103,24 @@
                                                 <div class="nav-tabs-wrap">
                                                     <ul class="nav nav-tabs" id="menuuser">
                                                         <li class="active">
-                                                            <a href="#"><i class="fas fa-heart"></i>Tác phẩm</a>
+                                                            <a href="##"><i class="fas fa-heart"></i>Tác phẩm</a>
                                                         </li>
                                                         <li class="">
-                                                            <a href="#"><i class="icon ion-md-alarm"></i>Đăng tác phẩm</a>
+                                                            <a href="##"><i class="icon ion-md-alarm"></i>Đăng tác phẩm</a>
                                                         </li>                                  
                                                         <li class="">
-                                                            <a href="#"><i class="icon ion-md-person"></i>Thống kê</a>
+                                                            <a href="##"><i class="icon ion-md-person"></i>Thống kê</a>
                                                         </li>
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <div class="col-md-9 col-sm-9" hidde>
+                                            <div class="col-md-9 col-sm-9">
                                                 <div class="tabs-content-wrap">
                                                     <div class="tab-content">
                                                         <div class="tab-pane active">
                                                             <div class="row">                                                                
                                                                 <div class="form-group col-md-12">
-                                                                    <label for="usr">Name:</label>
+                                                                    <label for="usr">Tên truyện:</label>
                                                                     <input type="text" class="form-control" id="usr" name="username">
                                                                 </div>
                                                             </div>
@@ -128,7 +128,7 @@
                                                                 <div class="col-md-9">
                                                                     <textarea id="editor"></textarea>
                                                                 </div>
-                                                                <div class="col-md-3">
+                                                                <div class="col-md-3 widget c-popular">
                                                                     <img src="" />
                                                                     <button class="btn widget-view-more btn-block">Thêm ảnh bìa</button>
                                                                 </div>
@@ -167,5 +167,11 @@
                 ['insertImage', 'link']
             ]
         });
+        $(document).ready(function () {
+            $("#menuuser li").click(function () {
+                $("#menuuser li").removeClass("active")
+                $(this).addClass("active")
+            })
+        })
     </script>
 }
