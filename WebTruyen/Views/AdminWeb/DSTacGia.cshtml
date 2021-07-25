@@ -1,15 +1,9 @@
 ﻿@model IEnumerable<WebTruyen.Models.TacGia>
 
 @{
-    ViewBag.Title = "DSTacGia";
+    ViewBag.Title = "Danh sách Tác Giả";
     Layout = "~/Views/Shared/_LayoutAdminWeb.cshtml";
 }
-
-<h2>DSTacGia</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -54,9 +48,18 @@
             @Html.DisplayFor(modelItem => item.DaDuyet)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id= item.MaTG}) |
-            @Html.ActionLink("Details", "Details", new { id = item.MaTG}) |
-            @Html.ActionLink("Delete", "Delete", new { id= item.MaTG })
+            <div>
+                <button type="button" class="btn btn-default thongtin" data-toggle="modal" data-target="#myModal" iduser="@item.MaTG">
+                    <a href="#">Details</a>
+                </button>
+
+
+            </div>
+            <div>
+                <button type="button" class="btn btn-default xoaTK" iduser="@item.MaTG">
+                    <a href="#">Delete</a>
+                </button>
+            </div>
         </td>
     </tr>
 }
