@@ -112,5 +112,17 @@ namespace WebTruyen.Controllers
             var listTacGia = new webtruyenptEntities().TacGias;
             return View(listTacGia);
         }
+        [HttpPost]
+        public ActionResult XetDuyetTG(int id)
+        {
+            TacGia tacGia = db.TacGias.Find(id);
+            tacGia.DaDuyet = true;
+            return Json(true);
+        }
+        public ActionResult LayThongTinTG(int id)
+        {
+            TacGia tacGia = db.TacGias.Find(id);
+            return Json(new { tacGia });
+        }
     }
 }
