@@ -5,7 +5,8 @@
 }
 @section css{
     <link href="~/Asset/TacGia/Trumbowyg-master/dist/ui/trumbowyg.min.css" rel="stylesheet" />
-    <link href="~/Asset/TacGia/uploader-master/dists/css/jquery.dm-uploader.min.css" />
+    <link href="~/Asset/TacGia/uploader-master/src/css/jquery.dm-uploader.css" rel="stylesheet" />
+    <link href="~/Asset/TacGia/uploader-master/styles.css" rel="stylesheet" />
 }
 <div class="site-content">
     <div class="c-page-content style-2">
@@ -404,7 +405,20 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-                Modal body..
+                <div id="drag-and-drop-zone" class="dm-uploader p-5">
+                    <h3 class="mb-5 mt-5 text-muted">Kéo ảnh vào đây</h3>
+
+                    <div class="btn btn-primary btn-block mb-5">
+                        <span>Chọn tệp</span>
+                        <input type="file" title='Click to add Files' />
+                    </div>
+                </div><!-- /uploader -->
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar" id="progress"
+                         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                    </div>
+                </div>
+
             </div>
 
             <!-- Modal footer -->
@@ -417,7 +431,7 @@
 </div>
 @section js{
     <script src="~/Asset/TacGia/Trumbowyg-master/dist/trumbowyg.min.js"></script>
-    <script src="~/Asset/TacGia/uploader-master/dists/js/jquery.dm-uploader.min.js"></script>
+    <script src="~/Asset/TacGia/uploader-master/src/js/jquery.dm-uploader.js"></script>
     <script>
         var anhBia = true
         $('#editor').trumbowyg({
@@ -440,7 +454,44 @@
             $("#menuuser li").click(function () {
                 $("#menuuser li").removeClass("active")
                 $(this).addClass("active")
-            })
+            });
+            $('#drag-and-drop-zone').dmUploader({ //
+                url: '@Url.Action("ThemAnh","TacGia")',
+                maxFileSize: 3000000, // 3 Megs 
+                onDragEnter: function () {
+                    // Happens when dragging something over the DnD area
+                    this.addClass('active');
+                },
+                onDragLeave: function () {
+                    // Happens when dragging something OUT of the DnD area
+                    this.removeClass('active');
+                },
+                onBeforeUpload: function (id) {
+                    $("#progress").css({ width: "0" })
+                },
+                onUploadProgress: function (id, percent) {
+                    // Updating file progress                   
+                },
+                onUploadSuccess: function (id, data) {
+                    debugger
+                    if (data.result) {
+                        $("#progress").css({ width: "100%" })
+                        window.setTimeout(function () { $("#progress").css({ width: "0%" }) }, 1000)
+                        
+                    } else {
+                        alert(data.msg)
+                    }
+                    // A file was successfully uploaded
+                },
+                onUploadError: function (id, xhr, status, message) {
+                },
+                onFallbackMode: function () {
+                    // When the browser doesn't support this plugin :(                   
+                },
+                onFileSizeError: function (file) {
+                  
+                }
+            });
         })
     </script>
 }

@@ -2776,6 +2776,7 @@
     <Content Include="Asset\TacGia\uploader-master\LICENSE.txt" />
     <Content Include="Asset\TacGia\uploader-master\src\css\jquery.dm-uploader.css" />
     <Content Include="Asset\TacGia\uploader-master\src\js\jquery.dm-uploader.js" />
+    <Content Include="Asset\TacGia\uploader-master\styles.css" />
     <Content Include="Asset\Web\wp-content\themes\madara\css\bootstrap.min.css" />
     <Content Include="Asset\Web\wp-content\themes\madara\css\fonts\ct-icon\ct-icon.css" />
     <Content Include="Asset\Web\wp-content\themes\madara\css\fonts\ionicons\css\ionicons.min.css" />
@@ -3213,6 +3214,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Asset\TacGia\Anh\" />
     <Folder Include="playerAction\Admin\" />
     <Folder Include="playerAction\IP\" />
     <Folder Include="playerAction\TaiKhoan\" />
