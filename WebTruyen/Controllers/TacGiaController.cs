@@ -32,5 +32,10 @@ namespace WebTruyen.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult ThemAnh(HttpPostedFileBase fileBase)
+        {
+            return null;
+        }
     }
 }
