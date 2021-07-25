@@ -251,7 +251,13 @@
         })
         return result
     },
-
+    LayThongTinTG: async function (id) {
+        let result
+        await $.get("/AdminWeb/LayThongTinTG/" + id, function (data) {
+            result = data
+        })
+        return result
+    }
 
 }
 
