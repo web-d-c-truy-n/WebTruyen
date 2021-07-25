@@ -12,7 +12,7 @@
                 result = data
             },
             error: function () {
-                alert("Đang nhập không thành công: Lỗi hệ thống")
+                alert("Lỗi hệ thống")
             }
         })
         return result
@@ -30,7 +30,7 @@
                 result = data
             },
             error: function () {
-                alert("Đang nhập không thành công: Lỗi hệ thống")
+                alert("Lỗi hệ thống")
             }
         })
         return result
@@ -47,7 +47,7 @@
                 result = data
             },
             error: function () {
-                alert("Đang nhập không thành công: Lỗi hệ thống")
+                alert("Lỗi hệ thống")
             }
         })
         return result
@@ -64,7 +64,7 @@
                 result = data
             },
             error: function () {
-                alert("Đang nhập không thành công: Lỗi hệ thống")
+                alert("Lỗi hệ thống")
             }
         })
         return result
@@ -82,7 +82,7 @@
                 result = data
             },
             error: function () {
-                alert("Đang nhập không thành công: Lỗi hệ thống")
+                alert("Lỗi hệ thống")
             }
         })
         return result
@@ -99,7 +99,7 @@
                 result = data
             },
             error: function () {
-                alert("Đang nhập không thành công: Lỗi hệ thống")
+                alert("Lỗi hệ thống")
             }
         })
         return result
@@ -117,7 +117,7 @@
                 result = data
             },
             error: function () {
-                alert("Đang nhập không thành công: Lỗi hệ thống")
+                alert("Lỗi hệ thống")
             }
         })
         return result
@@ -135,7 +135,7 @@
                 result = data
             },
             error: function () {
-                alert("Đang nhập không thành công: Lỗi hệ thống")
+                alert("Lỗi hệ thống")
             }
         })
         return result
@@ -153,7 +153,7 @@
                 result = data
             },
             error: function () {
-                alert("Đang nhập không thành công: Lỗi hệ thống")
+                alert("Lỗi hệ thống")
             }
         })
         return result
@@ -171,7 +171,7 @@
                 result = data
             },
             error: function () {
-                alert("Đang nhập không thành công: Lỗi hệ thống")
+                alert("Lỗi hệ thống")
             }
         })
         return result
@@ -195,7 +195,7 @@
                 result = data
             },
             error: function () {
-                alert("Đang nhập không thành công: Lỗi hệ thống")
+                alert("Lỗi hệ thống")
             }
         })
         return result
@@ -212,7 +212,7 @@
                 result = data
             },
             error: function () {
-                alert("Đang nhập không thành công: Lỗi hệ thống")
+                alert("Lỗi hệ thống")
             }
         })
         return result
@@ -233,7 +233,25 @@
             }
         })
         return result
-    }
+    },
+    XetDuyetTG: async function (id) {
+        let result = null
+        await $.ajax({
+            type: "POST",
+            url: '/TacGia/Register',
+            data: JSON.stringify({ id: id }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
+
 
 }
 
