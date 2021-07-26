@@ -45,5 +45,13 @@ namespace WebTruyen.Helper
         {
             HttpContext.Current.Session["taiKhoan"] = null;
         }
+        public static TacGia tacGia()
+        {
+            List<TacGia> tacGias = user().TacGias.ToList();
+            if (tacGias.Count > 0)
+                return tacGias.First();
+            else
+                return null;
+        }
     }
 }

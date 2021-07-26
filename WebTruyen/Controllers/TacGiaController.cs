@@ -30,6 +30,10 @@ namespace WebTruyen.Controllers
         }
         public ActionResult TrangTacGia()
         {
+            if (Helper.Auth.tacGia() != null)
+            {
+                ViewBag.anhCuaTG = Helper.Auth.tacGia().QuanLyHinhAnhs.ToList();
+            }
             return View();
         }
         [HttpPost]
