@@ -10,6 +10,11 @@ namespace WebTruyen.Controllers
 {
     public class LoginController : Controller
     {
+        private webtruyenptEntities db;
+        public LoginController()
+        {
+            db = new webtruyenptEntities();
+        }
         // GET: Login
         // đăng nhập
         [HttpPost]
@@ -74,6 +79,20 @@ namespace WebTruyen.Controllers
         public ActionResult LoginAdmin()
         {
             return View();
+        }
+        // đăng ký tác giả
+        [HttpPost]
+        public ActionResult RegisterTacGia(string butDanh, int vaiTro)
+        {
+            TacGia tacGia = new TacGia();
+            tacGia.ButDanh = butDanh;
+            tacGia.VaiTro = vaiTro;
+            tacGia.NgayDangKy = DateTime.Now;
+            tacGia.MaTK = Helper.Auth.user().MaTK;
+            tacGia.DaDuyet = false;
+            db.TacGias.Add(tacGia);
+            db.SaveChanges();
+            return Json(true);
         }
     }
 }

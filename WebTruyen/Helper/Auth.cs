@@ -10,7 +10,7 @@ namespace WebTruyen.Helper
     {
         public static void login(TaiKhoan taiKhoan)
         {
-            HttpContext.Current.Session["taiKhoan"] = taiKhoan;
+            HttpContext.Current.Session["taiKhoan"] = taiKhoan.MaTK;
         }
 
         public static string login(string mail, string mk)
@@ -29,7 +29,7 @@ namespace WebTruyen.Helper
                     case ttTaiKhoan.biKhoanVV:
                         return "Tài khoản đã bị khóa vĩnh viễn";
                 }
-                HttpContext.Current.Session["taiKhoan"] = taiKhoan[0];
+                HttpContext.Current.Session["taiKhoan"] = taiKhoan[0].MaTK;
                 return "Đăng nhập thành công";
             }
             else
@@ -39,7 +39,18 @@ namespace WebTruyen.Helper
         }
         public static TaiKhoan user()
         {
-            return (TaiKhoan)HttpContext.Current.Session["taiKhoan"];
+            try
+            {
+                int idtk = (int)HttpContext.Current.Session["taiKhoan"];
+                webtruyenptEntities db = new webtruyenptEntities();
+                TaiKhoan taiKhoan = db.TaiKhoans.Find(idtk);
+                return taiKhoan;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+            
         }
         public static void logout()
         {

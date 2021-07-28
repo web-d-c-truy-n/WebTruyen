@@ -143,6 +143,7 @@
     <Compile Include="Helper\Commons.cs" />
     <Compile Include="Helper\Login.cs" />
     <Compile Include="Helper\LoginAdmin.cs" />
+    <Compile Include="Helper\LoginTacGia.cs" />
     <Compile Include="Models\Admin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

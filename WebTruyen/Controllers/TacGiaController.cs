@@ -3,36 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebTruyen.Helper;
 using WebTruyen.Models;
 
 namespace WebTruyen.Controllers
 {
+    [LoginTacGia]
     public class TacGiaController : Controller
     {
-        webtruyenptEntities db = new webtruyenptEntities();
+        private webtruyenptEntities db;
+        public TacGiaController()
+        {
+            db = new webtruyenptEntities();
+        }
         // GET: TacGia
         public ActionResult Index()
         {
             return View();
-        }
-        [HttpPost]
-        public ActionResult Register(string butDanh, int vaiTro)
-        {
-            TacGia tacGia = new TacGia();
-            tacGia.ButDanh = butDanh;
-            tacGia.VaiTro = vaiTro;
-            tacGia.NgayDangKy = DateTime.Now;
-            tacGia.MaTK = Helper.Auth.user().MaTK;
-            tacGia.DaDuyet = false;
-            db.TacGias.Add(tacGia);
-            db.SaveChanges();
-            return Json(true);
         }
         public ActionResult TrangTacGia()
         {
             if (Helper.Auth.tacGia() != null)
             {
                 ViewBag.anhCuaTG = Helper.Auth.tacGia().QuanLyHinhAnhs.ToList();
+                ViewBag.theLoai = db.TheLoais.ToList();
             }
             return View();
         }
@@ -64,6 +58,24 @@ namespace WebTruyen.Controllers
 
             // linq from Henrik Stenbæk
             return formats.Any(item => file.FileName.EndsWith(item, StringComparison.OrdinalIgnoreCase));
+        }
+        // đăng truyện
+        [HttpPost]
+        public ActionResult DangTruyen(Truyen truyen)
+        {
+            try
+            {
+                truyen.NgayTao = DateTime.Now;
+                truyen.DaDuyet = false;
+                truyen.Khoa = false;
+                db.Truyens.Add(truyen);
+                return Json(true);
+            }
+            catch
+            {
+                return Json(false);
+            }
+            
         }
     }
 }

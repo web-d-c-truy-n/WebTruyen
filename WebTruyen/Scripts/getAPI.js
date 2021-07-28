@@ -221,7 +221,7 @@
         let result = null
         await $.ajax({
             type: "POST",
-            url: '/TacGia/Register',
+            url: '/Login/RegisterTacGia',
             data: JSON.stringify({ butDanh: butDanh, vaiTro: vaiTro }),
             dataType: "json",
             contentType: 'application/json; charset=utf-8',
