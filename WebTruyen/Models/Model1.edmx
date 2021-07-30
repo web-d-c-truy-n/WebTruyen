@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="webtruyenptModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="webtruyenptModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="MaTK" />
@@ -38,6 +38,7 @@
           <Property Name="NgayTao" Type="datetime" Nullable="false" />
           <Property Name="LoaiChuong" Type="int" Nullable="false" />
           <Property Name="NoiDung" Type="ntext" Nullable="false" />
+          <Property Name="Dang" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Luotthich">
           <Key>
@@ -162,15 +163,16 @@
           <Property Name="MaTruyen" Type="int" Nullable="false" />
           <Property Name="TenTruyen" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="MaLoai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TacGiaGoc" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TacGiaGoc" Type="nvarchar" MaxLength="50" />
           <Property Name="NgayTao" Type="datetime" Nullable="false" />
-          <Property Name="NgayDang" Type="datetime" Nullable="false" />
-          <Property Name="TamAn" Type="bit" />
-          <Property Name="DaDuyet" Type="bit" Nullable="false" />
+          <Property Name="NgayDang" Type="datetime" />
+          <Property Name="TamAn" Type="bit" Nullable="false" />
+          <Property Name="DaDuyet" Type="bit" />
           <Property Name="Khoa" Type="bit" />
           <Property Name="LoaiTruyen" Type="int" Nullable="false" />
-          <Property Name="TinhTrang" Type="int" Nullable="false" />
+          <Property Name="TinhTrang" Type="int" />
           <Property Name="AnhBia" Type="int" Nullable="false" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="500" Nullable="false" />
         </EntityType>
         <EntityType Name="TruyenTacGia">
           <Key>
@@ -554,7 +556,8 @@
             <End Role="TruyenTacGia" EntitySet="TruyenTacGia" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="webtruyenptModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -595,6 +598,7 @@
           <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LoaiChuong" Type="Int32" Nullable="false" />
           <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Dang" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Truyen" Relationship="Self.FK_ChuongTruyen_Truyen" FromRole="ChuongTruyen" ToRole="Truyen" />
           <NavigationProperty Name="Luotxems" Relationship="Self.FK_Luotxem_ChuongTruyen" FromRole="ChuongTruyen" ToRole="Luotxem" />
         </EntityType>
@@ -750,15 +754,16 @@
           <Property Name="MaTruyen" Type="Int32" Nullable="false" />
           <Property Name="TenTruyen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="MaLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TacGiaGoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TacGiaGoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="NgayDang" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="TamAn" Type="Boolean" />
-          <Property Name="DaDuyet" Type="Boolean" Nullable="false" />
+          <Property Name="NgayDang" Type="DateTime" Precision="3" />
+          <Property Name="TamAn" Type="Boolean" Nullable="false" />
+          <Property Name="DaDuyet" Type="Boolean" />
           <Property Name="Khoa" Type="Boolean" />
           <Property Name="LoaiTruyen" Type="Int32" Nullable="false" />
-          <Property Name="TinhTrang" Type="Int32" Nullable="false" />
+          <Property Name="TinhTrang" Type="Int32" />
           <Property Name="AnhBia" Type="Int32" Nullable="false" />
+          <Property Name="MoTa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="BinhLuans" Relationship="Self.FK_BinhLuan_Truyen" FromRole="Truyen" ToRole="BinhLuan" />
           <NavigationProperty Name="ChuongTruyens" Relationship="Self.FK_ChuongTruyen_Truyen" FromRole="Truyen" ToRole="ChuongTruyen" />
           <NavigationProperty Name="Luotthiches" Relationship="Self.FK_Luotthich_Truyen" FromRole="Truyen" ToRole="Luotthich" />
@@ -1190,6 +1195,7 @@
                 <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
                 <ScalarProperty Name="LoaiChuong" ColumnName="LoaiChuong" />
                 <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="Dang" ColumnName="Dang" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1331,6 +1337,7 @@
                 <ScalarProperty Name="LoaiTruyen" ColumnName="LoaiTruyen" />
                 <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
                 <ScalarProperty Name="AnhBia" ColumnName="AnhBia" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

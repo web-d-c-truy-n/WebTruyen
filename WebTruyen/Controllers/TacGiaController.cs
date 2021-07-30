@@ -61,20 +61,33 @@ namespace WebTruyen.Controllers
         }
         // đăng truyện
         [HttpPost]
-        public ActionResult DangTruyen(Truyen truyen)
+        public ActionResult DangTruyen(Truyen truyen, int vaiTro)
         {
-            try
+            using (System.Data.Entity.DbContextTransaction transaction = db.Database.BeginTransaction())
             {
-                truyen.NgayTao = DateTime.Now;
-                truyen.DaDuyet = false;
-                truyen.Khoa = false;
-                db.Truyens.Add(truyen);
-                return Json(true);
+                try
+                {
+                    truyen.NgayTao = DateTime.Now;
+                    truyen.DaDuyet = false;
+                    truyen.Khoa = false;
+                    db.Truyens.Add(truyen);
+                    db.SaveChanges();
+                    TruyenTacGia truyenTacGia = new TruyenTacGia();
+                    truyenTacGia.MaTG = Helper.Auth.tacGia().MaTG;
+                    truyenTacGia.MaTruyen = truyen.MaTruyen;
+                    truyenTacGia.VaiTro = vaiTro;
+                    db.TruyenTacGias.Add(truyenTacGia);
+                    db.SaveChanges();
+                    transaction.Commit();
+                    return Json(true);
+                }
+                catch (Exception e)
+                {
+                    transaction.Rollback();
+                    return Json(false);
+                }
             }
-            catch
-            {
-                return Json(false);
-            }
+                
             
         }
     }

@@ -28,13 +28,14 @@ namespace WebTruyen.Models
         public int MaLoai { get; set; }
         public string TacGiaGoc { get; set; }
         public System.DateTime NgayTao { get; set; }
-        public System.DateTime NgayDang { get; set; }
-        public Nullable<bool> TamAn { get; set; }
-        public bool DaDuyet { get; set; }
+        public Nullable<System.DateTime> NgayDang { get; set; }
+        public bool TamAn { get; set; }
+        public Nullable<bool> DaDuyet { get; set; }
         public Nullable<bool> Khoa { get; set; }
         public int LoaiTruyen { get; set; }
-        public int TinhTrang { get; set; }
+        public Nullable<int> TinhTrang { get; set; }
         public int AnhBia { get; set; }
+        public string MoTa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BinhLuan> BinhLuans { get; set; }

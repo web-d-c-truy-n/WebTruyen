@@ -1,4 +1,5 @@
 ﻿@using WebTruyen.Models
+@using WebTruyen.Helper
 @{
     ViewBag.Title = "TrangTacGia";
     Layout = "~/Views/Shared/_Layoutwebindex.cshtml";
@@ -123,18 +124,19 @@
                                                             <div class="row">
                                                                 <div class="form-group col-md-12">
                                                                     <label for="usr">Tên truyện:</label>
-                                                                    <input type="text" class="form-control" id="usr" name="username">
+                                                                    <input type="text" class="form-control" id="tenTruyen" name="username">
                                                                 </div>
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-9">
                                                                     <textarea id="editor"></textarea>
                                                                     <div class="col-md-12 widget c-popular">
-                                                                        <button class="btn widget-view-more btn-block" data-toggle="modal" data-target="#dangTacPham">Đăng tác phẩm</button>
+                                                                        <button class="btn widget-view-more btn-block" data-toggle="modal" data-target="#dangTacPham" id="btn_dangTacPham">Đăng tác phẩm</button>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-3 widget c-popular">
-                                                                    <button class="btn widget-view-more btn-block" data-toggle="modal" data-target="#chonAnh">Thêm ảnh bìa</button>
+                                                                    <img src="" class="img-responsive effect-fade lazyloaded" id="anhBia"/>
+                                                                    <button class="btn widget-view-more btn-block" data-toggle="modal" data-target="#chonAnh" id="btn_themAnhBia">Thêm ảnh bìa</button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -410,7 +412,7 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#home">Danh sách ảnh</a>
+                        <a class="nav-link active" data-toggle="tab" href="#allAnh">Danh sách ảnh</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#menu1">Tải Ảnh</a>
@@ -419,8 +421,7 @@
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div id="home" class="container tab-pane active">
-                        <br>
+                    <div id="allAnh" class="container tab-pane active">                        
                         @foreach (QuanLyHinhAnh anh in ViewBag.anhCuaTG)
                         {
                             <img src="@anh.URL" width="96" height="72" id_anh="@anh.MaAnh">
@@ -449,7 +450,7 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="anhBia = true">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="anhBia = true" id="dongAnhBia">Close</button>
             </div>
 
         </div>
@@ -468,21 +469,35 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <label class="mr-sm-2">Loại truyện</label>
-                <select class="form-control mb-2 mr-sm-2">
-                    @foreach(TheLoai theLoai in ViewBag.theLoai) { 
+                <select class="form-control mb-2 mr-sm-2" id="theLoai">
+                    @foreach (TheLoai theLoai in ViewBag.theLoai)
+                    {
                         <option value="@theLoai.MaLoai">@theLoai.TenLoai</option>
                     }
-                </select>                
-                <label for="pwd" class="mr-sm-2">Tác giả gốc</label>
-                <input type="password" class="form-control mb-2 mr-sm-2" placeholder="Nhập tác giả gốc" id="pwd">
+                </select>
+                <label class="mr-sm-2">Tác giả gốc</label>
+                <input type="password" class="form-control mb-2 mr-sm-2" placeholder="Nhập tác giả gốc" id="tacGiaGoc">
                 <br />
-                <button type="submit" class="btn btn-primary mb-2">Đăng tác phẩm</button>
-                <button type="submit" class="btn btn-primary mb-2">Lưu nháp</button>
+                <label class="mr-sm-2">Loại truyện</label>
+                <select class="form-control mb-2 mr-sm-2" id="loaiTruyen">
+                    <option value="1">Truyện Chữ</option>
+                    <option value="2">Truyện Tranh</option>
+                </select>
+                @if (Auth.tacGia().VaiTro == vtTacGia.dichGia)
+                {
+                    <label class="mr-sm-2">Vai Trò</label>
+                    <select class="form-control mb-2 mr-sm-2" id="vaiTro">
+                        <option value="1">Tác Giả</option>
+                        <option value="2">Dịch Giả</option>
+                    </select>
+                }
+                <button type="button" id="dangTruyen" class="btn btn-primary mb-2">Đăng tác phẩm</button>
+                <button type="button" id="luuNhap" class="btn btn-primary mb-2">Lưu nháp</button>
             </div>
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="anhBia = true">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
 
         </div>
@@ -498,7 +513,7 @@
                 insertImage: {
                     fn: function () {
                         anhBia = false
-                        $("[data-toggle=modal]").click()
+                        $("#btn_themAnhBia").click()
                     },
                     ico: 'insertImage'
                 },
@@ -506,7 +521,6 @@
             btns: [
                 ['strong', 'em'],
                 ['justifyLeft', 'justifyCenter'],
-                ['insertImage']
             ]
         });
         $(document).ready(function () {
@@ -536,7 +550,10 @@
                     if (data.result) {
                         $("#progress").css({ width: "100%" })
                         window.setTimeout(function () { $("#progress").css({ width: "0%" }) }, 1000)
-                        
+                        let anh = $("[id_anh]").first().clone(true)
+                        $(anh).appendTo('#allAnh')
+                        $(anh).attr("id_anh", data.MaAnh)
+                        $(anh).attr("src", data.URL)
                     } else {
                         alert(data.msg)
                     }
@@ -551,6 +568,36 @@
                   
                 }
             });
+        })
+        $(document).ready(function () {
+            $("[id_anh]").click(function () {
+                if (anhBia) {
+                    let Url = $(this).attr("src")
+                    let id = $(this).attr("id_anh")
+                    $("#anhBia").attr("src", Url)
+                    $("#anhBia").attr("idAnh", id)
+                    $("#dongAnhBia").click()
+                } else {
+                    debugger
+                    let Url = $(this).attr("src")
+                    $('#editor').trumbowyg('html', '<img src = "' + Url + '" />');
+                    $("#dongAnhBia").click()
+                }                
+            })
+            $("#dangTruyen,#luuNhap").click(async function () {
+                let tamAn = $(this).attr("id") == "luuNhap"
+                let theLoai = parseInt($("#theLoai").val())
+                let tacGiaGoc = $("#tacGiaGoc").val()
+                let loaiTruyen = parseInt($("#loaiTruyen").val())
+                let anhBia = parseInt($("#anhBia").attr("idAnh"))
+                let noiDung = $('#editor').trumbowyg('html')
+                let tenTruyen = $("#tenTruyen").val()
+                let vaiTro = $("#vaiTro").val() ?? 1
+                $("body").ajaxOn()
+                await API.DangTruyen(tenTruyen, theLoai, tacGiaGoc, tamAn, anhBia, loaiTruyen, noiDung, vaiTro)
+                $("body").ajaxOff()
+
+            })
         })
     </script>
 }

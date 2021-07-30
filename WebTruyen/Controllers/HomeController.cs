@@ -46,6 +46,11 @@ namespace WebTruyen.Controllers
             //db.SaveChanges();
             return View();
         }
+
+        public ActionResult testReact()
+        {
+            return View();
+        }
         [HttpPost]
         [Login]
         public ActionResult dkTacGia(string butDanh, int vaiTro)
