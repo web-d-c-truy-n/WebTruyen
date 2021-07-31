@@ -476,7 +476,7 @@
                     }
                 </select>
                 <label class="mr-sm-2">Tác giả gốc</label>
-                <input type="password" class="form-control mb-2 mr-sm-2" placeholder="Nhập tác giả gốc" id="tacGiaGoc">
+                <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Nhập tác giả gốc" id="tacGiaGoc">
                 <br />
                 <label class="mr-sm-2">Loại truyện</label>
                 <select class="form-control mb-2 mr-sm-2" id="loaiTruyen">
@@ -585,18 +585,32 @@
                 }                
             })
             $("#dangTruyen,#luuNhap").click(async function () {
+                debugger
                 let tamAn = $(this).attr("id") == "luuNhap"
                 let theLoai = parseInt($("#theLoai").val())
                 let tacGiaGoc = $("#tacGiaGoc").val()
                 let loaiTruyen = parseInt($("#loaiTruyen").val())
                 let anhBia = parseInt($("#anhBia").attr("idAnh"))
                 let noiDung = $('#editor').trumbowyg('html')
+                if (noiDung.length > 1900) {
+                    alert("Nội dung không được quá 2000 ký tự")
+                    return
+                }
                 let tenTruyen = $("#tenTruyen").val()
                 let vaiTro = $("#vaiTro").val() ?? 1
                 $("body").ajaxOn()
-                await API.DangTruyen(tenTruyen, theLoai, tacGiaGoc, tamAn, anhBia, loaiTruyen, noiDung, vaiTro)
-                $("body").ajaxOff()
-
+                let rs = await API.DangTruyen(tenTruyen, theLoai, tacGiaGoc, tamAn, anhBia, loaiTruyen, noiDung, vaiTro)
+                if (rs) {
+                    $("body").ajaxOff()
+                    $("#tacGiaGoc").val("");
+                    $('#editor').trumbowyg('html', "")
+                    $("#tenTruyen").val("")
+                    $(".close").click()
+                    alert("Đăng truyện thành công")
+                } else {
+                    alert("Đăng thất bại")
+                }
+                
             })
         })
     </script>

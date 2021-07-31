@@ -86,9 +86,7 @@ namespace WebTruyen.Controllers
                     transaction.Rollback();
                     return Json(false);
                 }
-            }
-                
-            
+            }                            
         }
     }
 }

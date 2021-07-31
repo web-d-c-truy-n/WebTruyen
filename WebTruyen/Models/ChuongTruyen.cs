@@ -24,12 +24,11 @@ namespace WebTruyen.Models
         public int SoChuong { get; set; }
         public string TenChuong { get; set; }
         public System.DateTime NgayTao { get; set; }
-        public int LoaiChuong { get; set; }
         public string NoiDung { get; set; }
         public bool Dang { get; set; }
     
-        public virtual Truyen Truyen { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Luotxem> Luotxems { get; set; }
+        public virtual Truyen Truyen { get; set; }
     }
 }

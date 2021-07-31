@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="webtruyenptModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="webtruyenptModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="MaTK" />
@@ -32,11 +32,10 @@
             <PropertyRef Name="MaTruyen" />
             <PropertyRef Name="SoChuong" />
           </Key>
-          <Property Name="MaTruyen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaTruyen" Type="int" Nullable="false" />
           <Property Name="SoChuong" Type="int" Nullable="false" />
           <Property Name="TenChuong" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="NgayTao" Type="datetime" Nullable="false" />
-          <Property Name="LoaiChuong" Type="int" Nullable="false" />
           <Property Name="NoiDung" Type="ntext" Nullable="false" />
           <Property Name="Dang" Type="bit" Nullable="false" />
         </EntityType>
@@ -46,7 +45,7 @@
             <PropertyRef Name="MaTruyen" />
           </Key>
           <Property Name="MaTK" Type="int" Nullable="false" />
-          <Property Name="MaTruyen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaTruyen" Type="int" Nullable="false" />
           <Property Name="Ngaythich" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Luotxem">
@@ -56,7 +55,7 @@
             <PropertyRef Name="SoChuong" />
           </Key>
           <Property Name="MaTruyen" Type="int" Nullable="false" />
-          <Property Name="MaTK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaTK" Type="int" Nullable="false" />
           <Property Name="Thich" Type="bit" Nullable="false" />
           <Property Name="Ngayxem" Type="datetime" Nullable="false" />
           <Property Name="SoChuong" Type="int" Nullable="false" />
@@ -132,7 +131,7 @@
             <PropertyRef Name="MaTG" />
           </Key>
           <Property Name="MaTK" Type="int" Nullable="false" />
-          <Property Name="MaTG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaTG" Type="int" Nullable="false" />
           <Property Name="Ngaytheodoi" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="ThongBao">
@@ -140,7 +139,7 @@
             <PropertyRef Name="MaThongBao" />
           </Key>
           <Property Name="MaThongBao" Type="int" Nullable="false" />
-          <Property Name="MaTK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaTK" Type="int" Nullable="false" />
           <Property Name="ThongBao" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="NgayThongBao" Type="datetime" Nullable="false" />
           <Property Name="DaXem" Type="bit" Nullable="false" />
@@ -160,9 +159,9 @@
           <Key>
             <PropertyRef Name="MaTruyen" />
           </Key>
-          <Property Name="MaTruyen" Type="int" Nullable="false" />
+          <Property Name="MaTruyen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenTruyen" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="MaLoai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaLoai" Type="int" Nullable="false" />
           <Property Name="TacGiaGoc" Type="nvarchar" MaxLength="50" />
           <Property Name="NgayTao" Type="datetime" Nullable="false" />
           <Property Name="NgayDang" Type="datetime" />
@@ -172,7 +171,7 @@
           <Property Name="LoaiTruyen" Type="int" Nullable="false" />
           <Property Name="TinhTrang" Type="int" />
           <Property Name="AnhBia" Type="int" Nullable="false" />
-          <Property Name="MoTa" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="2000" Nullable="false" />
         </EntityType>
         <EntityType Name="TruyenTacGia">
           <Key>
@@ -180,9 +179,38 @@
             <PropertyRef Name="MaTG" />
           </Key>
           <Property Name="MaTruyen" Type="int" Nullable="false" />
-          <Property Name="MaTG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaTG" Type="int" Nullable="false" />
           <Property Name="VaiTro" Type="int" Nullable="false" />
           <Property Name="DangNhom" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vTruyen">
+          <Key>
+            <PropertyRef Name="MaTruyen" />
+            <PropertyRef Name="TenTruyen" />
+            <PropertyRef Name="MaLoai" />
+            <PropertyRef Name="NgayTao" />
+            <PropertyRef Name="TamAn" />
+            <PropertyRef Name="LoaiTruyen" />
+            <PropertyRef Name="MoTa" />
+            <PropertyRef Name="AnhBia" />
+          </Key>
+          <Property Name="MaTruyen" Type="int" Nullable="false" />
+          <Property Name="TenTruyen" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MaLoai" Type="int" Nullable="false" />
+          <Property Name="TacGiaGoc" Type="nvarchar" MaxLength="50" />
+          <Property Name="NgayTao" Type="datetime" Nullable="false" />
+          <Property Name="NgayDang" Type="datetime" />
+          <Property Name="TamAn" Type="bit" Nullable="false" />
+          <Property Name="DaDuyet" Type="bit" />
+          <Property Name="Khoa" Type="bit" />
+          <Property Name="LoaiTruyen" Type="int" Nullable="false" />
+          <Property Name="TinhTrang" Type="int" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="AnhBia" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="LuotXem" Type="int" />
+          <Property Name="LuotThich" Type="int" />
         </EntityType>
         <Association Name="FK_BinhLuan_BinhLuan">
           <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="1" />
@@ -467,6 +495,25 @@
           <EntitySet Name="TraoDoiNhom" EntityType="Self.TraoDoiNhom" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Truyen" EntityType="Self.Truyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TruyenTacGia" EntityType="Self.TruyenTacGia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vTruyen" EntityType="Self.vTruyen" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vTruyen].[MaTruyen] AS [MaTruyen], 
+    [vTruyen].[TenTruyen] AS [TenTruyen], 
+    [vTruyen].[MaLoai] AS [MaLoai], 
+    [vTruyen].[TacGiaGoc] AS [TacGiaGoc], 
+    [vTruyen].[NgayTao] AS [NgayTao], 
+    [vTruyen].[NgayDang] AS [NgayDang], 
+    [vTruyen].[TamAn] AS [TamAn], 
+    [vTruyen].[DaDuyet] AS [DaDuyet], 
+    [vTruyen].[Khoa] AS [Khoa], 
+    [vTruyen].[LoaiTruyen] AS [LoaiTruyen], 
+    [vTruyen].[TinhTrang] AS [TinhTrang], 
+    [vTruyen].[MoTa] AS [MoTa], 
+    [vTruyen].[AnhBia] AS [AnhBia], 
+    [vTruyen].[LuotXem] AS [LuotXem], 
+    [vTruyen].[LuotThich] AS [LuotThich]
+    FROM [dbo].[vTruyen] AS [vTruyen]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_BinhLuan_BinhLuan" Association="Self.FK_BinhLuan_BinhLuan">
             <End Role="BinhLuan" EntitySet="BinhLuan" />
             <End Role="BinhLuan1" EntitySet="BinhLuan" />
@@ -556,8 +603,7 @@
             <End Role="TruyenTacGia" EntitySet="TruyenTacGia" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="webtruyenptModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -585,22 +631,21 @@
           <NavigationProperty Name="BinhLuan1" Relationship="Self.FK_BinhLuan_BinhLuan" FromRole="BinhLuan" ToRole="BinhLuan1" />
           <NavigationProperty Name="BinhLuan2" Relationship="Self.FK_BinhLuan_BinhLuan" FromRole="BinhLuan1" ToRole="BinhLuan" />
           <NavigationProperty Name="TaiKhoan" Relationship="Self.FK_BinhLuan_TaiKhoan" FromRole="BinhLuan" ToRole="TaiKhoan" />
-          <NavigationProperty Name="Truyen" Relationship="Self.FK_BinhLuan_Truyen" FromRole="BinhLuan" ToRole="Truyen" />
+          <NavigationProperty Name="Truyen" Relationship="webtruyenptModel.FK_BinhLuan_Truyen" FromRole="BinhLuan" ToRole="Truyen" />
         </EntityType>
         <EntityType Name="ChuongTruyen">
           <Key>
             <PropertyRef Name="MaTruyen" />
             <PropertyRef Name="SoChuong" />
           </Key>
-          <Property Name="MaTruyen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaTruyen" Type="Int32" Nullable="false" />
           <Property Name="SoChuong" Type="Int32" Nullable="false" />
           <Property Name="TenChuong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LoaiChuong" Type="Int32" Nullable="false" />
           <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Dang" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Truyen" Relationship="Self.FK_ChuongTruyen_Truyen" FromRole="ChuongTruyen" ToRole="Truyen" />
           <NavigationProperty Name="Luotxems" Relationship="Self.FK_Luotxem_ChuongTruyen" FromRole="ChuongTruyen" ToRole="Luotxem" />
+          <NavigationProperty Name="Truyen" Relationship="webtruyenptModel.FK_ChuongTruyen_Truyen" FromRole="ChuongTruyen" ToRole="Truyen" />
         </EntityType>
         <EntityType Name="Luotthich">
           <Key>
@@ -608,10 +653,10 @@
             <PropertyRef Name="MaTruyen" />
           </Key>
           <Property Name="MaTK" Type="Int32" Nullable="false" />
-          <Property Name="MaTruyen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaTruyen" Type="Int32" Nullable="false" />
           <Property Name="Ngaythich" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="TaiKhoan" Relationship="Self.FK_Luotthich_TaiKhoan" FromRole="Luotthich" ToRole="TaiKhoan" />
-          <NavigationProperty Name="Truyen" Relationship="Self.FK_Luotthich_Truyen" FromRole="Luotthich" ToRole="Truyen" />
+          <NavigationProperty Name="Truyen" Relationship="webtruyenptModel.FK_Luotthich_Truyen" FromRole="Luotthich" ToRole="Truyen" />
         </EntityType>
         <EntityType Name="Luotxem">
           <Key>
@@ -620,7 +665,7 @@
             <PropertyRef Name="SoChuong" />
           </Key>
           <Property Name="MaTruyen" Type="Int32" Nullable="false" />
-          <Property Name="MaTK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaTK" Type="Int32" Nullable="false" />
           <Property Name="Thich" Type="Boolean" Nullable="false" />
           <Property Name="Ngayxem" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="SoChuong" Type="Int32" Nullable="false" />
@@ -649,7 +694,7 @@
           <Property Name="MaTG" Type="Int32" Nullable="false" />
           <Property Name="URL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="TacGia" Relationship="Self.FK_QuanLyHinhAnh_TacGia" FromRole="QuanLyHinhAnh" ToRole="TacGia" />
-          <NavigationProperty Name="Truyens" Relationship="Self.FK_Truyen_QuanLyHinhAnh" FromRole="QuanLyHinhAnh" ToRole="Truyen" />
+          <NavigationProperty Name="Truyens" Relationship="webtruyenptModel.FK_Truyen_QuanLyHinhAnh" FromRole="QuanLyHinhAnh" ToRole="Truyen" />
         </EntityType>
         <EntityType Name="TacGia">
           <Key>
@@ -709,7 +754,7 @@
           <Property Name="MaLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Truyens" Relationship="Self.FK_Truyen_TheLoai" FromRole="TheLoai" ToRole="Truyen" />
+          <NavigationProperty Name="Truyens" Relationship="webtruyenptModel.FK_Truyen_TheLoai" FromRole="TheLoai" ToRole="Truyen" />
         </EntityType>
         <EntityType Name="TheodoiTG">
           <Key>
@@ -717,7 +762,7 @@
             <PropertyRef Name="MaTG" />
           </Key>
           <Property Name="MaTK" Type="Int32" Nullable="false" />
-          <Property Name="MaTG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaTG" Type="Int32" Nullable="false" />
           <Property Name="Ngaytheodoi" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="TaiKhoan" Relationship="Self.FK_TheodoiTG_TaiKhoan" FromRole="TheodoiTG" ToRole="TaiKhoan" />
         </EntityType>
@@ -726,7 +771,7 @@
             <PropertyRef Name="MaThongBao" />
           </Key>
           <Property Name="MaThongBao" Type="Int32" Nullable="false" />
-          <Property Name="MaTK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaTK" Type="Int32" Nullable="false" />
           <Property Name="ThongBao1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NgayThongBao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DaXem" Type="Boolean" Nullable="false" />
@@ -747,42 +792,18 @@
           <NavigationProperty Name="TraoDoiNhom1" Relationship="Self.FK_TraoDoiNhom_TraoDoiNhom" FromRole="TraoDoiNhom" ToRole="TraoDoiNhom1" />
           <NavigationProperty Name="TraoDoiNhom2" Relationship="Self.FK_TraoDoiNhom_TraoDoiNhom" FromRole="TraoDoiNhom1" ToRole="TraoDoiNhom" />
         </EntityType>
-        <EntityType Name="Truyen">
-          <Key>
-            <PropertyRef Name="MaTruyen" />
-          </Key>
-          <Property Name="MaTruyen" Type="Int32" Nullable="false" />
-          <Property Name="TenTruyen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="MaLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TacGiaGoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="NgayDang" Type="DateTime" Precision="3" />
-          <Property Name="TamAn" Type="Boolean" Nullable="false" />
-          <Property Name="DaDuyet" Type="Boolean" />
-          <Property Name="Khoa" Type="Boolean" />
-          <Property Name="LoaiTruyen" Type="Int32" Nullable="false" />
-          <Property Name="TinhTrang" Type="Int32" />
-          <Property Name="AnhBia" Type="Int32" Nullable="false" />
-          <Property Name="MoTa" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="BinhLuans" Relationship="Self.FK_BinhLuan_Truyen" FromRole="Truyen" ToRole="BinhLuan" />
-          <NavigationProperty Name="ChuongTruyens" Relationship="Self.FK_ChuongTruyen_Truyen" FromRole="Truyen" ToRole="ChuongTruyen" />
-          <NavigationProperty Name="Luotthiches" Relationship="Self.FK_Luotthich_Truyen" FromRole="Truyen" ToRole="Luotthich" />
-          <NavigationProperty Name="QuanLyHinhAnh" Relationship="Self.FK_Truyen_QuanLyHinhAnh" FromRole="Truyen" ToRole="QuanLyHinhAnh" />
-          <NavigationProperty Name="TheLoai" Relationship="Self.FK_Truyen_TheLoai" FromRole="Truyen" ToRole="TheLoai" />
-          <NavigationProperty Name="TruyenTacGias" Relationship="Self.FK_TruyenTacGia_Truyen" FromRole="Truyen" ToRole="TruyenTacGia" />
-        </EntityType>
         <EntityType Name="TruyenTacGia">
           <Key>
             <PropertyRef Name="MaTruyen" />
             <PropertyRef Name="MaTG" />
           </Key>
           <Property Name="MaTruyen" Type="Int32" Nullable="false" />
-          <Property Name="MaTG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaTG" Type="Int32" Nullable="false" />
           <Property Name="VaiTro" Type="Int32" Nullable="false" />
           <Property Name="DangNhom" Type="Int32" />
           <NavigationProperty Name="NhomTG" Relationship="Self.FK_TruyenTacGia_NhomTG" FromRole="TruyenTacGia" ToRole="NhomTG" />
           <NavigationProperty Name="TacGia" Relationship="Self.FK_TruyenTacGia_TacGia" FromRole="TruyenTacGia" ToRole="TacGia" />
-          <NavigationProperty Name="Truyen" Relationship="Self.FK_TruyenTacGia_Truyen" FromRole="TruyenTacGia" ToRole="Truyen" />
+          <NavigationProperty Name="Truyen" Relationship="webtruyenptModel.FK_TruyenTacGia_Truyen" FromRole="TruyenTacGia" ToRole="Truyen" />
         </EntityType>
         <Association Name="FK_BinhLuan_BinhLuan">
           <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="1" />
@@ -805,30 +826,6 @@
             </Principal>
             <Dependent Role="BinhLuan">
               <PropertyRef Name="MaTK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BinhLuan_Truyen">
-          <End Role="Truyen" Type="Self.Truyen" Multiplicity="1" />
-          <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Truyen">
-              <PropertyRef Name="MaTruyen" />
-            </Principal>
-            <Dependent Role="BinhLuan">
-              <PropertyRef Name="MaTruyen" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ChuongTruyen_Truyen">
-          <End Role="Truyen" Type="Self.Truyen" Multiplicity="1" />
-          <End Role="ChuongTruyen" Type="Self.ChuongTruyen" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Truyen">
-              <PropertyRef Name="MaTruyen" />
-            </Principal>
-            <Dependent Role="ChuongTruyen">
-              <PropertyRef Name="MaTruyen" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -855,18 +852,6 @@
             </Principal>
             <Dependent Role="Luotthich">
               <PropertyRef Name="MaTK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Luotthich_Truyen">
-          <End Role="Truyen" Type="Self.Truyen" Multiplicity="1" />
-          <End Role="Luotthich" Type="Self.Luotthich" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Truyen">
-              <PropertyRef Name="MaTruyen" />
-            </Principal>
-            <Dependent Role="Luotthich">
-              <PropertyRef Name="MaTruyen" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -927,18 +912,6 @@
             </Principal>
             <Dependent Role="QuanLyHinhAnh">
               <PropertyRef Name="MaTG" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Truyen_QuanLyHinhAnh">
-          <End Role="QuanLyHinhAnh" Type="Self.QuanLyHinhAnh" Multiplicity="1" />
-          <End Role="Truyen" Type="Self.Truyen" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="QuanLyHinhAnh">
-              <PropertyRef Name="MaAnh" />
-            </Principal>
-            <Dependent Role="Truyen">
-              <PropertyRef Name="AnhBia" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1014,18 +987,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Truyen_TheLoai">
-          <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="1" />
-          <End Role="Truyen" Type="Self.Truyen" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TheLoai">
-              <PropertyRef Name="MaLoai" />
-            </Principal>
-            <Dependent Role="Truyen">
-              <PropertyRef Name="MaLoai" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TraoDoiNhom_TraoDoiNhom">
           <End Role="TraoDoiNhom" Type="Self.TraoDoiNhom" Multiplicity="0..1" />
           <End Role="TraoDoiNhom1" Type="Self.TraoDoiNhom" Multiplicity="*" />
@@ -1035,18 +996,6 @@
             </Principal>
             <Dependent Role="TraoDoiNhom1">
               <PropertyRef Name="PhanHoi" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TruyenTacGia_Truyen">
-          <End Role="Truyen" Type="Self.Truyen" Multiplicity="1" />
-          <End Role="TruyenTacGia" Type="Self.TruyenTacGia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Truyen">
-              <PropertyRef Name="MaTruyen" />
-            </Principal>
-            <Dependent Role="TruyenTacGia">
-              <PropertyRef Name="MaTruyen" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1065,7 +1014,6 @@
           <EntitySet Name="TheodoiTGs" EntityType="Self.TheodoiTG" />
           <EntitySet Name="ThongBaos" EntityType="Self.ThongBao" />
           <EntitySet Name="TraoDoiNhoms" EntityType="Self.TraoDoiNhom" />
-          <EntitySet Name="Truyens" EntityType="Self.Truyen" />
           <EntitySet Name="TruyenTacGias" EntityType="Self.TruyenTacGia" />
           <AssociationSet Name="FK_BinhLuan_BinhLuan" Association="Self.FK_BinhLuan_BinhLuan">
             <End Role="BinhLuan" EntitySet="BinhLuans" />
@@ -1075,24 +1023,12 @@
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
             <End Role="BinhLuan" EntitySet="BinhLuans" />
           </AssociationSet>
-          <AssociationSet Name="FK_BinhLuan_Truyen" Association="Self.FK_BinhLuan_Truyen">
-            <End Role="Truyen" EntitySet="Truyens" />
-            <End Role="BinhLuan" EntitySet="BinhLuans" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChuongTruyen_Truyen" Association="Self.FK_ChuongTruyen_Truyen">
-            <End Role="Truyen" EntitySet="Truyens" />
-            <End Role="ChuongTruyen" EntitySet="ChuongTruyens" />
-          </AssociationSet>
           <AssociationSet Name="FK_Luotxem_ChuongTruyen" Association="Self.FK_Luotxem_ChuongTruyen">
             <End Role="ChuongTruyen" EntitySet="ChuongTruyens" />
             <End Role="Luotxem" EntitySet="Luotxems" />
           </AssociationSet>
           <AssociationSet Name="FK_Luotthich_TaiKhoan" Association="Self.FK_Luotthich_TaiKhoan">
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
-            <End Role="Luotthich" EntitySet="Luotthiches" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Luotthich_Truyen" Association="Self.FK_Luotthich_Truyen">
-            <End Role="Truyen" EntitySet="Truyens" />
             <End Role="Luotthich" EntitySet="Luotthiches" />
           </AssociationSet>
           <AssociationSet Name="FK_Luotxem_TaiKhoan" Association="Self.FK_Luotxem_TaiKhoan">
@@ -1114,10 +1050,6 @@
           <AssociationSet Name="FK_QuanLyHinhAnh_TacGia" Association="Self.FK_QuanLyHinhAnh_TacGia">
             <End Role="TacGia" EntitySet="TacGias" />
             <End Role="QuanLyHinhAnh" EntitySet="QuanLyHinhAnhs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Truyen_QuanLyHinhAnh" Association="Self.FK_Truyen_QuanLyHinhAnh">
-            <End Role="QuanLyHinhAnh" EntitySet="QuanLyHinhAnhs" />
-            <End Role="Truyen" EntitySet="Truyens" />
           </AssociationSet>
           <AssociationSet Name="FK_TacGia_TaiKhoan" Association="Self.FK_TacGia_TaiKhoan">
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
@@ -1143,19 +1075,160 @@
             <End Role="ThanhVienNhom" EntitySet="ThanhVienNhoms" />
             <End Role="TraoDoiNhom" EntitySet="TraoDoiNhoms" />
           </AssociationSet>
-          <AssociationSet Name="FK_Truyen_TheLoai" Association="Self.FK_Truyen_TheLoai">
-            <End Role="TheLoai" EntitySet="TheLoais" />
-            <End Role="Truyen" EntitySet="Truyens" />
-          </AssociationSet>
           <AssociationSet Name="FK_TraoDoiNhom_TraoDoiNhom" Association="Self.FK_TraoDoiNhom_TraoDoiNhom">
             <End Role="TraoDoiNhom" EntitySet="TraoDoiNhoms" />
             <End Role="TraoDoiNhom1" EntitySet="TraoDoiNhoms" />
           </AssociationSet>
-          <AssociationSet Name="FK_TruyenTacGia_Truyen" Association="Self.FK_TruyenTacGia_Truyen">
+          <EntitySet Name="Truyens" EntityType="webtruyenptModel.Truyen" />
+          <AssociationSet Name="FK_BinhLuan_Truyen" Association="webtruyenptModel.FK_BinhLuan_Truyen">
+            <End Role="Truyen" EntitySet="Truyens" />
+            <End Role="BinhLuan" EntitySet="BinhLuans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChuongTruyen_Truyen" Association="webtruyenptModel.FK_ChuongTruyen_Truyen">
+            <End Role="Truyen" EntitySet="Truyens" />
+            <End Role="ChuongTruyen" EntitySet="ChuongTruyens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Luotthich_Truyen" Association="webtruyenptModel.FK_Luotthich_Truyen">
+            <End Role="Truyen" EntitySet="Truyens" />
+            <End Role="Luotthich" EntitySet="Luotthiches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Truyen_QuanLyHinhAnh" Association="webtruyenptModel.FK_Truyen_QuanLyHinhAnh">
+            <End Role="QuanLyHinhAnh" EntitySet="QuanLyHinhAnhs" />
+            <End Role="Truyen" EntitySet="Truyens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Truyen_TheLoai" Association="webtruyenptModel.FK_Truyen_TheLoai">
+            <End Role="TheLoai" EntitySet="TheLoais" />
+            <End Role="Truyen" EntitySet="Truyens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TruyenTacGia_Truyen" Association="webtruyenptModel.FK_TruyenTacGia_Truyen">
             <End Role="Truyen" EntitySet="Truyens" />
             <End Role="TruyenTacGia" EntitySet="TruyenTacGias" />
           </AssociationSet>
+          <EntitySet Name="vTruyens" EntityType="webtruyenptModel.vTruyen" />
         </EntityContainer>
+        <EntityType Name="Truyen">
+          <Key>
+            <PropertyRef Name="MaTruyen" />
+          </Key>
+          <Property Name="MaTruyen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenTruyen" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MaLoai" Type="Int32" Nullable="false" />
+          <Property Name="TacGiaGoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NgayDang" Type="DateTime" Precision="3" />
+          <Property Name="TamAn" Type="Boolean" Nullable="false" />
+          <Property Name="DaDuyet" Type="Boolean" />
+          <Property Name="Khoa" Type="Boolean" />
+          <Property Name="LoaiTruyen" Type="Int32" Nullable="false" />
+          <Property Name="TinhTrang" Type="Int32" />
+          <Property Name="AnhBia" Type="Int32" Nullable="false" />
+          <Property Name="MoTa" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BinhLuans" Relationship="webtruyenptModel.FK_BinhLuan_Truyen" FromRole="Truyen" ToRole="BinhLuan" />
+          <NavigationProperty Name="ChuongTruyens" Relationship="webtruyenptModel.FK_ChuongTruyen_Truyen" FromRole="Truyen" ToRole="ChuongTruyen" />
+          <NavigationProperty Name="Luotthiches" Relationship="webtruyenptModel.FK_Luotthich_Truyen" FromRole="Truyen" ToRole="Luotthich" />
+          <NavigationProperty Name="QuanLyHinhAnh" Relationship="webtruyenptModel.FK_Truyen_QuanLyHinhAnh" FromRole="Truyen" ToRole="QuanLyHinhAnh" />
+          <NavigationProperty Name="TheLoai" Relationship="webtruyenptModel.FK_Truyen_TheLoai" FromRole="Truyen" ToRole="TheLoai" />
+          <NavigationProperty Name="TruyenTacGias" Relationship="webtruyenptModel.FK_TruyenTacGia_Truyen" FromRole="Truyen" ToRole="TruyenTacGia" />
+        </EntityType>
+        <Association Name="FK_BinhLuan_Truyen">
+          <End Type="webtruyenptModel.Truyen" Role="Truyen" Multiplicity="1" />
+          <End Type="webtruyenptModel.BinhLuan" Role="BinhLuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Truyen">
+              <PropertyRef Name="MaTruyen" />
+            </Principal>
+            <Dependent Role="BinhLuan">
+              <PropertyRef Name="MaTruyen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChuongTruyen_Truyen">
+          <End Type="webtruyenptModel.Truyen" Role="Truyen" Multiplicity="1" />
+          <End Type="webtruyenptModel.ChuongTruyen" Role="ChuongTruyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Truyen">
+              <PropertyRef Name="MaTruyen" />
+            </Principal>
+            <Dependent Role="ChuongTruyen">
+              <PropertyRef Name="MaTruyen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Luotthich_Truyen">
+          <End Type="webtruyenptModel.Truyen" Role="Truyen" Multiplicity="1" />
+          <End Type="webtruyenptModel.Luotthich" Role="Luotthich" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Truyen">
+              <PropertyRef Name="MaTruyen" />
+            </Principal>
+            <Dependent Role="Luotthich">
+              <PropertyRef Name="MaTruyen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Truyen_QuanLyHinhAnh">
+          <End Type="webtruyenptModel.QuanLyHinhAnh" Role="QuanLyHinhAnh" Multiplicity="1" />
+          <End Type="webtruyenptModel.Truyen" Role="Truyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuanLyHinhAnh">
+              <PropertyRef Name="MaAnh" />
+            </Principal>
+            <Dependent Role="Truyen">
+              <PropertyRef Name="AnhBia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Truyen_TheLoai">
+          <End Type="webtruyenptModel.TheLoai" Role="TheLoai" Multiplicity="1" />
+          <End Type="webtruyenptModel.Truyen" Role="Truyen" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TheLoai">
+              <PropertyRef Name="MaLoai" />
+            </Principal>
+            <Dependent Role="Truyen">
+              <PropertyRef Name="MaLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TruyenTacGia_Truyen">
+          <End Type="webtruyenptModel.Truyen" Role="Truyen" Multiplicity="1" />
+          <End Type="webtruyenptModel.TruyenTacGia" Role="TruyenTacGia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Truyen">
+              <PropertyRef Name="MaTruyen" />
+            </Principal>
+            <Dependent Role="TruyenTacGia">
+              <PropertyRef Name="MaTruyen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vTruyen">
+          <Key>
+            <PropertyRef Name="MaTruyen" />
+            <PropertyRef Name="TenTruyen" />
+            <PropertyRef Name="MaLoai" />
+            <PropertyRef Name="NgayTao" />
+            <PropertyRef Name="TamAn" />
+            <PropertyRef Name="LoaiTruyen" />
+            <PropertyRef Name="MoTa" />
+            <PropertyRef Name="AnhBia" />
+          </Key>
+          <Property Name="MaTruyen" Type="Int32" Nullable="false" />
+          <Property Name="TenTruyen" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MaLoai" Type="Int32" Nullable="false" />
+          <Property Name="TacGiaGoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NgayDang" Type="DateTime" Precision="3" />
+          <Property Name="TamAn" Type="Boolean" Nullable="false" />
+          <Property Name="DaDuyet" Type="Boolean" />
+          <Property Name="Khoa" Type="Boolean" />
+          <Property Name="LoaiTruyen" Type="Int32" Nullable="false" />
+          <Property Name="TinhTrang" Type="Int32" />
+          <Property Name="MoTa" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="AnhBia" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="LuotXem" Type="Int32" />
+          <Property Name="LuotThich" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1193,7 +1266,6 @@
                 <ScalarProperty Name="SoChuong" ColumnName="SoChuong" />
                 <ScalarProperty Name="TenChuong" ColumnName="TenChuong" />
                 <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
-                <ScalarProperty Name="LoaiChuong" ColumnName="LoaiChuong" />
                 <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
                 <ScalarProperty Name="Dang" ColumnName="Dang" />
               </MappingFragment>
@@ -1322,25 +1394,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Truyens">
-            <EntityTypeMapping TypeName="webtruyenptModel.Truyen">
-              <MappingFragment StoreEntitySet="Truyen">
-                <ScalarProperty Name="MaTruyen" ColumnName="MaTruyen" />
-                <ScalarProperty Name="TenTruyen" ColumnName="TenTruyen" />
-                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
-                <ScalarProperty Name="TacGiaGoc" ColumnName="TacGiaGoc" />
-                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
-                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
-                <ScalarProperty Name="TamAn" ColumnName="TamAn" />
-                <ScalarProperty Name="DaDuyet" ColumnName="DaDuyet" />
-                <ScalarProperty Name="Khoa" ColumnName="Khoa" />
-                <ScalarProperty Name="LoaiTruyen" ColumnName="LoaiTruyen" />
-                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
-                <ScalarProperty Name="AnhBia" ColumnName="AnhBia" />
-                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TruyenTacGias">
             <EntityTypeMapping TypeName="webtruyenptModel.TruyenTacGia">
               <MappingFragment StoreEntitySet="TruyenTacGia">
@@ -1348,6 +1401,46 @@
                 <ScalarProperty Name="MaTG" ColumnName="MaTG" />
                 <ScalarProperty Name="VaiTro" ColumnName="VaiTro" />
                 <ScalarProperty Name="DangNhom" ColumnName="DangNhom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Truyens">
+            <EntityTypeMapping TypeName="webtruyenptModel.Truyen">
+              <MappingFragment StoreEntitySet="Truyen">
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="AnhBia" ColumnName="AnhBia" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="LoaiTruyen" ColumnName="LoaiTruyen" />
+                <ScalarProperty Name="Khoa" ColumnName="Khoa" />
+                <ScalarProperty Name="DaDuyet" ColumnName="DaDuyet" />
+                <ScalarProperty Name="TamAn" ColumnName="TamAn" />
+                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="TacGiaGoc" ColumnName="TacGiaGoc" />
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+                <ScalarProperty Name="TenTruyen" ColumnName="TenTruyen" />
+                <ScalarProperty Name="MaTruyen" ColumnName="MaTruyen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vTruyens">
+            <EntityTypeMapping TypeName="webtruyenptModel.vTruyen">
+              <MappingFragment StoreEntitySet="vTruyen">
+                <ScalarProperty Name="LuotThich" ColumnName="LuotThich" />
+                <ScalarProperty Name="LuotXem" ColumnName="LuotXem" />
+                <ScalarProperty Name="AnhBia" ColumnName="AnhBia" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="LoaiTruyen" ColumnName="LoaiTruyen" />
+                <ScalarProperty Name="Khoa" ColumnName="Khoa" />
+                <ScalarProperty Name="DaDuyet" ColumnName="DaDuyet" />
+                <ScalarProperty Name="TamAn" ColumnName="TamAn" />
+                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="TacGiaGoc" ColumnName="TacGiaGoc" />
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+                <ScalarProperty Name="TenTruyen" ColumnName="TenTruyen" />
+                <ScalarProperty Name="MaTruyen" ColumnName="MaTruyen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

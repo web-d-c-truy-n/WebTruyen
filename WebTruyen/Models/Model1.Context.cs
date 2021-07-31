@@ -39,7 +39,8 @@ namespace WebTruyen.Models
         public virtual DbSet<TheodoiTG> TheodoiTGs { get; set; }
         public virtual DbSet<ThongBao> ThongBaos { get; set; }
         public virtual DbSet<TraoDoiNhom> TraoDoiNhoms { get; set; }
-        public virtual DbSet<Truyen> Truyens { get; set; }
         public virtual DbSet<TruyenTacGia> TruyenTacGias { get; set; }
+        public virtual DbSet<Truyen> Truyens { get; set; }
+        public virtual DbSet<vTruyen> vTruyens { get; set; }
     }
 }

@@ -89,5 +89,11 @@ namespace WebTruyen.Controllers
         {
             return View();
         }
+        // xuất ra các danh sách truyện hot ở trang chủ
+        public ActionResult XuatCacTruyenHot(int page, int pagesize)
+        {
+            List<vTruyen> truyens = db.vTruyens.OrderByDescending(x=>x.LuotThich).Skip((page - 1) * pagesize).Take(pagesize).ToList();
+            return Json(truyens.ToArray(), JsonRequestBehavior.AllowGet);
+        }
     }
 }
