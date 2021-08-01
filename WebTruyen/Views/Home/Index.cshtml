@@ -1,7 +1,8 @@
-﻿
+﻿@using WebTruyen.Models
 @{
     ViewBag.Title = "Trang chủ";
     Layout = "~/Views/Shared/_Layoutwebindex.cshtml";
+    webtruyenptEntities db = new webtruyenptEntities();
 }
 
 <div class="c-sidebar c-top-sidebar" style="background-image:url(./wp-content/uploads/2017/10/gplaypattern.png);  padding:50px 0px 5px 0px ; ">
@@ -83,7 +84,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div><div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 369px;" role="tabpanel" id="slick-slide00">
+                                        </div>
+                                        <div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 369px;" role="tabpanel" id="slick-slide00">
                                             <div>
                                                 <div class="slider__item " style="width: 100%; display: inline-block;">
 
@@ -106,7 +108,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div><div class="slick-slide slick-active" data-slick-index="1" aria-hidden="false" style="width: 369px;" role="tabpanel" id="slick-slide01">
+                                        </div>
+                                        <div class="slick-slide slick-active" data-slick-index="1" aria-hidden="false" style="width: 369px;" role="tabpanel" id="slick-slide01">
                                             <div>
                                                 <div class="slider__item " style="width: 100%; display: inline-block;">
 
@@ -129,7 +132,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div><div class="slick-slide slick-active" data-slick-index="2" aria-hidden="false" style="width: 369px;" role="tabpanel" id="slick-slide02">
+                                        </div>
+                                        <div class="slick-slide slick-active" data-slick-index="2" aria-hidden="false" style="width: 369px;" role="tabpanel" id="slick-slide02">
                                             <div>
                                                 <div class="slider__item " style="width: 100%; display: inline-block;">
 
@@ -152,308 +156,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div><div class="slick-slide" data-slick-index="3" aria-hidden="true" style="width: 369px;" tabindex="-1" role="tabpanel" id="slick-slide03">
-                                            <div>
-                                                <div class="slider__item " style="width: 100%; display: inline-block;">
-
-                                                    <div class="slider__thumb">
-                                                        <div class="slider__thumb_item">
-                                                            <a href="./manga/one-shot-layout/" tabindex="-1">
-                                                                <img src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550619-3-1.jpg">                    <div class="slider-overlay"></div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="slider__content">
-                                                        <div class="slider__content_item">
-                                                            <div class="post-title font-title">
-                                                                <h4>
-                                                                    <a href="./manga/one-shot-layout/" tabindex="-1">One Shot Layout</a>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide" data-slick-index="4" aria-hidden="true" style="width: 369px;" tabindex="-1" role="tabpanel" id="slick-slide04">
-                                            <div>
-                                                <div class="slider__item " style="width: 100%; display: inline-block;">
-
-                                                    <div class="slider__thumb">
-                                                        <div class="slider__thumb_item">
-                                                            <span class="manga-title-badges custom adult">18+</span>                <a href="./manga/kyojin-shingeki-no/" tabindex="-1">
-                                                                <img width="642" height="320" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-560695-642x320.jpg" class="img-responsive effect-fade lazyloaded" src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-560695-642x320.jpg" style="padding-top:49.844236760125%;" alt="wallhaven-560695">                    <div class="slider-overlay"></div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="slider__content">
-                                                        <div class="slider__content_item">
-                                                            <div class="post-title font-title">
-                                                                <h4>
-                                                                    <a href="./manga/kyojin-shingeki-no/" tabindex="-1">Kyojin Shingeki no</a>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide" data-slick-index="5" aria-hidden="true" style="width: 369px;" tabindex="-1" role="tabpanel" id="slick-slide05">
-                                            <div>
-                                                <div class="slider__item " style="width: 100%; display: inline-block;">
-
-                                                    <div class="slider__thumb">
-                                                        <div class="slider__thumb_item">
-                                                            <a href="#" tabindex="-1">
-                                                                <img width="642" height="320" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-523582-642x320.jpg" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:49.844236760125%;" alt="wallhaven-523582">                    <div class="slider-overlay"></div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="slider__content">
-                                                        <div class="slider__content_item">
-                                                            <div class="post-title font-title">
-                                                                <h4>
-                                                                    <a href="#" tabindex="-1">Jikimisuji</a>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide" data-slick-index="6" aria-hidden="true" style="width: 369px;" tabindex="-1" role="tabpanel" id="slick-slide06">
-                                            <div>
-                                                <div class="slider__item " style="width: 100%; display: inline-block;">
-
-                                                    <div class="slider__thumb">
-                                                        <div class="slider__thumb_item">
-                                                            <a href="./manga/kagasarete-nairantou/" tabindex="-1">
-                                                                <img width="642" height="320" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-511610-642x320.png" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:49.844236760125%;" alt="wallhaven-511610">                    <div class="slider-overlay"></div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="slider__content">
-                                                        <div class="slider__content_item">
-                                                            <div class="post-title font-title">
-                                                                <h4>
-                                                                    <a href="./manga/kagasarete-nairantou/" tabindex="-1">Kagasarete Nairantou</a>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide" data-slick-index="7" aria-hidden="true" style="width: 369px;" tabindex="-1" role="tabpanel" id="slick-slide07">
-                                            <div>
-                                                <div class="slider__item " style="width: 100%; display: inline-block;">
-
-                                                    <div class="slider__thumb">
-                                                        <div class="slider__thumb_item">
-                                                            <a href="./manga/monatari-takawoa-yangku/" tabindex="-1">
-                                                                <img width="642" height="320" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-530467-642x320.png" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:49.844236760125%;" alt="wallhaven-530467">                    <div class="slider-overlay"></div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="slider__content">
-                                                        <div class="slider__content_item">
-                                                            <div class="post-title font-title">
-                                                                <h4>
-                                                                    <a href="./manga/monatari-takawoa-yangku/" tabindex="-1">Monatari Takawoa Yangku</a>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="8" id="" aria-hidden="true" style="width: 369px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item " style="width: 100%; display: inline-block;">
-
-                                                    <div class="slider__thumb">
-                                                        <div class="slider__thumb_item">
-                                                            <span class="manga-title-badges new">NEW</span>                <a href="./manga/massa-consectetur-mattis/" tabindex="-1">
-                                                                <img width="642" height="320" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550618-642x320.jpg" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:49.844236760125%;" alt="wallhaven-550618">                    <div class="slider-overlay"></div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="slider__content">
-                                                        <div class="slider__content_item">
-                                                            <div class="post-title font-title">
-                                                                <h4>
-                                                                    <a href="./manga/massa-consectetur-mattis/" tabindex="-1">Manga Video Chapters</a>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="9" id="" aria-hidden="true" style="width: 369px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item " style="width: 100%; display: inline-block;">
-
-                                                    <div class="slider__thumb">
-                                                        <div class="slider__thumb_item">
-                                                            <span class="manga-title-badges new">NEW</span>                <a href="./manga/manga-text-chapter/" tabindex="-1">
-                                                                <img width="642" height="320" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550105-642x320.jpg" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:49.844236760125%;" alt="wallhaven-550105">                    <div class="slider-overlay"></div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="slider__content">
-                                                        <div class="slider__content_item">
-                                                            <div class="post-title font-title">
-                                                                <h4>
-                                                                    <a href="./manga/manga-text-chapter/" tabindex="-1">Manga Text Chapter</a>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="10" id="" aria-hidden="true" style="width: 369px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item " style="width: 100%; display: inline-block;">
-
-                                                    <div class="slider__thumb">
-                                                        <div class="slider__thumb_item">
-                                                            <span class="manga-title-badges hot">HOT</span>                <a href="./manga/kahana-no-shou/" tabindex="-1">
-                                                                <img width="642" height="320" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-561840-642x320.jpg" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:49.844236760125%;" alt="wallhaven-561840">                    <div class="slider-overlay"></div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="slider__content">
-                                                        <div class="slider__content_item">
-                                                            <div class="post-title font-title">
-                                                                <h4>
-                                                                    <a href="./manga/kahana-no-shou/" tabindex="-1">Kahana no Shou</a>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="11" id="" aria-hidden="true" style="width: 369px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item " style="width: 100%; display: inline-block;">
-
-                                                    <div class="slider__thumb">
-                                                        <div class="slider__thumb_item">
-                                                            <a href="./manga/one-shot-layout/" tabindex="-1">
-                                                                <img src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550619-3-1.jpg">                    <div class="slider-overlay"></div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="slider__content">
-                                                        <div class="slider__content_item">
-                                                            <div class="post-title font-title">
-                                                                <h4>
-                                                                    <a href="./manga/one-shot-layout/" tabindex="-1">One Shot Layout</a>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="12" id="" aria-hidden="true" style="width: 369px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item " style="width: 100%; display: inline-block;">
-
-                                                    <div class="slider__thumb">
-                                                        <div class="slider__thumb_item">
-                                                            <span class="manga-title-badges custom adult">18+</span>                <a href="./manga/kyojin-shingeki-no/" tabindex="-1">
-                                                                <img width="642" height="320" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-560695-642x320.jpg" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:49.844236760125%;" alt="wallhaven-560695">                    <div class="slider-overlay"></div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="slider__content">
-                                                        <div class="slider__content_item">
-                                                            <div class="post-title font-title">
-                                                                <h4>
-                                                                    <a href="./manga/kyojin-shingeki-no/" tabindex="-1">Kyojin Shingeki no</a>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="13" id="" aria-hidden="true" style="width: 369px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item " style="width: 100%; display: inline-block;">
-
-                                                    <div class="slider__thumb">
-                                                        <div class="slider__thumb_item">
-                                                            <a href="#" tabindex="-1">
-                                                                <img width="642" height="320" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-523582-642x320.jpg" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:49.844236760125%;" alt="wallhaven-523582">                    <div class="slider-overlay"></div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="slider__content">
-                                                        <div class="slider__content_item">
-                                                            <div class="post-title font-title">
-                                                                <h4>
-                                                                    <a href="#" tabindex="-1">Jikimisuji</a>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="14" id="" aria-hidden="true" style="width: 369px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item " style="width: 100%; display: inline-block;">
-
-                                                    <div class="slider__thumb">
-                                                        <div class="slider__thumb_item">
-                                                            <a href="./manga/kagasarete-nairantou/" tabindex="-1">
-                                                                <img width="642" height="320" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-511610-642x320.png" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:49.844236760125%;" alt="wallhaven-511610">                    <div class="slider-overlay"></div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="slider__content">
-                                                        <div class="slider__content_item">
-                                                            <div class="post-title font-title">
-                                                                <h4>
-                                                                    <a href="./manga/kagasarete-nairantou/" tabindex="-1">Kagasarete Nairantou</a>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="15" id="" aria-hidden="true" style="width: 369px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item " style="width: 100%; display: inline-block;">
-
-                                                    <div class="slider__thumb">
-                                                        <div class="slider__thumb_item">
-                                                            <a href="./manga/monatari-takawoa-yangku/" tabindex="-1">
-                                                                <img width="642" height="320" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-530467-642x320.png" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:49.844236760125%;" alt="wallhaven-530467">                    <div class="slider-overlay"></div>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="slider__content">
-                                                        <div class="slider__content_item">
-                                                            <div class="post-title font-title">
-                                                                <h4>
-                                                                    <a href="./manga/monatari-takawoa-yangku/" tabindex="-1">Monatari Takawoa Yangku</a>
-                                                                </h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
-                                    </div>
-                                </div><ul class="slick-dots" style="" role="tablist"><li class="slick-active" role="presentation"><button type="button" role="tab" id="slick-slide-control00" aria-controls="slick-slide00" aria-label="1 of 3" tabindex="0" aria-selected="true">1</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control01" aria-controls="slick-slide01" aria-label="2 of 3" tabindex="-1">2</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control02" aria-controls="slick-slide02" aria-label="3 of 3" tabindex="-1">3</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control03" aria-controls="slick-slide03" aria-label="4 of 3" tabindex="-1">4</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control04" aria-controls="slick-slide04" aria-label="5 of 3" tabindex="-1">5</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control05" aria-controls="slick-slide05" aria-label="6 of 3" tabindex="-1">6</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control06" aria-controls="slick-slide06" aria-label="7 of 3" tabindex="-1">7</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control07" aria-controls="slick-slide07" aria-label="8 of 3" tabindex="-1">8</button></li></ul>
+                                        </div>                                
                             </div>
                         </div>
                     </div>
@@ -516,7 +220,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="-3" id="" aria-hidden="true" style="width: 285px;" tabindex="-1">
+                                        </div>
+                                        <div class="slick-slide slick-cloned" data-slick-index="-3" id="" aria-hidden="true" style="width: 285px;" tabindex="-1">
                                             <div>
                                                 <div class="slider__item" style="width: 100%; display: inline-block;">
                                                     <div class="item__wrap ">
@@ -555,51 +260,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="-2" id="" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <a href="./manga/yjikumani-otakini/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-529968-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-529968-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-529968-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive effect-fade lazyloaded" src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-529968-125x180.jpg" style="padding-top:180px;" alt="wallhaven-529968" sizes="(max-width: 125px) 100vw, 125px" srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-529968-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-529968-193x278.jpg 193w">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/yjikumani-otakini/" tabindex="-1">Yjikumani Otakini</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 11, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/yjikumani-otakini/volume-1/chapter-15/" tabindex="-1">Chapter 15</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/yjikumani-otakini/volume-1/chapter-14/" tabindex="-1">Chapter 14</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true" style="width: 285px;" tabindex="-1">
+                                        </div>
+                                        
+                                        <div class="slick-slide slick-cloned" data-slick-index="-1" id="" aria-hidden="true" style="width: 285px;" tabindex="-1">
                                             <div>
                                                 <div class="slider__item" style="width: 100%; display: inline-block;">
                                                     <div class="item__wrap ">
@@ -643,95 +306,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div><div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 285px;">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <a href="./manga/nasama-okima/" tabindex="0">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-511610-125x180.png" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-511610-125x180.png 125w, ./wp-content/uploads/2017/10/wallhaven-511610-193x278.png 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive effect-fade lazyloaded" src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-511610-125x180.png" style="padding-top:180px;" alt="wallhaven-511610" sizes="(max-width: 125px) 100vw, 125px" srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-511610-125x180.png 125w, ./wp-content/uploads/2017/10/wallhaven-511610-193x278.png 193w">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/nasama-okima/" tabindex="0">Nasama Okima</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 11, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/nasama-okima/volume-1/chapter-15/" tabindex="0">Chapter 15</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/nasama-okima/volume-1/chapter-14/" tabindex="0">Chapter 14</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-active" data-slick-index="1" aria-hidden="false" style="width: 285px;">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <a href="./manga/hajime-boyfriend/" tabindex="0">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-524774-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-524774-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-524774-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive effect-fade lazyloaded" src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-524774-125x180.jpg" style="padding-top:180px;" alt="wallhaven-524774" sizes="(max-width: 125px) 100vw, 125px" srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-524774-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-524774-193x278.jpg 193w">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/hajime-boyfriend/" tabindex="0">Hajime boyfriend</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 11, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/hajime-boyfriend/volume-1/chapter-15/" tabindex="0">Chapter 15</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/hajime-boyfriend/volume-1/chapter-14/" tabindex="0">Chapter 14</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-active" data-slick-index="2" aria-hidden="false" style="width: 285px;">
+                                        </div>
+                                     
+                                        
+                                        <div class="slick-slide slick-active" data-slick-index="2" aria-hidden="false" style="width: 285px;">
                                             <div>
                                                 <div class="slider__item" style="width: 100%; display: inline-block;">
                                                     <div class="item__wrap ">
@@ -775,7 +353,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div><div class="slick-slide slick-active" data-slick-index="3" aria-hidden="false" style="width: 285px;">
+                                        </div>
+                                        <!--dánh dấu-->
+                                        @foreach(Truyen truyen in db.Truyens.Where(x=>!x.TamAn && (x.DaDuyet ?? false) && !(x.Khoa ?? false)).OrderBy(x => Guid.NewGuid()).Take(4)) { 
+                                        <div class="slick-slide slick-active" data-slick-index="3" aria-hidden="false" style="width: 285px;">
                                             <div>
                                                 <div class="slider__item" style="width: 100%; display: inline-block;">
                                                     <div class="item__wrap ">
@@ -783,7 +364,7 @@
                                                         <div class="slider__thumb">
                                                             <div class="slider__thumb_item c-image-hover">
                                                                 <span class="manga-title-badges hot">HOT</span>                    <a href="./manga/miharu-rokujou/" tabindex="0">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-529968-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-529968-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-529968-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive effect-fade lazyloaded" src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-529968-125x180.jpg" style="padding-top:180px;" alt="wallhaven-529968" sizes="(max-width: 125px) 100vw, 125px" srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-529968-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-529968-193x278.jpg 193w">                        <div class="slider-overlay"></div>
+                                                                    <img data-src="@truyen.QuanLyHinhAnh.URL" data-srcset="@truyen.QuanLyHinhAnh.URL 125w, @truyen.QuanLyHinhAnh.URL 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive effect-fade lazyloaded" src="@truyen.QuanLyHinhAnh.URL" style="padding-top:180px; width:125px ;height:180px; " alt="wallhaven-529968" sizes="(max-width: 125px) 100vw, 125px" srcset="@truyen.QuanLyHinhAnh.URL 125w, @truyen.QuanLyHinhAnh.URL 193w">                        <div class="slider-overlay"></div>
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -792,7 +373,7 @@
                                                             <div class="slider__content_item">
                                                                 <div class="post-title font-title">
                                                                     <h4>
-                                                                        <a href="./manga/miharu-rokujou/" tabindex="0">Miharu Rokujou</a>
+                                                                        <a href="./manga/miharu-rokujou/" tabindex="0">@truyen.TenTruyen</a>
                                                                     </h4>
                                                                 </div>
                                                                 <div class="post-on font-meta">
@@ -804,882 +385,13 @@
                                                                 <div class="chapter-item ">
 
                                                                     <span class="chapter ">
-                                                                        <a href="./manga/miharu-rokujou/volume-1/chapter-15/" tabindex="0">Chapter 15</a>
+                                                                        @{ ChuongTruyen[] chuong = truyen.ChuongTruyens.OrderByDescending(x => x.SoChuong).ToArray(); }
+                                                                        <a href="./manga/miharu-rokujou/volume-1/chapter-15/" tabindex="0">@(chuong.Length > 0?chuong[0].TenChuong:"")</a>
                                                                     </span>
 
 
                                                                     <span class="chapter ">
-                                                                        <a href="./manga/miharu-rokujou/volume-1/chapter-14/" tabindex="0">Chapter 14</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide" data-slick-index="4" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <a href="./manga/okama-sanmikioa/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-551939-125x180.png" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-551939-125x180.png 125w, ./wp-content/uploads/2017/10/wallhaven-551939-193x278.png 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive effect-fade lazyloaded" src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-551939-125x180.png" style="padding-top:180px;" alt="wallhaven-551939" sizes="(max-width: 125px) 100vw, 125px" srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-551939-125x180.png 125w, ./wp-content/uploads/2017/10/wallhaven-551939-193x278.png 193w">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/okama-sanmikioa/" tabindex="-1">Okama Sanmikioa</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 11, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/okama-sanmikioa/volume-1/chapter-15/" tabindex="-1">Chapter 15</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/okama-sanmikioa/volume-1/chapter-14/" tabindex="-1">Chapter 14</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide" data-slick-index="5" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <span class="manga-title-badges custom adult">18+</span>                    <a href="./manga/kyojin-shingeki-no/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-560695-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-560695-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-560695-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive effect-fade lazyloaded" src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-560695-125x180.jpg" style="padding-top:180px;" alt="wallhaven-560695" sizes="(max-width: 125px) 100vw, 125px" srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-560695-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-560695-193x278.jpg 193w">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/kyojin-shingeki-no/" tabindex="-1">Kyojin Shingeki no</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 18, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/kyojin-shingeki-no/volume-3/chapter-4_1/" tabindex="-1">Chapter 4</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/kyojin-shingeki-no/volume-1/chapter-4/" tabindex="-1">Chapter 4</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide" data-slick-index="6" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <a href="./manga/one-shot-layout/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/ac-de-leon-uWiIajRN0s-unsplash-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/ac-de-leon-uWiIajRN0s-unsplash-125x180.jpg 125w, ./wp-content/uploads/2017/10/ac-de-leon-uWiIajRN0s-unsplash-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive effect-fade lazyloaded" src="~/Asset/Web/wp-content/uploads/2017/10/ac-de-leon-uWiIajRN0s-unsplash-125x180.jpg" style="padding-top:180px;" alt="ac-de-leon–uWiIajRN0s-unsplash" sizes="(max-width: 125px) 100vw, 125px" srcset="~/Asset/Web/wp-content/uploads/2017/10/ac-de-leon-uWiIajRN0s-unsplash-125x180.jpg 125w, ./wp-content/uploads/2017/10/ac-de-leon-uWiIajRN0s-unsplash-193x278.jpg 193w">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/one-shot-layout/" tabindex="-1">One Shot Layout</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 19, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/one-shot-layout/volume-4/chapter-4_2/" tabindex="-1">Chapter 4</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/one-shot-layout/volume-3/chapter-4_1/" tabindex="-1">Chapter 4</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide" data-slick-index="7" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <a href="./manga/meisetsu-kougyou/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550620-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550620-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-550620-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:180px;" alt="wallhaven-550620">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/meisetsu-kougyou/" tabindex="-1">Meisetsu Kougyou</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 11, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/meisetsu-kougyou/volume-1/chapter-15/" tabindex="-1">Chapter 15</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/meisetsu-kougyou/volume-1/chapter-14/" tabindex="-1">Chapter 14</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide" data-slick-index="8" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <a href="./manga/sai-tatsu/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550052-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550052-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-550052-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:180px;" alt="wallhaven-550052">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/sai-tatsu/" tabindex="-1">Sai Tatsu</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 11, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/sai-tatsu/volume-1/chapter-15/" tabindex="-1">Chapter 15</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/sai-tatsu/volume-1/chapter-14/" tabindex="-1">Chapter 14</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide" data-slick-index="9" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <a href="./manga/jikitami/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-539758-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-539758-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-539758-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:180px;" alt="wallhaven-539758">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/jikitami/" tabindex="-1">Jikitami</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 11, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/jikitami/volume-1/chapter-5/" tabindex="-1">Chapter 5</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide" data-slick-index="10" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <a href="./manga/yjikumani-otakini/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-529968-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-529968-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-529968-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:180px;" alt="wallhaven-529968">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/yjikumani-otakini/" tabindex="-1">Yjikumani Otakini</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 11, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/yjikumani-otakini/volume-1/chapter-15/" tabindex="-1">Chapter 15</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/yjikumani-otakini/volume-1/chapter-14/" tabindex="-1">Chapter 14</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide" data-slick-index="11" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <span class="manga-title-badges new">NEW</span>                    <a href="./manga/hajimaru-himitsu-no-jikan/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-543371-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-543371-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-543371-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:180px;" alt="wallhaven-543371">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/hajimaru-himitsu-no-jikan/" tabindex="-1">Hajimaru Himitsu no Jikan</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 12, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/hajimaru-himitsu-no-jikan/volume-1/chapter-15/" tabindex="-1">Chapter 15</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/hajimaru-himitsu-no-jikan/volume-1/chapter-14/" tabindex="-1">Chapter 14</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="12" id="" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <a href="./manga/nasama-okima/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-511610-125x180.png" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-511610-125x180.png 125w, ./wp-content/uploads/2017/10/wallhaven-511610-193x278.png 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:180px;" alt="wallhaven-511610">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/nasama-okima/" tabindex="-1">Nasama Okima</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 11, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/nasama-okima/volume-1/chapter-15/" tabindex="-1">Chapter 15</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/nasama-okima/volume-1/chapter-14/" tabindex="-1">Chapter 14</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="13" id="" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <a href="./manga/hajime-boyfriend/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-524774-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-524774-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-524774-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:180px;" alt="wallhaven-524774">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/hajime-boyfriend/" tabindex="-1">Hajime boyfriend</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 11, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/hajime-boyfriend/volume-1/chapter-15/" tabindex="-1">Chapter 15</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/hajime-boyfriend/volume-1/chapter-14/" tabindex="-1">Chapter 14</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="14" id="" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <a href="#" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-523582-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-523582-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-523582-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:180px;" alt="wallhaven-523582">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="#" tabindex="-1">Jikimisuji</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 18, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="#volume-1/chapter-15/" tabindex="-1">Chapter 15</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="#volume-1/chapter-15_1/" tabindex="-1">Chapter 15</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="15" id="" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <span class="manga-title-badges hot">HOT</span>                    <a href="./manga/miharu-rokujou/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-529968-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-529968-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-529968-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:180px;" alt="wallhaven-529968">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/miharu-rokujou/" tabindex="-1">Miharu Rokujou</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 12, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/miharu-rokujou/volume-1/chapter-15/" tabindex="-1">Chapter 15</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/miharu-rokujou/volume-1/chapter-14/" tabindex="-1">Chapter 14</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="16" id="" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <a href="./manga/okama-sanmikioa/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-551939-125x180.png" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-551939-125x180.png 125w, ./wp-content/uploads/2017/10/wallhaven-551939-193x278.png 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:180px;" alt="wallhaven-551939">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/okama-sanmikioa/" tabindex="-1">Okama Sanmikioa</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 11, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/okama-sanmikioa/volume-1/chapter-15/" tabindex="-1">Chapter 15</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/okama-sanmikioa/volume-1/chapter-14/" tabindex="-1">Chapter 14</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="17" id="" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <span class="manga-title-badges custom adult">18+</span>                    <a href="./manga/kyojin-shingeki-no/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-560695-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-560695-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-560695-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:180px;" alt="wallhaven-560695">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/kyojin-shingeki-no/" tabindex="-1">Kyojin Shingeki no</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 18, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/kyojin-shingeki-no/volume-3/chapter-4_1/" tabindex="-1">Chapter 4</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/kyojin-shingeki-no/volume-1/chapter-4/" tabindex="-1">Chapter 4</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="18" id="" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <a href="./manga/one-shot-layout/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/ac-de-leon-uWiIajRN0s-unsplash-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/ac-de-leon-uWiIajRN0s-unsplash-125x180.jpg 125w, ./wp-content/uploads/2017/10/ac-de-leon-uWiIajRN0s-unsplash-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:180px;" alt="ac-de-leon–uWiIajRN0s-unsplash">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/one-shot-layout/" tabindex="-1">One Shot Layout</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 19, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/one-shot-layout/volume-4/chapter-4_2/" tabindex="-1">Chapter 4</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/one-shot-layout/volume-3/chapter-4_1/" tabindex="-1">Chapter 4</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="19" id="" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <a href="./manga/meisetsu-kougyou/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550620-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550620-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-550620-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:180px;" alt="wallhaven-550620">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/meisetsu-kougyou/" tabindex="-1">Meisetsu Kougyou</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 11, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/meisetsu-kougyou/volume-1/chapter-15/" tabindex="-1">Chapter 15</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/meisetsu-kougyou/volume-1/chapter-14/" tabindex="-1">Chapter 14</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="20" id="" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <a href="./manga/sai-tatsu/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550052-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550052-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-550052-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:180px;" alt="wallhaven-550052">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/sai-tatsu/" tabindex="-1">Sai Tatsu</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 11, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/sai-tatsu/volume-1/chapter-15/" tabindex="-1">Chapter 15</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/sai-tatsu/volume-1/chapter-14/" tabindex="-1">Chapter 14</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="21" id="" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <a href="./manga/jikitami/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-539758-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-539758-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-539758-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:180px;" alt="wallhaven-539758">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/jikitami/" tabindex="-1">Jikitami</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 11, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/jikitami/volume-1/chapter-5/" tabindex="-1">Chapter 5</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="22" id="" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <a href="./manga/yjikumani-otakini/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-529968-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-529968-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-529968-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:180px;" alt="wallhaven-529968">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/yjikumani-otakini/" tabindex="-1">Yjikumani Otakini</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 11, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/yjikumani-otakini/volume-1/chapter-15/" tabindex="-1">Chapter 15</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/yjikumani-otakini/volume-1/chapter-14/" tabindex="-1">Chapter 14</a>
-                                                                    </span>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div><div class="slick-slide slick-cloned" data-slick-index="23" id="" aria-hidden="true" style="width: 285px;" tabindex="-1">
-                                            <div>
-                                                <div class="slider__item" style="width: 100%; display: inline-block;">
-                                                    <div class="item__wrap ">
-
-                                                        <div class="slider__thumb">
-                                                            <div class="slider__thumb_item c-image-hover">
-                                                                <span class="manga-title-badges new">NEW</span>                    <a href="./manga/hajimaru-himitsu-no-jikan/" tabindex="-1">
-                                                                    <img width="125" height="180" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-543371-125x180.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-543371-125x180.jpg 125w, ./wp-content/uploads/2017/10/wallhaven-543371-193x278.jpg 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:180px;" alt="wallhaven-543371">                        <div class="slider-overlay"></div>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="slider__content">
-                                                            <div class="slider__content_item">
-                                                                <div class="post-title font-title">
-                                                                    <h4>
-                                                                        <a href="./manga/hajimaru-himitsu-no-jikan/" tabindex="-1">Hajimaru Himitsu no Jikan</a>
-                                                                    </h4>
-                                                                </div>
-                                                                <div class="post-on font-meta">
-                                                                    <span>
-                                                                        October 12, 2017
-                                                                    </span>
-                                                                </div>
-
-                                                                <div class="chapter-item ">
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/hajimaru-himitsu-no-jikan/volume-1/chapter-15/" tabindex="-1">Chapter 15</a>
-                                                                    </span>
-
-
-                                                                    <span class="chapter ">
-                                                                        <a href="./manga/hajimaru-himitsu-no-jikan/volume-1/chapter-14/" tabindex="-1">Chapter 14</a>
+                                                                        <a href="./manga/miharu-rokujou/volume-1/chapter-14/" tabindex="0">@(chuong.Length > 1?chuong[1].TenChuong:"")</a>
                                                                     </span>
 
                                                                 </div>
@@ -1690,8 +402,11 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        }
+                                        
+
                                     </div>
-                                </div><button class="slick-next slick-arrow" aria-label="Next" type="button" style="">Next</button>
+                                </div><button class="slick-next slick-arrow" aria-label="Next" type="button" style="" hidden></button>
                             </div>
                         </div>
                     </div>
@@ -2810,7 +1525,7 @@
                                     <nav class="navigation-ajax">
                                         <a href="javascript:void(0)" data-target="#loop-content" data-template="madara-core/content/content-archive" id="navigation-ajax" class="btn btn-default load-ajax">
                                             <div class="load-title">
-                                                VIEW MORE                        <i class="icon ion-md-arrow-dropdown"></i>
+                                                VIEW MORE                        <i class="fas fa-sort-down"></i>
                                             </div> &nbsp;<div></div>&nbsp;<div></div>&nbsp;<div></div>
                                         </a>
                                     </nav>
@@ -2961,270 +1676,33 @@
                                     <div class="widget__inner c-popular manga-widget widget-manga-recent__inner c-widget-wrap">
                                         <div class="c-widget-content style-1 with-button">
                                             <div class="widget-heading font-nav"><h5 class="heading">POPULAR MANGA</h5></div><div class="widget-content">
-                                                <div class="popular-item-wrap">
-
-
-                                                    <div class="popular-img widget-thumbnail c-image-hover">
-                                                        <a title="Manga Video Chapters" href="./manga/massa-consectetur-mattis/">
-                                                            <img width="75" height="106" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550618-75x106.jpg" class="img-responsive effect-fade lazyloaded" src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550618-75x106.jpg" style="padding-top:106px;" alt="wallhaven-550618">
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="popular-content">
-                                                        <h5 class="widget-title">
-                                                            <a title="Manga Video Chapters" href="./manga/massa-consectetur-mattis/">Manga Video Chapters</a>
-                                                        </h5>
-
-                                                        <div class="list-chapter">
-                                                            <div class="chapter-item ">
-
-                                                                <span class="chapter font-meta">
-                                                                    <a href="./manga/massa-consectetur-mattis/episode-122/" class="btn-link"> Episode 122 </a>
-                                                                </span>
-
-                                                                <span class="post-on font-meta">
-                                                                    May 10, 2018
-                                                                </span>
-                                                            </div>
-                                                            <div class="chapter-item ">
-
-                                                                <span class="chapter font-meta">
-                                                                    <a href="./manga/massa-consectetur-mattis/episode-121/" class="btn-link"> Episode 121 </a>
-                                                                </span>
-
-                                                                <span class="post-on font-meta">
-                                                                    May 10, 2018
-                                                                </span>
+                                                @foreach(vTruyen truyenYeuThich in ViewBag.truyenYeuThich) { 
+                                                    <div class="popular-item-wrap">
+                                                        <div class="popular-img widget-thumbnail c-image-hover">
+                                                            <a title="Manga Video Chapters" href="./manga/massa-consectetur-mattis/">
+                                                                <img width="75" height="106" class="img-responsive effect-fade lazyloaded" src="@(truyenYeuThich.AnhBia)" style="padding-top:106px;" alt="wallhaven-550618">
+                                                            </a>
+                                                        </div>
+                                                        <div class="popular-content">
+                                                            <h5 class="widget-title">
+                                                                <a title="Manga Video Chapters" href="./manga/massa-consectetur-mattis/">@(truyenYeuThich.TenTruyen)</a>
+                                                            </h5>
+                                                            <div class="list-chapter">
+                                                                <div class="chapter-item ">
+                                                                    <span class="chapter font-meta">
+                                                                        @{ ChuongTruyen[] chuong = db.ChuongTruyens.Where(x => x.MaTruyen == truyenYeuThich.MaTruyen).OrderByDescending(x => x.SoChuong).ToArray(); }
+                                                                        <a href="./manga/massa-consectetur-mattis/episode-121/" class="btn-link">@(chuong.Length > 0?chuong[0].TenChuong:"") </a>
+                                                                    </span>                            
+                                                                </div>
+                                                                <div class="chapter-item ">
+                                                                    <span class="chapter font-meta">                                                                        
+                                                                        <a href="./manga/massa-consectetur-mattis/episode-121/" class="btn-link">@(chuong.Length > 1?chuong[1].TenChuong:"") </a>
+                                                                    </span>                                                                    
+                                                                </div>
                                                             </div>
                                                         </div>
-
                                                     </div>
-                                                </div>
-
-                                                <div class="popular-item-wrap">
-
-
-                                                    <div class="popular-img widget-thumbnail c-image-hover">
-                                                        <a title="Manga Text Chapter" href="./manga/manga-text-chapter/">
-                                                            <img width="75" height="106" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550105-75x106.jpg" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:106px;" alt="wallhaven-550105">
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="popular-content">
-                                                        <h5 class="widget-title">
-                                                            <a title="Manga Text Chapter" href="./manga/manga-text-chapter/">Manga Text Chapter</a>
-                                                        </h5>
-
-                                                        <div class="list-chapter">
-                                                            <div class="chapter-item ">
-
-                                                                <span class="chapter font-meta">
-                                                                    <a href="./manga/manga-text-chapter/chapter-3/" class="btn-link"> Chapter 3 </a>
-                                                                </span>
-
-                                                                <span class="post-on font-meta">
-                                                                    January 12, 2018
-                                                                </span>
-                                                            </div>
-                                                            <div class="chapter-item ">
-
-                                                                <span class="chapter font-meta">
-                                                                    <a href="./manga/manga-text-chapter/chapter-2/" class="btn-link"> Chapter 2 </a>
-                                                                </span>
-
-                                                                <span class="post-on font-meta">
-                                                                    January 12, 2018
-                                                                </span>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="popular-item-wrap">
-
-
-                                                    <div class="popular-img widget-thumbnail c-image-hover">
-                                                        <a title="Kahana no Shou" href="./manga/kahana-no-shou/">
-                                                            <img width="75" height="106" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-561840-75x106.jpg" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:106px;" alt="wallhaven-561840">
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="popular-content">
-                                                        <h5 class="widget-title">
-                                                            <a title="Kahana no Shou" href="./manga/kahana-no-shou/">Kahana no Shou</a>
-                                                        </h5>
-
-                                                        <div class="list-chapter">
-                                                            <div class="chapter-item ">
-
-                                                                <span class="chapter font-meta">
-                                                                    <a href="./manga/kahana-no-shou/volume-1/chapter-6/" class="btn-link"> Chapter 6 </a>
-                                                                </span>
-
-                                                                <span class="vol font-meta">
-                                                                    <a href="./manga/kahana-no-shou/volume-1/chapter-6/"> Volume 1 </a>
-                                                                </span>
-                                                                <span class="post-on font-meta">
-                                                                    October 18, 2017
-                                                                </span>
-                                                            </div>
-                                                            <div class="chapter-item ">
-
-                                                                <span class="chapter font-meta">
-                                                                    <a href="./manga/kahana-no-shou/volume-1/chapter-5/" class="btn-link"> Chapter 5 </a>
-                                                                </span>
-
-                                                                <span class="vol font-meta">
-                                                                    <a href="./manga/kahana-no-shou/volume-1/chapter-5/"> Volume 1 </a>
-                                                                </span>
-                                                                <span class="post-on font-meta">
-                                                                    October 18, 2017
-                                                                </span>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="popular-item-wrap">
-
-
-                                                    <div class="popular-img widget-thumbnail c-image-hover">
-                                                        <a title="One Shot Layout" href="./manga/one-shot-layout/">
-                                                            <img width="75" height="106" data-src="~/Asset/Web/wp-content/uploads/2017/10/ac-de-leon-uWiIajRN0s-unsplash-75x106.jpg" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:106px;" alt="ac-de-leon–uWiIajRN0s-unsplash">
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="popular-content">
-                                                        <h5 class="widget-title">
-                                                            <a title="One Shot Layout" href="./manga/one-shot-layout/">One Shot Layout</a>
-                                                        </h5>
-
-                                                        <div class="list-chapter">
-                                                            <div class="chapter-item ">
-
-                                                                <span class="chapter font-meta">
-                                                                    <a href="./manga/one-shot-layout/volume-4/chapter-4_2/" class="btn-link"> Chapter 4 </a>
-                                                                </span>
-
-                                                                <span class="vol font-meta">
-                                                                    <a href="./manga/one-shot-layout/volume-4/chapter-4_2/"> Volume 4 </a>
-                                                                </span>
-                                                                <span class="post-on font-meta">
-                                                                    October 18, 2017
-                                                                </span>
-                                                            </div>
-                                                            <div class="chapter-item ">
-
-                                                                <span class="chapter font-meta">
-                                                                    <a href="./manga/one-shot-layout/volume-3/chapter-4_1/" class="btn-link"> Chapter 4 </a>
-                                                                </span>
-
-                                                                <span class="vol font-meta">
-                                                                    <a href="./manga/one-shot-layout/volume-3/chapter-4_1/"> Volume 3 </a>
-                                                                </span>
-                                                                <span class="post-on font-meta">
-                                                                    October 18, 2017
-                                                                </span>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="popular-item-wrap">
-
-
-                                                    <div class="popular-img widget-thumbnail c-image-hover">
-                                                        <a title="Kyojin Shingeki no" href="./manga/kyojin-shingeki-no/">
-                                                            <img width="75" height="106" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-560695-75x106.jpg" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:106px;" alt="wallhaven-560695">
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="popular-content">
-                                                        <h5 class="widget-title">
-                                                            <a title="Kyojin Shingeki no" href="./manga/kyojin-shingeki-no/">Kyojin Shingeki no</a>
-                                                        </h5>
-
-                                                        <div class="list-chapter">
-                                                            <div class="chapter-item ">
-
-                                                                <span class="chapter font-meta">
-                                                                    <a href="./manga/kyojin-shingeki-no/volume-3/chapter-4_1/" class="btn-link"> Chapter 4 </a>
-                                                                </span>
-
-                                                                <span class="vol font-meta">
-                                                                    <a href="./manga/kyojin-shingeki-no/volume-3/chapter-4_1/"> Volume 3 </a>
-                                                                </span>
-                                                                <span class="post-on font-meta">
-                                                                    October 18, 2017
-                                                                </span>
-                                                            </div>
-                                                            <div class="chapter-item ">
-
-                                                                <span class="chapter font-meta">
-                                                                    <a href="./manga/kyojin-shingeki-no/volume-1/chapter-4/" class="btn-link"> Chapter 4 </a>
-                                                                </span>
-
-                                                                <span class="vol font-meta">
-                                                                    <a href="./manga/kyojin-shingeki-no/volume-1/chapter-4/"> Volume 1 </a>
-                                                                </span>
-                                                                <span class="post-on font-meta">
-                                                                    October 18, 2017
-                                                                </span>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="popular-item-wrap">
-
-
-                                                    <div class="popular-img widget-thumbnail c-image-hover">
-                                                        <a title="Jikimisuji" href="#">
-                                                            <img width="75" height="106" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-523582-75x106.jpg" class="img-responsive lazyload effect-fade" src="~/Asset/Web/wp-content/themes/madara/images/dflazy.jpg" style="padding-top:106px;" alt="wallhaven-523582">
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="popular-content">
-                                                        <h5 class="widget-title">
-                                                            <a title="Jikimisuji" href="#">Jikimisuji</a>
-                                                        </h5>
-
-                                                        <div class="list-chapter">
-                                                            <div class="chapter-item ">
-
-                                                                <span class="chapter font-meta">
-                                                                    <a href="#volume-1/chapter-15/" class="btn-link"> Chapter 15 </a>
-                                                                </span>
-
-                                                                <span class="vol font-meta">
-                                                                    <a href="#volume-1/chapter-15/"> Volume 1 </a>
-                                                                </span>
-                                                                <span class="post-on font-meta">
-                                                                    October 11, 2017
-                                                                </span>
-                                                            </div>
-                                                            <div class="chapter-item ">
-
-                                                                <span class="chapter font-meta">
-                                                                    <a href="#volume-1/chapter-15_1/" class="btn-link"> Chapter 15 </a>
-                                                                </span>
-
-                                                                <span class="vol font-meta">
-                                                                    <a href="#volume-1/chapter-15_1/"> Volume 1 </a>
-                                                                </span>
-                                                                <span class="post-on font-meta">
-                                                                    October 18, 2017
-                                                                </span>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
+                                                }                                                
                                                 <span class="c-wg-button-wrap">
                                                     <a class="widget-view-more" href="/manga/?m_orderby=trending">Here for more Popular Manga</a>
                                                 </span>
@@ -3245,25 +1723,59 @@
     <script>        
         var a = @Html.Raw(ViewBag.truyenMoi)            
     </script>
-    <script src="~/Scripts/react/reactMain.js" type="text/babel"></script>
+    <script src="~/Scripts/react/reactHome.js" type="text/babel"></script>
     <script type="text/babel">
-        var truyenXemNhieu = @Html.Raw(ViewBag.truyenMoi)
-        var truyenHtml = []
-        for (let i =0; i<truyenXemNhieu.length; i=i+2){
-        let anhBia = truyenXemNhieu[i].AnhBia
-            truyenHtml.push(<PhanTuTruyen
-                            AnhBia={truyenXemNhieu[i].truyen.AnhBia}
-                            TenTruyen = {truyenXemNhieu[i].truyen.TenTruyen}
-                            MaTruyen = {truyenXemNhieu[i].truyen.MaTruyen}
-                            Chuong1 = {truyenXemNhieu[i].Chuong[0]==null?"":truyenXemNhieu[i].Chuong[0].TenChuong}
-                            Chuong2 = {truyenXemNhieu[i].Chuong[1]==null?"":truyenXemNhieu[i].Chuong[1].TenChuong}
-                            AnhBia2={truyenXemNhieu[i+1]==null?"":truyenXemNhieu[i+1].truyen.AnhBia}
-                            TenTruyen2 = {truyenXemNhieu[i+1]==null?"":truyenXemNhieu[i+1].truyen.TenTruyen}
-                            MaTruyen2 = {truyenXemNhieu[i+1]==null?"":truyenXemNhieu[i+1].truyen.MaTruyen}
-                            Chuong12 = {truyenXemNhieu[i+1]==null?"":truyenXemNhieu[i+1].Chuong[0]==null?"":truyenXemNhieu[i].Chuong[0].TenChuong}
-                            Chuong22 = {truyenXemNhieu[i+1]==null?"":truyenXemNhieu[i+1].Chuong[1]==null?"":truyenXemNhieu[i].Chuong[1].TenChuong}
-                            />)
-        }
-        ReactDOM.render(<div id="loop-content" class="page-content-listing item-default">{truyenHtml}</div>, document.getElementById('dsTryenMoi'))
+        $("#dsTryenMoi").ajaxOn()
+        var page = 1
+        var truyenXemNhieu
+        $(document).ready(async function () {
+            truyenXemNhieu = await API.XuatCacTruyenIndex(page, 20)
+            var truyenHtml = []
+            for (let i =0; i<truyenXemNhieu.length; i=i+2){
+            let anhBia = truyenXemNhieu[i].AnhBia
+                truyenHtml.push(<PhanTuTruyen
+                                AnhBia={truyenXemNhieu[i].truyen.AnhBia}
+                                TenTruyen = {truyenXemNhieu[i].truyen.TenTruyen}
+                                MaTruyen = {truyenXemNhieu[i].truyen.MaTruyen}
+                                Chuong1 = {truyenXemNhieu[i].Chuong[0]==null?"":truyenXemNhieu[i].Chuong[0].TenChuong}
+                                Chuong2 = {truyenXemNhieu[i].Chuong[1]==null?"":truyenXemNhieu[i].Chuong[1].TenChuong}
+                                SoChuong1 = {truyenXemNhieu[i].Chuong[1]==null?"":truyenXemNhieu[i].Chuong[0].SoChuong}
+                                SoChuong2 = {truyenXemNhieu[i].Chuong[1]==null?"":truyenXemNhieu[i].Chuong[1].SoChuong}
+                                AnhBia2={truyenXemNhieu[i+1]==null?"":truyenXemNhieu[i+1].truyen.AnhBia}
+                                TenTruyen2 = {truyenXemNhieu[i+1]==null?"":truyenXemNhieu[i+1].truyen.TenTruyen}
+                                MaTruyen2 = {truyenXemNhieu[i+1]==null?"":truyenXemNhieu[i+1].truyen.MaTruyen}
+                                Chuong12 = {truyenXemNhieu[i+1]==null?"":truyenXemNhieu[i+1].Chuong[0]==null?"":truyenXemNhieu[i].Chuong[0].TenChuong}
+                                Chuong22 = {truyenXemNhieu[i+1]==null?"":truyenXemNhieu[i+1].Chuong[1]==null?"":truyenXemNhieu[i].Chuong[1].TenChuong}
+                                SoChuong12 = {truyenXemNhieu[i+1]==null?"":truyenXemNhieu[i+1].Chuong[1]==null?"":truyenXemNhieu[i].Chuong[0].SoChuong}
+                                SoChuong22 = {truyenXemNhieu[i+1]==null?"":truyenXemNhieu[i+1].Chuong[1]==null?"":truyenXemNhieu[i].Chuong[1].SoChuong}
+                                />)
+            }
+            ReactDOM.render(<div id="loop-content" class="page-content-listing item-default">{truyenHtml}</div>, document.getElementById('dsTryenMoi'))
+            $("#dsTryenMoi").ajaxOff()
+        })
+        $("#navigation-ajax").click(async function () {
+            page++
+            $(this).addClass(".show-loading")
+            var data = await API.XuatCacTruyenIndex(page, 20)
+            truyenXemNhieu.push(...data)
+            var truyenHtml = []
+            for (let i = 0; i < truyenXemNhieu.length; i = i + 2) {
+                let anhBia = truyenXemNhieu[i].AnhBia
+                truyenHtml.push(<PhanTuTruyen
+                    AnhBia={truyenXemNhieu[i].truyen.AnhBia}
+                    TenTruyen={truyenXemNhieu[i].truyen.TenTruyen}
+                    MaTruyen={truyenXemNhieu[i].truyen.MaTruyen}
+                    Chuong1={truyenXemNhieu[i].Chuong[0] == null ? "" : truyenXemNhieu[i].Chuong[0].TenChuong}
+                    Chuong2={truyenXemNhieu[i].Chuong[1] == null ? "" : truyenXemNhieu[i].Chuong[1].TenChuong}
+                    AnhBia2={truyenXemNhieu[i + 1] == null ? "" : truyenXemNhieu[i + 1].truyen.AnhBia}
+                    TenTruyen2={truyenXemNhieu[i + 1] == null ? "" : truyenXemNhieu[i + 1].truyen.TenTruyen}
+                    MaTruyen2={truyenXemNhieu[i + 1] == null ? "" : truyenXemNhieu[i + 1].truyen.MaTruyen}
+                    Chuong12={truyenXemNhieu[i + 1] == null ? "" : truyenXemNhieu[i + 1].Chuong[0] == null ? "" : truyenXemNhieu[i].Chuong[0].TenChuong}
+                    Chuong22={truyenXemNhieu[i + 1] == null ? "" : truyenXemNhieu[i + 1].Chuong[1] == null ? "" : truyenXemNhieu[i].Chuong[1].TenChuong}
+                />)
+            }
+            ReactDOM.render(<div id="loop-content" class="page-content-listing item-default">{truyenHtml}</div>, document.getElementById('dsTryenMoi'))
+            $(this).removeClass(".show-loading")
+        })
     </script>    
 }

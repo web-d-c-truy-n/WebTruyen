@@ -1,7 +1,9 @@
 ﻿@using WebTruyen.Models;
 @using WebTruyen.Helper;
+@using WebTruyen.Helper;
 @{
     Layout = null;
+    webtruyenptEntities db = new webtruyenptEntities();
 }
 
 <!DOCTYPE html>
@@ -534,53 +536,17 @@
                         <div class="c-sub-nav_wrap">
                             <div class="sub-nav_content">
                                 <ul class="sub-nav_list list-inline second-menu">
-                                    <li id="menu-item-54" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-54"><a href="./manga-genre/romance/">Romance</a></li>
-                                    <li id="menu-item-32" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-32"><a href="./manga-genre/comedy/">Comedy</a></li>
-                                    <li id="menu-item-58" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-58"><a href="./manga-genre/shoujo/">Shoujo</a></li>
-                                    <li id="menu-item-36" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-36"><a href="./manga-genre/drama/">Drama</a></li>
-                                    <li id="menu-item-55" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-55"><a href="./manga-genre/school-life/">School Life</a></li>
-                                    <li id="menu-item-60" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-60"><a href="./manga-genre/shounen/">Shounen</a></li>
-                                    <li id="menu-item-28" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-28"><a href="./manga-genre/action/">Action</a></li>
+                                    @foreach (TheLoai theLoai in db.TheLoais.OrderBy(x => x.MaLoai).Take(6)) { 
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre"><a href="@Commons.convertToUnSign3(theLoai.TenLoai+"-"+theLoai.MaLoai)">@theLoai.TenLoai</a></li>
+                                    }                                    
                                     <li id="menu-item-72" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children parent menu-item-72">
                                         <a href="#">MORE</a>
                                         <ul class="sub-menu">
-                                            <li id="menu-item-29" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-29"><a href="./manga-genre/adult/">Adult</a></li>
-                                            <li id="menu-item-30" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-30"><a href="./manga-genre/adventure/">Adventure</a></li>
-                                            <li id="menu-item-31" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-31"><a href="./manga-genre/anime/">Anime</a></li>
-                                            <li id="menu-item-33" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-33"><a href="./manga-genre/comic/">Comic</a></li>
-                                            <li id="menu-item-34" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-34"><a href="./manga-genre/cooking/">Cooking</a></li>
-                                            <li id="menu-item-35" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-35"><a href="./manga-genre/doujinshi/">Doujinshi</a></li>
-                                            <li id="menu-item-37" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-37"><a href="./manga-genre/ecchi/">Ecchi</a></li>
-                                            <li id="menu-item-38" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-38"><a href="./manga-genre/fantasy/">Fantasy</a></li>
-                                            <li id="menu-item-39" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-39"><a href="./manga-genre/gender-bender/">Gender Bender</a></li>
-                                            <li id="menu-item-40" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-40"><a href="./manga-genre/harem/">Harem</a></li>
-                                            <li id="menu-item-41" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-41"><a href="./manga-genre/historical/">Historical</a></li>
-                                            <li id="menu-item-42" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-42"><a href="./manga-genre/horror/">Horror</a></li>
-                                            <li id="menu-item-43" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-43"><a href="./manga-genre/josei/">Josei</a></li>
-                                            <li id="menu-item-44" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-44"><a href="./manga-genre/live-action/">Live action</a></li>
-                                            <li id="menu-item-45" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-45"><a href="./manga-genre/manga/">Manga</a></li>
-                                            <li id="menu-item-46" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-46"><a href="./manga-genre/manhua/">Manhua</a></li>
-                                            <li id="menu-item-47" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-47"><a href="./manga-genre/manhwa/">Manhwa</a></li>
-                                            <li id="menu-item-48" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-48"><a href="./manga-genre/martial-arts/">Martial Arts</a></li>
-                                            <li id="menu-item-49" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-49"><a href="./manga-genre/mature/">Mature</a></li>
-                                            <li id="menu-item-50" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-50"><a href="./manga-genre/mecha/">Mecha</a></li>
-                                            <li id="menu-item-51" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-51"><a href="./manga-genre/mystery/">Mystery</a></li>
-                                            <li id="menu-item-52" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-52"><a href="./manga-genre/one-shot/">One shot</a></li>
-                                            <li id="menu-item-53" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-53"><a href="./manga-genre/psychological/">Psychological</a></li>
-                                            <li id="menu-item-56" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-56"><a href="./manga-genre/sci-fi/">Sci-fi</a></li>
-                                            <li id="menu-item-57" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-57"><a href="./manga-genre/seinen/">Seinen</a></li>
-                                            <li id="menu-item-59" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-59"><a href="./manga-genre/shoujo-ai/">Shoujo Ai</a></li>
-                                            <li id="menu-item-61" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-61"><a href="./manga-genre/shounen-ai/">Shounen Ai</a></li>
-                                            <li id="menu-item-62" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-62"><a href="./manga-genre/slice-of-life/">Slice of Life</a></li>
-                                            <li id="menu-item-63" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-63"><a href="./manga-genre/smut/">Smut</a></li>
-                                            <li id="menu-item-64" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-64"><a href="./manga-genre/soft-yaoi/">Soft Yaoi</a></li>
-                                            <li id="menu-item-65" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-65"><a href="./manga-genre/soft-yuri/">Soft Yuri</a></li>
-                                            <li id="menu-item-66" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-66"><a href="./manga-genre/sports/">Sports</a></li>
-                                            <li id="menu-item-68" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-68"><a href="./manga-genre/tragedy/">Tragedy</a></li>
-                                            <li id="menu-item-67" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-67"><a href="./manga-genre/supernatural/">Supernatural</a></li>
-                                            <li id="menu-item-69" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-69"><a href="./manga-genre/webtoon/">Webtoon</a></li>
-                                            <li id="menu-item-70" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-70"><a href="./manga-genre/yaoi/">Yaoi</a></li>
-                                            <li id="menu-item-71" class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre menu-item-71"><a href="./manga-genre/yuri/">Yuri</a></li>
+                                            @foreach (TheLoai theLoai1 in db.TheLoais.OrderBy(x => x.MaLoai).Skip(6))
+                                            {
+                                                <li class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre"><a href="@Commons.convertToUnSign3(theLoai1.TenLoai+"-"+theLoai1.MaLoai)">@theLoai1.TenLoai</a></li>
+                                            }
+
                                         </ul>
                                     </li>
 

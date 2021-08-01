@@ -18,11 +18,13 @@ namespace WebTruyen.Controllers
         }
         public ActionResult Index()
         {
-            var truyens = db.vTruyens.OrderByDescending(x => x.NgayDang).Take(20).ToArray().Select(x=>new {truyen = x,Chuong = db.ChuongTruyens.Where(c=>c.MaTruyen == x.MaTruyen).OrderByDescending(c3=>c3.NgayTao).Select(c2=>new {c2.SoChuong, c2.TenChuong}).ToArray() });
-            ViewBag.truyenMoi = new JavaScriptSerializer().Serialize(truyens);
+            //var truyens = db.vTruyens.OrderByDescending(x => x.NgayDang).Take(20).ToArray().Select(x=>new {truyen = x,Chuong = db.ChuongTruyens.Where(c=>c.MaTruyen == x.MaTruyen).OrderByDescending(c3=>c3.NgayTao).Select(c2=>new {c2.SoChuong, c2.TenChuong}).ToArray() });
+            //ViewBag.truyenMoi = new JavaScriptSerializer().Serialize(truyens);
+            ViewBag.truyenYeuThich = db.vTruyens.Where(x => !x.TamAn && (x.DaDuyet ?? false) && !(x.Khoa ?? false))
+                .OrderByDescending(x => x.LuotThich).Take(6).ToArray();
             return View();
         }
-        public ActionResult About()
+        public ActionResult theLoai()
         {
             ViewBag.Message = "Your application description page.";
             return View();
@@ -93,9 +95,16 @@ namespace WebTruyen.Controllers
             return View();
         }
         // xuất ra các danh sách truyện hot ở trang chủ
-        public ActionResult XuatCacTruyenHot(int page, int pagesize)
+        public ActionResult XuatCacTruyenIndex(int page, int pagesize)
+        {            
+            var truyens = db.vTruyens.Where(x=>!x.TamAn && (x.DaDuyet?? false) && !(x.Khoa??false))
+                .OrderByDescending(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray().Select(x => new { truyen = x, Chuong = db.ChuongTruyens.Where(c => c.MaTruyen == x.MaTruyen).OrderByDescending(c3 => c3.SoChuong).Select(c2 => new { c2.SoChuong, c2.TenChuong })});
+            return Json(truyens.ToArray(), JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult XuatCacTruyenTheLoai(int page, int pagesize, int maLoai)
         {
-            List<vTruyen> truyens = db.vTruyens.OrderByDescending(x=>x.LuotThich).Skip((page - 1) * pagesize).Take(pagesize).ToList();            
+            var truyens = db.vTruyens.Where(x => !x.TamAn && (x.DaDuyet ?? false) && !(x.Khoa ?? false) && x.MaLoai == maLoai)
+                .OrderByDescending(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray().Select(x => new { truyen = x, Chuong = db.ChuongTruyens.Where(c => c.MaTruyen == x.MaTruyen).OrderByDescending(c3 => c3.SoChuong).Select(c2 => new { c2.SoChuong, c2.TenChuong }) });
             return Json(truyens.ToArray(), JsonRequestBehavior.AllowGet);
         }
     }

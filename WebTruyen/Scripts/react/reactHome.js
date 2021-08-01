@@ -41,13 +41,19 @@ class PhanTuTruyen extends React.Component {
                     tenTruyen={this.props.TenTruyen}
                     url={"/Home/ttTruyen/" + this.props.MaTruyen}
                     tenChuong1={this.props.Chuong1}
-                    tenChuong2={this.props.Chuong2} />
+                    tenChuong2={this.props.Chuong2}
+                    SoChuong1={this.props.SoChuong1}
+                    SoChuong2={this.props.SoChuong2}
+                />
                 {
                     this.props.AnhBia2==""?"": (<PhanTu anhBia={this.props.AnhBia2}
                     tenTruyen={this.props.TenTruyen2}
                     url={"/Home/ttTruyen/" + this.props.MaTruyen2}
                     tenChuong1={this.props.Chuong12}
-                    tenChuong2={this.props.Chuong22} />)
+                    tenChuong2={this.props.Chuong22}
+                    SoChuong1={this.props.SoChuong12}
+                    SoChuong2={this.props.SoChuong22}
+                    />)
                 }               
             </div>
         </div>)

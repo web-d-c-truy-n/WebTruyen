@@ -3216,7 +3216,7 @@
     <Content Include="Scripts\react\react-with-addons.min.js" />
     <Content Include="Scripts\react\react.js" />
     <Content Include="Scripts\react\react.min.js" />
-    <Content Include="Scripts\react\reactMain.js" />
+    <Content Include="Scripts\react\reactHome.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace WebTruyen.Helper
@@ -47,6 +48,13 @@ namespace WebTruyen.Helper
                 ms.Position = 0;
                 return new BinaryFormatter().Deserialize(ms);
             }
+        }
+        // chuyển tiếng việt có dấu thành không dấu
+        public static string convertToUnSign3(string s)
+        {
+            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
+            string temp = s.Normalize(NormalizationForm.FormD);
+            return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ","-");
         }
 
     }
