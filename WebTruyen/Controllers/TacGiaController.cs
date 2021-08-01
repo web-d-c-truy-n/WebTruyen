@@ -27,6 +27,7 @@ namespace WebTruyen.Controllers
             {
                 ViewBag.anhCuaTG = Helper.Auth.tacGia().QuanLyHinhAnhs.ToList();
                 ViewBag.theLoai = db.TheLoais.ToList();
+                ViewBag.cacTacGia = db.TacGias;
             }
             return View();
         }
@@ -61,7 +62,7 @@ namespace WebTruyen.Controllers
         }
         // đăng truyện
         [HttpPost]
-        public ActionResult DangTruyen(Truyen truyen, int vaiTro)
+        public ActionResult DangTruyen(Truyen truyen, int vaiTro, int?[] dongTG, int? dangNhom)
         {
             using (System.Data.Entity.DbContextTransaction transaction = db.Database.BeginTransaction())
             {
@@ -71,12 +72,25 @@ namespace WebTruyen.Controllers
                     truyen.DaDuyet = false;
                     truyen.Khoa = false;
                     db.Truyens.Add(truyen);
-                    db.SaveChanges();
+                    db.SaveChanges();                    
                     TruyenTacGia truyenTacGia = new TruyenTacGia();
                     truyenTacGia.MaTG = Helper.Auth.tacGia().MaTG;
                     truyenTacGia.MaTruyen = truyen.MaTruyen;
                     truyenTacGia.VaiTro = vaiTro;
-                    db.TruyenTacGias.Add(truyenTacGia);
+                    truyenTacGia.DangNhom = dangNhom;
+                    db.TruyenTacGias.Add(truyenTacGia);                    
+                    if (dongTG != null)
+                    {
+                        foreach (int idtg in dongTG)
+                        {
+                            TruyenTacGia truyenTacGia2 = new TruyenTacGia();
+                            truyenTacGia2.MaTG = idtg;
+                            truyenTacGia2.MaTruyen = truyen.MaTruyen;
+                            truyenTacGia2.VaiTro = vaiTro;
+                            truyenTacGia2.DangNhom = dangNhom;
+                            db.TruyenTacGias.Add(truyenTacGia2);
+                        }
+                    }   
                     db.SaveChanges();
                     transaction.Commit();
                     return Json(true);

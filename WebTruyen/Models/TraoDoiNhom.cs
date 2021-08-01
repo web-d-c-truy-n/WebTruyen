@@ -17,7 +17,7 @@ namespace WebTruyen.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TraoDoiNhom()
         {
-            this.TraoDoiNhom1 = new HashSet<TraoDoiNhom>();
+            this.CacPhanHoi = new HashSet<TraoDoiNhom>();
         }
     
         public int MaTraoDoi { get; set; }
@@ -30,7 +30,7 @@ namespace WebTruyen.Models
         public virtual NhomTG NhomTG { get; set; }
         public virtual ThanhVienNhom ThanhVienNhom { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TraoDoiNhom> TraoDoiNhom1 { get; set; }
-        public virtual TraoDoiNhom TraoDoiNhom2 { get; set; }
+        public virtual ICollection<TraoDoiNhom> CacPhanHoi { get; set; }
+        public virtual TraoDoiNhom phanHoi { get; set; }
     }
 }

@@ -17,7 +17,6 @@ namespace WebTruyen.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Truyen()
         {
-            this.BinhLuans = new HashSet<BinhLuan>();
             this.ChuongTruyens = new HashSet<ChuongTruyen>();
             this.Luotthiches = new HashSet<Luotthich>();
             this.TruyenTacGias = new HashSet<TruyenTacGia>();
@@ -37,8 +36,6 @@ namespace WebTruyen.Models
         public int AnhBia { get; set; }
         public string MoTa { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BinhLuan> BinhLuans { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChuongTruyen> ChuongTruyens { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

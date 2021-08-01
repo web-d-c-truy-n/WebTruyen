@@ -19,12 +19,12 @@
           <Key>
             <PropertyRef Name="MaBinhLuan" />
           </Key>
-          <Property Name="MaBinhLuan" Type="int" Nullable="false" />
+          <Property Name="MaBinhLuan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MaTruyen" Type="int" Nullable="false" />
-          <Property Name="MaTK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaTK" Type="int" Nullable="false" />
           <Property Name="NoiDung" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="NgayBinhLuan" Type="datetime" Nullable="false" />
-          <Property Name="PhanHoi" Type="int" Nullable="false" />
+          <Property Name="PhanHoi" Type="int" />
           <Property Name="SoChuong" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ChuongTruyen">
@@ -67,7 +67,7 @@
           <Property Name="MaNhom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenNhom" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="NgayThanhLap" Type="datetime" Nullable="false" />
-          <Property Name="NguoiThanhLap" Type="datetime" Nullable="false" />
+          <Property Name="NguoiThanhLap" Type="int" Nullable="false" />
           <Property Name="TinhTrang" Type="int" Nullable="false" />
           <Property Name="Khauhieu" Type="nvarchar" MaxLength="100" />
         </EntityType>
@@ -108,13 +108,13 @@
           <Key>
             <PropertyRef Name="MaTV" />
           </Key>
-          <Property Name="MaTV" Type="int" Nullable="false" />
+          <Property Name="MaTV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MaTG" Type="int" Nullable="false" />
-          <Property Name="MaNhom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaNhom" Type="int" Nullable="false" />
           <Property Name="Ngayvaonhom" Type="datetime" Nullable="false" />
           <Property Name="Ngayroinhom" Type="datetime" />
           <Property Name="Vaitro" Type="int" Nullable="false" />
-          <Property Name="GhiChu" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="200" />
           <Property Name="DaDuyet" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TheLoai">
@@ -138,7 +138,7 @@
           <Key>
             <PropertyRef Name="MaThongBao" />
           </Key>
-          <Property Name="MaThongBao" Type="int" Nullable="false" />
+          <Property Name="MaThongBao" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MaTK" Type="int" Nullable="false" />
           <Property Name="ThongBao" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="NgayThongBao" Type="datetime" Nullable="false" />
@@ -148,9 +148,9 @@
           <Key>
             <PropertyRef Name="MaTraoDoi" />
           </Key>
-          <Property Name="MaTraoDoi" Type="int" Nullable="false" />
+          <Property Name="MaTraoDoi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MaNhom" Type="int" Nullable="false" />
-          <Property Name="MaTV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaTV" Type="int" Nullable="false" />
           <Property Name="NoiDung" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="NgayViet" Type="datetime" Nullable="false" />
           <Property Name="PhanHoi" Type="int" />
@@ -213,7 +213,7 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
           <Property Name="LuotThich" Type="int" />
         </EntityType>
         <Association Name="FK_BinhLuan_BinhLuan">
-          <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="1" />
+          <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="0..1" />
           <End Role="BinhLuan1" Type="Self.BinhLuan" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BinhLuan">
@@ -221,6 +221,20 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
             </Principal>
             <Dependent Role="BinhLuan1">
               <PropertyRef Name="PhanHoi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BinhLuan_ChuongTruyen">
+          <End Role="ChuongTruyen" Type="Self.ChuongTruyen" Multiplicity="1" />
+          <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChuongTruyen">
+              <PropertyRef Name="MaTruyen" />
+              <PropertyRef Name="SoChuong" />
+            </Principal>
+            <Dependent Role="BinhLuan">
+              <PropertyRef Name="MaTruyen" />
+              <PropertyRef Name="SoChuong" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -233,18 +247,6 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
             </Principal>
             <Dependent Role="BinhLuan">
               <PropertyRef Name="MaTK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BinhLuan_Truyen">
-          <End Role="Truyen" Type="Self.Truyen" Multiplicity="1" />
-          <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Truyen">
-              <PropertyRef Name="MaTruyen" />
-            </Principal>
-            <Dependent Role="BinhLuan">
-              <PropertyRef Name="MaTruyen" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -307,6 +309,18 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
             </Principal>
             <Dependent Role="Luotxem">
               <PropertyRef Name="MaTK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NhomTG_TacGia">
+          <End Role="TacGia" Type="Self.TacGia" Multiplicity="1" />
+          <End Role="NhomTG" Type="Self.NhomTG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TacGia">
+              <PropertyRef Name="MaTG" />
+            </Principal>
+            <Dependent Role="NhomTG">
+              <PropertyRef Name="NguoiThanhLap" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -518,12 +532,12 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
             <End Role="BinhLuan" EntitySet="BinhLuan" />
             <End Role="BinhLuan1" EntitySet="BinhLuan" />
           </AssociationSet>
-          <AssociationSet Name="FK_BinhLuan_TaiKhoan" Association="Self.FK_BinhLuan_TaiKhoan">
-            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+          <AssociationSet Name="FK_BinhLuan_ChuongTruyen" Association="Self.FK_BinhLuan_ChuongTruyen">
+            <End Role="ChuongTruyen" EntitySet="ChuongTruyen" />
             <End Role="BinhLuan" EntitySet="BinhLuan" />
           </AssociationSet>
-          <AssociationSet Name="FK_BinhLuan_Truyen" Association="Self.FK_BinhLuan_Truyen">
-            <End Role="Truyen" EntitySet="Truyen" />
+          <AssociationSet Name="FK_BinhLuan_TaiKhoan" Association="Self.FK_BinhLuan_TaiKhoan">
+            <End Role="TaiKhoan" EntitySet="TaiKhoan" />
             <End Role="BinhLuan" EntitySet="BinhLuan" />
           </AssociationSet>
           <AssociationSet Name="FK_ChuongTruyen_Truyen" Association="Self.FK_ChuongTruyen_Truyen">
@@ -545,6 +559,10 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
           <AssociationSet Name="FK_Luotxem_TaiKhoan" Association="Self.FK_Luotxem_TaiKhoan">
             <End Role="TaiKhoan" EntitySet="TaiKhoan" />
             <End Role="Luotxem" EntitySet="Luotxem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NhomTG_TacGia" Association="Self.FK_NhomTG_TacGia">
+            <End Role="TacGia" EntitySet="TacGia" />
+            <End Role="NhomTG" EntitySet="NhomTG" />
           </AssociationSet>
           <AssociationSet Name="FK_QuanLyHinhAnh_TacGia" Association="Self.FK_QuanLyHinhAnh_TacGia">
             <End Role="TacGia" EntitySet="TacGia" />
@@ -617,22 +635,6 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
           <Property Name="Vaitro" Type="Int32" Nullable="false" />
           <Property Name="Ngaytao" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="BinhLuan">
-          <Key>
-            <PropertyRef Name="MaBinhLuan" />
-          </Key>
-          <Property Name="MaBinhLuan" Type="Int32" Nullable="false" />
-          <Property Name="MaTruyen" Type="Int32" Nullable="false" />
-          <Property Name="MaTK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NoiDung" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NgayBinhLuan" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="PhanHoi" Type="Int32" Nullable="false" />
-          <Property Name="SoChuong" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="BinhLuan1" Relationship="Self.FK_BinhLuan_BinhLuan" FromRole="BinhLuan" ToRole="BinhLuan1" />
-          <NavigationProperty Name="BinhLuan2" Relationship="Self.FK_BinhLuan_BinhLuan" FromRole="BinhLuan1" ToRole="BinhLuan" />
-          <NavigationProperty Name="TaiKhoan" Relationship="Self.FK_BinhLuan_TaiKhoan" FromRole="BinhLuan" ToRole="TaiKhoan" />
-          <NavigationProperty Name="Truyen" Relationship="webtruyenptModel.FK_BinhLuan_Truyen" FromRole="BinhLuan" ToRole="Truyen" />
-        </EntityType>
         <EntityType Name="ChuongTruyen">
           <Key>
             <PropertyRef Name="MaTruyen" />
@@ -645,6 +647,7 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
           <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Dang" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Luotxems" Relationship="Self.FK_Luotxem_ChuongTruyen" FromRole="ChuongTruyen" ToRole="Luotxem" />
+          <NavigationProperty Name="BinhLuans" Relationship="webtruyenptModel.FK_BinhLuan_ChuongTruyen" FromRole="ChuongTruyen" ToRole="BinhLuan" />
           <NavigationProperty Name="Truyen" Relationship="webtruyenptModel.FK_ChuongTruyen_Truyen" FromRole="ChuongTruyen" ToRole="Truyen" />
         </EntityType>
         <EntityType Name="Luotthich">
@@ -679,9 +682,10 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
           <Property Name="MaNhom" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TenNhom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NgayThanhLap" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="NguoiThanhLap" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NguoiThanhLap" Type="Int32" Nullable="false" />
           <Property Name="TinhTrang" Type="Int32" Nullable="false" />
           <Property Name="Khauhieu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TacGia" Relationship="Self.FK_NhomTG_TacGia" FromRole="NhomTG" ToRole="TacGia" />
           <NavigationProperty Name="ThanhVienNhoms" Relationship="Self.FK_ThanhVienNhom_NhomTG" FromRole="NhomTG" ToRole="ThanhVienNhom" />
           <NavigationProperty Name="TraoDoiNhoms" Relationship="Self.FK_TraoDoiNhom_NhomTG" FromRole="NhomTG" ToRole="TraoDoiNhom" />
           <NavigationProperty Name="TruyenTacGias" Relationship="Self.FK_TruyenTacGia_NhomTG" FromRole="NhomTG" ToRole="TruyenTacGia" />
@@ -706,6 +710,7 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
           <Property Name="NgayDangKy" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="VaiTro" Type="Int32" Nullable="false" />
           <Property Name="DaDuyet" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="NhomTGs" Relationship="Self.FK_NhomTG_TacGia" FromRole="TacGia" ToRole="NhomTG" />
           <NavigationProperty Name="QuanLyHinhAnhs" Relationship="Self.FK_QuanLyHinhAnh_TacGia" FromRole="TacGia" ToRole="QuanLyHinhAnh" />
           <NavigationProperty Name="TaiKhoan" Relationship="Self.FK_TacGia_TaiKhoan" FromRole="TacGia" ToRole="TaiKhoan" />
           <NavigationProperty Name="ThanhVienNhoms" Relationship="Self.FK_ThanhVienNhom_TacGia" FromRole="TacGia" ToRole="ThanhVienNhom" />
@@ -724,24 +729,24 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
           <Property Name="TinhTrang" Type="Int32" Nullable="false" />
           <Property Name="NgayKhoa" Type="DateTime" Precision="3" />
           <Property Name="Avatar" Type="Binary" MaxLength="50" FixedLength="false" />
-          <NavigationProperty Name="BinhLuans" Relationship="Self.FK_BinhLuan_TaiKhoan" FromRole="TaiKhoan" ToRole="BinhLuan" />
           <NavigationProperty Name="Luotthiches" Relationship="Self.FK_Luotthich_TaiKhoan" FromRole="TaiKhoan" ToRole="Luotthich" />
           <NavigationProperty Name="Luotxems" Relationship="Self.FK_Luotxem_TaiKhoan" FromRole="TaiKhoan" ToRole="Luotxem" />
           <NavigationProperty Name="TacGias" Relationship="Self.FK_TacGia_TaiKhoan" FromRole="TaiKhoan" ToRole="TacGia" />
           <NavigationProperty Name="TheodoiTGs" Relationship="Self.FK_TheodoiTG_TaiKhoan" FromRole="TaiKhoan" ToRole="TheodoiTG" />
           <NavigationProperty Name="ThongBaos" Relationship="Self.FK_ThongBao_TaiKhoan" FromRole="TaiKhoan" ToRole="ThongBao" />
+          <NavigationProperty Name="BinhLuans" Relationship="webtruyenptModel.FK_BinhLuan_TaiKhoan" FromRole="TaiKhoan" ToRole="BinhLuan" />
         </EntityType>
         <EntityType Name="ThanhVienNhom">
           <Key>
             <PropertyRef Name="MaTV" />
           </Key>
-          <Property Name="MaTV" Type="Int32" Nullable="false" />
+          <Property Name="MaTV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaTG" Type="Int32" Nullable="false" />
-          <Property Name="MaNhom" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaNhom" Type="Int32" Nullable="false" />
           <Property Name="Ngayvaonhom" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Ngayroinhom" Type="DateTime" Precision="3" />
           <Property Name="Vaitro" Type="Int32" Nullable="false" />
-          <Property Name="GhiChu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GhiChu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="DaDuyet" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="NhomTG" Relationship="Self.FK_ThanhVienNhom_NhomTG" FromRole="ThanhVienNhom" ToRole="NhomTG" />
           <NavigationProperty Name="TacGia" Relationship="Self.FK_ThanhVienNhom_TacGia" FromRole="ThanhVienNhom" ToRole="TacGia" />
@@ -770,7 +775,7 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
           <Key>
             <PropertyRef Name="MaThongBao" />
           </Key>
-          <Property Name="MaThongBao" Type="Int32" Nullable="false" />
+          <Property Name="MaThongBao" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaTK" Type="Int32" Nullable="false" />
           <Property Name="ThongBao1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NgayThongBao" Type="DateTime" Nullable="false" Precision="3" />
@@ -781,16 +786,16 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
           <Key>
             <PropertyRef Name="MaTraoDoi" />
           </Key>
-          <Property Name="MaTraoDoi" Type="Int32" Nullable="false" />
+          <Property Name="MaTraoDoi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaNhom" Type="Int32" Nullable="false" />
-          <Property Name="MaTV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaTV" Type="Int32" Nullable="false" />
           <Property Name="NoiDung" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NgayViet" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PhanHoi" Type="Int32" />
           <NavigationProperty Name="NhomTG" Relationship="Self.FK_TraoDoiNhom_NhomTG" FromRole="TraoDoiNhom" ToRole="NhomTG" />
           <NavigationProperty Name="ThanhVienNhom" Relationship="Self.FK_TraoDoiNhom_ThanhVienNhom" FromRole="TraoDoiNhom" ToRole="ThanhVienNhom" />
-          <NavigationProperty Name="TraoDoiNhom1" Relationship="Self.FK_TraoDoiNhom_TraoDoiNhom" FromRole="TraoDoiNhom" ToRole="TraoDoiNhom1" />
-          <NavigationProperty Name="TraoDoiNhom2" Relationship="Self.FK_TraoDoiNhom_TraoDoiNhom" FromRole="TraoDoiNhom1" ToRole="TraoDoiNhom" />
+          <NavigationProperty Name="CacPhanHoi" Relationship="Self.FK_TraoDoiNhom_TraoDoiNhom" FromRole="TraoDoiNhom" ToRole="TraoDoiNhom1" />
+          <NavigationProperty Name="phanHoi" Relationship="Self.FK_TraoDoiNhom_TraoDoiNhom" FromRole="TraoDoiNhom1" ToRole="TraoDoiNhom" />
         </EntityType>
         <EntityType Name="TruyenTacGia">
           <Key>
@@ -805,30 +810,33 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
           <NavigationProperty Name="TacGia" Relationship="Self.FK_TruyenTacGia_TacGia" FromRole="TruyenTacGia" ToRole="TacGia" />
           <NavigationProperty Name="Truyen" Relationship="webtruyenptModel.FK_TruyenTacGia_Truyen" FromRole="TruyenTacGia" ToRole="Truyen" />
         </EntityType>
-        <Association Name="FK_BinhLuan_BinhLuan">
-          <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="1" />
-          <End Role="BinhLuan1" Type="Self.BinhLuan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BinhLuan">
-              <PropertyRef Name="MaBinhLuan" />
-            </Principal>
-            <Dependent Role="BinhLuan1">
-              <PropertyRef Name="PhanHoi" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BinhLuan_TaiKhoan">
-          <End Role="TaiKhoan" Type="Self.TaiKhoan" Multiplicity="1" />
-          <End Role="BinhLuan" Type="Self.BinhLuan" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TaiKhoan">
-              <PropertyRef Name="MaTK" />
-            </Principal>
-            <Dependent Role="BinhLuan">
-              <PropertyRef Name="MaTK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="vTruyen">
+          <Key>
+            <PropertyRef Name="MaTruyen" />
+            <PropertyRef Name="TenTruyen" />
+            <PropertyRef Name="MaLoai" />
+            <PropertyRef Name="NgayTao" />
+            <PropertyRef Name="TamAn" />
+            <PropertyRef Name="LoaiTruyen" />
+            <PropertyRef Name="MoTa" />
+            <PropertyRef Name="AnhBia" />
+          </Key>
+          <Property Name="MaTruyen" Type="Int32" Nullable="false" />
+          <Property Name="TenTruyen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaLoai" Type="Int32" Nullable="false" />
+          <Property Name="TacGiaGoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NgayDang" Type="DateTime" Precision="3" />
+          <Property Name="TamAn" Type="Boolean" Nullable="false" />
+          <Property Name="DaDuyet" Type="Boolean" />
+          <Property Name="Khoa" Type="Boolean" />
+          <Property Name="LoaiTruyen" Type="Int32" Nullable="false" />
+          <Property Name="TinhTrang" Type="Int32" />
+          <Property Name="MoTa" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AnhBia" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LuotXem" Type="Int32" />
+          <Property Name="LuotThich" Type="Int32" />
+        </EntityType>
         <Association Name="FK_Luotxem_ChuongTruyen">
           <End Role="ChuongTruyen" Type="Self.ChuongTruyen" Multiplicity="1" />
           <End Role="Luotxem" Type="Self.Luotxem" Multiplicity="*" />
@@ -864,6 +872,18 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
             </Principal>
             <Dependent Role="Luotxem">
               <PropertyRef Name="MaTK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NhomTG_TacGia">
+          <End Role="TacGia" Type="Self.TacGia" Multiplicity="1" />
+          <End Role="NhomTG" Type="Self.NhomTG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TacGia">
+              <PropertyRef Name="MaTG" />
+            </Principal>
+            <Dependent Role="NhomTG">
+              <PropertyRef Name="NguoiThanhLap" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1001,7 +1021,6 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
         </Association>
         <EntityContainer Name="webtruyenptEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admins" EntityType="Self.Admin" />
-          <EntitySet Name="BinhLuans" EntityType="Self.BinhLuan" />
           <EntitySet Name="ChuongTruyens" EntityType="Self.ChuongTruyen" />
           <EntitySet Name="Luotthiches" EntityType="Self.Luotthich" />
           <EntitySet Name="Luotxems" EntityType="Self.Luotxem" />
@@ -1015,14 +1034,7 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
           <EntitySet Name="ThongBaos" EntityType="Self.ThongBao" />
           <EntitySet Name="TraoDoiNhoms" EntityType="Self.TraoDoiNhom" />
           <EntitySet Name="TruyenTacGias" EntityType="Self.TruyenTacGia" />
-          <AssociationSet Name="FK_BinhLuan_BinhLuan" Association="Self.FK_BinhLuan_BinhLuan">
-            <End Role="BinhLuan" EntitySet="BinhLuans" />
-            <End Role="BinhLuan1" EntitySet="BinhLuans" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BinhLuan_TaiKhoan" Association="Self.FK_BinhLuan_TaiKhoan">
-            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
-            <End Role="BinhLuan" EntitySet="BinhLuans" />
-          </AssociationSet>
+          <EntitySet Name="vTruyens" EntityType="Self.vTruyen" />
           <AssociationSet Name="FK_Luotxem_ChuongTruyen" Association="Self.FK_Luotxem_ChuongTruyen">
             <End Role="ChuongTruyen" EntitySet="ChuongTruyens" />
             <End Role="Luotxem" EntitySet="Luotxems" />
@@ -1034,6 +1046,10 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
           <AssociationSet Name="FK_Luotxem_TaiKhoan" Association="Self.FK_Luotxem_TaiKhoan">
             <End Role="TaiKhoan" EntitySet="TaiKhoans" />
             <End Role="Luotxem" EntitySet="Luotxems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NhomTG_TacGia" Association="Self.FK_NhomTG_TacGia">
+            <End Role="TacGia" EntitySet="TacGias" />
+            <End Role="NhomTG" EntitySet="NhomTGs" />
           </AssociationSet>
           <AssociationSet Name="FK_ThanhVienNhom_NhomTG" Association="Self.FK_ThanhVienNhom_NhomTG">
             <End Role="NhomTG" EntitySet="NhomTGs" />
@@ -1079,9 +1095,18 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
             <End Role="TraoDoiNhom" EntitySet="TraoDoiNhoms" />
             <End Role="TraoDoiNhom1" EntitySet="TraoDoiNhoms" />
           </AssociationSet>
+          <EntitySet Name="BinhLuans" EntityType="webtruyenptModel.BinhLuan" />
           <EntitySet Name="Truyens" EntityType="webtruyenptModel.Truyen" />
-          <AssociationSet Name="FK_BinhLuan_Truyen" Association="webtruyenptModel.FK_BinhLuan_Truyen">
-            <End Role="Truyen" EntitySet="Truyens" />
+          <AssociationSet Name="FK_BinhLuan_BinhLuan" Association="webtruyenptModel.FK_BinhLuan_BinhLuan">
+            <End Role="BinhLuan" EntitySet="BinhLuans" />
+            <End Role="BinhLuan1" EntitySet="BinhLuans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BinhLuan_ChuongTruyen" Association="webtruyenptModel.FK_BinhLuan_ChuongTruyen">
+            <End Role="ChuongTruyen" EntitySet="ChuongTruyens" />
+            <End Role="BinhLuan" EntitySet="BinhLuans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BinhLuan_TaiKhoan" Association="webtruyenptModel.FK_BinhLuan_TaiKhoan">
+            <End Role="TaiKhoan" EntitySet="TaiKhoans" />
             <End Role="BinhLuan" EntitySet="BinhLuans" />
           </AssociationSet>
           <AssociationSet Name="FK_ChuongTruyen_Truyen" Association="webtruyenptModel.FK_ChuongTruyen_Truyen">
@@ -1104,8 +1129,23 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
             <End Role="Truyen" EntitySet="Truyens" />
             <End Role="TruyenTacGia" EntitySet="TruyenTacGias" />
           </AssociationSet>
-          <EntitySet Name="vTruyens" EntityType="webtruyenptModel.vTruyen" />
         </EntityContainer>
+        <EntityType Name="BinhLuan">
+          <Key>
+            <PropertyRef Name="MaBinhLuan" />
+          </Key>
+          <Property Name="MaBinhLuan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaTruyen" Type="Int32" Nullable="false" />
+          <Property Name="MaTK" Type="Int32" Nullable="false" />
+          <Property Name="NoiDung" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="NgayBinhLuan" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PhanHoi" Type="Int32" />
+          <Property Name="SoChuong" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CacPhanHoi" Relationship="webtruyenptModel.FK_BinhLuan_BinhLuan" FromRole="BinhLuan" ToRole="BinhLuan1" />
+          <NavigationProperty Name="phanHoi" Relationship="webtruyenptModel.FK_BinhLuan_BinhLuan" FromRole="BinhLuan1" ToRole="BinhLuan" />
+          <NavigationProperty Name="ChuongTruyen" Relationship="webtruyenptModel.FK_BinhLuan_ChuongTruyen" FromRole="BinhLuan" ToRole="ChuongTruyen" />
+          <NavigationProperty Name="TaiKhoan" Relationship="webtruyenptModel.FK_BinhLuan_TaiKhoan" FromRole="BinhLuan" ToRole="TaiKhoan" />
+        </EntityType>
         <EntityType Name="Truyen">
           <Key>
             <PropertyRef Name="MaTruyen" />
@@ -1123,22 +1163,47 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
           <Property Name="TinhTrang" Type="Int32" />
           <Property Name="AnhBia" Type="Int32" Nullable="false" />
           <Property Name="MoTa" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="BinhLuans" Relationship="webtruyenptModel.FK_BinhLuan_Truyen" FromRole="Truyen" ToRole="BinhLuan" />
           <NavigationProperty Name="ChuongTruyens" Relationship="webtruyenptModel.FK_ChuongTruyen_Truyen" FromRole="Truyen" ToRole="ChuongTruyen" />
           <NavigationProperty Name="Luotthiches" Relationship="webtruyenptModel.FK_Luotthich_Truyen" FromRole="Truyen" ToRole="Luotthich" />
           <NavigationProperty Name="QuanLyHinhAnh" Relationship="webtruyenptModel.FK_Truyen_QuanLyHinhAnh" FromRole="Truyen" ToRole="QuanLyHinhAnh" />
           <NavigationProperty Name="TheLoai" Relationship="webtruyenptModel.FK_Truyen_TheLoai" FromRole="Truyen" ToRole="TheLoai" />
           <NavigationProperty Name="TruyenTacGias" Relationship="webtruyenptModel.FK_TruyenTacGia_Truyen" FromRole="Truyen" ToRole="TruyenTacGia" />
         </EntityType>
-        <Association Name="FK_BinhLuan_Truyen">
-          <End Type="webtruyenptModel.Truyen" Role="Truyen" Multiplicity="1" />
+        <Association Name="FK_BinhLuan_BinhLuan">
+          <End Type="webtruyenptModel.BinhLuan" Role="BinhLuan" Multiplicity="0..1" />
+          <End Type="webtruyenptModel.BinhLuan" Role="BinhLuan1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BinhLuan">
+              <PropertyRef Name="MaBinhLuan" />
+            </Principal>
+            <Dependent Role="BinhLuan1">
+              <PropertyRef Name="PhanHoi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BinhLuan_ChuongTruyen">
+          <End Type="webtruyenptModel.ChuongTruyen" Role="ChuongTruyen" Multiplicity="1" />
           <End Type="webtruyenptModel.BinhLuan" Role="BinhLuan" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Truyen">
+            <Principal Role="ChuongTruyen">
               <PropertyRef Name="MaTruyen" />
+              <PropertyRef Name="SoChuong" />
             </Principal>
             <Dependent Role="BinhLuan">
               <PropertyRef Name="MaTruyen" />
+              <PropertyRef Name="SoChuong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BinhLuan_TaiKhoan">
+          <End Type="webtruyenptModel.TaiKhoan" Role="TaiKhoan" Multiplicity="1" />
+          <End Type="webtruyenptModel.BinhLuan" Role="BinhLuan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaiKhoan">
+              <PropertyRef Name="MaTK" />
+            </Principal>
+            <Dependent Role="BinhLuan">
+              <PropertyRef Name="MaTK" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1202,33 +1267,6 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="vTruyen">
-          <Key>
-            <PropertyRef Name="MaTruyen" />
-            <PropertyRef Name="TenTruyen" />
-            <PropertyRef Name="MaLoai" />
-            <PropertyRef Name="NgayTao" />
-            <PropertyRef Name="TamAn" />
-            <PropertyRef Name="LoaiTruyen" />
-            <PropertyRef Name="MoTa" />
-            <PropertyRef Name="AnhBia" />
-          </Key>
-          <Property Name="MaTruyen" Type="Int32" Nullable="false" />
-          <Property Name="TenTruyen" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="MaLoai" Type="Int32" Nullable="false" />
-          <Property Name="TacGiaGoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="NgayDang" Type="DateTime" Precision="3" />
-          <Property Name="TamAn" Type="Boolean" Nullable="false" />
-          <Property Name="DaDuyet" Type="Boolean" />
-          <Property Name="Khoa" Type="Boolean" />
-          <Property Name="LoaiTruyen" Type="Int32" Nullable="false" />
-          <Property Name="TinhTrang" Type="Int32" />
-          <Property Name="MoTa" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Name="AnhBia" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="LuotXem" Type="Int32" />
-          <Property Name="LuotThich" Type="Int32" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1243,19 +1281,6 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Vaitro" ColumnName="Vaitro" />
                 <ScalarProperty Name="Ngaytao" ColumnName="Ngaytao" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BinhLuans">
-            <EntityTypeMapping TypeName="webtruyenptModel.BinhLuan">
-              <MappingFragment StoreEntitySet="BinhLuan">
-                <ScalarProperty Name="MaBinhLuan" ColumnName="MaBinhLuan" />
-                <ScalarProperty Name="MaTruyen" ColumnName="MaTruyen" />
-                <ScalarProperty Name="MaTK" ColumnName="MaTK" />
-                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-                <ScalarProperty Name="NgayBinhLuan" ColumnName="NgayBinhLuan" />
-                <ScalarProperty Name="PhanHoi" ColumnName="PhanHoi" />
-                <ScalarProperty Name="SoChuong" ColumnName="SoChuong" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1404,32 +1429,45 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="vTruyens">
+            <EntityTypeMapping TypeName="webtruyenptModel.vTruyen">
+              <MappingFragment StoreEntitySet="vTruyen">
+                <ScalarProperty Name="MaTruyen" ColumnName="MaTruyen" />
+                <ScalarProperty Name="TenTruyen" ColumnName="TenTruyen" />
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+                <ScalarProperty Name="TacGiaGoc" ColumnName="TacGiaGoc" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+                <ScalarProperty Name="TamAn" ColumnName="TamAn" />
+                <ScalarProperty Name="DaDuyet" ColumnName="DaDuyet" />
+                <ScalarProperty Name="Khoa" ColumnName="Khoa" />
+                <ScalarProperty Name="LoaiTruyen" ColumnName="LoaiTruyen" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="AnhBia" ColumnName="AnhBia" />
+                <ScalarProperty Name="LuotXem" ColumnName="LuotXem" />
+                <ScalarProperty Name="LuotThich" ColumnName="LuotThich" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BinhLuans">
+            <EntityTypeMapping TypeName="webtruyenptModel.BinhLuan">
+              <MappingFragment StoreEntitySet="BinhLuan">
+                <ScalarProperty Name="SoChuong" ColumnName="SoChuong" />
+                <ScalarProperty Name="PhanHoi" ColumnName="PhanHoi" />
+                <ScalarProperty Name="NgayBinhLuan" ColumnName="NgayBinhLuan" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="MaTK" ColumnName="MaTK" />
+                <ScalarProperty Name="MaTruyen" ColumnName="MaTruyen" />
+                <ScalarProperty Name="MaBinhLuan" ColumnName="MaBinhLuan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Truyens">
             <EntityTypeMapping TypeName="webtruyenptModel.Truyen">
               <MappingFragment StoreEntitySet="Truyen">
                 <ScalarProperty Name="MoTa" ColumnName="MoTa" />
                 <ScalarProperty Name="AnhBia" ColumnName="AnhBia" />
-                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
-                <ScalarProperty Name="LoaiTruyen" ColumnName="LoaiTruyen" />
-                <ScalarProperty Name="Khoa" ColumnName="Khoa" />
-                <ScalarProperty Name="DaDuyet" ColumnName="DaDuyet" />
-                <ScalarProperty Name="TamAn" ColumnName="TamAn" />
-                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
-                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
-                <ScalarProperty Name="TacGiaGoc" ColumnName="TacGiaGoc" />
-                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
-                <ScalarProperty Name="TenTruyen" ColumnName="TenTruyen" />
-                <ScalarProperty Name="MaTruyen" ColumnName="MaTruyen" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vTruyens">
-            <EntityTypeMapping TypeName="webtruyenptModel.vTruyen">
-              <MappingFragment StoreEntitySet="vTruyen">
-                <ScalarProperty Name="LuotThich" ColumnName="LuotThich" />
-                <ScalarProperty Name="LuotXem" ColumnName="LuotXem" />
-                <ScalarProperty Name="AnhBia" ColumnName="AnhBia" />
-                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
                 <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
                 <ScalarProperty Name="LoaiTruyen" ColumnName="LoaiTruyen" />
                 <ScalarProperty Name="Khoa" ColumnName="Khoa" />

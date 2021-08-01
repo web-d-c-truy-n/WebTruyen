@@ -422,10 +422,7 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div id="allAnh" class="container tab-pane active">                        
-                        @foreach (QuanLyHinhAnh anh in ViewBag.anhCuaTG)
-                        {
-                            <img src="@anh.URL" width="96" height="72" id_anh="@anh.MaAnh">
-                        }
+
                     </div>
                     <div id="menu1" class="container tab-pane fade">
                         <div id="drag-and-drop-zone" class="dm-uploader p-5">
@@ -491,6 +488,14 @@
                         <option value="2">Dịch Giả</option>
                     </select>
                 }
+                <label class="mr-sm-2">Đồng sáng tác</label>
+                <select class="selectpicker" multiple data-live-search="true" id="dongTG">
+                    @foreach(TacGia tacGia in ViewBag.cacTacGia) { 
+                        if (tacGia.MaTG != Auth.tacGia().MaTG) { 
+                            <option value="@tacGia.MaTG">@(tacGia.ButDanh ?? tacGia.TaiKhoan.HovaTen)</option>
+                        }                        
+                    }
+                </select>
                 <button type="button" id="dangTruyen" class="btn btn-primary mb-2">Đăng tác phẩm</button>
                 <button type="button" id="luuNhap" class="btn btn-primary mb-2">Lưu nháp</button>
             </div>
@@ -506,7 +511,20 @@
 @section js{
     <script src="~/Asset/TacGia/Trumbowyg-master/dist/trumbowyg.min.js"></script>
     <script src="~/Asset/TacGia/uploader-master/src/js/jquery.dm-uploader.js"></script>
-    <script>
+    <script type="text/babel">
+        function img(url, id_anh) {
+            return <img src={url} width="96" height="72" id_anh={id_anh}/>
+        }
+        var anhTG = [
+            @foreach (QuanLyHinhAnh anh in ViewBag.anhCuaTG)
+            {
+                @Html.Raw("{url: '"+anh.URL+"', MaAnh: "+anh.MaAnh+"},")
+            }
+        ]
+        $(document).ready(function () {
+            let htmlAnhTG = anhTG.map(x => img(x.url, x.MaAnh))
+            ReactDOM.render(<div>{htmlAnhTG}</div>, document.getElementById('allAnh'))
+        })
         var anhBia = true
         $('#editor').trumbowyg({
             btnsDef: {
@@ -530,7 +548,7 @@
             });
             $('#drag-and-drop-zone').dmUploader({ //
                 url: '@Url.Action("ThemAnh","TacGia")',
-                maxFileSize: 3000000, // 3 Megs 
+                maxFileSize: 3000000, // 3 Megs
                 onDragEnter: function () {
                     // Happens when dragging something over the DnD area
                     this.addClass('active');
@@ -543,17 +561,20 @@
                     $("#progress").css({ width: "0" })
                 },
                 onUploadProgress: function (id, percent) {
-                    // Updating file progress                   
+                    // Updating file progress
                 },
                 onUploadSuccess: function (id, data) {
                     debugger
                     if (data.result) {
                         $("#progress").css({ width: "100%" })
                         window.setTimeout(function () { $("#progress").css({ width: "0%" }) }, 1000)
-                        let anh = $("[id_anh]").first().clone(true)
-                        $(anh).appendTo('#allAnh')
-                        $(anh).attr("id_anh", data.MaAnh)
-                        $(anh).attr("src", data.URL)
+                        //let anh = $("[id_anh]").first().clone(true)
+                        //$(anh).appendTo('#allAnh')
+                        //$(anh).attr("id_anh", data.MaAnh)
+                        //$(anh).attr("src", data.URL)
+                        anhTG.push({ url: data.URL, MaAnh: data.MaAnh })
+                        let htmlAnhTG = anhTG.map(x => img(x.url, x.MaAnh))
+                        ReactDOM.render(<div>{htmlAnhTG}</div>, document.getElementById('allAnh'))
                     } else {
                         alert(data.msg)
                     }
@@ -562,10 +583,10 @@
                 onUploadError: function (id, xhr, status, message) {
                 },
                 onFallbackMode: function () {
-                    // When the browser doesn't support this plugin :(                   
+                    // When the browser doesn't support this plugin :(
                 },
                 onFileSizeError: function (file) {
-                  
+
                 }
             });
         })
@@ -582,7 +603,7 @@
                     let Url = $(this).attr("src")
                     $('#editor').trumbowyg('html', '<img src = "' + Url + '" />');
                     $("#dongAnhBia").click()
-                }                
+                }
             })
             $("#dangTruyen,#luuNhap").click(async function () {
                 debugger
@@ -596,10 +617,12 @@
                     alert("Nội dung không được quá 2000 ký tự")
                     return
                 }
+                let dongTG = $('#dongTG').val();
+                dongTG = dongTG.map(x => parseInt(x));
                 let tenTruyen = $("#tenTruyen").val()
-                let vaiTro = $("#vaiTro").val() ?? 1
+                let vaiTro = ($("#vaiTro").val() == null?1:$("#vaiTro").val())
                 $("body").ajaxOn()
-                let rs = await API.DangTruyen(tenTruyen, theLoai, tacGiaGoc, tamAn, anhBia, loaiTruyen, noiDung, vaiTro)
+                let rs = await API.DangTruyen(tenTruyen, theLoai, tacGiaGoc, tamAn, anhBia, loaiTruyen, noiDung, vaiTro, dongTG)
                 if (rs) {
                     $("body").ajaxOff()
                     $("#tacGiaGoc").val("");
@@ -608,9 +631,10 @@
                     $(".close").click()
                     alert("Đăng truyện thành công")
                 } else {
+                    $("body").ajaxOff()
                     alert("Đăng thất bại")
                 }
-                
+
             })
         })
     </script>

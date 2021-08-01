@@ -28,8 +28,8 @@
             vertical-align: -0.1em !important;
             background: none !important;
             padding: 0 !important;
-
         }
+
         .modal-dialog {
             background-color: darkgrey;
         }
@@ -246,9 +246,13 @@
     <meta name="twitter:image" content="~/Asset/Web/wp-content/themes/madara/images/logo.png">
     <meta name="description" content="Manga WordPress Theme">
     <meta name="generator" content="Powered by Madara - A powerful multi-purpose theme by Madara">
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     @RenderSection("css", required: false)
 </head>
-<body>
+<body class="home page-template page-template-page-templates page-template-front-page page-template-page-templatesfront-page-php page page-id-12 wp-embed-responsive header-style-1 sticky-enabled sticky-style-1 is-sidebar text-ui-dark sticky__active">
     <div class="wrap">
         <div class="body-wrap">
             <header class="site-header">
@@ -906,8 +910,7 @@
                 modal.style.display = "none";
             }
         }
-    </script>
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    </script>    
     <script src="~/Scripts/getAPI.js"></script>
     <script src="~/Scripts/AjaxEffect.js"></script>
     @RenderSection("js", required: false)

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebTruyen.Models;
 using WebTruyen.Helper;
+using System.Web.Script.Serialization;
 
 namespace WebTruyen.Controllers
 {
@@ -17,6 +18,8 @@ namespace WebTruyen.Controllers
         }
         public ActionResult Index()
         {
+            var truyens = db.vTruyens.OrderByDescending(x => x.NgayDang).Take(20).ToArray().Select(x=>new {truyen = x,Chuong = db.ChuongTruyens.Where(c=>c.MaTruyen == x.MaTruyen).OrderByDescending(c3=>c3.NgayTao).Select(c2=>new {c2.SoChuong, c2.TenChuong}).ToArray() });
+            ViewBag.truyenMoi = new JavaScriptSerializer().Serialize(truyens);
             return View();
         }
         public ActionResult About()
@@ -92,7 +95,7 @@ namespace WebTruyen.Controllers
         // xuất ra các danh sách truyện hot ở trang chủ
         public ActionResult XuatCacTruyenHot(int page, int pagesize)
         {
-            List<vTruyen> truyens = db.vTruyens.OrderByDescending(x=>x.LuotThich).Skip((page - 1) * pagesize).Take(pagesize).ToList();
+            List<vTruyen> truyens = db.vTruyens.OrderByDescending(x=>x.LuotThich).Skip((page - 1) * pagesize).Take(pagesize).ToList();            
             return Json(truyens.ToArray(), JsonRequestBehavior.AllowGet);
         }
     }

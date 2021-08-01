@@ -26,7 +26,6 @@ namespace WebTruyen.Models
         }
     
         public virtual DbSet<Admin> Admins { get; set; }
-        public virtual DbSet<BinhLuan> BinhLuans { get; set; }
         public virtual DbSet<ChuongTruyen> ChuongTruyens { get; set; }
         public virtual DbSet<Luotthich> Luotthiches { get; set; }
         public virtual DbSet<Luotxem> Luotxems { get; set; }
@@ -40,7 +39,8 @@ namespace WebTruyen.Models
         public virtual DbSet<ThongBao> ThongBaos { get; set; }
         public virtual DbSet<TraoDoiNhom> TraoDoiNhoms { get; set; }
         public virtual DbSet<TruyenTacGia> TruyenTacGias { get; set; }
-        public virtual DbSet<Truyen> Truyens { get; set; }
         public virtual DbSet<vTruyen> vTruyens { get; set; }
+        public virtual DbSet<BinhLuan> BinhLuans { get; set; }
+        public virtual DbSet<Truyen> Truyens { get; set; }
     }
 }

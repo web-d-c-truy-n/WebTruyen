@@ -258,12 +258,12 @@
         })
         return result
     },
-    DangTruyen: async function (tenTruyen, maLoai, tacGiaGoc, tamAn, anhBia, loaiTruyen, moTa, vaiTro) {
+    DangTruyen: async function (tenTruyen, maLoai, tacGiaGoc, tamAn, anhBia, loaiTruyen, moTa, vaiTro, dongTG) {
         let result = null
         await $.ajax({
             type: "POST",
             url: '/TacGia/DangTruyen',
-            data: JSON.stringify({ TenTruyen: tenTruyen, MaLoai: maLoai, TacGiaGoc: tacGiaGoc, TamAn: tamAn, AnhBia: anhBia, LoaiTruyen: loaiTruyen, MoTa: moTa, vaiTro: vaiTro }),
+            data: JSON.stringify({ TenTruyen: tenTruyen, MaLoai: maLoai, TacGiaGoc: tacGiaGoc, TamAn: tamAn, AnhBia: anhBia, LoaiTruyen: loaiTruyen, MoTa: moTa, vaiTro: vaiTro, dongTG: dongTG }),
             dataType: "json",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {

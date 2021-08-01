@@ -25,10 +25,11 @@ namespace WebTruyen.Models
         public int MaNhom { get; set; }
         public string TenNhom { get; set; }
         public System.DateTime NgayThanhLap { get; set; }
-        public System.DateTime NguoiThanhLap { get; set; }
+        public int NguoiThanhLap { get; set; }
         public int TinhTrang { get; set; }
         public string Khauhieu { get; set; }
     
+        public virtual TacGia TacGia { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ThanhVienNhom> ThanhVienNhoms { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

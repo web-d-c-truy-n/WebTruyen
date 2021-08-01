@@ -99,12 +99,12 @@
                                         <div class="row settings-page">
                                             <div class="col-md-3 col-sm-3">
                                                 <div class="nav-tabs-wrap">
-                                                    <ul class="nav nav-tabs" id="menuuser">
+                                                    <ul class="nav nav-tabs" id="menuuser" role="tablist">
                                                         <li class="">
-                                                            <a href="#"><i class="fas fa-heart"></i>Truyện yêu thích</a>
+                                                            <a data-toggle="tab" href="#truyenYeuThich"><i class="fas fa-heart"></i>Truyện yêu thích</a>
                                                         </li>
                                                         <li class="">
-                                                            <a href="#"><i class="icon ion-md-alarm"></i>Lịch sử </a>
+                                                            <a data-toggle="tab" href="#lichSu"><i class="icon ion-md-alarm"></i>Lịch sử </a>
                                                         </li>
                                                         <li class="">
                                                             @{
@@ -113,21 +113,21 @@
                                                                 {
                                                                     if (tacGias.First().DaDuyet == false)
                                                                     {
-                                                                        <a href="#"><i class="fas fa-pencil-alt"></i>Đăng kí tác giả </a>
+                                                                        <a data-toggle="tab" href="#dangKyTacGia"><i class="fas fa-pencil-alt"></i>Đăng kí tác giả </a>
                                                                     }
                                                                     else
                                                                     {
                                                                         <a href="@Url.Action("TrangTacGia","TacGia")"><i class="fas fa-pencil-alt"></i>Tác giả </a>
                                                                     }
                                                                 }else{
-                                                                        <a href="#"><i class="fas fa-pencil-alt"></i>Đăng kí tác giả </a>
+                                                                        <a data-toggle="tab" href="#dangKyTacGia"><i class="fas fa-pencil-alt"></i>Đăng kí tác giả </a>
                                                                 }
 
                                                             }
 
                                                         </li>
                                                         <li class="active">
-                                                            <a href="#"><i class="icon ion-md-person"></i>Cài đặt tài khoản </a>
+                                                            <a data-toggle="tab" href="#thongTinTK"><i class="icon ion-md-person"></i>Cài đặt tài khoản </a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -135,7 +135,7 @@
                                             <div class="col-md-9 col-sm-9" >
                                                 <div class="tabs-content-wrap">
                                                     <div class="tab-content">
-                                                        <div class="tab-pane active">
+                                                        <div class="tab-pane active" id="thongTinTK">
                                                             <form method="post" id="form-account-settings" data-force-strong-password="1">
                                                                 <input type="hidden" value="981" name="userID">
                                                                 <input type="hidden" id="_wpnonce" name="_wpnonce" value="c0d5ad0b0f"><input type="hidden" name="_wp_http_referer" value="/user-settings/?tab=account-settings"> <div class="tab-group-item">
@@ -250,12 +250,12 @@
                                                             </form>
 
                                                         </div>
+                                                        @Html.Partial("DangKiTacGia")
+                                                        @Html.Partial("Theodoi")
+                                                        @Html.Partial("Lichsu")
                                                     </div>
                                                 </div>
-                                            </div>
-                                            @Html.Partial("DangKiTacGia")
-                                            @Html.Partial("Theodoi")
-                                            @Html.Partial("Lichsu")
+                                            </div>                                           
                                         </div>
                                     </div>
                                 </div>

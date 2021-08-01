@@ -18,6 +18,7 @@ namespace WebTruyen.Models
         public ChuongTruyen()
         {
             this.Luotxems = new HashSet<Luotxem>();
+            this.BinhLuans = new HashSet<BinhLuan>();
         }
     
         public int MaTruyen { get; set; }
@@ -29,6 +30,8 @@ namespace WebTruyen.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Luotxem> Luotxems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BinhLuan> BinhLuans { get; set; }
         public virtual Truyen Truyen { get; set; }
     }
 }
