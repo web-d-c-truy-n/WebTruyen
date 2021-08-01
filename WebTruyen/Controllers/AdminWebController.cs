@@ -18,6 +18,7 @@ namespace WebTruyen.Controllers
         // GET: AdminWeb
         public ActionResult Index()
         {
+            ViewBag.CountTK = db.TaiKhoans.ToList().Count;
             return View();
         }
         public ActionResult ThemAdmin()
@@ -52,7 +53,6 @@ namespace WebTruyen.Controllers
         }
         #region quản lý tài khoản
         // lấy danh sách tài khoản
-        [HttpPost]
         public ActionResult dsTaiKhoan(int page, int pagesize)
         {
             List<TaiKhoan> taiKhoans = db.TaiKhoans.OrderBy(x => x.MaTK).Skip((page -1)* pagesize).Take(pagesize).ToList();
@@ -62,7 +62,7 @@ namespace WebTruyen.Controllers
                 NgayTao = x.NgayTao.ToString("dd/MM/yyyy")
             });
             return Json(data,JsonRequestBehavior.AllowGet);
-        }       
+        }        
         // xem thông tin tài khoản
         public ActionResult ttTaiKhoan(int id)
         {

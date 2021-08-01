@@ -402,9 +402,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        }
-                                        
-
+                                        }                                        
                                     </div>
                                 </div><button class="slick-next slick-arrow" aria-label="Next" type="button" style="" hidden></button>
                             </div>
@@ -416,7 +414,6 @@
     </div>
 </div>
 <div class="site-content">
-
     <div class="c-page-content style-1">
         <div class="content-area" style="margin-top: 50px">
             <div class="container">
@@ -434,7 +431,7 @@
 
                                     <i class="ion-star"></i>
 
-                                    LATEST MANGA RELEASES
+                                    Truyện mới nhất
                                 </h1>
                             </div>
 
@@ -1729,7 +1726,11 @@
         var page = 1
         var truyenXemNhieu
         $(document).ready(async function () {
-            truyenXemNhieu = await API.XuatCacTruyenIndex(page, 20)
+        @if (ViewBag.MaLoai != null) {
+            @Html.Raw($"truyenXemNhieu = await API.XuatCacTruyenTheLoai(page, 20,{ViewBag.MaLoai})\n")
+        }else{
+            @Html.Raw("truyenXemNhieu = await API.XuatCacTruyenIndex(page, 20)\n")
+        }
             var truyenHtml = []
             for (let i =0; i<truyenXemNhieu.length; i=i+2){
             let anhBia = truyenXemNhieu[i].AnhBia
@@ -1756,7 +1757,11 @@
         $("#navigation-ajax").click(async function () {
             page++
             $(this).addClass(".show-loading")
-            var data = await API.XuatCacTruyenIndex(page, 20)
+        @if (ViewBag.MaLoai != null) {
+            @Html.Raw($"var data = await API.XuatCacTruyenTheLoai(page, 20,{ViewBag.MaLoai})\n")
+        }else{
+            @Html.Raw("var data = await API.XuatCacTruyenIndex(page, 20)\n")
+        }            
             truyenXemNhieu.push(...data)
             var truyenHtml = []
             for (let i = 0; i < truyenXemNhieu.length; i = i + 2) {

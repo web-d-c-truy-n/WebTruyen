@@ -537,14 +537,14 @@
                             <div class="sub-nav_content">
                                 <ul class="sub-nav_list list-inline second-menu">
                                     @foreach (TheLoai theLoai in db.TheLoais.OrderBy(x => x.MaLoai).Take(6)) { 
-                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre"><a href="@Commons.convertToUnSign3(theLoai.TenLoai+"-"+theLoai.MaLoai)">@theLoai.TenLoai</a></li>
+                                        <li class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre"><a href="@Url.Action("theLoai","Home",routeValues: new {id = Commons.convertToUnSign3(theLoai.TenLoai+"-"+theLoai.MaLoai).ToLower()})">@theLoai.TenLoai</a></li>
                                     }                                    
                                     <li id="menu-item-72" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children parent menu-item-72">
                                         <a href="#">MORE</a>
                                         <ul class="sub-menu">
                                             @foreach (TheLoai theLoai1 in db.TheLoais.OrderBy(x => x.MaLoai).Skip(6))
                                             {
-                                                <li class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre"><a href="@Commons.convertToUnSign3(theLoai1.TenLoai+"-"+theLoai1.MaLoai)">@theLoai1.TenLoai</a></li>
+                                                <li class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre"><a href="@Url.Action("theLoai","Home",routeValues: new {id = Commons.convertToUnSign3(theLoai1.TenLoai+"-"+theLoai1.MaLoai).ToLower()})">@theLoai1.TenLoai</a></li>
                                             }
 
                                         </ul>

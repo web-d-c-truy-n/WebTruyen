@@ -5,31 +5,33 @@
     Layout = "~/Views/Shared/_LayoutAdminWeb.cshtml";
 }
 <table class="table">
-    <tr>
-        <th>
-            Mã Tài Khoản
-        </th>
-        <th>
-            Họ và Tên
-        </th>
-        <th>
-            Mail
-        </th>
-        <th>
-            Số điện thoại
-        </th>
-        <th>
-            Ngày tạo
-        </th>
-        <th>
-            Tình trạng
-        </th>
-        <th>
-            Ngày khóa
-        </th>
-        <th></th>
-    </tr>
-
+    <thead>
+        <tr>
+            <th>
+                Mã Tài Khoản
+            </th>
+            <th>
+                Họ và Tên
+            </th>
+            <th>
+                Mail
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Ngày tạo
+            </th>
+            <th>
+                Tình trạng
+            </th>
+            <th>
+                Ngày khóa
+            </th>
+            <th></th>
+        </tr>        
+    </thead>
+    
     @foreach (var item in Model)
     {
         <tr>
@@ -104,243 +106,243 @@
             </td>
         </tr>
     }
-    <!-- The Modal -->
-    <div class="modal fade" id="myModal">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
+</table>
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Thông tin tài khoản</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Thông tin tài khoản</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <section class="content">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-3">
+            <!-- Modal body -->
+            <div class="modal-body">
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3">
 
-                                    <!-- Profile Image -->
-                                    <div class="card card-primary card-outline">
-                                        <div class="card-body box-profile">
-                                            <div class="text-center">
-                                                <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
-                                            </div>
-
-                                            <h3 class="profile-username text-center tenTK">Nina Mcintire</h3>
-
-                                            <p class="text-muted text-center ">Software Engineer</p>
-
-                                            <ul class="list-group list-group-unbordered mb-3">
-                                                <li class="list-group-item">
-                                                    <b>Số điện thoại</b> <a class="float-right sdtTK">1,322</a>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <b>Email</b> <a class="float-right emailTK">543</a>
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <b>Tình trạng</b> <a class="float-right tinhtrang2">13,287</a>
-
-                                                </li>
-                                            </ul>
-
-                                            <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                                <!-- Profile Image -->
+                                <div class="card card-primary card-outline">
+                                    <div class="card-body box-profile">
+                                        <div class="text-center">
+                                            <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
                                         </div>
-                                        <!-- /.card-body -->
+
+                                        <h3 class="profile-username text-center tenTK">Nina Mcintire</h3>
+
+                                        <p class="text-muted text-center ">Software Engineer</p>
+
+                                        <ul class="list-group list-group-unbordered mb-3">
+                                            <li class="list-group-item">
+                                                <b>Số điện thoại</b> <a class="float-right sdtTK">1,322</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b>Email</b> <a class="float-right emailTK">543</a>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <b>Tình trạng</b> <a class="float-right tinhtrang2">13,287</a>
+
+                                            </li>
+                                        </ul>
+
+                                        <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
                                     </div>
-                                    <!-- /.card -->
-                                    <!-- About Me Box -->
-                                    <!-- /.card -->
+                                    <!-- /.card-body -->
                                 </div>
-                                <!-- /.col -->
-                                <div class="col-md-9">
-                                    <div class="card">
-                                        <div class="card-header p-2">
-                                            <ul class="nav nav-pills">
-                                                <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
-                                                <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
-                                            </ul>
-                                        </div><!-- /.card-header -->
-                                        <div class="card-body">
-                                            <div class="tab-content">
+                                <!-- /.card -->
+                                <!-- About Me Box -->
+                                <!-- /.card -->
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-9">
+                                <div class="card">
+                                    <div class="card-header p-2">
+                                        <ul class="nav nav-pills">
+                                            <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+                                        </ul>
+                                    </div><!-- /.card-header -->
+                                    <div class="card-body">
+                                        <div class="tab-content">
 
-                                                <!-- /.tab-pane -->
-                                                <div class="tab-pane" id="timeline">
-                                                    <!-- The timeline -->
-                                                    <div class="timeline timeline-inverse">
-                                                        <!-- timeline time label -->
-                                                        <div class="time-label">
-                                                            <span class="bg-danger">
-                                                                10 Feb. 2014
-                                                            </span>
-                                                        </div>
-                                                        <!-- /.timeline-label -->
-                                                        <!-- timeline item -->
-                                                        <div>
-                                                            <i class="fas fa-envelope bg-primary"></i>
+                                            <!-- /.tab-pane -->
+                                            <div class="tab-pane" id="timeline">
+                                                <!-- The timeline -->
+                                                <div class="timeline timeline-inverse">
+                                                    <!-- timeline time label -->
+                                                    <div class="time-label">
+                                                        <span class="bg-danger">
+                                                            10 Feb. 2014
+                                                        </span>
+                                                    </div>
+                                                    <!-- /.timeline-label -->
+                                                    <!-- timeline item -->
+                                                    <div>
+                                                        <i class="fas fa-envelope bg-primary"></i>
 
-                                                            <div class="timeline-item">
-                                                                <span class="time"><i class="far fa-clock"></i> 12:05</span>
+                                                        <div class="timeline-item">
+                                                            <span class="time"><i class="far fa-clock"></i> 12:05</span>
 
-                                                                <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+                                                            <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
 
-                                                                <div class="timeline-body">
-                                                                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                                                                    weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                                                                    jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                                                                    quora plaxo ideeli hulu weebly balihoo...
-                                                                </div>
-                                                                <div class="timeline-footer">
-                                                                    <a href="#" class="btn btn-primary btn-sm">Read more</a>
-                                                                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                                                </div>
+                                                            <div class="timeline-body">
+                                                                Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
+                                                                weebly ning heekya handango imeem plugg dopplr jibjab, movity
+                                                                jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
+                                                                quora plaxo ideeli hulu weebly balihoo...
                                                             </div>
-                                                        </div>
-                                                        <!-- END timeline item -->
-                                                        <!-- timeline item -->
-                                                        <div>
-                                                            <i class="fas fa-user bg-info"></i>
-
-                                                            <div class="timeline-item">
-                                                                <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
-
-                                                                <h3 class="timeline-header border-0">
-                                                                    <a href="#">Sarah Young</a> accepted your friend request
-                                                                </h3>
+                                                            <div class="timeline-footer">
+                                                                <a href="#" class="btn btn-primary btn-sm">Read more</a>
+                                                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
                                                             </div>
-                                                        </div>
-                                                        <!-- END timeline item -->
-                                                        <!-- timeline item -->
-                                                        <div>
-                                                            <i class="fas fa-comments bg-warning"></i>
-
-                                                            <div class="timeline-item">
-                                                                <span class="time"><i class="far fa-clock"></i> 27 mins ago</span>
-
-                                                                <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                                                                <div class="timeline-body">
-                                                                    Take me to your leader!
-                                                                    Switzerland is small and neutral!
-                                                                    We are more like Germany, ambitious and misunderstood!
-                                                                </div>
-                                                                <div class="timeline-footer">
-                                                                    <a href="#" class="btn btn-warning btn-flat btn-sm">View comment</a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END timeline item -->
-                                                        <!-- timeline time label -->
-                                                        <div class="time-label">
-                                                            <span class="bg-success">
-                                                                3 Jan. 2014
-                                                            </span>
-                                                        </div>
-                                                        <!-- /.timeline-label -->
-                                                        <!-- timeline item -->
-                                                        <div>
-                                                            <i class="fas fa-camera bg-purple"></i>
-
-                                                            <div class="timeline-item">
-                                                                <span class="time"><i class="far fa-clock"></i> 2 days ago</span>
-
-                                                                <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                                                                <div class="timeline-body">
-                                                                    <img src="http://placehold.it/150x100" alt="...">
-                                                                    <img src="http://placehold.it/150x100" alt="...">
-                                                                    <img src="http://placehold.it/150x100" alt="...">
-                                                                    <img src="http://placehold.it/150x100" alt="...">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- END timeline item -->
-                                                        <div>
-                                                            <i class="far fa-clock bg-gray"></i>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- /.tab-pane -->
+                                                    <!-- END timeline item -->
+                                                    <!-- timeline item -->
+                                                    <div>
+                                                        <i class="fas fa-user bg-info"></i>
 
-                                                <div class="tab-pane" id="settings">
-                                                    <form class="form-horizontal">
-                                                        <div class="form-group row">
-                                                            <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                                        <div class="timeline-item">
+                                                            <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
+
+                                                            <h3 class="timeline-header border-0">
+                                                                <a href="#">Sarah Young</a> accepted your friend request
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+                                                    <!-- END timeline item -->
+                                                    <!-- timeline item -->
+                                                    <div>
+                                                        <i class="fas fa-comments bg-warning"></i>
+
+                                                        <div class="timeline-item">
+                                                            <span class="time"><i class="far fa-clock"></i> 27 mins ago</span>
+
+                                                            <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+
+                                                            <div class="timeline-body">
+                                                                Take me to your leader!
+                                                                Switzerland is small and neutral!
+                                                                We are more like Germany, ambitious and misunderstood!
+                                                            </div>
+                                                            <div class="timeline-footer">
+                                                                <a href="#" class="btn btn-warning btn-flat btn-sm">View comment</a>
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                                    </div>
+                                                    <!-- END timeline item -->
+                                                    <!-- timeline time label -->
+                                                    <div class="time-label">
+                                                        <span class="bg-success">
+                                                            3 Jan. 2014
+                                                        </span>
+                                                    </div>
+                                                    <!-- /.timeline-label -->
+                                                    <!-- timeline item -->
+                                                    <div>
+                                                        <i class="fas fa-camera bg-purple"></i>
+
+                                                        <div class="timeline-item">
+                                                            <span class="time"><i class="far fa-clock"></i> 2 days ago</span>
+
+                                                            <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+
+                                                            <div class="timeline-body">
+                                                                <img src="http://placehold.it/150x100" alt="...">
+                                                                <img src="http://placehold.it/150x100" alt="...">
+                                                                <img src="http://placehold.it/150x100" alt="...">
+                                                                <img src="http://placehold.it/150x100" alt="...">
                                                             </div>
                                                         </div>
-                                                        <div class="form-group row">
-                                                            <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" class="form-control" id="inputName2" placeholder="Name">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-                                                            <div class="col-sm-10">
-                                                                <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-                                                            <div class="col-sm-10">
-                                                                <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="offset-sm-2 col-sm-10">
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group row">
-                                                            <div class="offset-sm-2 col-sm-10">
-                                                                <button type="submit" class="btn btn-danger">Submit</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
+                                                    </div>
+                                                    <!-- END timeline item -->
+                                                    <div>
+                                                        <i class="far fa-clock bg-gray"></i>
+                                                    </div>
                                                 </div>
-                                                <!-- /.tab-pane -->
                                             </div>
-                                            <!-- /.tab-content -->
-                                        </div><!-- /.card-body -->
-                                    </div>
-                                    <!-- /.nav-tabs-custom -->
+                                            <!-- /.tab-pane -->
+
+                                            <div class="tab-pane" id="settings">
+                                                <form class="form-horizontal">
+                                                    <div class="form-group row">
+                                                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control" id="inputName2" placeholder="Name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
+                                                        <div class="col-sm-10">
+                                                            <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="offset-sm-2 col-sm-10">
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="offset-sm-2 col-sm-10">
+                                                            <button type="submit" class="btn btn-danger">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- /.tab-pane -->
+                                        </div>
+                                        <!-- /.tab-content -->
+                                    </div><!-- /.card-body -->
                                 </div>
-                                <!-- /.col -->
+                                <!-- /.nav-tabs-custom -->
                             </div>
-                            <!-- /.row -->
-                        </div><!-- /.container-fluid -->
-                    </section>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </div><!-- /.container-fluid -->
+                </section>
             </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
         </div>
     </div>
-</table>
+</div>
 @section js{
     <script>
         $(document).ready(function () {
             $(".dropdown-item").click(async function () {
-                                debugger
-                                let userid = $(this).attr("iduser")
+                debugger
+                let userid = $(this).attr("iduser")
                 let tinhtrang = $(this).attr("tinhtrang")
                 let trangthai = await API.capNhatTinhTrangTK(userid, tinhtrang)
                 tinhtrang = parseInt(tinhtrang)
@@ -363,18 +365,18 @@
                 }
             })
         })
-    </script>    
+    </script>
     <script>
         $(document).ready(function () {
             debugger
             $(".xoaTK").click(async function () {
-                
+
                 let userid = $(this).attr("iduser")
                 let xoatk = await API.xoaTaiKhoan(userid)
                 $(this).parent().parent().parent().remove()
             })
             $(".thongtin").click(async function () {
-                let userid = $(this).attr("iduser")                
+                let userid = $(this).attr("iduser")
                 let thongtin = await API.layTTTaiKhoan(userid)
                 $(".tenTK").text(thongtin.HovaTen);
                 $(".emailTK").text(thongtin.Mail);
@@ -382,6 +384,6 @@
                 $(".tinhtrang2").text(tinhTrangTK(thongtin.TinhTrang));
             })
         })
-       
+
     </script>
 }

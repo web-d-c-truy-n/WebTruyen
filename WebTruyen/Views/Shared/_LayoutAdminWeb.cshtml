@@ -181,7 +181,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
-                        <li class="nav-item">
+                        <li class="nav-item" id="dashboard">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
@@ -280,17 +280,17 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="@Url.Action("QLTaiKhoan","AdminWeb")" class="nav-link">
+                                    <a href="#" class="nav-link" id="QLTaiKhoan">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Quản lý tài khoản</p>
                                     </a>
-                                </li>                            
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <p id="dangxuat">Đăng xuất</p>
-                            </a>                          
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -300,7 +300,7 @@
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="content-wrapper" id="body">
             @RenderBody()
         </div>
         <!-- /.content-wrapper -->
@@ -318,6 +318,9 @@
 
         <!-- /.control-sidebar -->
         <!--JS Admin-->
+        <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>        
         <script src="~/Asset/Admin/plugins/jquery/jquery.min.js"></script>
         <script src="~/Asset/Admin/plugins/jquery-ui/jquery-ui.min.js"></script>
         <script src="~/Asset/Admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

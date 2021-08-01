@@ -24,10 +24,13 @@ namespace WebTruyen.Controllers
                 .OrderByDescending(x => x.LuotThich).Take(6).ToArray();
             return View();
         }
-        public ActionResult theLoai()
+        public ActionResult theLoai(string id)
         {
-            ViewBag.Message = "Your application description page.";
-            return View();
+            string[] MaLoai = id.Split('-');
+            ViewBag.MaLoai = MaLoai[MaLoai.Length - 1];
+            ViewBag.truyenYeuThich = db.vTruyens.Where(x => !x.TamAn && (x.DaDuyet ?? false) && !(x.Khoa ?? false))
+                .OrderByDescending(x => x.LuotThich).Take(6).ToArray();
+            return View("Index");
         }
         public ActionResult Contact()
         {
@@ -49,6 +52,21 @@ namespace WebTruyen.Controllers
             //    });
             //}
             //db.SaveChanges();
+            //for (int i = 0; i<=100; i++)
+            //{
+            //    int sdt = 0123456789;
+            //    TaiKhoan taiKhoan = new TaiKhoan()
+            //    {
+            //        HovaTen = Faker.Name.FullName(),
+            //        SDT = (sdt+i)+"",
+            //        Mail = Faker.Name.First().ToLower()+i+"@gmail.com",
+            //        MatKhau = Commons.MD5("123456"),
+            //        TinhTrang = 0,
+            //        NgayTao = DateTime.Now
+            //    };
+            //    db.TaiKhoans.Add(taiKhoan);
+            //    db.SaveChanges();
+            //}            
             return View();
         }
 

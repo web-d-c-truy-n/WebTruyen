@@ -108,9 +108,8 @@
     dsTaiKhoan: async function (page, pagesize) {
         let result = null
         await $.ajax({
-            type: "POST",
-            url: '/AdminWeb/dsTaiKhoan',
-            data: JSON.stringify({ page: page, pagesize: pagesize }),
+            type: "GET",
+            url: '/AdminWeb/dsTaiKhoan?page=' + page + "&pagesize=" + pagesize,
             dataType: "json",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
@@ -275,10 +274,16 @@
         })
         return result
     },
-    XuatCacTruyenIndex: async function (page, pagesize) {
-        debugger
+    XuatCacTruyenIndex: async function (page, pagesize) {        
         let result = null
         await $.get("/Home/XuatCacTruyenIndex?page=" + page + "&pagesize=" + pagesize, function (data) {
+            result = data
+        })
+        return result
+    },
+    XuatCacTruyenTheLoai: async function (page, pagesize, maLoai) {
+        let result = null
+        await $.get("/Home/XuatCacTruyenTheLoai?page=" + page + "&pagesize=" + pagesize + "&maLoai="+maLoai, function (data) {
             result = data
         })
         return result
