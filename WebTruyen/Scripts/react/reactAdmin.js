@@ -18,71 +18,71 @@ class Pagination extends React.Component {
         if (page == 1) {
             if (pagesize == 1) {
                 html = (<ul class="pagination justify-content-end">
-                    <li class="page-item active"><a class="page-link" href="#">{page}</a></li>
+                    <li class="page-item active"><a class="page-link" href="##">{page}</a></li>
                 </ul>)
             } else if (pagesize == 2) {
                 html = (<ul class="pagination justify-content-end">
-                    <li class="page-item active"><a class="page-link" href="#">{page}</a></li>
-                    <li class="page-item" onClick={() => this.pageClick(page+1, this.props.fpageClick)}><a class="page-link" href="#">{page + 1}</a></li>
+                    <li class="page-item active"><a class="page-link" href="##">{page}</a></li>
+                    <li class="page-item" onClick={() => this.pageClick(page+1, this.props.fpageClick)}><a class="page-link" href="##">{page + 1}</a></li>
                 </ul>)
             } else if (pagesize == 3) {
                 html = (<ul class="pagination justify-content-end">
-                    <li class="page-item active" ><a class="page-link" href="#">{page}</a></li>
-                    <li class="page-item" onClick={() => this.pageClick(page +1, this.props.fpageClick)}><a class="page-link" href="#">{page + 1}</a></li>
-                    <li class="page-item" onClick={() => this.pageClick(page +2, this.props.fpageClick)}><a class="page-link" href="#">{page + 2}</a></li>
+                    <li class="page-item active" ><a class="page-link" href="##">{page}</a></li>
+                    <li class="page-item" onClick={() => this.pageClick(page +1, this.props.fpageClick)}><a class="page-link" href="##">{page + 1}</a></li>
+                    <li class="page-item" onClick={() => this.pageClick(page +2, this.props.fpageClick)}><a class="page-link" href="##">{page + 2}</a></li>
                 </ul>)
             } else if (pagesize > 3) {
                 html = (<ul class="pagination justify-content-end">
-                    <li class="page-item active"><a class="page-link" href="#">{page}</a></li>
-                    <li class="page-item" onClick={() => this.pageClick(page + 1, this.props.fpageClick)}><a class="page-link" href="#">{page + 1}</a></li>
-                    <li class="page-item" onClick={() => this.pageClick(page + 2, this.props.fpageClick)}><a class="page-link" href="#">{page + 2}</a></li>
-                    <li class="page-item" onClick={() => this.pageClick(page + 1, this.props.fpageClick)}><a class="page-link" href="#">Next</a></li>
+                    <li class="page-item active"><a class="page-link" href="##">{page}</a></li>
+                    <li class="page-item" onClick={() => this.pageClick(page + 1, this.props.fpageClick)}><a class="page-link" href="##">{page + 1}</a></li>
+                    <li class="page-item" onClick={() => this.pageClick(page + 2, this.props.fpageClick)}><a class="page-link" href="##">{page + 2}</a></li>
+                    <li class="page-item" onClick={() => this.pageClick(page + 1, this.props.fpageClick)}><a class="page-link" href="##">Next</a></li>
                 </ul>)
             }
         } else if (page == pagesize) {
             if (pagesize == 2) {
                 html = (<ul class="pagination justify-content-end">
-                    <li class="page-item" onClick={() => this.pageClick(page - 1, this.props.fpageClick)}><a class="page-link" href="#">{page - 1}</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">{page}</a></li>
+                    <li class="page-item" onClick={() => this.pageClick(page - 1, this.props.fpageClick)}><a class="page-link" href="##">{page - 1}</a></li>
+                    <li class="page-item active"><a class="page-link" href="##">{page}</a></li>
                 </ul>)
             } else if (pagesize == 3) {
                 html = (<ul class="pagination justify-content-end">
-                    <li class="page-item" onClick={() => this.pageClick(page - 2, this.props.fpageClick)}><a class="page-link" href="#">{page - 2}</a></li>
-                    <li class="page-item" onClick={() => this.pageClick(page - 1, this.props.fpageClick)}><a class="page-link" href="#">{page - 1}</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">{page}</a></li>
+                    <li class="page-item" onClick={() => this.pageClick(page - 2, this.props.fpageClick)}><a class="page-link" href="##">{page - 2}</a></li>
+                    <li class="page-item" onClick={() => this.pageClick(page - 1, this.props.fpageClick)}><a class="page-link" href="##">{page - 1}</a></li>
+                    <li class="page-item active"><a class="page-link" href="##">{page}</a></li>
                 </ul>)
             } else if (pagesize > 3) {
                 html = (<ul class="pagination justify-content-end">
-                    <li class="page-item" onClick={() => this.pageClick(page -1, this.props.fpageClick)}><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item" onClick={() => this.pageClick(page -2, this.props.fpageClick)}><a class="page-link" href="#">{page - 2}</a></li>
-                    <li class="page-item" onClick={() => this.pageClick(page - 1, this.props.fpageClick)}><a class="page-link" href="#">{page - 1}</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">{page}</a></li>
+                    <li class="page-item" onClick={() => this.pageClick(page -1, this.props.fpageClick)}><a class="page-link" href="##">Previous</a></li>
+                    <li class="page-item" onClick={() => this.pageClick(page -2, this.props.fpageClick)}><a class="page-link" href="##">{page - 2}</a></li>
+                    <li class="page-item" onClick={() => this.pageClick(page - 1, this.props.fpageClick)}><a class="page-link" href="##">{page - 1}</a></li>
+                    <li class="page-item active"><a class="page-link" href="##">{page}</a></li>
                 </ul>)
             }
         } else {
             if (page == 2) {
                 if (pagesize == 3) {
                     html = (<ul class="pagination justify-content-end">
-                        <li class="page-item" onClick={() => this.pageClick(page -1, this.props.fpageClick)}><a class="page-link" href="#">{page - 1}</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">{page}</a></li>
-                        <li class="page-item" onClick={() => this.pageClick(page + 1, this.props.fpageClick)}><a class="page-link" href="#">{page + 1}</a></li>
+                        <li class="page-item" onClick={() => this.pageClick(page -1, this.props.fpageClick)}><a class="page-link" href="##">{page - 1}</a></li>
+                        <li class="page-item active"><a class="page-link" href="##">{page}</a></li>
+                        <li class="page-item" onClick={() => this.pageClick(page + 1, this.props.fpageClick)}><a class="page-link" href="##">{page + 1}</a></li>
                     </ul>)
                 } else {
                     html = (<ul class="pagination justify-content-end">
-                        <li class="page-item" onClick={() => this.pageClick(page - 1, this.props.fpageClick)}><a class="page-link" href="#">{page - 1}</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">{page}</a></li>
-                        <li class="page-item" onClick={() => this.pageClick(page + 1, this.props.fpageClick)}><a class="page-link" href="#">{page + 1}</a></li>
-                        <li class="page-item" onClick={() => this.pageClick(page + 1, this.props.fpageClick)}><a class="page-link" href="#">Next</a></li>
+                        <li class="page-item" onClick={() => this.pageClick(page - 1, this.props.fpageClick)}><a class="page-link" href="##">{page - 1}</a></li>
+                        <li class="page-item active"><a class="page-link" href="##">{page}</a></li>
+                        <li class="page-item" onClick={() => this.pageClick(page + 1, this.props.fpageClick)}><a class="page-link" href="##">{page + 1}</a></li>
+                        <li class="page-item" onClick={() => this.pageClick(page + 1, this.props.fpageClick)}><a class="page-link" href="##">Next</a></li>
                     </ul>)
                 }
                 
             }else if (pagesize > 3) {
                 html = (<ul class="pagination justify-content-end">
-                    <li class="page-item" onClick={() => this.pageClick(page - 1, this.props.fpageClick)}><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item" onClick={() => this.pageClick(page - 1, this.props.fpageClick)}><a class="page-link" href="#">{page - 1}</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">{page}</a></li>
-                    <li class="page-item" onClick={() => this.pageClick(page + 1, this.props.fpageClick)}><a class="page-link" href="#">{page + 1}</a></li>
-                    <li class="page-item" onClick={() => this.pageClick(page + 1, this.props.fpageClick)}><a class="page-link" href="#">Next</a></li>
+                    <li class="page-item" onClick={() => this.pageClick(page - 1, this.props.fpageClick)}><a class="page-link" href="##">Previous</a></li>
+                    <li class="page-item" onClick={() => this.pageClick(page - 1, this.props.fpageClick)}><a class="page-link" href="##">{page - 1}</a></li>
+                    <li class="page-item active"><a class="page-link" href="##">{page}</a></li>
+                    <li class="page-item" onClick={() => this.pageClick(page + 1, this.props.fpageClick)}><a class="page-link" href="##">{page + 1}</a></li>
+                    <li class="page-item" onClick={() => this.pageClick(page + 1, this.props.fpageClick)}><a class="page-link" href="##">Next</a></li>
                 </ul>)
             }
             
@@ -105,7 +105,7 @@ class Index extends React.Component {
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="##" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             <div class="col-lg-3 col-6">
@@ -118,7 +118,7 @@ class Index extends React.Component {
                         <div class="icon">
                             <i class="ion ion-stats-bars"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="##" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             <div class="col-lg-3 col-6">
@@ -131,7 +131,7 @@ class Index extends React.Component {
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="##" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             <div class="col-lg-3 col-6">
@@ -144,7 +144,7 @@ class Index extends React.Component {
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="##" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
         </div>
@@ -153,10 +153,36 @@ class Index extends React.Component {
 }
 // quản lý tài khoản
 class QLTaiKhoan extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { username: 'qq' };
+    }
+    Edit = async (id, TinhTrang, page) => {                
+        let rs = API.capNhatTinhTrangTK(id, TinhTrang)
+        if (rs) {
+            this.dsTaiKhoan(page)
+        }
+    }
+    Delete = async (id,page) => {
+        let rs = API.xoaTaiKhoan(id)
+        if (rs) {
+            this.dsTaiKhoan(page)
+        }
+    }
+    Details = async (id) => {
+        let userid = id
+        let thongtin = await API.layTTTaiKhoan(userid)
+        $(".tenTK").text(thongtin.HovaTen);
+        $(".emailTK").text(thongtin.Mail);
+        $(".sdtTK").text(thongtin.SDT);
+        $(".tinhtrang2").text(tinhTrangTK(thongtin.TinhTrang));
+    }
     dsTaiKhoan = async (page) => {
         let data = await API.dsTaiKhoan(page, 10)
         let html = []
-        data.forEach(function (x) {
+        let dstk = this.dsTaiKhoan
+        let state = this.setState                
+        data.forEach((x) => {
             let html2 = <tr>
                 <td>{x.MaTK}</td>
                 <td>{x.HovaTen}</td>
@@ -170,29 +196,29 @@ class QLTaiKhoan extends React.Component {
                             Edit
                     </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#" iduser={x.MaTK} tinhtrang="1">Khóa 30 phút</a>
-                            <a class="dropdown-item" href="#" iduser={x.MaTK} tinhtrang="2">Khóa 60 phút</a>
-                            <a class="dropdown-item" href="#" iduser={x.MaTK} tinhtrang="3">Khóa vĩnh viễn</a>
-                            <a class="dropdown-item" href="#" iduser={x.MaTK} tinhtrang="0">Hoạtđộng</a>
+                            <a class="dropdown-item" href="##" onClick={() => this.Edit(x.MaTK, 1, page)}>Khóa 30 phút</a>
+                            <a class="dropdown-item" href="##" onClick={() => this.Edit(x.MaTK, 2, page)}>Khóa 60 phút</a>
+                            <a class="dropdown-item" href="##" onClick={() => this.Edit(x.MaTK, 3, page)}>Khóa vĩnh viễn</a>
+                            <a class="dropdown-item" href="##" onClick={() => this.Edit(x.MaTK, 0, page)}>Hoạtđộng</a>
                         </div>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-default thongtin" data-toggle="modal" data-target="#myModal" iduser="@item.MaTK">
-                            <a href="#">Details</a>
+                        <button type="button" class="btn btn-default thongtin" data-toggle="modal" data-target="#myModal" iduser="@item.MaTK" onClick={() => this.Details(x.MaTK)}>
+                            <a href="##">Details</a>
                         </button>
 
 
                     </div>
                     <div>
-                        <button type="button" class="btn btn-default xoaTK" iduser="@item.MaTK">
-                            <a href="#">Delete</a>
+                        <button type="button" class="btn btn-default xoaTK" onClick={() => this.Delete(x.MaTK, page)}>
+                            <a href="##">Delete</a>
                         </button>
                     </div>
                 </td>
             </tr>
             html.push(html2)
         })
-        ReactDOM.render(<QLTaiKhoan load={false} page={page} pagesize={parseInt(CountTK / 10)}>{html}</QLTaiKhoan>, document.getElementById('body'))
+        ReactDOM.render(<QLTaiKhoan load={false} page={page} pagesize={Math.ceil(CountTK / 10)}>{html}</QLTaiKhoan>, document.getElementById('body'))
     }
     load = async () => {
         this.dsTaiKhoan(1)
@@ -204,7 +230,7 @@ class QLTaiKhoan extends React.Component {
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Mã Tài Khoản</th>
+                        <th>Mã Tài Khoản {this.state.username}</th>
                         <th>Họ và Tên</th>
                         <th>Mail</th>
                         <th>Số điện thoại</th>
@@ -255,7 +281,7 @@ class QLTaiKhoan extends React.Component {
                                                         </li>
                                                     </ul>
 
-                                                    <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                                                    <a href="##" class="btn btn-primary btn-block"><b>Follow</b></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -263,13 +289,13 @@ class QLTaiKhoan extends React.Component {
                                             <div class="card">
                                                 <div class="card-header p-2">
                                                     <ul class="nav nav-pills">
-                                                        <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
+                                                        <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">Timeline</a></li>
                                                         <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="tab-content">
-                                                        <div class="tab-pane" id="timeline">
+                                                        <div class="tab-pane active" id="timeline">
                                                             <div class="timeline timeline-inverse">
                                                                 <div class="time-label">
                                                                     <span class="bg-danger">
@@ -280,7 +306,7 @@ class QLTaiKhoan extends React.Component {
                                                                     <i class="fas fa-envelope bg-primary"></i>
                                                                     <div class="timeline-item">
                                                                         <span class="time"><i class="far fa-clock"></i> 12:05</span>
-                                                                        <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
+                                                                        <h3 class="timeline-header"><a href="##">Support Team</a> sent you an email</h3>
                                                                         <div class="timeline-body">
                                                                             Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
                                                                             weebly ning heekya handango imeem plugg dopplr jibjab, movity
@@ -288,8 +314,8 @@ class QLTaiKhoan extends React.Component {
                                                                             quora plaxo ideeli hulu weebly balihoo...
                                                                         </div>
                                                                         <div class="timeline-footer">
-                                                                            <a href="#" class="btn btn-primary btn-sm">Read more</a>
-                                                                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                                                            <a href="##" class="btn btn-primary btn-sm">Read more</a>
+                                                                            <a href="##" class="btn btn-danger btn-sm">Delete</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -299,7 +325,7 @@ class QLTaiKhoan extends React.Component {
                                                                         <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
 
                                                                         <h3 class="timeline-header border-0">
-                                                                            <a href="#">Sarah Young</a> accepted your friend request
+                                                                            <a href="##">Sarah Young</a> accepted your friend request
                                                                         </h3>
                                                                     </div>
                                                                 </div>
@@ -307,14 +333,14 @@ class QLTaiKhoan extends React.Component {
                                                                     <i class="fas fa-comments bg-warning"></i>
                                                                     <div class="timeline-item">
                                                                         <span class="time"><i class="far fa-clock"></i> 27 mins ago</span>
-                                                                        <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
+                                                                        <h3 class="timeline-header"><a href="##">Jay White</a> commented on your post</h3>
                                                                         <div class="timeline-body">
                                                                             Take me to your leader!
                                                                             Switzerland is small and neutral!
                                                                             We are more like Germany, ambitious and misunderstood!
                                                                         </div>
                                                                         <div class="timeline-footer">
-                                                                            <a href="#" class="btn btn-warning btn-flat btn-sm">View comment</a>
+                                                                            <a href="##" class="btn btn-warning btn-flat btn-sm">View comment</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -329,7 +355,7 @@ class QLTaiKhoan extends React.Component {
                                                                     <div class="timeline-item">
                                                                         <span class="time"><i class="far fa-clock"></i> 2 days ago</span>
 
-                                                                        <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
+                                                                        <h3 class="timeline-header"><a href="##">Mina Lee</a> uploaded new photos</h3>
 
                                                                         <div class="timeline-body">
                                                                             <img src="http://placehold.it/150x100" alt="..."/>
@@ -380,7 +406,7 @@ class QLTaiKhoan extends React.Component {
                                                                     <div class="offset-sm-2 col-sm-10">
                                                                         <div class="checkbox">
                                                                             <label>
-                                                                                <input type="checkbox"/> I agree to the <a href="#">terms and conditions</a>
+                                                                                <input type="checkbox"/> I agree to the <a href="##">terms and conditions</a>
                                                                             </label>
                                                                         </div>
                                                                     </div>
