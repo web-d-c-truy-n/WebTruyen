@@ -182,7 +182,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
                         <li class="nav-item" id="dashboard">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -271,21 +271,12 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#" class="nav-link" id="QLTaiKhoan">
                                 <i class="fas fa-address-card"></i>
                                 <p>
-                                    Quản lý tài khoản
-                                    <i class="right fas fa-angle-left"></i>
+                                    Quản lý tài khoản                                    
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link" id="QLTaiKhoan">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Quản lý tài khoản</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -338,6 +329,16 @@
         <script src="~/Asset/Admin/dist/js/demo.js"></script>
         <script src="~/Asset/Admin/dist/js/pages/dashboard.js"></script>
         <script src="~/Scripts/getAPI.js"></script>
+        <script>
+            $(document).ready(function () {
+                $(".nav-link").click(function () {
+                    $(".nav-link").removeClass("active")
+                    $(this).addClass("active")                    
+                })
+                
+
+            })
+        </script>
         @RenderSection("js", required: false)
     </div>
 
