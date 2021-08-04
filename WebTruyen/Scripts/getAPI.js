@@ -305,6 +305,30 @@
         })
         return result
     },
+    DSTacGia: async function (page, pagesize) {
+        let result
+        await $.get("/AdminWeb/DSTacGia?page=" + page + "&pagesize=" + pagesize, function (data) {
+            result = data
+        })
+        return result
+    },
+    XoaTacGia: async function (MaTG) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/AdminWeb/XoaTacGia',
+            data: JSON.stringify({ MaTG: MaTG }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    }
 
 }
 
@@ -382,3 +406,32 @@ function locdau(obj) {
     eval(obj).value = str.toUpperCase();
 }
 
+var toast = {
+    success: function (msg, sec = 2000) {
+        let html = '<div class="alert alert-success" id="success" style="position: fixed; top: 0; right: 0; z-index:999999;display:none">' + msg + '</div >';
+        let element = $(html).prependTo("body");
+        $(element).fadeToggle(sec * (1/4), function () {
+            $(element).fadeToggle(sec * (3/4), function () {
+                $(element).remove()
+            })
+        })
+    },
+    warning: function (msg, sec = 2000) {
+        let html = '<div class="alert alert-warning" id="success" style="position: fixed; top: 0; right: 0; z-index:999999;display:none">' + msg + '</div >';
+        let element = $(html).prependTo("body");
+        $(element).fadeToggle(sec * (1 / 4), function () {
+            $(element).fadeToggle(sec * (3 / 4), function () {
+                $(element).remove()
+            })
+        })
+    },
+    error: function (msg, sec = 2000) {
+        let html = '<div class="alert alert-danger" id="success" style="position: fixed; top: 0; right: 0; z-index:999999;display:none">' + msg + '</div >';
+        let element = $(html).prependTo("body");
+        $(element).fadeToggle(sec * (1 / 4), function () {
+            $(element).fadeToggle(sec * (3 / 4), function () {
+                $(element).remove()
+            })
+        })
+    },
+}

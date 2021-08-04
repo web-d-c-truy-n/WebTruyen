@@ -19,6 +19,7 @@ namespace WebTruyen.Controllers
         public ActionResult Index()
         {
             ViewBag.CountTK = db.TaiKhoans.ToList().Count;
+            ViewBag.CountTG = db.TacGias.ToList().Count;
             return View();
         }
         public ActionResult ThemAdmin()
@@ -107,10 +108,19 @@ namespace WebTruyen.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
         #endregion
-        public ActionResult DSTacGia()
+        public ActionResult DSTacGia(int page, int pagesize)
         {
-            var listTacGia = new webtruyenptEntities().TacGias;
-            return View(listTacGia);
+            List<TacGia> taiKhoans = db.TacGias.OrderBy(x => x.MaTG).Skip((page - 1) * pagesize).Take(pagesize).ToList();
+            var data = taiKhoans.Select(x => new
+            {
+                x.MaTG,
+                x.ButDanh,
+                TenTK = x.TaiKhoan.HovaTen,
+                NgayDK = x.NgayDangKy.ToString("dd/MM/yyyy"),
+                x.VaiTro,
+                x.DaDuyet
+            });
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult XetDuyetTG(int id)
@@ -131,5 +141,21 @@ namespace WebTruyen.Controllers
             bool rs = Helper.Auth.SuaTk(taiKhoan);
             return Json(rs);
         }
+        [HttpPost]
+        public ActionResult XoaTacGia(int MaTG)
+        {
+            try
+            {
+                TacGia tacGia = db.TacGias.Find(MaTG);
+                db.TacGias.Remove(tacGia);
+                db.SaveChanges();
+                return Json(true);
+            }
+            catch(Exception e)
+            {
+                return Json(false);
+            }
+            
+        }                
     }
 }

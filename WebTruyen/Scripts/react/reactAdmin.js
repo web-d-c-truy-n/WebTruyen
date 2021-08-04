@@ -155,7 +155,6 @@ class Index extends React.Component {
 class QLTaiKhoan extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { username: 'qq' };
     }
     SuaTTTK = async () => {
         debugger
@@ -166,11 +165,7 @@ class QLTaiKhoan extends React.Component {
         let mk = $("#CapLaiMK").is(':checked') ? "1111" : null
         let rs = await API.CapNhatTKAdmin(MaTK, hoTen, Mail, mk, sdt)
         if (rs) {            
-            $("#success").text("Cập nhật thành công!")
-            $("body").find("#success").fadeToggle("5000", function () {
-                $("body").find("#success").fadeToggle()
-            })
-            
+            toast.success("Cập nhật thành công",4000)            
         }
     }
     Edit = async (id, TinhTrang, page) => {                
@@ -179,10 +174,13 @@ class QLTaiKhoan extends React.Component {
             this.dsTaiKhoan(page)
         }
     }
-    Delete = async (id,page) => {
-        let rs = API.xoaTaiKhoan(id)
+    Delete = async (id, page) => {
+        let cf = confirm("Bạn có muốn xóa tác giả này chứ!")
+        if (!cf) return
+        let rs = await API.xoaTaiKhoan(id)
         if (rs) {
             this.dsTaiKhoan(page)
+            toast.success("Xóa tài khoản thành công")
         }
     }
     Details = async (id) => {
@@ -213,7 +211,7 @@ class QLTaiKhoan extends React.Component {
                 <td>
                     <div class="dropdown">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            Edit
+                            <a href="##">Edit</a>
                     </button>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="##" onClick={() => this.Edit(x.MaTK, 1, page)}>Khóa 30 phút</a>
@@ -250,13 +248,13 @@ class QLTaiKhoan extends React.Component {
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Mã Tài Khoản {this.state.username}</th>
+                        <th>Mã Tài Khoản</th>
                         <th>Họ và Tên</th>
                         <th>Mail</th>
                         <th>Số điện thoại</th>
                         <th>Ngày tạo</th>
                         <th>Tình trạng</th>
-                        <th>wwww</th>
+                        <th></th>
                     </tr>        
                 </thead>
                 <tbody>
@@ -438,6 +436,118 @@ class QLTaiKhoan extends React.Component {
     }
 }
 
+class QLTacGia extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    SuaTTTK = async () => {
+        debugger
+        let MaTK = parseInt($("#MaTK").val())
+        let hoTen = $("input.tenTK").val();
+        let Mail = $("input.emailTK").val();
+        let sdt = $("input.sdtTK").val();
+        let mk = $("#CapLaiMK").is(':checked') ? "1111" : null
+        let rs = await API.CapNhatTKAdmin(MaTK, hoTen, Mail, mk, sdt)
+        if (rs) {
+            toast.success("Cập nhật thành công", 4000)
+        }
+    }
+    Duyet = async (id, page) => {
+        let rs = await API.XetDuyetTG(id)
+        if (rs) {
+            this.dsTacGia(page)
+        }
+    }
+    Delete = async (id, page) => {
+        debugger
+        let cf = confirm("Bạn có muốn xóa chứ?")
+        if (!cf) return
+        let rs = await API.XoaTacGia(parseInt(id))
+        if (rs) {
+            this.dsTacGia(page)
+            toast.success("Xóa thành công!")
+        } else {
+            toast.error("Xóa thất bại!")
+        }
+    }
+    Details = async (id) => {
+        let userid = id
+        let thongtin = await API.layTTTaiKhoan(userid)
+        $(".tenTK").text(thongtin.HovaTen);
+        $(".emailTK").text(thongtin.Mail);
+        $(".sdtTK").text(thongtin.SDT);
+        $(".tinhtrang2").text(tinhTrangTK(thongtin.TinhTrang));
+        $(".tenTK").val(thongtin.HovaTen);
+        $(".emailTK").val(thongtin.Mail);
+        $(".sdtTK").val(thongtin.SDT);
+        $("#MaTK").val(thongtin.MaTK)
+    }
+    dsTacGia = async (page) => {
+        let data = await API.DSTacGia(page, 10)
+        let html = []
+        data.forEach((x) => {
+            let html2 = <tr>
+                <td>{x.MaTG}</td>
+                <td>{x.ButDanh}</td>
+                <td>{x.TenTK}</td>
+                <td>{x.NgayDK}</td>
+                <td>{vaitroTg(x.VaiTro)}</td>
+                <td>{x.DaDuyet ? <input type="checkbox" checked disabled /> : <input type="checkbox" disabled />}</td>
+                <td>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <a href="##">Tùy chỉnh</a>
+                        </button>
+                        <div class="dropdown-menu">
+                            {x.DaDuyet?"":< a class="dropdown-item" href="##" onClick={() => this.Duyet(x.MaTG, page)}>Duyệt</a>}
+                            <a class="dropdown-item" href="##" onClick={() => this.Edit(x.MaTG, true, page)}>Khóa</a>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-default thongtin" data-toggle="modal" data-target="#myModal" onClick={() => this.Details(x.MaTG)}>
+                            <a href="##">Details</a>
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-default xoaTK" onClick={() => this.Delete(x.MaTG, page)}>
+                            <a href="##">Delete</a>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            html.push(html2)
+        })
+        ReactDOM.render(<QLTacGia load={false} page={page} pagesize={Math.ceil(CountTG / 10)}>{html}</QLTacGia>, document.getElementById('body'))
+    }
+    load = async () => {
+        this.dsTacGia(1)
+    }
+    render() {
+        return (<Commons>
+            {this.props.load ? this.load() : ""}
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Mã Tác Giả</th>
+                        <th>Bút Danh</th>
+                        <th>Tên Tài Khoản</th>
+                        <th>Ngày Đăng ký</th>
+                        <th>Vai trò</th>
+                        <th>Xét duyệt</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.props.children}
+                </tbody>
+                <tfoot>
+                    <Pagination page={this.props.page} pagesize={this.props.pagesize} fpageClick={this.dsTaiKhoan} />
+                </tfoot>
+            </table>
+        </Commons>)
+    }
+}
+
 $(document).ready(function () {
     ReactDOM.render(<Index />, document.getElementById('body'))
     $("#QLTaiKhoan").click(function () {
@@ -445,5 +555,8 @@ $(document).ready(function () {
     })
     $("#dashboard").click(function () {
         ReactDOM.render(<Index />, document.getElementById('body'))
+    })
+    $("#TacGia").click(function () {
+        ReactDOM.render(<QLTacGia load={true} />, document.getElementById('body'))
     })
 })
