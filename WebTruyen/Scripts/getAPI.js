@@ -287,7 +287,24 @@
             result = data
         })
         return result
-    }
+    },
+    CapNhatTKAdmin: async function (MaTK,HovaTen, Mail, MatKhau, SDT) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/AdminWeb/CapNhatTKAdmin',
+            data: JSON.stringify({ MaTK: MaTK, HovaTen: HovaTen, Mail: Mail, MatKhau: MatKhau, SDT: SDT }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
 
 }
 
@@ -364,3 +381,4 @@ function locdau(obj) {
     //cắt bỏ ký tự - ở đầu và cuối chuỗi 
     eval(obj).value = str.toUpperCase();
 }
+

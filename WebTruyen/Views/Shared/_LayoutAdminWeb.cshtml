@@ -19,6 +19,9 @@
     @RenderSection("css", required: false)
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+    <div class="alert alert-success" id="success" style="position: absolute; top: 0; right: 0; z-index:999999; display:none">
+        
+    </div>
     <div class="wrapper">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -180,7 +183,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
-                    with font-awesome or any other icon font library -->
+                        with font-awesome or any other icon font library -->
                         <li class="nav-item" id="dashboard">
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -274,7 +277,7 @@
                             <a href="#" class="nav-link" id="QLTaiKhoan">
                                 <i class="fas fa-address-card"></i>
                                 <p>
-                                    Quản lý tài khoản                                    
+                                    Quản lý tài khoản
                                 </p>
                             </a>
                         </li>
@@ -311,7 +314,7 @@
         <!--JS Admin-->
         <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
         <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>        
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
         <script src="~/Asset/Admin/plugins/jquery/jquery.min.js"></script>
         <script src="~/Asset/Admin/plugins/jquery-ui/jquery-ui.min.js"></script>
         <script src="~/Asset/Admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -333,9 +336,9 @@
             $(document).ready(function () {
                 $(".nav-link").click(function () {
                     $(".nav-link").removeClass("active")
-                    $(this).addClass("active")                    
+                    $(this).addClass("active")
                 })
-                
+
 
             })
         </script>

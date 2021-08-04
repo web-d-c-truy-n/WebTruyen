@@ -34,10 +34,10 @@ namespace WebTruyen.Models
         public virtual ICollection<NhomTG> NhomTGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuanLyHinhAnh> QuanLyHinhAnhs { get; set; }
-        public virtual TaiKhoan TaiKhoan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ThanhVienNhom> ThanhVienNhoms { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TruyenTacGia> TruyenTacGias { get; set; }
+        public virtual TaiKhoan TaiKhoan { get; set; }
     }
 }

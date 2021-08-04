@@ -18,7 +18,7 @@ namespace WebTruyen.Models
         public int MaTruyen { get; set; }
         public System.DateTime Ngaythich { get; set; }
     
-        public virtual TaiKhoan TaiKhoan { get; set; }
         public virtual Truyen Truyen { get; set; }
+        public virtual TaiKhoan TaiKhoan { get; set; }
     }
 }

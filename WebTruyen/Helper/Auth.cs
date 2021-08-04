@@ -64,5 +64,31 @@ namespace WebTruyen.Helper
             else
                 return null;
         }
+
+        public static bool SuaTk(TaiKhoan taiKhoan)
+        {
+            try
+            {
+                webtruyenptEntities db = new webtruyenptEntities();
+                TaiKhoan taiKhoan1 = db.TaiKhoans.Find(taiKhoan.MaTK);
+                taiKhoan1.HovaTen = taiKhoan.HovaTen;
+                taiKhoan1.Mail = taiKhoan.Mail;
+                taiKhoan1.SDT = taiKhoan.SDT;
+                if (taiKhoan.MatKhau != null)
+                {
+                    taiKhoan1.MatKhau = Commons.MD5(taiKhoan.MatKhau);
+                }
+                if (taiKhoan.Avatar != null)
+                {
+                    taiKhoan1.Avatar = taiKhoan.Avatar;
+                }
+                db.SaveChanges();
+                return true;
+            }catch (Exception e)
+            {
+                return false;
+            }
+            
+        }
     }
 }

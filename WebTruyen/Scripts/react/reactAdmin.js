@@ -157,6 +157,22 @@ class QLTaiKhoan extends React.Component {
         super(props);
         this.state = { username: 'qq' };
     }
+    SuaTTTK = async () => {
+        debugger
+        let MaTK = parseInt($("#MaTK").val())
+        let hoTen =  $("input.tenTK").val();
+        let Mail = $("input.emailTK").val();
+        let sdt = $("input.sdtTK").val();
+        let mk = $("#CapLaiMK").is(':checked') ? "1111" : null
+        let rs = await API.CapNhatTKAdmin(MaTK, hoTen, Mail, mk, sdt)
+        if (rs) {            
+            $("#success").text("Cập nhật thành công!")
+            $("body").find("#success").fadeToggle("5000", function () {
+                $("body").find("#success").fadeToggle()
+            })
+            
+        }
+    }
     Edit = async (id, TinhTrang, page) => {                
         let rs = API.capNhatTinhTrangTK(id, TinhTrang)
         if (rs) {
@@ -171,7 +187,7 @@ class QLTaiKhoan extends React.Component {
     }
     Details = async (id) => {
         let userid = id
-        let thongtin = await API.layTTTaiKhoan(userid)
+        let thongtin = await API.layTTTaiKhoan(userid)        
         $(".tenTK").text(thongtin.HovaTen);
         $(".emailTK").text(thongtin.Mail);
         $(".sdtTK").text(thongtin.SDT);
@@ -179,6 +195,7 @@ class QLTaiKhoan extends React.Component {
         $(".tenTK").val(thongtin.HovaTen);
         $(".emailTK").val(thongtin.Mail);
         $(".sdtTK").val(thongtin.SDT);
+        $("#MaTK").val(thongtin.MaTK)
     }
     dsTaiKhoan = async (page) => {
         let data = await API.dsTaiKhoan(page, 10)
@@ -206,7 +223,7 @@ class QLTaiKhoan extends React.Component {
                         </div>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-default thongtin" data-toggle="modal" data-target="#myModal" iduser="@item.MaTK" onClick={() => this.Details(x.MaTK)}>
+                        <button type="button" class="btn btn-default thongtin" data-toggle="modal" data-target="#myModal" onClick={() => this.Details(x.MaTK)}>
                             <a href="##">Details</a>
                         </button>
 
@@ -254,9 +271,10 @@ class QLTaiKhoan extends React.Component {
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">Thông tin tài khoản</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <button type="button" class="close" data-dismiss="modal" onClick={() => this.dsTaiKhoan(this.props.page)}>&times;</button>
                         </div>
                         <div class="modal-body">
+                            <input type="hidden" id="MaTK" />
                             <section class="content">
                                 <div class="container-fluid">
                                     <div class="row">
@@ -267,9 +285,7 @@ class QLTaiKhoan extends React.Component {
                                                         <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture"/>
                                                     </div>
 
-                                                    <h3 class="profile-username text-center tenTK">Nina Mcintire</h3>
-
-                                                    <p class="text-muted text-center ">Software Engineer</p>
+                                                    <h3 class="profile-username text-center tenTK">Nina Mcintire</h3>                                                    
 
                                                     <ul class="list-group list-group-unbordered mb-3">
                                                         <li class="list-group-item">
@@ -280,11 +296,8 @@ class QLTaiKhoan extends React.Component {
                                                         </li>
                                                         <li class="list-group-item">
                                                             <b>Tình trạng</b> <a class="float-right tinhtrang2">13,287</a>
-
                                                         </li>
-                                                    </ul>
-
-                                                    <a href="##" class="btn btn-primary btn-block"><b>Follow</b></a>
+                                                    </ul>                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -374,7 +387,7 @@ class QLTaiKhoan extends React.Component {
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane" id="settings">
-                                                            <form class="form-horizontal">
+                                                            <div class="form-horizontal">
                                                                 <div class="form-group row">
                                                                     <label for="inputName" class="col-sm-2 col-form-label">Tên tài khoản</label>
                                                                     <div class="col-sm-10">
@@ -394,9 +407,18 @@ class QLTaiKhoan extends React.Component {
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row checkbox">
-                                                                    <label for="inputExperience" class="col-sm-2 col-form-label"><input type="checkbox" value=""/> Cấp lại pass</label>
-                                                                </div>                                                                
-                                                            </form>
+                                                                    <label for="inputName2" class="col-sm-2 col-form-label"></label>
+                                                                    <div class="col-sm-10">
+                                                                        <label for="inputExperience" class="col-sm-12 col-form-label" style={{ width: "100%" }}><input type="checkbox" value="" id="CapLaiMK" /> Cấp lại pass</label>
+                                                                    </div>                                                                    
+                                                                </div>
+                                                                <div class="form-group row checkbox">
+                                                                    <label for="inputName2" class="col-sm-2 col-form-label"></label>
+                                                                    <div class="col-sm-10">
+                                                                        <button class="btn btn-danger" onClick={this.SuaTTTK}>Sửa</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -407,7 +429,7 @@ class QLTaiKhoan extends React.Component {
                             </section>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={() => this.dsTaiKhoan(this.props.page)}>Close</button>
                         </div>
                     </div>
                 </div>

@@ -32,7 +32,6 @@ namespace WebTruyen.Models
         public virtual DbSet<NhomTG> NhomTGs { get; set; }
         public virtual DbSet<QuanLyHinhAnh> QuanLyHinhAnhs { get; set; }
         public virtual DbSet<TacGia> TacGias { get; set; }
-        public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<ThanhVienNhom> ThanhVienNhoms { get; set; }
         public virtual DbSet<TheLoai> TheLoais { get; set; }
         public virtual DbSet<TheodoiTG> TheodoiTGs { get; set; }
@@ -42,5 +41,6 @@ namespace WebTruyen.Models
         public virtual DbSet<vTruyen> vTruyens { get; set; }
         public virtual DbSet<BinhLuan> BinhLuans { get; set; }
         public virtual DbSet<Truyen> Truyens { get; set; }
+        public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
     }
 }

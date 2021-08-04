@@ -17,12 +17,12 @@ namespace WebTruyen.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TaiKhoan()
         {
+            this.BinhLuans = new HashSet<BinhLuan>();
             this.Luotthiches = new HashSet<Luotthich>();
             this.Luotxems = new HashSet<Luotxem>();
             this.TacGias = new HashSet<TacGia>();
             this.TheodoiTGs = new HashSet<TheodoiTG>();
             this.ThongBaos = new HashSet<ThongBao>();
-            this.BinhLuans = new HashSet<BinhLuan>();
         }
     
         public int MaTK { get; set; }
@@ -33,8 +33,10 @@ namespace WebTruyen.Models
         public System.DateTime NgayTao { get; set; }
         public int TinhTrang { get; set; }
         public Nullable<System.DateTime> NgayKhoa { get; set; }
-        public byte[] Avatar { get; set; }
+        public string Avatar { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BinhLuan> BinhLuans { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Luotthich> Luotthiches { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -45,7 +47,5 @@ namespace WebTruyen.Models
         public virtual ICollection<TheodoiTG> TheodoiTGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ThongBao> ThongBaos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BinhLuan> BinhLuans { get; set; }
     }
 }
