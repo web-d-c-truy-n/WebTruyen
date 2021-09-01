@@ -559,7 +559,7 @@
                                 <div class="c-modal_item" id="dadangnhap">
                                     <!-- Button trigger modal -->
                                     <a href="#" data-toggle="modal" data-target="#form-login" class="btn-active-modal">Đăng nhập</a>
-                                    <a href="#" data-toggle="modal" data-target="#form-sign-up" class="btn-active-modal">Đăng ký</a>
+                                    <a href="#" data-toggle="modal" data-target="#form-sign-up" class="btn-active-modal" onclick="getCaptCha">Đăng ký</a>
                                 </div>
                                 <div class="c-modal_item" id="dangxuat" style="display:none">
                                     <!-- Button trigger modal -->
@@ -725,6 +725,7 @@
 
                             </p>
                             <input type="hidden" name="redirect_to" value="">
+                            <img id="captcha" />
                             <p class="submit">
                                 <input type="button" name="wp-submit" class="button button-primary button-large wp-submit" value="Register" id="dangki">
                             </p>
@@ -938,6 +939,10 @@
             })
 
         })
+        async function getCaptCha() {
+            let img = await API.getCaptCha();
+            $("#captcha").attr("src", img)
+        }
     </script>
 </body>
 </html>

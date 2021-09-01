@@ -166,6 +166,7 @@
     </Compile>
     <Compile Include="Helper\AdminAuth.cs" />
     <Compile Include="Helper\Auth.cs" />
+    <Compile Include="Helper\Captcha.cs" />
     <Compile Include="Helper\Commons.cs" />
     <Compile Include="Helper\Login.cs" />
     <Compile Include="Helper\LoginAdmin.cs" />

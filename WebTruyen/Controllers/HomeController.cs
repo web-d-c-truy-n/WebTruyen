@@ -102,5 +102,12 @@ namespace WebTruyen.Controllers
                 .OrderByDescending(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray().Select(x => new { truyen = x, Chuong = db.ChuongTruyens.Where(c => c.MaTruyen == x.MaTruyen).OrderByDescending(c3 => c3.SoChuong).Select(c2 => new { c2.SoChuong, c2.TenChuong }) });
             return Json(truyens.ToArray(), JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult getCaptcha()
+        {
+            Captcha captcha = new Captcha();
+            Session["Captcha"] = captcha.captchaText;
+            return Json(captcha.Img());
+        }
     }
 }

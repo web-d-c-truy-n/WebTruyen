@@ -328,7 +328,14 @@
             }
         })
         return result
-    }
+    },
+    getCaptcha: async function () {
+        let result
+        await $.get("/Home/getCaptcha", function (data) {
+            result = data
+        })
+        return result
+    },
 
 }
 
