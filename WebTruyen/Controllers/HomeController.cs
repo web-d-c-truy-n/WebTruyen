@@ -43,7 +43,7 @@ namespace WebTruyen.Controllers
         {
             TheLoai theLoai = db.TheLoais.Find(17);
             theLoai.TenLoai = "Đam mỹ";
-            theLoai.sua(db);
+            theLoai.sua(db);                        
             return View();
         }
 

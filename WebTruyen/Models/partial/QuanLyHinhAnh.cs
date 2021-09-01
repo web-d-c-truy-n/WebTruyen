@@ -7,28 +7,14 @@ using System.Web;
 
 namespace WebTruyen.Models
 {
-    public partial class TheLoai 
+    public partial class QuanLyHinhAnh
     {
-        
         public void them()
         {
             webtruyenptEntities db = new webtruyenptEntities();
             try
             {
-                this.NgayTao = DateTime.Now;
-                db.TheLoais.Add(this);
-                db.SaveChanges();
-            }catch(DbUpdateException ex)
-            {
-                SqlException Ex = ex.GetBaseException() as SqlException;
-                throw Ex;
-            }
-        }
-        public void xoa(webtruyenptEntities db)
-        {
-            try
-            {
-                db.TheLoais.Remove(this);
+                db.QuanLyHinhAnhs.Add(this);
                 db.SaveChanges();
             }
             catch (DbUpdateException ex)
@@ -37,7 +23,6 @@ namespace WebTruyen.Models
                 throw Ex;
             }
         }
-
         public void sua(webtruyenptEntities db)
         {
             try
@@ -50,10 +35,18 @@ namespace WebTruyen.Models
                 throw Ex;
             }
         }
-        public static List<TheLoai> timkiem (string timkiem)
+        public void xoa(webtruyenptEntities db)
         {
-            webtruyenptEntities db = new webtruyenptEntities();
-            return db.Database.SqlQuery<TheLoai>($"TIMKIEM_THELOAI N'{timkiem}'").ToList();
+            try
+            {
+                db.QuanLyHinhAnhs.Remove(this);
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
         }
     }
 }

@@ -7,17 +7,15 @@ using System.Web;
 
 namespace WebTruyen.Models
 {
-    public partial class Truyen
+    public partial class ChuongTruyen
     {
         public void them()
         {
             webtruyenptEntities db = new webtruyenptEntities();
             try
             {
-                this.NgayTao = DateTime.Now;
-                db.Truyens.Add(this);
+                db.ChuongTruyens.Add(this);
                 db.SaveChanges();
-                guiThongBao();
             }
             catch (DbUpdateException ex)
             {
@@ -41,7 +39,7 @@ namespace WebTruyen.Models
         {
             try
             {
-                db.Truyens.Remove(this);
+                db.ChuongTruyens.Remove(this);
                 db.SaveChanges();
             }
             catch (DbUpdateException ex)
@@ -50,34 +48,22 @@ namespace WebTruyen.Models
                 throw Ex;
             }
         }
-        
-        public static List<Truyen> timKiem(string timKiem)
-        {
-            webtruyenptEntities db = new webtruyenptEntities();
-            return db.Database.SqlQuery<Truyen>($"TIMKIEM_Truyen N'{timKiem}'").ToList();
-        }
-
-        private void guiThongBao()
+        public void guithongbao()
         {
             try
             {
-                int maTG = Helper.Auth.tacGia().MaTG;
-                string tenTG = Helper.Auth.tacGia().ButDanh;
-                // lấy danh sách người theo doi tác giả này
                 webtruyenptEntities db = new webtruyenptEntities();
-                List<TheodoiTG> theodoiTGs = db.TheodoiTGs.Where(x => x.MaTG == maTG).ToList();
-                // sau đó gửi thông báo cho từng người bằng cách lưu vào csdl
-                foreach (TheodoiTG theodoiTG in theodoiTGs)
+                List<ChuongTruyen> chuongtruyen = db.ChuongTruyens.Where(x => x.MaTruyen == this.MaTruyen).ToList();
+                foreach (ChuongTruyen chuongTruyen in chuongtruyen)
                 {
-                    db.ThongBaos.Add(new ThongBao() { MaTK = theodoiTG.MaTK, NgayThongBao = DateTime.Now, DaXem = false, ThongBao1 = $"Tác giả {tenTG} đã lên sóng truyện {this.TenTruyen}" });
+                    db.ThongBaos.Add(new ThongBao() {MaTK=chuongTruyen.MaTruyen,NgayThongBao = DateTime.Now, DaXem = false, ThongBao1 = $"Truyện")
                 }
-                db.SaveChanges();
             }
             catch (DbUpdateException ex)
             {
                 SqlException Ex = ex.GetBaseException() as SqlException;
                 throw Ex;
-            }            
+            }
         }
     }
 }

@@ -203,6 +203,8 @@
     <Compile Include="Models\NhomTG.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\partial\ChuongTruyen.cs" />
+    <Compile Include="Models\partial\QuanLyHinhAnh.cs" />
     <Compile Include="Models\partial\TheLoai.cs" />
     <Compile Include="Models\partial\Truyen.cs" />
     <Compile Include="Models\QuanLyHinhAnh.cs">
