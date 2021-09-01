@@ -41,32 +41,9 @@ namespace WebTruyen.Controllers
 
         public ActionResult testAPT()
         {
-            //TheLoai theLoai = new TheLoai();
-            //string[] tl = { "Xuyên không", "Tu Tiên", "Lãng Mạn", "Tình Cảm", "Truyện Ngắn", "Ngôn Tình" };
-            //foreach (string t in tl)
-            //{
-            //    db.TheLoais.Add(new TheLoai()
-            //    {
-            //        TenLoai = t,
-            //        NgayTao = DateTime.Now,
-            //    });
-            //}
-            //db.SaveChanges();
-            //for (int i = 0; i<=100; i++)
-            //{
-            //    int sdt = 0123456789;
-            //    TaiKhoan taiKhoan = new TaiKhoan()
-            //    {
-            //        HovaTen = Faker.Name.FullName(),
-            //        SDT = (sdt+i)+"",
-            //        Mail = Faker.Name.First().ToLower()+i+"@gmail.com",
-            //        MatKhau = Commons.MD5("123456"),
-            //        TinhTrang = 0,
-            //        NgayTao = DateTime.Now
-            //    };
-            //    db.TaiKhoans.Add(taiKhoan);
-            //    db.SaveChanges();
-            //}            
+            TheLoai theLoai = db.TheLoais.Find(17);
+            theLoai.TenLoai = "Đam mỹ";
+            theLoai.sua(db);
             return View();
         }
 

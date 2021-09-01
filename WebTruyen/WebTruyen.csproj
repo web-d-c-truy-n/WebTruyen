@@ -203,6 +203,8 @@
     <Compile Include="Models\NhomTG.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\partial\TheLoai.cs" />
+    <Compile Include="Models\partial\Truyen.cs" />
     <Compile Include="Models\QuanLyHinhAnh.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -2825,7 +2827,10 @@
     <Content Include="Asset\Web\wp-content\themes\madara\js\smoothscroll.js" />
     <Content Include="Asset\Web\wp-content\themes\madara\js\template.js" />
     <Content Include="Asset\Web\wp-content\themes\madara\logo.png" />
+    <Content Include="Asset\Web\wp-content\themes\madara\Mika.Pikazo.600.3427482.jpg" />
+    <Content Include="Asset\Web\wp-content\themes\madara\SKET.Dance.600.893564.jpg" />
     <Content Include="Asset\Web\wp-content\themes\madara\style.css" />
+    <Content Include="Asset\Web\wp-content\themes\madara\The.Avengers.600.2204331.jpg" />
     <Content Include="Asset\Web\wp-includes\js\dist\a11y.min.js" />
     <Content Include="Asset\Web\wp-includes\js\dist\dom-ready.min.js" />
     <Content Include="Asset\Web\wp-includes\js\dist\hooks.min.js" />
