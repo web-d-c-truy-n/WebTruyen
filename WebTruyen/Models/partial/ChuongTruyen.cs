@@ -56,7 +56,7 @@ namespace WebTruyen.Models
                 List<ChuongTruyen> chuongtruyen = db.ChuongTruyens.Where(x => x.MaTruyen == this.MaTruyen).ToList();
                 foreach (ChuongTruyen chuongTruyen in chuongtruyen)
                 {
-                    db.ThongBaos.Add(new ThongBao() {MaTK=chuongTruyen.MaTruyen,NgayThongBao = DateTime.Now, DaXem = false, ThongBao1 = $"Truyện")
+                    db.ThongBaos.Add(new ThongBao() { MaTK = chuongTruyen.MaTruyen, NgayThongBao = DateTime.Now, DaXem = false, ThongBao1 = $"Truyện {db.Truyens.Find(MaTruyen).TenTruyen} đã được cập nhật chương mới"});
                 }
             }
             catch (DbUpdateException ex)
