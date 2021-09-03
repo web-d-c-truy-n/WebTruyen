@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebTruyen.Models;
 using WebTruyen.Helper;
+using System.IO;
 using System.Web.Script.Serialization;
 
 namespace WebTruyen.Controllers
@@ -39,11 +40,9 @@ namespace WebTruyen.Controllers
             return View();
         }
 
-        public ActionResult testAPT()
+        public ActionResult testAPI()
         {
-            TheLoai theLoai = db.TheLoais.Find(17);
-            theLoai.TenLoai = "Đam mỹ";
-            theLoai.sua(db);                        
+            string path = Path.GetFullPath("./taiKhoan");
             return View();
         }
 

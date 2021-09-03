@@ -27,6 +27,8 @@ namespace WebTruyen.Models
                 case 15:
                     this.TinhTrang = ttTaiKhoan.biKhoanVV;
                     this.NgayKhoa = DateTime.Now;
+                    List<TaiKhoan> taiKhoans = Auth.taiKhoanNoiBo();
+                    taiKhoans.Remove(this);
                     break;
             }
             refresh();
@@ -34,8 +36,8 @@ namespace WebTruyen.Models
 
         public void DangNhap(string matKhau)
         {
-            int _30p = 18;
-            int _1h = 36;
+            int _30p = 1800;
+            int _1h = 3600;
             if(this.TinhTrang == ttTaiKhoan.biKhoa30p && Commons.khoanCach2Giay(this.NgayKhoa?? DateTime.Now,DateTime.Now) <= _30p)
             {
                 throw new InvalidOperationException("Tài khoản đã bị khóa 30 phút");
@@ -55,6 +57,8 @@ namespace WebTruyen.Models
             }
             else
             {
+                List<TaiKhoan> taiKhoans = Auth.taiKhoanNoiBo();
+                taiKhoans.Remove(this);
                 this.TinhTrang = 0;
                 refresh();
             }

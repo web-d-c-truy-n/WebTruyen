@@ -62,7 +62,43 @@ namespace WebTruyen.Helper
             TimeSpan timeSpan = ngayCuoi - ngayDau;
             return (int)timeSpan.TotalSeconds;
         }
+        public static string readFile(string path)
+        {
+            try
+            {
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    string line, str = "";
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        str += line;
+                    }
+                    sr.Close();
+                    return str;
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
 
+        public static bool writeFile(string path, string text)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(path))
+                {
+                    writer.Write(text);
+                    writer.Close();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 
     public struct vtAdmin
