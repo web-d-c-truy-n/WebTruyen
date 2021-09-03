@@ -26,10 +26,13 @@ namespace WebTruyen.Controllers
         }
         // đăng ký
         [HttpPost]
-        public ActionResult Register(TaiKhoan taiKhoan)
+        public ActionResult Register(TaiKhoan taiKhoan, string Captcha)
         {
-            webtruyenptEntities db = new webtruyenptEntities();
-            if (db.TaiKhoans.Where(x=>x.Mail == taiKhoan.Mail).ToList().Count > 0)
+            if ((Session["Captcha"] as String) != Captcha)
+            {
+                return Json(new { msg = "Mã xác nhận không chính xác" });
+            }
+            if (db.TaiKhoans.Where(x => x.Mail == taiKhoan.Mail).ToList().Count > 0)
             {
                 return Json(new { msg = "Email đã tồn tại" });
             }
@@ -37,11 +40,7 @@ namespace WebTruyen.Controllers
             {
                 return Json(new { msg = "Số điện thoại đã tồn tại" });
             }
-            taiKhoan.MatKhau = Helper.Commons.MD5(taiKhoan.MatKhau);
-            taiKhoan.NgayTao = DateTime.Now;
-            taiKhoan.TinhTrang = 0;
-            db.TaiKhoans.Add(taiKhoan);
-            db.SaveChanges();
+            taiKhoan.DangKy();
             Auth.login(taiKhoan);
             return Json(new { msg = "Đăng ký thành công" });
         }

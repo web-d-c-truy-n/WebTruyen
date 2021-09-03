@@ -559,7 +559,7 @@
                                 <div class="c-modal_item" id="dadangnhap">
                                     <!-- Button trigger modal -->
                                     <a href="#" data-toggle="modal" data-target="#form-login" class="btn-active-modal">Đăng nhập</a>
-                                    <a href="#" data-toggle="modal" data-target="#form-sign-up" class="btn-active-modal" onclick="getCaptCha">Đăng ký</a>
+                                    <a href="#" data-toggle="modal" data-target="#form-sign-up" class="btn-active-modal" onclick="getCaptCha()">Đăng ký</a>
                                 </div>
                                 <div class="c-modal_item" id="dangxuat" style="display:none">
                                     <!-- Button trigger modal -->
@@ -700,32 +700,36 @@
                             <p>
                                 <label>
                                     Username *                                    <br>
-                                    <input type="text" name="user_sign-up" class="input user_login" value="" size="20" id="usernamedangki">
+                                    <input type="text" name="user_sign-up" class="input user_login" value="" size="20" id="usernamedangki" required>
                                 </label>
                             </p>
                             <p>
                                 <label>
                                     Email Address *                                    <br>
-                                    <input type="email" name="email_sign-up" class="input user_email" value="" size="20" id="emaildangki">
+                                    <input type="email" name="email_sign-up" class="input user_email" value="" size="20" id="emaildangki" required>
                                 </label>
                             </p>
                             <p>
                                 <label>
                                     Password *<br>
-                                    <input type="password" name="pass_sign-up" autocomplete="" class="input user_pass" value="" size="25" id="passworddangki">
+                                    <input type="password" name="pass_sign-up" autocomplete="" class="input user_pass" value="" size="25" id="passworddangki" required>
                                 </label>
                             </p>
                             <p>
                                 <label>
                                     Phone *<br>
-                                    <input type="tel" name="tel_sign-up" autocomplete="" class="input user_pass" value="" size="25" id="sdtdangki">
+                                    <input type="tel" name="tel_sign-up" autocomplete="" class="input user_pass" value="" size="25" id="sdtdangki" required>
                                 </label>
-                            </p>
-                            <p id="thongBaodangky" class="text-danger">
-
                             </p>
                             <input type="hidden" name="redirect_to" value="">
                             <img id="captcha" />
+                            <label>
+                                Captcha *<br>
+                                <input type="tel" name="tel_sign-up" autocomplete="" class="input user_pass" value="" size="25" id="inputCaptcha" required>
+                            </label>
+                            <p id="thongBaodangky" class="text-danger">
+
+                            </p>
                             <p class="submit">
                                 <input type="button" name="wp-submit" class="button button-primary button-large wp-submit" value="Register" id="dangki">
                             </p>
@@ -913,8 +917,9 @@
                 let emaildangki = $("#emaildangki").val();
                 let sdtdangki = $("#sdtdangki").val();
                 let h = $(".modal-content").height()
+                let captcha = $("#inputCaptcha").vat();
                 $($(this).parents(".modal-content")).ajaxOn()
-                let dangki = await API.register(usernamedangki, emaildangki, passworddangki, sdtdangki)
+                let dangki = await API.register(usernamedangki, emaildangki, passworddangki, sdtdangki, captcha)
                 $($(this).parents(".modal-content")).ajaxOff()
                 if (dangki.msg == "Đăng ký thành công") {
                     $(".close").click()
@@ -940,7 +945,7 @@
 
         })
         async function getCaptCha() {
-            let img = await API.getCaptCha();
+            let img = await API.getCaptcha();
             $("#captcha").attr("src", img)
         }
     </script>

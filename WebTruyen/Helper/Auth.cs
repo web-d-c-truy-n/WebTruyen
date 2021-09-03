@@ -8,6 +8,21 @@ namespace WebTruyen.Helper
 {
     public class Auth
     {
+        public static List<TaiKhoan> taiKhoanNoiBo()
+        {
+            List<TaiKhoan> taiKhoans = HttpContext.Current.Application["taiKhoanNoiBo"] as List<TaiKhoan>;
+            return taiKhoans;
+        }
+        public static void themTKNoiBo(TaiKhoan taiKhoan)
+        {
+            List<TaiKhoan> taiKhoans = HttpContext.Current.Application["taiKhoanNoiBo"] as List<TaiKhoan>;
+            if (taiKhoans == null)
+            {
+                taiKhoans = new List<TaiKhoan>();
+            }
+            taiKhoans.Add(taiKhoan);
+            HttpContext.Current.Application["taiKhoanNoiBo"] = taiKhoans;
+        }
         public static void login(TaiKhoan taiKhoan)
         {
             HttpContext.Current.Session["taiKhoan"] = taiKhoan.MaTK;
@@ -52,6 +67,7 @@ namespace WebTruyen.Helper
             }
             
         }
+
         public static void logout()
         {
             HttpContext.Current.Session["taiKhoan"] = null;

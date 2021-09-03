@@ -107,7 +107,7 @@ namespace WebTruyen.Controllers
         {
             Captcha captcha = new Captcha();
             Session["Captcha"] = captcha.captchaText;
-            return Json(captcha.Img());
+            return Json(captcha.Img(),JsonRequestBehavior.AllowGet);
         }
     }
 }

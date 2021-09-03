@@ -206,6 +206,7 @@
     </Compile>
     <Compile Include="Models\partial\ChuongTruyen.cs" />
     <Compile Include="Models\partial\QuanLyHinhAnh.cs" />
+    <Compile Include="Models\partial\TaiKhoan.cs" />
     <Compile Include="Models\partial\TheLoai.cs" />
     <Compile Include="Models\partial\Truyen.cs" />
     <Compile Include="Models\QuanLyHinhAnh.cs">

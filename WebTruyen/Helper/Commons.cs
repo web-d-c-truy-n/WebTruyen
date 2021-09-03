@@ -57,6 +57,12 @@ namespace WebTruyen.Helper
             return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ","-");
         }
 
+        public static int khoanCach2Giay(DateTime ngayDau, DateTime ngayCuoi)
+        {
+            TimeSpan timeSpan = ngayDau - ngayCuoi;
+            return timeSpan.Seconds;
+        }
+
     }
 
     public struct vtAdmin

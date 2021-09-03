@@ -18,12 +18,12 @@
         return result
     },
     // đăng ký
-    register: async function (HovaTen, Mail, MatKhau, SDT ) {
+    register: async function (HovaTen, Mail, MatKhau, SDT, Captcha) {
         let result = false
         await $.ajax({
             type: "POST",
             url: '/Login/Register',
-            data: JSON.stringify({ HovaTen: HovaTen, Mail: Mail, MatKhau: MatKhau, SDT:SDT }),
+            data: JSON.stringify({ HovaTen: HovaTen, Mail: Mail, MatKhau: MatKhau, SDT: SDT, Captcha: Captcha }),
             dataType: "json",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
@@ -329,7 +329,7 @@
         })
         return result
     },
-    getCaptcha: async function () {
+    getCaptcha: async function () {        
         let result
         await $.get("/Home/getCaptcha", function (data) {
             result = data
