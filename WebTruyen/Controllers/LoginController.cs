@@ -26,12 +26,17 @@ namespace WebTruyen.Controllers
         }
         // đăng ký
         [HttpPost]
-        public ActionResult Register(TaiKhoan taiKhoan, string Captcha)
+        public ActionResult Register(string HovaTen,string Mail,string MatKhau, string SDT, string Captcha)
         {
             if ((Session["Captcha"] as String) != Captcha)
             {
                 return Json(new { msg = "Mã xác nhận không chính xác" });
             }
+            TaiKhoan taiKhoan = new TaiKhoan();
+            taiKhoan.HovaTen = HovaTen;
+            taiKhoan.Mail = Mail;
+            taiKhoan.MatKhau = MatKhau;
+            taiKhoan.SDT = SDT;
             if (db.TaiKhoans.Where(x => x.Mail == taiKhoan.Mail).ToList().Count > 0)
             {
                 return Json(new { msg = "Email đã tồn tại" });

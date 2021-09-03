@@ -11,6 +11,10 @@ namespace WebTruyen.Helper
         public static List<TaiKhoan> taiKhoanNoiBo()
         {
             List<TaiKhoan> taiKhoans = HttpContext.Current.Application["taiKhoanNoiBo"] as List<TaiKhoan>;
+            if (taiKhoans == null)
+            {
+                taiKhoans = new List<TaiKhoan>();
+            }
             return taiKhoans;
         }
         public static void themTKNoiBo(TaiKhoan taiKhoan)
@@ -30,22 +34,29 @@ namespace WebTruyen.Helper
 
         public static string login(string mail, string mk)
         {
-            mk = Commons.MD5(mk);
             webtruyenptEntities db = new webtruyenptEntities();
-            List<TaiKhoan> taiKhoan = db.TaiKhoans.Where(x => (x.Mail == mail && x.MatKhau == mk) || (x.SDT == mail && x.MatKhau == mk)).ToList();
+            List<TaiKhoan> taiKhoan = db.TaiKhoans.Where(x => (x.Mail == mail) || (x.SDT == mail)).ToList();
             if (taiKhoan != null && taiKhoan.Count >0)
             {
-                switch (taiKhoan[0].TinhTrang)
+                TaiKhoan taiKhoan1;
+                if (!taiKhoanNoiBo().Exists(x=>x.MaTK == taiKhoan[0].MaTK))
                 {
-                    case ttTaiKhoan.biKhoa30p:
-                        return "Tài khoản đã bị khóa 30 phút";
-                    case ttTaiKhoan.biKhoa1h:
-                        return "Tài khoản đã bị khóa 1 giờ";
-                    case ttTaiKhoan.biKhoanVV:
-                        return "Tài khoản đã bị khóa vĩnh viễn";
+                    taiKhoan1 = taiKhoan[0];
                 }
-                HttpContext.Current.Session["taiKhoan"] = taiKhoan[0].MaTK;
-                return "Đăng nhập thành công";
+                else
+                {
+                    taiKhoan1 = taiKhoanNoiBo().Find(x => x.MaTK == taiKhoan[0].MaTK);
+                }
+                try
+                {
+                    taiKhoan1.DangNhap(mk);
+                    HttpContext.Current.Session["taiKhoan"] = taiKhoan1.MaTK;
+                    return "Đăng nhập thành công";
+                }
+                catch(Exception e)
+                {
+                    return e.Message;
+                }
             }
             else
             {

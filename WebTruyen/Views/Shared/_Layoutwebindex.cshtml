@@ -917,7 +917,7 @@
                 let emaildangki = $("#emaildangki").val();
                 let sdtdangki = $("#sdtdangki").val();
                 let h = $(".modal-content").height()
-                let captcha = $("#inputCaptcha").vat();
+                let captcha = $("#inputCaptcha").val();
                 $($(this).parents(".modal-content")).ajaxOn()
                 let dangki = await API.register(usernamedangki, emaildangki, passworddangki, sdtdangki, captcha)
                 $($(this).parents(".modal-content")).ajaxOff()

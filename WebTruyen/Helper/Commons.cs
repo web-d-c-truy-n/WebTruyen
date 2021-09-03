@@ -59,8 +59,8 @@ namespace WebTruyen.Helper
 
         public static int khoanCach2Giay(DateTime ngayDau, DateTime ngayCuoi)
         {
-            TimeSpan timeSpan = ngayDau - ngayCuoi;
-            return timeSpan.Seconds;
+            TimeSpan timeSpan = ngayCuoi - ngayDau;
+            return (int)timeSpan.TotalSeconds;
         }
 
     }
