@@ -20,7 +20,7 @@ namespace WebTruyen
         }
         protected void Session_Start()
         {
-            Session["UserAdmin"] = " ";
+            Session["UserAdmin"] = null;
         }
     }
 }

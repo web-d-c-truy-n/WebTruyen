@@ -9,6 +9,7 @@ using System.Web;
 
 namespace WebTruyen.Helper
 {
+    [Serializable()]
     public class Commons
     {
         // mã hóa MD5
@@ -30,7 +31,7 @@ namespace WebTruyen.Helper
             }
         }
         // Chuyển object sang string
-        public string ObjectToString(object obj)
+        public static string ObjectToString(object obj)
         {
             using (MemoryStream ms = new MemoryStream())
             {
@@ -39,7 +40,7 @@ namespace WebTruyen.Helper
             }
         }
         // Chuyển string sang object
-        public object StringToObject(string base64String)
+        public static object StringToObject(string base64String)
         {
             byte[] bytes = Convert.FromBase64String(base64String);
             using (MemoryStream ms = new MemoryStream(bytes, 0, bytes.Length))

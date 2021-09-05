@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rijndael256;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,30 +7,39 @@ using WebTruyen.Models;
 
 namespace WebTruyen.Helper
 {
+    [Serializable()]
     public class Auth
     {
-        public static List<TaiKhoan> taiKhoanNoiBo()
+        public static TaiKhoan taiKhoanNoiBo(int maTK)
         {
-            List<TaiKhoan> taiKhoans = HttpContext.Current.Application["taiKhoanNoiBo"] as List<TaiKhoan>;
-            if (taiKhoans == null)
+            webtruyenptEntities db = new webtruyenptEntities();
+            try
             {
-                taiKhoans = new List<TaiKhoan>();
+                string path = HttpContext.Current.Server.MapPath($"~/Asset/TaiKhoan/{maTK}.txt");
+                string baseTK = Commons.readFile(path);
+                SupportTaiKhoan supportTaiKhoan = (SupportTaiKhoan)Commons.StringToObject(baseTK);
+                TaiKhoan taiKhoan = db.TaiKhoans.Find(maTK);
+                taiKhoan.soLanNhapSai = supportTaiKhoan.soLanSai;
+                return taiKhoan;
             }
-            return taiKhoans;
+            catch
+            {
+                return db.TaiKhoans.Find(maTK);
+            }
+            
         }
         public static void themTKNoiBo(TaiKhoan taiKhoan)
         {
-            List<TaiKhoan> taiKhoans = HttpContext.Current.Application["taiKhoanNoiBo"] as List<TaiKhoan>;
-            if (taiKhoans == null)
-            {
-                taiKhoans = new List<TaiKhoan>();
-            }
-            taiKhoans.Add(taiKhoan);
-            HttpContext.Current.Application["taiKhoanNoiBo"] = taiKhoans;
+            string path = HttpContext.Current.Server.MapPath($"~/Asset/TaiKhoan/{taiKhoan.MaTK}.txt");
+            SupportTaiKhoan supportTaiKhoan = new SupportTaiKhoan();
+            supportTaiKhoan.soLanSai = taiKhoan.soLanNhapSai;
+            string baseTK = Commons.ObjectToString(supportTaiKhoan);
+            Commons.writeFile(path, baseTK);
         }
         public static void login(TaiKhoan taiKhoan)
         {
-            HttpContext.Current.Session["taiKhoan"] = taiKhoan.MaTK;
+            login(taiKhoan.Mail, taiKhoan.MatKhau);
+            themTKNoiBo(taiKhoan);
         }
 
         public static string login(string mail, string mk)
@@ -38,15 +48,7 @@ namespace WebTruyen.Helper
             List<TaiKhoan> taiKhoan = db.TaiKhoans.Where(x => (x.Mail == mail) || (x.SDT == mail)).ToList();
             if (taiKhoan != null && taiKhoan.Count >0)
             {
-                TaiKhoan taiKhoan1;
-                if (!taiKhoanNoiBo().Exists(x=>x.MaTK == taiKhoan[0].MaTK))
-                {
-                    taiKhoan1 = taiKhoan[0];
-                }
-                else
-                {
-                    taiKhoan1 = taiKhoanNoiBo().Find(x => x.MaTK == taiKhoan[0].MaTK);
-                }
+                TaiKhoan taiKhoan1 = taiKhoanNoiBo(taiKhoan[0].MaTK);
                 try
                 {
                     taiKhoan1.DangNhap(mk);

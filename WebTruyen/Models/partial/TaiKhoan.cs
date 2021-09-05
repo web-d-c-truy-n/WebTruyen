@@ -10,7 +10,7 @@ namespace WebTruyen.Models
 {
     public partial class TaiKhoan
     {
-        private int soLanNhapSai;
+        public int soLanNhapSai { get; set; }
         private void tangLanNhap()
         {
             this.soLanNhapSai++;
@@ -27,8 +27,6 @@ namespace WebTruyen.Models
                 case 15:
                     this.TinhTrang = ttTaiKhoan.biKhoanVV;
                     this.NgayKhoa = DateTime.Now;
-                    List<TaiKhoan> taiKhoans = Auth.taiKhoanNoiBo();
-                    taiKhoans.Remove(this);
                     break;
             }
             refresh();
@@ -38,6 +36,7 @@ namespace WebTruyen.Models
         {
             int _30p = 1800;
             int _1h = 3600;
+            matKhau = Commons.MD5(matKhau);
             if(this.TinhTrang == ttTaiKhoan.biKhoa30p && Commons.khoanCach2Giay(this.NgayKhoa?? DateTime.Now,DateTime.Now) <= _30p)
             {
                 throw new InvalidOperationException("Tài khoản đã bị khóa 30 phút");
@@ -51,15 +50,14 @@ namespace WebTruyen.Models
             else if (this.MatKhau != matKhau)
             {
                 tangLanNhap();
-                if (!Auth.taiKhoanNoiBo().Exists(x=>x.MaTK == this.MaTK))
-                    Auth.themTKNoiBo(this);
+                Auth.themTKNoiBo(this);
                 throw new InvalidOperationException("Tài khoản hoặc mật khẩu không chính xác");
             }
             else
             {
-                List<TaiKhoan> taiKhoans = Auth.taiKhoanNoiBo();
-                taiKhoans.Remove(this);
                 this.TinhTrang = 0;
+                this.soLanNhapSai = 0;
+                Auth.themTKNoiBo(this);
                 refresh();
             }
         }

@@ -7,6 +7,7 @@ using WebTruyen.Models;
 using WebTruyen.Helper;
 using System.IO;
 using System.Web.Script.Serialization;
+using Rijndael256;
 
 namespace WebTruyen.Controllers
 {
@@ -42,7 +43,14 @@ namespace WebTruyen.Controllers
 
         public ActionResult testAPI()
         {
-            string path = Path.GetFullPath("./taiKhoan");
+            string password = "sKzvYk#1Pn33!YN";  // Khóa để mã hóa
+            string plaintext = "Mã hóa thuật toán AES C# - laptrinhvb.net"; // Chuỗi cần mã hóa
+
+            // Mã hóa chuỗi
+            string ciphertext = Rijndael.Encrypt(plaintext, password, KeySize.Aes256);
+
+            // Giải mã chuỗi
+            plaintext = Rijndael.Decrypt(ciphertext, password, KeySize.Aes256);
             return View();
         }
 
