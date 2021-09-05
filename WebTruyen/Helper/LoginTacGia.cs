@@ -10,7 +10,7 @@ namespace WebTruyen.Helper
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            if (Helper.Auth.user() == null || Helper.Auth.user().TacGias.ToList().Count <=0)
+            if (Helper.Auth.user() == null || !(new int[] {vtTaiKhoan.tacGiaDaDuyet,vtTaiKhoan.dichGiaDaDuyet}).Contains(Auth.user().VaiTro))
             {
                 HttpContext.Current.Response.Redirect("/");
             }

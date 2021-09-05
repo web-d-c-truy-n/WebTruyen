@@ -107,10 +107,257 @@ namespace WebTruyen.Models
                 SqlException Ex = ex.GetBaseException() as SqlException;
                 throw Ex;
             }
-
+        }
+        public void xoaTK(webtruyenptEntities db)
+        {
+            try
+            {
+                db.TaiKhoans.Remove(this);
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
+        // vai trò admin
+        public void xoaTK(int maTK)
+        {
+            try
+            {
+                if (this.VaiTro != vtTaiKhoan.admin) return;
+                webtruyenptEntities db = new webtruyenptEntities();
+                TaiKhoan taiKhoan = db.TaiKhoans.Find(maTK);
+                db.TaiKhoans.Remove(taiKhoan);
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
+        // vai trò admin
+        public void khoaTK(webtruyenptEntities db,int tinhTrang)
+        {
+            try
+            {
+                this.TinhTrang = tinhTrang;
+                this.NgayKhoa = DateTime.Now;
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
+        public List<ThongBao> nhanThongBao()
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            return db.ThongBaos.Where(x => x.MaTK == this.MaTK).ToList();
+        }
+        // vai trò admin 
+        public void GuiThongBao(string tb)
+        {
+            try
+            {
+                if (this.VaiTro != vtTaiKhoan.admin) return;
+                ThongBao thongBao = new ThongBao();
+                thongBao.ThongBao1 = tb;
+                thongBao.MaTK = this.MaTK;
+                HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+                hanhDongCuaTK.thongBao(thongBao);
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
+        public static List<TaiKhoan> timKiem(string timkiem)
+        {
+            try
+            {
+                webtruyenptEntities db = new webtruyenptEntities();
+                return db.Database.SqlQuery<TaiKhoan>($"TIMKIEM_TAIKHOAN '{timkiem}'").ToList();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
         }
 
+        public void dangKyTacGia(webtruyenptEntities db, int vaiTro, string butDanh)
+        {
+            try
+            {
+                this.ButDanh = butDanh;
+                this.VaiTro = vaiTro == vtTacGia.tacGia ? vtTaiKhoan.tacGiaChuaDuyet : vtTaiKhoan.dichGiaChuaDuyet;
+                this.ngayDKTG = DateTime.Now;
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
 
-
+        public void dangKyAdmin(webtruyenptEntities db)
+        {
+            try
+            {
+                this.VaiTro = vtTaiKhoan.admin;
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
+        // vai trò admin
+        public void duyetTacGia(int maTK)
+        {
+            try
+            {
+                if (this.VaiTro != vtTaiKhoan.admin) return;
+                webtruyenptEntities db = new webtruyenptEntities();
+                TacGia tacGia = db.TacGias.Where(x => x.MaTG == maTK).First();
+                tacGia.duyetTG();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
+        // vai trò tác giả
+        public void duyetTruyen(int maTruyen)
+        {
+            try
+            {
+                if (this.VaiTro != vtTaiKhoan.admin) return;
+                webtruyenptEntities db = new webtruyenptEntities();
+                Truyen truyen = db.Truyens.Find(maTruyen);
+                truyen.DaDuyet = true;
+                truyen.NgayDang = DateTime.Now;
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
+        // vai trò admin
+        public void xoaTacGia(int maTK)
+        {
+            try
+            {
+                if (this.VaiTro != vtTaiKhoan.admin) return;
+                webtruyenptEntities db = new webtruyenptEntities();
+                TacGia tacGia = db.TacGias.Where(x => x.MaTG == maTK).First();
+                tacGia.xoaTG();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
+        // vai trò admin
+        public void khoaTacGia(int maTK)
+        {
+            try
+            {
+                if (this.VaiTro != vtTaiKhoan.admin) return;
+                webtruyenptEntities db = new webtruyenptEntities();
+                TacGia tacGia = db.TacGias.Where(x => x.MaTG == maTK).First();
+                tacGia.khoaTG();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
+        // vai trò tác giả
+        public void xoaTruyen(int maTruyen)
+        {
+            try
+            {
+                webtruyenptEntities db = new webtruyenptEntities();
+                Truyen truyen = db.Truyens.Find(maTruyen);
+                bool hopLe = truyen.TruyenTacGias.ToList().Exists(x => x.MaTK == this.MaTK);
+                if (hopLe)
+                {
+                    db.Truyens.Remove(truyen);
+                    db.SaveChanges();
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
+        // vai trò admin
+        public void xoaTruyen_admin(int maTruyen)
+        {
+            try
+            {
+                if (this.VaiTro != vtTaiKhoan.admin) return;
+                webtruyenptEntities db = new webtruyenptEntities();
+                Truyen truyen = db.Truyens.Find(maTruyen);
+                db.Truyens.Remove(truyen);
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
+        // vai trò tác giả
+        public void anTruyen(int maTruyen)
+        {
+            try
+            {
+                webtruyenptEntities db = new webtruyenptEntities();
+                Truyen truyen = db.Truyens.Find(maTruyen);
+                bool hopLe = truyen.TruyenTacGias.ToList().Exists(x => x.MaTK == this.MaTK);
+                if (hopLe)
+                {
+                    truyen.TamAn = true;
+                    db.SaveChanges();
+                }
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
+        // vai trò admin
+        public void khoaTruyen(int maTruyen)
+        {
+            try
+            {
+                if (this.VaiTro != vtTaiKhoan.admin) return;
+                webtruyenptEntities db = new webtruyenptEntities();
+                Truyen truyen = db.Truyens.Find(maTruyen);
+                truyen.Khoa = true;
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
     }
 }

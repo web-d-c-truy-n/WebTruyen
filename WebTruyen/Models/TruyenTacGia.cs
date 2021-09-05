@@ -15,12 +15,11 @@ namespace WebTruyen.Models
     public partial class TruyenTacGia
     {
         public int MaTruyen { get; set; }
-        public int MaTG { get; set; }
+        public int MaTK { get; set; }
         public int VaiTro { get; set; }
         public Nullable<int> DangNhom { get; set; }
     
-        public virtual NhomTG NhomTG { get; set; }
-        public virtual TacGia TacGia { get; set; }
+        public virtual TaiKhoan TaiKhoan { get; set; }
         public virtual Truyen Truyen { get; set; }
     }
 }

@@ -108,19 +108,13 @@
                                                         </li>
                                                         <li class="">
                                                             @{
-                                                                List<TacGia> tacGias = Auth.user().TacGias.ToList();
-                                                                if (tacGias.Count > 0)
+                                                                if (!(new int[] {vtTaiKhoan.tacGiaDaDuyet,vtTaiKhoan.dichGiaDaDuyet}).Contains(Auth.user().VaiTro))
                                                                 {
-                                                                    if (tacGias.First().DaDuyet == false)
-                                                                    {
-                                                                        <a data-toggle="tab" href="#dangKyTacGia"><i class="fas fa-pencil-alt"></i>Đăng kí tác giả </a>
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        <a href="@Url.Action("TrangTacGia","TacGia")"><i class="fas fa-pencil-alt"></i>Tác giả </a>
-                                                                    }
-                                                                }else{
-                                                                        <a data-toggle="tab" href="#dangKyTacGia"><i class="fas fa-pencil-alt"></i>Đăng kí tác giả </a>
+                                                                    <a data-toggle="tab" href="#dangKyTacGia"><i class="fas fa-pencil-alt"></i>Đăng kí tác giả </a>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <a href="@Url.Action("TrangTacGia","TacGia")"><i class="fas fa-pencil-alt"></i>Tác giả </a>
                                                                 }
 
                                                             }
@@ -282,7 +276,7 @@
                 debugger
                 let butdanh = $("#butdanh").val()
                 let vaitro = parseInt($("#vaitro").val())
-                let guidi = await API.RegisterTacGia(butdanh, vaitro)
+                let guidi = await API.dkTacGia(butdanh, vaitro)
                 if (guidi == true) {
                     alert("Đăng kí tác giả thành công, xin chờ xét duyệt")
                 }

@@ -17,9 +17,8 @@ namespace WebTruyen.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NhomTG()
         {
+            this.HanhDongCuaTKs = new HashSet<HanhDongCuaTK>();
             this.ThanhVienNhoms = new HashSet<ThanhVienNhom>();
-            this.TraoDoiNhoms = new HashSet<TraoDoiNhom>();
-            this.TruyenTacGias = new HashSet<TruyenTacGia>();
         }
     
         public int MaNhom { get; set; }
@@ -29,12 +28,9 @@ namespace WebTruyen.Models
         public int TinhTrang { get; set; }
         public string Khauhieu { get; set; }
     
-        public virtual TacGia TacGia { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HanhDongCuaTK> HanhDongCuaTKs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ThanhVienNhom> ThanhVienNhoms { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TraoDoiNhom> TraoDoiNhoms { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TruyenTacGia> TruyenTacGias { get; set; }
     }
 }

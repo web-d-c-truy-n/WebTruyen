@@ -12,16 +12,12 @@ namespace WebTruyen.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ThanhVienNhom
+    public partial class LuotThichChuong
     {
+        public Nullable<int> MaTruyen { get; set; }
         public int MaTK { get; set; }
-        public int MaNhom { get; set; }
-        public System.DateTime Ngayvaonhom { get; set; }
-        public int Vaitro { get; set; }
-        public string GhiChu { get; set; }
-        public bool DaDuyet { get; set; }
-    
-        public virtual NhomTG NhomTG { get; set; }
-        public virtual TaiKhoan TaiKhoan { get; set; }
+        public System.DateTime NgayThich { get; set; }
+        public Nullable<int> SoChuong { get; set; }
+        public int LoaiHD { get; set; }
     }
 }

@@ -4,25 +4,41 @@ using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using WebTruyen.Helper;
 
 namespace WebTruyen.Models
 {
     public partial class Truyen
     {
-        public void them()
+        public void them(List<TruyenTacGia> truyenTacGias)
         {
             webtruyenptEntities db = new webtruyenptEntities();
-            try
+            using (System.Data.Entity.DbContextTransaction transaction = db.Database.BeginTransaction())
             {
-                this.NgayTao = DateTime.Now;
-                db.Truyens.Add(this);
-                db.SaveChanges();
-                guiThongBao();
-            }
-            catch (DbUpdateException ex)
-            {
-                SqlException Ex = ex.GetBaseException() as SqlException;
-                throw Ex;
+                try
+                {
+                    this.NgayTao = DateTime.Now;
+                    this.DaDuyet = false;
+                    this.Khoa = false;
+                    db.Truyens.Add(this);
+                    db.SaveChanges();
+                    if (truyenTacGias != null && truyenTacGias.Count >0)
+                    {
+                        foreach (TruyenTacGia truyenTacGia in truyenTacGias)
+                        {
+                            truyenTacGia.MaTruyen = this.MaTruyen;
+                            db.TruyenTacGias.Add(truyenTacGia);
+                        }
+                    }
+                    db.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (DbUpdateException ex)
+                {
+                    SqlException Ex = ex.GetBaseException() as SqlException;
+                    transaction.Rollback();
+                    throw Ex;
+                }
             }
         }
         public void sua(webtruyenptEntities db)
@@ -36,25 +52,19 @@ namespace WebTruyen.Models
                 SqlException Ex = ex.GetBaseException() as SqlException;
                 throw Ex;
             }
-        }
-        public void xoa(webtruyenptEntities db)
+        }        
+        public static List<Truyen> timKiem(string timKiem)
         {
             try
             {
-                db.Truyens.Remove(this);
-                db.SaveChanges();
+                webtruyenptEntities db = new webtruyenptEntities();
+                return db.Database.SqlQuery<Truyen>($"TIMKIEM_Truyen N'{timKiem}'").ToList();
             }
             catch (DbUpdateException ex)
             {
                 SqlException Ex = ex.GetBaseException() as SqlException;
                 throw Ex;
             }
-        }
-        
-        public static List<Truyen> timKiem(string timKiem)
-        {
-            webtruyenptEntities db = new webtruyenptEntities();
-            return db.Database.SqlQuery<Truyen>($"TIMKIEM_Truyen N'{timKiem}'").ToList();
         }
 
         private void guiThongBao()
@@ -63,20 +73,41 @@ namespace WebTruyen.Models
             {
                 int maTG = Helper.Auth.tacGia().MaTG;
                 string tenTG = Helper.Auth.tacGia().ButDanh;
-                // lấy danh sách người theo doi tác giả này
                 webtruyenptEntities db = new webtruyenptEntities();
-                List<TheodoiTG> theodoiTGs = db.TheodoiTGs.Where(x => x.MaTG == maTG).ToList();
-                // sau đó gửi thông báo cho từng người bằng cách lưu vào csdl
-                foreach (TheodoiTG theodoiTG in theodoiTGs)
+                List<TheodoTG> theodoiTGs = db.TheodoTGs.Where(x => x.MaTG == maTG).ToList();
+                foreach (TheodoTG theodoiTG in theodoiTGs)
                 {
-                    db.ThongBaos.Add(new ThongBao() { MaTK = theodoiTG.MaTK, NgayThongBao = DateTime.Now, DaXem = false, ThongBao1 = $"Tác giả {tenTG} đã lên sóng truyện {this.TenTruyen}" });
+                    ThongBao thongBao = new ThongBao();
+                    thongBao.ThongBao1 = $"Tác giả {tenTG} đã lên sóng truyện {this.TenTruyen}";
+                    thongBao.MaTruyen = this.MaTruyen;
+                    thongBao.MaTK = theodoiTG.MaTK;
+                    HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+                    hanhDongCuaTK.thongBao(thongBao);
                 }
-                db.SaveChanges();
             }
             catch (DbUpdateException ex)
             {
                 SqlException Ex = ex.GetBaseException() as SqlException;
                 throw Ex;
+            }            
+        }
+
+        public void CapNhatLuotThich(int maTK)
+        {
+            try
+            {
+                webtruyenptEntities db = new webtruyenptEntities();
+                HanhDongCuaTK hanhDong = new HanhDongCuaTK();
+                hanhDong.MaTK = maTK;
+                hanhDong.MaTruyen = this.MaTruyen;
+                hanhDong.NgayHanhDong = DateTime.Now;
+                hanhDong.LoaiHD = hdTaiKhoan.thichTruyen;
+                db.HanhDongCuaTKs.Add(hanhDong);
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
             }            
         }
     }

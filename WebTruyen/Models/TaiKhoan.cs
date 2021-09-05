@@ -17,12 +17,11 @@ namespace WebTruyen.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TaiKhoan()
         {
-            this.BinhLuans = new HashSet<BinhLuan>();
-            this.Luotthiches = new HashSet<Luotthich>();
-            this.Luotxems = new HashSet<Luotxem>();
-            this.TacGias = new HashSet<TacGia>();
-            this.TheodoiTGs = new HashSet<TheodoiTG>();
-            this.ThongBaos = new HashSet<ThongBao>();
+            this.HanhDongCuaTKs = new HashSet<HanhDongCuaTK>();
+            this.HanhDongCuaTKs1 = new HashSet<HanhDongCuaTK>();
+            this.QuanLyHinhAnhs = new HashSet<QuanLyHinhAnh>();
+            this.ThanhVienNhoms = new HashSet<ThanhVienNhom>();
+            this.TruyenTacGias = new HashSet<TruyenTacGia>();
         }
     
         public int MaTK { get; set; }
@@ -34,18 +33,19 @@ namespace WebTruyen.Models
         public int TinhTrang { get; set; }
         public Nullable<System.DateTime> NgayKhoa { get; set; }
         public string Avatar { get; set; }
+        public int VaiTro { get; set; }
+        public string ButDanh { get; set; }
+        public Nullable<System.DateTime> ngayDKTG { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BinhLuan> BinhLuans { get; set; }
+        public virtual ICollection<HanhDongCuaTK> HanhDongCuaTKs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Luotthich> Luotthiches { get; set; }
+        public virtual ICollection<HanhDongCuaTK> HanhDongCuaTKs1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Luotxem> Luotxems { get; set; }
+        public virtual ICollection<QuanLyHinhAnh> QuanLyHinhAnhs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TacGia> TacGias { get; set; }
+        public virtual ICollection<ThanhVienNhom> ThanhVienNhoms { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TheodoiTG> TheodoiTGs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ThongBao> ThongBaos { get; set; }
+        public virtual ICollection<TruyenTacGia> TruyenTacGias { get; set; }
     }
 }

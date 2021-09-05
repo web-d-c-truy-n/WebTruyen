@@ -10,6 +10,11 @@ namespace WebTruyen.Helper
     [Serializable()]
     public class Auth
     {
+        public static int MaTk()
+        {
+            int idtk = (int)HttpContext.Current.Session["taiKhoan"];
+            return idtk;
+        }
         public static TaiKhoan taiKhoanNoiBo(int maTK)
         {
             webtruyenptEntities db = new webtruyenptEntities();
@@ -80,20 +85,24 @@ namespace WebTruyen.Helper
             }
             
         }
-
+        public static TacGia tacGia()
+        {
+            try
+            {
+                int idtk = (int)HttpContext.Current.Session["taiKhoan"];
+                webtruyenptEntities db = new webtruyenptEntities();
+                TacGia tacGia = db.TacGias.Where(x=>x.MaTG == idtk).FirstOrDefault();
+                return tacGia;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
         public static void logout()
         {
             HttpContext.Current.Session["taiKhoan"] = null;
         }
-        public static TacGia tacGia()
-        {
-            List<TacGia> tacGias = user().TacGias.ToList();
-            if (tacGias.Count > 0)
-                return tacGias.First();
-            else
-                return null;
-        }
-
         public static bool SuaTk(TaiKhoan taiKhoan)
         {
             try

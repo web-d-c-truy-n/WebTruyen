@@ -55,7 +55,7 @@ namespace WebTruyen.Helper
         {
             Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
             string temp = s.Normalize(NormalizationForm.FormD);
-            return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ","-");
+            return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-");
         }
 
         public static int khoanCach2Giay(DateTime ngayDau, DateTime ngayCuoi)
@@ -106,6 +106,27 @@ namespace WebTruyen.Helper
     {
         public const int admin = 1;
     }
+    public struct vtTaiKhoan
+    {
+        public const int admin = 0;
+        public const int docGia = 1;
+        public const int tacGiaChuaDuyet = 2;
+        public const int tacGiaDaDuyet = 3;
+        public const int tacGiaBiKhoa = 4;
+        public const int dichGiaChuaDuyet = 5;
+        public const int dichGiaDaDuyet = 6;
+        public const int dichGiaBiKhoa = 7;
+    }
+    public struct hdTaiKhoan
+    {
+        public const int xemChuong = 1;
+        public const int thichTruyen = 2;
+        public const int theoDoiTacGia = 3;
+        public const int thongBao = 4;
+        public const int binhLuan = 5;
+        public const int traoDoi = 6;
+        public const int thichChuong = 7;
+    }
     public struct vtTacGia
     {
         public const int tacGia = 1;
@@ -122,6 +143,11 @@ namespace WebTruyen.Helper
     public struct ttTruyen
     {
         public const int dangTH = 1;
-        public const int hoanThanh = 2;        
+        public const int hoanThanh = 2;
+    }
+    public struct vtNhom
+    {
+        public const int nhomTruong = 1;
+        public const int thanhVien = 2;
     }
 }

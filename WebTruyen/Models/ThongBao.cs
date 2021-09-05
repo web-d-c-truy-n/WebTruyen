@@ -18,8 +18,12 @@ namespace WebTruyen.Models
         public int MaTK { get; set; }
         public string ThongBao1 { get; set; }
         public System.DateTime NgayThongBao { get; set; }
-        public bool DaXem { get; set; }
-    
-        public virtual TaiKhoan TaiKhoan { get; set; }
+        public Nullable<bool> DaXem { get; set; }
+        public int LoaiHD { get; set; }
+        public Nullable<int> MaTruyen { get; set; }
+        public Nullable<int> SoChuong { get; set; }
+        public Nullable<int> TacGia { get; set; }
+        public Nullable<int> MaNhom { get; set; }
+        public Nullable<int> PhanHoi { get; set; }
     }
 }

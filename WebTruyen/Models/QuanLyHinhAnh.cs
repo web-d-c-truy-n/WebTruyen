@@ -21,10 +21,10 @@ namespace WebTruyen.Models
         }
     
         public int MaAnh { get; set; }
-        public int MaTG { get; set; }
+        public int MaTK { get; set; }
         public string URL { get; set; }
     
-        public virtual TacGia TacGia { get; set; }
+        public virtual TaiKhoan TaiKhoan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Truyen> Truyens { get; set; }
     }

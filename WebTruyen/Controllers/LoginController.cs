@@ -70,14 +70,7 @@ namespace WebTruyen.Controllers
         [HttpPost]
         public ActionResult LoginAdmin(string tk, string mk)
         {
-            if (Helper.AdminAuth.login(tk, mk))
-            {
-                return Json(true);
-            }
-            else
-            {
-                return Json(false);
-            }
+            return Json(Auth.login(tk, mk));
         }
         [HttpGet]
         public ActionResult LoginAdmin()
@@ -88,14 +81,10 @@ namespace WebTruyen.Controllers
         [HttpPost]
         public ActionResult RegisterTacGia(string butDanh, int vaiTro)
         {
-            TacGia tacGia = new TacGia();
-            tacGia.ButDanh = butDanh;
-            tacGia.VaiTro = vaiTro;
-            tacGia.NgayDangKy = DateTime.Now;
-            tacGia.MaTK = Helper.Auth.user().MaTK;
-            tacGia.DaDuyet = false;
-            db.TacGias.Add(tacGia);
-            db.SaveChanges();
+            int idtk = (int)Session["taiKhoan"];
+            webtruyenptEntities db = new webtruyenptEntities();
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(idtk);
+            taiKhoan.dangKyTacGia(db, vaiTro, butDanh);
             return Json(true);
         }
     }

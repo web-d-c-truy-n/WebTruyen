@@ -43,14 +43,8 @@ namespace WebTruyen.Controllers
 
         public ActionResult testAPI()
         {
-            string password = "sKzvYk#1Pn33!YN";  // Khóa để mã hóa
-            string plaintext = "Mã hóa thuật toán AES C# - laptrinhvb.net"; // Chuỗi cần mã hóa
-
-            // Mã hóa chuỗi
-            string ciphertext = Rijndael.Encrypt(plaintext, password, KeySize.Aes256);
-
-            // Giải mã chuỗi
-            plaintext = Rijndael.Decrypt(ciphertext, password, KeySize.Aes256);
+            Truyen truyen = db.Truyens.Find(1);
+            truyen.CapNhatLuotThich(Auth.user().MaTK);
             return View();
         }
 
@@ -62,13 +56,10 @@ namespace WebTruyen.Controllers
         [Login]
         public ActionResult dkTacGia(string butDanh, int vaiTro)
         {
-            TacGia tacGia = new TacGia();
-            tacGia.MaTK = Auth.user().MaTK;
-            tacGia.ButDanh = butDanh;
-            tacGia.NgayDangKy = DateTime.Now;
-            tacGia.DaDuyet = false;
-            tacGia.VaiTro = vaiTro;
-            db.TacGias.Add(tacGia);
+            int idtk = (int)Session["taiKhoan"];
+            webtruyenptEntities db = new webtruyenptEntities();
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(idtk);
+            taiKhoan.dangKyTacGia(db,vaiTro,butDanh);
             return Json(true);
         }
         public ActionResult Tomtat()
@@ -84,17 +75,17 @@ namespace WebTruyen.Controllers
         {
             return View();
         }
-        public ActionResult DangKiTacGia()
+        public PartialViewResult DangKiTacGia()
         {
-            return View();
+            return PartialView();
         }
-        public ActionResult Lichsu()
+        public PartialViewResult Lichsu()
         {
-            return View();
+            return PartialView();
         }
-        public ActionResult Theodoi()
+        public PartialViewResult Theodoi()
         {
-            return View();
+            return PartialView();
         }
         // xuất ra các danh sách truyện hot ở trang chủ
         public ActionResult XuatCacTruyenIndex(int page, int pagesize)

@@ -166,7 +166,7 @@
             data: JSON.stringify({ id: id, tinhTrang: tinhTrang }),
             dataType: "json",
             contentType: 'application/json; charset=utf-8',
-            success: function (data) {
+            success: function (data) {                
                 result = data
             },
             error: function () {

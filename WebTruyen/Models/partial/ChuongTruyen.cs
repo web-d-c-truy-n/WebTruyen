@@ -16,6 +16,7 @@ namespace WebTruyen.Models
             {
                 db.ChuongTruyens.Add(this);
                 db.SaveChanges();
+                guithongbao();
             }
             catch (DbUpdateException ex)
             {
@@ -53,11 +54,52 @@ namespace WebTruyen.Models
             try
             {
                 webtruyenptEntities db = new webtruyenptEntities();
-                List<ChuongTruyen> chuongtruyen = db.ChuongTruyens.Where(x => x.MaTruyen == this.MaTruyen).ToList();
-                foreach (ChuongTruyen chuongTruyen in chuongtruyen)
+                List<LuotThichTruyen> luotThichTruyens = db.LuotThichTruyens.Where(x => x.MaTruyen == this.MaTruyen).ToList();
+                foreach (LuotThichTruyen luotThichTruyen in luotThichTruyens)
                 {
-                    db.ThongBaos.Add(new ThongBao() { MaTK = chuongTruyen.MaTruyen, NgayThongBao = DateTime.Now, DaXem = false, ThongBao1 = $"Truyện {db.Truyens.Find(MaTruyen).TenTruyen} đã được cập nhật chương mới"});
+                    ThongBao thongBao = new ThongBao();
+                    thongBao.MaTK = luotThichTruyen.MaTK;
+                    thongBao.MaTruyen = this.MaTruyen;
+                    thongBao.SoChuong = this.SoChuong;
+                    thongBao.ThongBao1 = $"Truyện {this.Truyen.TenTruyen} đã cập nhật chương mới\nChương: {this.SoChuong} {this.TenChuong}";
+                    HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+                    hanhDongCuaTK.thongBao(thongBao);
                 }
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
+        public void CapNhatLuotThich(int maTK)
+        {
+            try
+            {
+                LuotThichChuong luotThichChuong = new LuotThichChuong();
+                luotThichChuong.MaTK = maTK;
+                luotThichChuong.MaTruyen = this.MaTruyen;
+                luotThichChuong.SoChuong = this.SoChuong;
+                HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+                hanhDongCuaTK.thichChuong(luotThichChuong);
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
+
+        public void CapNhatLuotXem(int maTK)
+        {
+            try
+            {
+                LuotXem luotXem = new LuotXem();
+                luotXem.MaTK = maTK;
+                luotXem.MaTruyen = this.MaTruyen;
+                luotXem.SoChuong = this.SoChuong;
+                HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+                hanhDongCuaTK.Xem(luotXem);
             }
             catch (DbUpdateException ex)
             {

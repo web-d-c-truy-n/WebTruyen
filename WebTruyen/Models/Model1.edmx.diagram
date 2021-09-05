@@ -4,47 +4,40 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f6fdab3160a745b096e66d6cc6b8647e" Name="Diagram1" ZoomLevel="116">
-        <EntityTypeShape EntityType="webtruyenptModel.Admin" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="webtruyenptModel.ChuongTruyen" Width="1.5" PointX="9.75" PointY="26.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="webtruyenptModel.Luotthich" Width="1.5" PointX="6" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="webtruyenptModel.Luotxem" Width="1.5" PointX="6" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="webtruyenptModel.NhomTG" Width="1.5" PointX="5.25" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="webtruyenptModel.QuanLyHinhAnh" Width="1.5" PointX="5.25" PointY="23.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="webtruyenptModel.TacGia" Width="1.5" PointX="3" PointY="21" IsExpanded="true" />
-        <EntityTypeShape EntityType="webtruyenptModel.ThanhVienNhom" Width="1.5" PointX="7.5" PointY="20.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="webtruyenptModel.TheLoai" Width="1.5" PointX="5.25" PointY="26.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="webtruyenptModel.TheodoiTG" Width="1.5" PointX="3" PointY="26.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="webtruyenptModel.ThongBao" Width="1.5" PointX="3" PointY="28.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="webtruyenptModel.TraoDoiNhom" Width="1.5" PointX="12.75" PointY="20.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="webtruyenptModel.TruyenTacGia" Width="1.5" PointX="10.5" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="webtruyenptModel.vTruyen" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="webtruyenptModel.FK_Luotxem_ChuongTruyen" ManuallyRouted="false" />
-        <AssociationConnector Association="webtruyenptModel.FK_NhomTG_TacGia" ManuallyRouted="false" />
+      <Diagram DiagramId="d8b9cee86dd34b1c8af75f58bcb41fb7" Name="Diagram1">
+        <EntityTypeShape EntityType="webtruyenptModel.ChuongTruyen" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="webtruyenptModel.HanhDongCuaTK" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="webtruyenptModel.NhomTG" Width="1.5" PointX="0.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="webtruyenptModel.QuanLyHinhAnh" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="webtruyenptModel.TaiKhoan" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="webtruyenptModel.ThanhVienNhom" Width="1.5" PointX="6" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="webtruyenptModel.TheLoai" Width="1.5" PointX="1.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="webtruyenptModel.Truyen" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="webtruyenptModel.TruyenTacGia" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="webtruyenptModel.Admin" Width="1.5" PointX="8.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="webtruyenptModel.BinhLuan" Width="1.5" PointX="8.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="webtruyenptModel.LuotThichChuong" Width="1.5" PointX="8.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="webtruyenptModel.LuotThichTruyen" Width="1.5" PointX="10.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="webtruyenptModel.LuotXem" Width="1.5" PointX="10.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="webtruyenptModel.TheodoTG" Width="1.5" PointX="10.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="webtruyenptModel.ThongBao" Width="1.5" PointX="7.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="webtruyenptModel.TraoDoiNhom" Width="1.5" PointX="10.75" PointY="10.375" IsExpanded="true" />
+        <AssociationConnector Association="webtruyenptModel.FK_HanhDongCuaTK_ChuongTruyen" ManuallyRouted="false" />
+        <AssociationConnector Association="webtruyenptModel.FK_HanhDongCuaTK_HanhDongCuaTK" ManuallyRouted="false" />
+        <AssociationConnector Association="webtruyenptModel.FK_HanhDongCuaTK_NhomTG" ManuallyRouted="false" />
+        <AssociationConnector Association="webtruyenptModel.FK_HanhDongCuaTK_TaiKhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="webtruyenptModel.FK_HanhDongCuaTK_TaiKhoan1" ManuallyRouted="false" />
+        <AssociationConnector Association="webtruyenptModel.FK_HanhDongCuaTK_Truyen" ManuallyRouted="false" />
         <AssociationConnector Association="webtruyenptModel.FK_ThanhVienNhom_NhomTG" ManuallyRouted="false" />
-        <AssociationConnector Association="webtruyenptModel.FK_TraoDoiNhom_NhomTG" ManuallyRouted="false" />
-        <AssociationConnector Association="webtruyenptModel.FK_TruyenTacGia_NhomTG" ManuallyRouted="false" />
-        <AssociationConnector Association="webtruyenptModel.FK_QuanLyHinhAnh_TacGia" ManuallyRouted="false" />
-        <AssociationConnector Association="webtruyenptModel.FK_ThanhVienNhom_TacGia" ManuallyRouted="false" />
-        <AssociationConnector Association="webtruyenptModel.FK_TruyenTacGia_TacGia" ManuallyRouted="false" />
-        <AssociationConnector Association="webtruyenptModel.FK_TraoDoiNhom_ThanhVienNhom" ManuallyRouted="false" />
-        <AssociationConnector Association="webtruyenptModel.FK_TraoDoiNhom_TraoDoiNhom" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="webtruyenptModel.BinhLuan" Width="1.5" PointX="15" PointY="19.625" />
-        <EntityTypeShape EntityType="webtruyenptModel.Truyen" Width="1.5" PointX="7.5" PointY="24.625" />
-        <AssociationConnector Association="webtruyenptModel.FK_BinhLuan_BinhLuan" />
-        <AssociationConnector Association="webtruyenptModel.FK_BinhLuan_ChuongTruyen" />
-        <AssociationConnector Association="webtruyenptModel.FK_ChuongTruyen_Truyen" />
-        <AssociationConnector Association="webtruyenptModel.FK_Luotthich_Truyen" />
+        <AssociationConnector Association="webtruyenptModel.FK_QuanLyHinhAnh_TaiKhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="webtruyenptModel.FK_ThanhVienNhom_TaiKhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="webtruyenptModel.FK_TruyenTacGia_TaiKhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="webtruyenptModel.FK_Truyen_TheLoai" ManuallyRouted="false" />
+        <AssociationConnector Association="webtruyenptModel.FK_TruyenTacGia_Truyen" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="webtruyenptModel.vTruyen" Width="1.5" PointX="13.375" PointY="0.75" />
         <AssociationConnector Association="webtruyenptModel.FK_Truyen_QuanLyHinhAnh" />
-        <AssociationConnector Association="webtruyenptModel.FK_Truyen_TheLoai" />
-        <AssociationConnector Association="webtruyenptModel.FK_TruyenTacGia_Truyen" />
-        <EntityTypeShape EntityType="webtruyenptModel.TaiKhoan" Width="1.5" PointX="0.75" PointY="19.25" />
-        <AssociationConnector Association="webtruyenptModel.FK_BinhLuan_TaiKhoan" />
-        <AssociationConnector Association="webtruyenptModel.FK_Luotthich_TaiKhoan" />
-        <AssociationConnector Association="webtruyenptModel.FK_Luotxem_TaiKhoan" />
-        <AssociationConnector Association="webtruyenptModel.FK_TacGia_TaiKhoan" />
-        <AssociationConnector Association="webtruyenptModel.FK_TheodoiTG_TaiKhoan" />
-        <AssociationConnector Association="webtruyenptModel.FK_ThongBao_TaiKhoan" />
+        <AssociationConnector Association="webtruyenptModel.FK_ChuongTruyen_Truyen" />
+        <EntityTypeShape EntityType="webtruyenptModel.TacGia" Width="1.5" PointX="13.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

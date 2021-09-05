@@ -168,11 +168,9 @@ class QLTaiKhoan extends React.Component {
             toast.success("Cập nhật thành công",4000)            
         }
     }
-    Edit = async (id, TinhTrang, page) => {                
-        let rs = API.capNhatTinhTrangTK(id, TinhTrang)
-        if (rs) {
-            this.dsTaiKhoan(page)
-        }
+    Edit = async (id, TinhTrang, page) => {        
+        let rs = await API.capNhatTinhTrangTK(id, TinhTrang)
+        this.dsTaiKhoan(page)
     }
     Delete = async (id, page) => {
         let cf = confirm("Bạn có muốn xóa tác giả này chứ!")
