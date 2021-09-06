@@ -90,16 +90,13 @@ namespace WebTruyen.Controllers
         // xuất ra các danh sách truyện hot ở trang chủ
         public ActionResult XuatCacTruyenIndex(int page, int pagesize)
         {
-            //var truyens = db.vTruyens.Where(x=>!x.TamAn && (x.DaDuyet?? false) && !(x.Khoa??false))
-            //    .OrderByDescending(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray().Select(x => new { truyen = x, Chuong = db.ChuongTruyens.Where(c => c.MaTruyen == x.MaTruyen).OrderByDescending(c3 => c3.SoChuong).Select(c2 => new { c2.SoChuong, c2.TenChuong })});
             var vvTruyens = db.vvTruyens.OrderBy(x=>x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
             return Json(vvTruyens, JsonRequestBehavior.AllowGet);
         }
         public ActionResult XuatCacTruyenTheLoai(int page, int pagesize, int maLoai)
         {
-            var truyens = db.vTruyens.Where(x => !x.TamAn && (x.DaDuyet ?? false) && !(x.Khoa ?? false) && x.MaLoai == maLoai)
-                .OrderByDescending(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray().Select(x => new { truyen = x, Chuong = db.ChuongTruyens.Where(c => c.MaTruyen == x.MaTruyen).OrderByDescending(c3 => c3.SoChuong).Select(c2 => new { c2.SoChuong, c2.TenChuong }) });
-            return Json(truyens.ToArray(), JsonRequestBehavior.AllowGet);
+            var vvTruyens = db.vvTruyens.Where(x=>x.MaLoai == maLoai).OrderBy(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
+            return Json(vvTruyens, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult getCaptcha()
@@ -107,6 +104,12 @@ namespace WebTruyen.Controllers
             Captcha captcha = new Captcha();
             Session["Captcha"] = captcha.captchaText;
             return Json(captcha.Img(),JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult timKiemTruyen(string timKiem, int page, int pagesize)
+        {
+            vvTruyen[] vvTruyens = Truyen.timKiem(timKiem).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
+            return Json(vvTruyens, JsonRequestBehavior.AllowGet);
         }
     }
 }

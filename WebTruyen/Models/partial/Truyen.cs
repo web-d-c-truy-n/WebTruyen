@@ -58,7 +58,7 @@ namespace WebTruyen.Models
             try
             {
                 webtruyenptEntities db = new webtruyenptEntities();
-                return db.Database.SqlQuery<vvTruyen>($"TIMKIEM_Truyen N'{timKiem}'").ToList();
+                return db.Database.SqlQuery<vvTruyen>($"TIMKIEM_Truyen N'{timKiem}'").OrderBy(x=>x.NgayDang).ToList();
             }
             catch (DbUpdateException ex)
             {

@@ -99,17 +99,6 @@ $(document).ready(async function () {
     ReactDOM.render(<PhanTuTruyen load={true} />, document.getElementById('dsTryenMoi'))
     $("#dsTryenMoi").ajaxOff()
 })
-$("#navigation-ajax").click(async function () {
-    let showTruyen
-    page++
-    if (theLoai != -1) {
-        showTruyen = await API.XuatCacTruyenTheLoai(page, 20, theLoai)
-    } else {
-        showTruyen = await API.XuatCacTruyenIndex(page, 20)
-    }
-    showTruyen.forEach((item, index) => {
-        truyenXemNhieu.push(item)
-    })
+const reader = () => {
     ReactDOM.render(<PhanTuTruyen load={true} />, document.getElementById('dsTryenMoi'))
-    $(this).removeClass(".show-loading")
-})
+}

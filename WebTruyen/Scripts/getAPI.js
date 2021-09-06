@@ -336,6 +336,13 @@
         })
         return result
     },
+    timkiemTruyen: async function (timkiem, page, pagesize) {
+        let result
+        await $.get("/Home/timkiemTruyen?timKiem=" + timkiem + "&page=" + page + "&pagesize=" + pagesize, function (data) {
+            result = data
+        })
+        return result
+    },
 
 }
 
