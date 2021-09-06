@@ -1712,10 +1712,10 @@
 </div>
 @section js{
     <script>        
-        var a = @Html.Raw(ViewBag.truyenMoi)            
+        var theLoai = @(ViewBag.MaLoai??-1);
     </script>
     <script src="~/Scripts/react/reactHome.js" type="text/babel"></script>
-    <script type="text/babel">
+    @*<script type="text/babel">
         $("#dsTryenMoi").ajaxOn()
         var page = 1
         var truyenXemNhieu
@@ -1776,5 +1776,5 @@
             ReactDOM.render(<div id="loop-content" class="page-content-listing item-default">{truyenHtml}</div>, document.getElementById('dsTryenMoi'))
             $(this).removeClass(".show-loading")
         })
-    </script>    
+    </script>*@    
 }

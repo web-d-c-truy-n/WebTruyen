@@ -288,6 +288,29 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
           <Property Name="LuotXem" Type="int" />
           <Property Name="LuotThich" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vvTruyen">
+          <Key>
+            <PropertyRef Name="MaTruyen" />
+            <PropertyRef Name="TenTruyen" />
+            <PropertyRef Name="AnhBia" />
+            <PropertyRef Name="MaLoai" />
+          </Key>
+          <Property Name="MaTruyen" Type="int" Nullable="false" />
+          <Property Name="TenTruyen" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LuotXem" Type="int" />
+          <Property Name="LuotThich" Type="int" />
+          <Property Name="NgayDang" Type="datetime" />
+          <Property Name="AnhBia" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="MaLoai" Type="int" Nullable="false" />
+          <Property Name="SoChuong1" Type="int" />
+          <Property Name="SoChuong2" Type="int" />
+          <Property Name="SoChuong3" Type="int" />
+          <Property Name="TenChuong1" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenChuong2" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenChuong3" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <Association Name="FK_ChuongTruyen_Truyen">
           <End Role="Truyen" Type="Self.Truyen" Multiplicity="1" />
           <End Role="ChuongTruyen" Type="Self.ChuongTruyen" Multiplicity="*" />
@@ -577,6 +600,23 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
     [vTruyen].[LuotXem] AS [LuotXem], 
     [vTruyen].[LuotThich] AS [LuotThich]
     FROM [dbo].[vTruyen] AS [vTruyen]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vvTruyen" EntityType="Self.vvTruyen" store:Type="Views" store:Schema="webtruyenpt">
+            <DefiningQuery>SELECT 
+    [vvTruyen].[MaTruyen] AS [MaTruyen], 
+    [vvTruyen].[TenTruyen] AS [TenTruyen], 
+    [vvTruyen].[LuotXem] AS [LuotXem], 
+    [vvTruyen].[LuotThich] AS [LuotThich], 
+    [vvTruyen].[NgayDang] AS [NgayDang], 
+    [vvTruyen].[AnhBia] AS [AnhBia], 
+    [vvTruyen].[MaLoai] AS [MaLoai], 
+    [vvTruyen].[SoChuong1] AS [SoChuong1], 
+    [vvTruyen].[SoChuong2] AS [SoChuong2], 
+    [vvTruyen].[SoChuong3] AS [SoChuong3], 
+    [vvTruyen].[TenChuong1] AS [TenChuong1], 
+    [vvTruyen].[TenChuong2] AS [TenChuong2], 
+    [vvTruyen].[TenChuong3] AS [TenChuong3]
+    FROM [webtruyenpt].[vvTruyen] AS [vvTruyen]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_ChuongTruyen_Truyen" Association="Self.FK_ChuongTruyen_Truyen">
             <End Role="Truyen" EntitySet="Truyen" />
@@ -1095,6 +1135,7 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
             <End Role="ChuongTruyen" EntitySet="ChuongTruyens" />
           </AssociationSet>
           <EntitySet Name="TacGias" EntityType="webtruyenptModel.TacGia" />
+          <EntitySet Name="vvTruyens" EntityType="webtruyenptModel.vvTruyen" />
         </EntityContainer>
         <EntityType Name="vTruyen">
           <Key>
@@ -1158,6 +1199,27 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
           <Property Name="VaiTro" Type="Int32" Nullable="false" />
           <Property Name="DaDuyet" Type="Boolean" />
           <Property Name="Khoa" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="vvTruyen">
+          <Key>
+            <PropertyRef Name="MaTruyen" />
+            <PropertyRef Name="TenTruyen" />
+            <PropertyRef Name="AnhBia" />
+            <PropertyRef Name="MaLoai" />
+          </Key>
+          <Property Name="MaTruyen" Type="Int32" Nullable="false" />
+          <Property Name="TenTruyen" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LuotXem" Type="Int32" />
+          <Property Name="LuotThich" Type="Int32" />
+          <Property Name="NgayDang" Type="DateTime" Precision="3" />
+          <Property Name="AnhBia" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MaLoai" Type="Int32" Nullable="false" />
+          <Property Name="SoChuong1" Type="Int32" />
+          <Property Name="SoChuong2" Type="Int32" />
+          <Property Name="SoChuong3" Type="Int32" />
+          <Property Name="TenChuong1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenChuong2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenChuong3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1410,6 +1472,25 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
                 <ScalarProperty Name="NgayDangKy" ColumnName="NgayDangKy" />
                 <ScalarProperty Name="ButDanh" ColumnName="ButDanh" />
                 <ScalarProperty Name="MaTG" ColumnName="MaTG" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vvTruyens">
+            <EntityTypeMapping TypeName="webtruyenptModel.vvTruyen">
+              <MappingFragment StoreEntitySet="vvTruyen">
+                <ScalarProperty Name="TenChuong3" ColumnName="TenChuong3" />
+                <ScalarProperty Name="TenChuong2" ColumnName="TenChuong2" />
+                <ScalarProperty Name="TenChuong1" ColumnName="TenChuong1" />
+                <ScalarProperty Name="SoChuong3" ColumnName="SoChuong3" />
+                <ScalarProperty Name="SoChuong2" ColumnName="SoChuong2" />
+                <ScalarProperty Name="SoChuong1" ColumnName="SoChuong1" />
+                <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+                <ScalarProperty Name="AnhBia" ColumnName="AnhBia" />
+                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
+                <ScalarProperty Name="LuotThich" ColumnName="LuotThich" />
+                <ScalarProperty Name="LuotXem" ColumnName="LuotXem" />
+                <ScalarProperty Name="TenTruyen" ColumnName="TenTruyen" />
+                <ScalarProperty Name="MaTruyen" ColumnName="MaTruyen" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

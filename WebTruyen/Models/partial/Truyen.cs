@@ -53,12 +53,12 @@ namespace WebTruyen.Models
                 throw Ex;
             }
         }        
-        public static List<Truyen> timKiem(string timKiem)
+        public static List<vvTruyen> timKiem(string timKiem)
         {
             try
             {
                 webtruyenptEntities db = new webtruyenptEntities();
-                return db.Database.SqlQuery<Truyen>($"TIMKIEM_Truyen N'{timKiem}'").ToList();
+                return db.Database.SqlQuery<vvTruyen>($"TIMKIEM_Truyen N'{timKiem}'").ToList();
             }
             catch (DbUpdateException ex)
             {
