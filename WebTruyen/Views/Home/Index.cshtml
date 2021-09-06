@@ -1635,7 +1635,8 @@
 </div>
 @section js{
     <script>        
-        var theLoai = @(ViewBag.MaLoai??-1);
+        const theLoai = @(ViewBag.MaLoai ?? -1);
+        const loaiTruyen = @(ViewBag.LoaiTruyen ?? -1)
     </script>
     <script src="~/Scripts/react/reactHome.js" type="text/babel"></script>
     <script>

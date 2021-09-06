@@ -27,5 +27,6 @@ namespace WebTruyen.Models
         public string TenChuong1 { get; set; }
         public string TenChuong2 { get; set; }
         public string TenChuong3 { get; set; }
+        public int LoaiTruyen { get; set; }
     }
 }

@@ -138,12 +138,15 @@ warning 6002: The table/view 'webtruyenpt.dbo.BinhLuan' does not have a primary 
           <Key>
             <PropertyRef Name="MaBinhLuan" />
             
+            <PropertyRef Name="HovaTen" />
             
             
           </Key>
-          <Property Name="MaBinhLuan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaBinhLuan" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="MaTruyen" Type="int" />
           <Property Name="MaTK" Type="int" Nullable="false" />
+          <Property Name="HovaTen" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Avatar" Type="varchar" MaxLength="200" />
           <Property Name="NoiDung" Type="ntext" />
           <Property Name="NgayBinhLuan" Type="datetime" Nullable="false" />
           <Property Name="PhanHoi" Type="int" />
@@ -289,6 +292,18 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
           <Property Name="LuotThich" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'webtruyenpt.webtruyenpt.DanhGia' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DanhGia">
+          <Key>
+            <PropertyRef Name="MaTK" />
+            <PropertyRef Name="NgayDanhGia" />
+          </Key>
+          <Property Name="MaTruyen" Type="int" />
+          <Property Name="MaTK" Type="int" Nullable="false" />
+          <Property Name="NgayDanhGia" Type="datetime" Nullable="false" />
+          <Property Name="DanhGia" Type="ntext" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vvTruyen">
           <Key>
@@ -296,6 +311,7 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
             <PropertyRef Name="TenTruyen" />
             <PropertyRef Name="AnhBia" />
             <PropertyRef Name="MaLoai" />
+            <PropertyRef Name="LoaiTruyen" />
           </Key>
           <Property Name="MaTruyen" Type="int" Nullable="false" />
           <Property Name="TenTruyen" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -310,6 +326,7 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
           <Property Name="TenChuong1" Type="nvarchar" MaxLength="50" />
           <Property Name="TenChuong2" Type="nvarchar" MaxLength="50" />
           <Property Name="TenChuong3" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoaiTruyen" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_ChuongTruyen_Truyen">
           <End Role="Truyen" Type="Self.Truyen" Multiplicity="1" />
@@ -505,6 +522,8 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
     [BinhLuan].[MaBinhLuan] AS [MaBinhLuan], 
     [BinhLuan].[MaTruyen] AS [MaTruyen], 
     [BinhLuan].[MaTK] AS [MaTK], 
+    [BinhLuan].[HovaTen] AS [HovaTen], 
+    [BinhLuan].[Avatar] AS [Avatar], 
     [BinhLuan].[NoiDung] AS [NoiDung], 
     [BinhLuan].[NgayBinhLuan] AS [NgayBinhLuan], 
     [BinhLuan].[PhanHoi] AS [PhanHoi], 
@@ -601,6 +620,14 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
     [vTruyen].[LuotThich] AS [LuotThich]
     FROM [dbo].[vTruyen] AS [vTruyen]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="DanhGia" EntityType="Self.DanhGia" store:Type="Views" store:Schema="webtruyenpt">
+            <DefiningQuery>SELECT 
+    [DanhGia].[MaTruyen] AS [MaTruyen], 
+    [DanhGia].[MaTK] AS [MaTK], 
+    [DanhGia].[NgayDanhGia] AS [NgayDanhGia], 
+    [DanhGia].[DanhGia] AS [DanhGia]
+    FROM [webtruyenpt].[DanhGia] AS [DanhGia]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vvTruyen" EntityType="Self.vvTruyen" store:Type="Views" store:Schema="webtruyenpt">
             <DefiningQuery>SELECT 
     [vvTruyen].[MaTruyen] AS [MaTruyen], 
@@ -615,7 +642,8 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
     [vvTruyen].[SoChuong3] AS [SoChuong3], 
     [vvTruyen].[TenChuong1] AS [TenChuong1], 
     [vvTruyen].[TenChuong2] AS [TenChuong2], 
-    [vvTruyen].[TenChuong3] AS [TenChuong3]
+    [vvTruyen].[TenChuong3] AS [TenChuong3], 
+    [vvTruyen].[LoaiTruyen] AS [LoaiTruyen]
     FROM [webtruyenpt].[vvTruyen] AS [vvTruyen]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_ChuongTruyen_Truyen" Association="Self.FK_ChuongTruyen_Truyen">
@@ -832,6 +860,7 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
         <EntityType Name="BinhLuan">
           <Key>
             <PropertyRef Name="MaBinhLuan" />
+            <PropertyRef Name="HovaTen" />
           </Key>
           <Property Name="MaBinhLuan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MaTruyen" Type="Int32" />
@@ -841,6 +870,8 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
           <Property Name="PhanHoi" Type="Int32" />
           <Property Name="SoChuong" Type="Int32" />
           <Property Name="LoaiHD" Type="Int32" Nullable="false" />
+          <Property Name="HovaTen" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="LuotThichChuong">
           <Key>
@@ -1136,6 +1167,7 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
           </AssociationSet>
           <EntitySet Name="TacGias" EntityType="webtruyenptModel.TacGia" />
           <EntitySet Name="vvTruyens" EntityType="webtruyenptModel.vvTruyen" />
+          <EntitySet Name="DanhGias" EntityType="webtruyenptModel.DanhGia" />
         </EntityContainer>
         <EntityType Name="vTruyen">
           <Key>
@@ -1206,6 +1238,7 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
             <PropertyRef Name="TenTruyen" />
             <PropertyRef Name="AnhBia" />
             <PropertyRef Name="MaLoai" />
+            <PropertyRef Name="LoaiTruyen" />
           </Key>
           <Property Name="MaTruyen" Type="Int32" Nullable="false" />
           <Property Name="TenTruyen" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -1220,6 +1253,17 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
           <Property Name="TenChuong1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TenChuong2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TenChuong3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiTruyen" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DanhGia">
+          <Key>
+            <PropertyRef Name="MaTK" />
+            <PropertyRef Name="NgayDanhGia" />
+          </Key>
+          <Property Name="MaTruyen" Type="Int32" />
+          <Property Name="MaTK" Type="Int32" Nullable="false" />
+          <Property Name="NgayDanhGia" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DanhGia1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1359,6 +1403,8 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
           <EntitySetMapping Name="BinhLuans">
             <EntityTypeMapping TypeName="webtruyenptModel.BinhLuan">
               <MappingFragment StoreEntitySet="BinhLuan">
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="HovaTen" ColumnName="HovaTen" />
                 <ScalarProperty Name="MaBinhLuan" ColumnName="MaBinhLuan" />
                 <ScalarProperty Name="MaTruyen" ColumnName="MaTruyen" />
                 <ScalarProperty Name="MaTK" ColumnName="MaTK" />
@@ -1478,6 +1524,7 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
           <EntitySetMapping Name="vvTruyens">
             <EntityTypeMapping TypeName="webtruyenptModel.vvTruyen">
               <MappingFragment StoreEntitySet="vvTruyen">
+                <ScalarProperty Name="LoaiTruyen" ColumnName="LoaiTruyen" />
                 <ScalarProperty Name="TenChuong3" ColumnName="TenChuong3" />
                 <ScalarProperty Name="TenChuong2" ColumnName="TenChuong2" />
                 <ScalarProperty Name="TenChuong1" ColumnName="TenChuong1" />
@@ -1490,6 +1537,16 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
                 <ScalarProperty Name="LuotThich" ColumnName="LuotThich" />
                 <ScalarProperty Name="LuotXem" ColumnName="LuotXem" />
                 <ScalarProperty Name="TenTruyen" ColumnName="TenTruyen" />
+                <ScalarProperty Name="MaTruyen" ColumnName="MaTruyen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DanhGias">
+            <EntityTypeMapping TypeName="webtruyenptModel.DanhGia">
+              <MappingFragment StoreEntitySet="DanhGia">
+                <ScalarProperty Name="DanhGia1" ColumnName="DanhGia" />
+                <ScalarProperty Name="NgayDanhGia" ColumnName="NgayDanhGia" />
+                <ScalarProperty Name="MaTK" ColumnName="MaTK" />
                 <ScalarProperty Name="MaTruyen" ColumnName="MaTruyen" />
               </MappingFragment>
             </EntityTypeMapping>

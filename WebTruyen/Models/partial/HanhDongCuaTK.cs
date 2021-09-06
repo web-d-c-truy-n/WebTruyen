@@ -35,6 +35,10 @@ namespace WebTruyen.Models
             try
             {
                 webtruyenptEntities db = new webtruyenptEntities();
+                if (db.LuotThichTruyens.Where(x =>
+                    x.MaTK == luotThichTruyen.MaTK &&
+                    x.MaTruyen == luotThichTruyen.MaTruyen).ToArray().Length > 0)
+                    return;
                 this.MaTK = luotThichTruyen.MaTK;
                 this.MaTruyen = luotThichTruyen.MaTruyen;
                 this.NgayHanhDong = DateTime.Now;
@@ -53,6 +57,11 @@ namespace WebTruyen.Models
             try
             {
                 webtruyenptEntities db = new webtruyenptEntities();
+                if (db.LuotThichChuongs.Where(x => 
+                    x.MaTK == luotThichChuong.MaTK && 
+                    x.MaTruyen == luotThichChuong.MaTruyen && 
+                    x.SoChuong == luotThichChuong.SoChuong).ToArray().Length > 0)
+                    return;
                 this.MaTK = luotThichChuong.MaTK;
                 this.MaTruyen = luotThichChuong.MaTruyen;
                 this.SoChuong = luotThichChuong.SoChuong;
@@ -72,6 +81,8 @@ namespace WebTruyen.Models
             try
             {
                 webtruyenptEntities db = new webtruyenptEntities();
+                BinhLuan binhLuan1 = db.BinhLuans.FirstOrDefault(x => x.MaBinhLuan == binhLuan.PhanHoi);
+                binhLuan.SoChuong = binhLuan1.SoChuong;
                 this.MaTK = binhLuan.MaTK;
                 this.MaTruyen = binhLuan.MaTruyen;
                 this.SoChuong = binhLuan.SoChuong;
@@ -125,6 +136,27 @@ namespace WebTruyen.Models
                 this.MaNhom = thongBao.MaNhom;
                 this.NgayHanhDong = DateTime.Now;
                 this.LoaiHD = hdTaiKhoan.thongBao;
+                db.HanhDongCuaTKs.Add(this);
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
+        public void danhGia(DanhGia danhGia)
+        {
+            try
+            {
+                webtruyenptEntities db = new webtruyenptEntities();
+                if (db.DanhGias.Where(x => x.MaTK == danhGia.MaTK && x.MaTruyen == danhGia.MaTruyen).ToArray().Length > 0)
+                    return;
+                this.MaTruyen = danhGia.MaTruyen;
+                this.MaTK = danhGia.MaTK;
+                this.NgayHanhDong = DateTime.Now;
+                this.GhiChu = danhGia.DanhGia1;
+                this.LoaiHD = hdTaiKhoan.danhGia;
                 db.HanhDongCuaTKs.Add(this);
                 db.SaveChanges();
             }

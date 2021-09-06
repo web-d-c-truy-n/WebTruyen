@@ -39,6 +39,7 @@
         <AssociationConnector Association="webtruyenptModel.FK_ChuongTruyen_Truyen" />
         <EntityTypeShape EntityType="webtruyenptModel.TacGia" Width="1.5" PointX="13.375" PointY="5.75" />
         <EntityTypeShape EntityType="webtruyenptModel.vvTruyen" Width="1.5" PointX="13.375" PointY="8.75" />
+        <EntityTypeShape EntityType="webtruyenptModel.DanhGia" Width="1.5" PointX="10.375" PointY="13.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

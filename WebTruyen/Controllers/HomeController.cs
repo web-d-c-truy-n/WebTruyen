@@ -34,6 +34,20 @@ namespace WebTruyen.Controllers
                 .OrderByDescending(x => x.LuotThich).Take(6).ToArray();
             return View("Index");
         }
+        public ActionResult TruyenChu()
+        {
+            ViewBag.LoaiTruyen = 1;
+            ViewBag.truyenYeuThich = db.vTruyens.Where(x => !x.TamAn && (x.DaDuyet ?? false) && !(x.Khoa ?? false))
+                .OrderByDescending(x => x.LuotThich).Take(6).ToArray();
+            return View("Index");
+        }
+        public ActionResult TruyenTranh()
+        {
+            ViewBag.LoaiTruyen = 2;
+            ViewBag.truyenYeuThich = db.vTruyens.Where(x => !x.TamAn && (x.DaDuyet ?? false) && !(x.Khoa ?? false))
+                .OrderByDescending(x => x.LuotThich).Take(6).ToArray();
+            return View("Index");
+        }
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
@@ -93,9 +107,15 @@ namespace WebTruyen.Controllers
             var vvTruyens = db.vvTruyens.OrderBy(x=>x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
             return Json(vvTruyens, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult XuatCacTruyenTheLoai(int page, int pagesize, int maLoai)
+        public ActionResult XuatCacTruyenTheLoai(int page, int pagesize, int maLoai, int loaiTruyen)
         {
-            var vvTruyens = db.vvTruyens.Where(x=>x.MaLoai == maLoai).OrderBy(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
+            vvTruyen[] vvTruyens;
+            if (maLoai != -1 && loaiTruyen == -1)
+                vvTruyens = db.vvTruyens.Where(x=>x.MaLoai == maLoai).OrderBy(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
+            else if (maLoai == -1 && loaiTruyen !=-1)
+                vvTruyens = db.vvTruyens.Where(x => x.LoaiTruyen == loaiTruyen).OrderBy(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
+            else
+                vvTruyens = db.vvTruyens.Where(x => x.MaLoai == maLoai && x.LoaiTruyen == loaiTruyen).OrderBy(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
             return Json(vvTruyens, JsonRequestBehavior.AllowGet);
         }
 
@@ -110,18 +130,6 @@ namespace WebTruyen.Controllers
         {
             vvTruyen[] vvTruyens = Truyen.timKiem(timKiem).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
             return Json(vvTruyens, JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult thongtintruyen()
-        {
-            return View();
-        }
-        public ActionResult truyentranh()
-        {
-            return View();
-        }
-        public ActionResult truyenchu()
-        {
-            return View();
         }
     }
 }

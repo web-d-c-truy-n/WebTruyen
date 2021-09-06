@@ -10,12 +10,12 @@ namespace WebTruyen.Helper
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {            
-            if (Auth.user().TinhTrang == ttTaiKhoan.biKhoanVV)
+            if (Auth.user() == null)
+            {               
+                HttpContext.Current.Response.Redirect("/");                
+            } else if (Auth.user().TinhTrang == ttTaiKhoan.biKhoanVV)
             {
                 Auth.logout();
-                HttpContext.Current.Response.Redirect("/");                
-            } else if (Auth.user() == null)
-            {
                 HttpContext.Current.Response.Redirect("/");
             }
             else

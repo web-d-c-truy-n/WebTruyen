@@ -126,6 +126,7 @@ namespace WebTruyen.Helper
         public const int binhLuan = 5;
         public const int traoDoi = 6;
         public const int thichChuong = 7;
+        public const int danhGia = 8;
     }
     public struct vtTacGia
     {

@@ -45,5 +45,6 @@ namespace WebTruyen.Models
         public virtual DbSet<vTruyen> vTruyens { get; set; }
         public virtual DbSet<TacGia> TacGias { get; set; }
         public virtual DbSet<vvTruyen> vvTruyens { get; set; }
+        public virtual DbSet<DanhGia> DanhGias { get; set; }
     }
 }

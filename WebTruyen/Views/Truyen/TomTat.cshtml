@@ -1,9 +1,16 @@
-﻿
+﻿@using WebTruyen.Models
+@model Truyen
 @{
-    ViewBag.Title = "thongtintruyen";
+    ViewBag.Title = Model.TenTruyen;
     Layout = "~/Views/Shared/_Layoutwebindex.cshtml";
+    webtruyenptEntities db = new webtruyenptEntities();
 }
-
+<style>
+    .comment-list.comment-reply {
+        padding-left: 50px !important;
+        padding-top: 50px !important;
+    }
+</style>
 <div class="site-content">
     <div class="post-449 wp-manga type-wp-manga status-publish has-post-thumbnail hentry wp-manga-tag-cartoon wp-manga-tag-kitasou-girl wp-manga-tag-kyoto wp-manga-release-92 wp-manga-author-nasimi wp-manga-artist-bikimisha wp-manga-genre-action wp-manga-genre-anime">
         <div class="profile-manga summary-layout-1" style="background-image: url(./wp-content/themes/madara/images/bg-search.jpg);">
@@ -14,24 +21,20 @@
                             <div class="c-breadcrumb">
                                 <ol class="breadcrumb">
                                     <li>
-                                        <a href="~/Asset/Web/">
+                                        <a href="/">
                                             Home
                                         </a>
                                     </li>
-
                                     <li>
-                                        <a href="~/Asset/Web/manga-genre/action/">
-                                            Action
+                                        <a href="/">
+                                            Truyện
                                         </a>
                                     </li>
-
                                     <li>
-                                        <a href="~/Asset/Web/manga/massa-consectetur-mattis/">
-                                            Manga Video Chapters
+                                        <a href="#">
+                                            @Model.TenTruyen
                                         </a>
                                     </li>
-
-
                                 </ol>
                             </div>
 
@@ -40,13 +43,13 @@
                         <div class="post-title">
                             <span class="manga-title-badges new">NEW</span>
                             <h1>
-                                Manga Video Chapters
+                                @Model.TenTruyen
                             </h1>
                         </div>
                         <div class="tab-summary ">
                             <div class="summary_image">
                                 <a href="~/Asset/Web/manga/massa-consectetur-mattis/">
-                                    <img width="193" height="278" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550618-193x278.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550618-193x278.jpg 193w, ./wp-content/uploads/2017/10/wallhaven-550618-125x180.jpg 125w" data-sizes="(max-width: 193px) 100vw, 193px" class="img-responsive effect-fade lazyloaded" src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550618-193x278.jpg" style="padding-top:278px;" alt="wallhaven-550618" sizes="(max-width: 193px) 100vw, 193px" srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-550618-193x278.jpg 193w, ./wp-content/uploads/2017/10/wallhaven-550618-125x180.jpg 125w">
+                                    <img width="193" height="278" src="@Model.QuanLyHinhAnh.URL" />
                                 </a>
                             </div>
                             <div class="summary_content_wrap">
@@ -63,25 +66,25 @@
 
                                         <div class="post-content_item">
                                             <div class="summary-heading">
-                                                <h5>Rating</h5>
+                                                <h5>Đánh giá</h5>
                                             </div>
                                             <div class="summary-content vote-details" vocab="https://schema.org/" typeof="AggregateRating">
-                                                <span property="itemReviewed" typeof="Book"><span class="rate-title" property="name" title="Manga Video Chapters">Manga Video Chapters</span></span><span> <span> Average <span property="ratingValue" id="averagerate"> 4.1</span> / <span property="bestRating">5</span> </span> </span> out of <span property="ratingCount" id="countrate">85</span>
+                                                <span property="itemReviewed" typeof="Book"><span class="rate-title" property="name" title="@Model.TenTruyen">@Model.TenTruyen</span></span><span> <span> Average <span property="ratingValue" id="averagerate"> 4.1</span> / <span property="bestRating">5</span> </span> </span> out of <span property="ratingCount" id="countrate">85</span>
                                             </div>
                                         </div>
                                         <div class="post-content_item">
                                             <div class="summary-heading">
                                                 <h5>
-                                                    Rank
+                                                    Xếp hạng
                                                 </h5>
                                             </div>
                                             <div class="summary-content">
-                                                2nd, it has 708 monthly views
+                                                Lượt thích @Model.luotThich(), Lượt xem @Model.luotXem()
                                             </div>
                                         </div><div class="post-content_item">
                                             <div class="summary-heading">
                                                 <h5>
-                                                    Author(s)
+                                                    Tác giả
                                                 </h5>
                                             </div>
                                             <div class="summary-content">
@@ -93,44 +96,27 @@
                                         <div class="post-content_item">
                                             <div class="summary-heading">
                                                 <h5>
-                                                    Artist(s)
-                                                </h5>
-                                            </div>
-                                            <div class="summary-content">
-                                                <div class="artist-content">
-                                                    <a href="~/Asset/Web/manga-artist/bikimisha/" rel="tag">Bikimisha</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="post-content_item">
-                                            <div class="summary-heading">
-                                                <h5>
-                                                    Genre(s)
+                                                    Thể Loại
                                                 </h5>
                                             </div>
                                             <div class="summary-content">
                                                 <div class="genres-content">
-                                                    <a href="~/Asset/Web/manga-genre/action/" rel="tag">Action</a>, <a href="~/Asset/Web/manga-genre/anime/" rel="tag">Anime</a>
+                                                    <a href="@Url.Action("theLoai","Home",new {id = WebTruyen.Helper.Commons.convertToUnSign3(Model.TheLoai.TenLoai+"-"+Model.MaLoai).ToLower() })" rel="tag">@Model.TheLoai.TenLoai</a>
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="post-content_item">
                                             <div class="summary-heading">
                                                 <h5>
-                                                    Tag(s)
+                                                    Loại truyện
                                                 </h5>
                                             </div>
                                             <div class="summary-content">
                                                 <div class="tags-content">
-                                                    <a href="~/Asset/Web/manga-tag/cartoon/" rel="tag">Cartoon</a>, <a href="~/Asset/Web/manga-tag/kitasou-girl/" rel="tag">Kitasou Girl</a>, <a href="~/Asset/Web/manga-tag/kyoto/" rel="tag">Kyoto</a>
+                                                    <a href="@(Model.LoaiTruyen ==1?Url.Action("TruyenChu","Home"):Url.Action("TruyenTranh","Home"))" rel="tag">@(Model.LoaiTruyen ==1?"Truyện chữ":"Truyện tranh")</a>
                                                 </div>
                                             </div>
                                         </div>
-
-
-
                                     </div>
                                     <div class="post-status">
 
@@ -164,7 +150,8 @@
                                             </div>
                                             <div class="add-bookmark">
                                                 <div class="action_icon">
-                                                <script type="text/javascript">var requireLogin2BookMark = true;</script><a href="#" class="wp-manga-action-button" data-action="bookmark" data-post="449" data-chapter="" data-page="1" title="Bookmark"><i class="icon ion-ios-bookmark"></i></a></div><div class="action_detail"><span>8 Users bookmarked This</span></div>
+                                                    <script type="text/javascript">var requireLogin2BookMark = true;</script><a href="#" class="wp-manga-action-button" data-action="bookmark" data-post="449" data-chapter="" data-page="1" title="Bookmark"><i class="icon ion-ios-bookmark"></i></a>
+                                                </div><div class="action_detail"><span>8 Users bookmarked This</span></div>
                                             </div>
                                         </div>
                                     </div>
@@ -172,9 +159,9 @@
 
                                     <div id="init-links" class="nav-links">
                                         <a href="#" id="btn-read-last" class="c-btn c-btn_style-1">
-                                            Read First
+                                            Đọc trang đầu
                                         </a>
-                                        <a href="#" id="btn-read-first" class="c-btn c-btn_style-1">Read Last</a>
+                                        <a href="#" id="btn-read-first" class="c-btn c-btn_style-1">Đọc trang cuối</a>
                                     </div>
 
                                 </div>
@@ -200,14 +187,14 @@
 
                                             <h2 class="h4">
                                                 <i class="icon ion-ios-star"></i>
-                                                Summary
+                                                Tóm Tắt
                                             </h2>
                                         </div>
 
                                         <div class="description-summary">
 
                                             <div class="summary__content show-more">
-                                                <p>Kounosuke is the favored son of a noble family. When he is caught in a fire at the mansion, a blow to the head causes him to remember scenes from a previous life. A former Warring States Period daimyo, he had a torrid love affair with his page, Kageya. Kageya had sworn that when they were born again they would be together in the next life. But when Kounosuke wakes up, three men appear before him – all named Kageya! Can Kounosuke traverse time and be reunited again with his beloved Kageya</p>
+                                                @Html.Raw(Model.MoTa)
                                             </div>
 
                                             <div class="c-content-readmore">
@@ -222,51 +209,27 @@
                                         <div class="c-blog__heading style-2 font-heading">
                                             <h2 class="h4">
                                                 <i class="icon ion-ios-star"></i>
-                                                LATEST MANGA RELEASES
+                                                CÁC CHƯƠNG
                                             </h2>
                                             <a href="#" title="Change Order" class="btn-reverse-order"><i class="icon ion-md-swap"></i></a>
                                         </div>
                                         <div class="page-content-listing single-page">
                                             <div class="listing-chapters_wrap cols-1  show-more">
-
-
-
+                                                @{ChuongTruyen[] chuongTruyen = db.ChuongTruyens.Where(x => x.MaTruyen == Model.MaTruyen).OrderBy(x => x.SoChuong).ToArray();}
                                                 <ul class="main version-chap">
+                                                    @foreach (ChuongTruyen chuong in chuongTruyen)
+                                                    {
+                                                        <li class="wp-manga-chapter    ">
+                                                            <a href="~/Asset/Web/manga/massa-consectetur-mattis/episode-122/">
+                                                                CHƯƠNG @(chuong.SoChuong): @chuong.TenChuong
+                                                            </a>
 
-
-                                                    <li class="wp-manga-chapter    ">
-
-                                                        <a href="~/Asset/Web/manga/massa-consectetur-mattis/episode-122/">
-                                                            Episode 122 - Finally! Vegeta show them power or Saiyan Prince!!
-                                                        </a>
-
-                                                        <span class="chapter-release-date">
-                                                            <i>May 10, 2018</i>
-                                                        </span>
-
-
-                                                    </li>
-
-
-                                                    <li class="wp-manga-chapter    ">
-
-                                                        <a href="~/Asset/Web/manga/massa-consectetur-mattis/episode-121/">
-                                                            Episode 121 - Frieza Finally Fighting
-                                                        </a>
-
-                                                        <span class="chapter-release-date">
-                                                            <i>May 10, 2018</i>
-                                                        </span>
-
-
-                                                    </li>
-
-
-
+                                                            <span class="chapter-release-date">
+                                                                <i>@chuong.NgayTao.ToString("dd/MM/yyyy")</i>
+                                                            </span>
+                                                        </li>
+                                                    }
                                                 </ul>
-
-
-
                                                 <div class="c-chapter-readmore">
                                                     <span class="btn btn-link chapter-readmore">
                                                         Show more
@@ -283,7 +246,7 @@
 
                                 <div id="manga-discussion" class="c-blog__heading style-2 font-heading">
                                     <i class="ion-ios-star"></i>
-                                    <h4> MANGA DISCUSSION </h4>
+                                    <h4> BÌNH LUẬN ĐÁNH GIÁ </h4>
 
                                 </div>
                                 <div class="manga-discussion wrapper">
@@ -294,60 +257,90 @@
 
 
                                         <div id="respond" class="comment-respond">
-                                            <h4 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/manga/massa-consectetur-mattis/#respond" style="display:none;">Cancel reply</a></small></h4><form action="~/Asset/Web/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="">
-                                                <p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="Comment"></textarea></p><p class="comment-form-author"><label for="author">Name</label> <span class="required">*</span><input id="author" name="author" type="text" placeholder="Name" value="" size="30" aria-required="true"></p>
-                                                <p class="comment-form-email"><label for="email">Email</label> <span class="required">*</span><input id="email" name="email" type="text" placeholder="Email" value="" size="30" aria-required="true"></p>
-                                                <p class="comment-form-url"><label for="url">Website</label><input id="url" name="url" type="text" placeholder="Website" value="" size="30"></p>
-                                                <p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label></p>
+                                            <h4 id="reply-title" class="comment-reply-title">HÃY VIẾT CẢM NHẬN CỦA BẠN <small><a rel="nofollow" id="cancel-comment-reply-link" href="/manga/massa-consectetur-mattis/#respond" style="display:none;">Cancel reply</a></small></h4>
+                                            <form action="~/Asset/Web/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="" onsubmit="return false">
+                                                <p class="comment-notes"><span id="email-notes"><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="Comment"></textarea></span></p><p class="comment-form-author"></p>
                                                 <p class="form-submit">
                                                     <input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="449" id="comment_post_ID">
                                                     <input type="hidden" name="comment_parent" id="comment_parent" value="0">
                                                 </p>                <input type="hidden" name="wp_manga_chapter_id" value="0">
                                             </form>
                                         </div><!-- #respond -->
-
                                         <h4 class="comments-title">
-                                            25 Comments
+                                            @Model.binhLuan().Count Comments
                                         </h4>
 
+                                        <div id="comments">
+                                            <!--<ol class="comment-list">
+                                                <li class="comment byuser comment-author-san4es_tv even thread-even depth-1" id="comment-717">
+                                                    <article id="div-comment-717" class="comment-body">
+                                                        <div class="block block-left">
+                                                            <footer class="comment-meta">
+                                                                <div class="comment-avatar">
+                                                                    <img alt="" src="https://secure.gravatar.com/avatar/fb959c642c28af50acf7b69fec4b1b41?s=60&amp;d=mm&amp;r=g" srcset="https://secure.gravatar.com/avatar/fb959c642c28af50acf7b69fec4b1b41?s=120&amp;d=mm&amp;r=g 2x" class="avatar avatar-60 photo" height="60" width="60" loading="lazy">
+                                                                </div>
+                                                            </footer>-->
+                                                            <!-- .comment-meta -->
+                                                        <!--</div>
+                                                        <div class="block block-right">
+                                                            <div class="comment-author">
+                                                                <h6 class="heading fn">Lahm</h6>
+                                                            </div>-->
+                                                            <!--!comment-author-->
+                                                            <!--<div class="comment-content">
+                                                                <p>Awesome. I like it</p>
+                                                            </div>-->
+                                                            <!-- .comment-content -->
+                                                            <!--<div class="comment-metadata">
+                                                                <a href="~/Asset/Web/manga/massa-consectetur-mattis/#comment-717">
+                                                                    January 12, 2018 at 2:02 pm
+                                                                </a>
+                                                            </div>-->
+                                                            <!-- .comment-metadata -->
+                                                        <!--</div>
 
-                                        <ol class="comment-list" id="comments">
-                                            <li class="comment byuser comment-author-san4es_tv even thread-even depth-1" id="comment-717">
-                                                <article id="div-comment-717" class="comment-body">
-                                                    <div class="block block-left">
-                                                        <footer class="comment-meta">
-                                                            <div class="comment-avatar">
-                                                                <img alt="" src="https://secure.gravatar.com/avatar/fb959c642c28af50acf7b69fec4b1b41?s=60&amp;d=mm&amp;r=g" srcset="https://secure.gravatar.com/avatar/fb959c642c28af50acf7b69fec4b1b41?s=120&amp;d=mm&amp;r=g 2x" class="avatar avatar-60 photo" height="60" width="60" loading="lazy">
-                                                            </div>
-                                                        </footer>
-                                                        <!-- .comment-meta -->
-                                                    </div>
-                                                    <div class="block block-right">
-                                                        <div class="comment-author">
-                                                            <h6 class="heading fn">Lahm</h6>
+                                                        <div class="reply">
+                                                            <a rel="nofollow" class="comment-reply-link" href="~/Asset/Web/manga/massa-consectetur-mattis/?replytocom=717#respond" data-commentid="717" data-postid="449" data-belowelement="div-comment-717" data-respondelement="respond" data-replyto="Reply to Lahm" aria-label="Reply to Lahm">Reply</a>
                                                         </div>
-                                                        <!--!comment-author-->
-                                                        <div class="comment-content">
-                                                            <p>Awesome. I like it</p>
+                                                        <ol class="comment-list comment-reply" id="comments">
+                                                            <li class="comment byuser comment-author-san4es_tv even thread-even depth-1" id="comment-717">
+                                                                <article id="div-comment-717" class="comment-body">
+                                                                    <div class="block block-left">
+                                                                        <footer class="comment-meta">
+                                                                            <div class="comment-avatar">
+                                                                                <img alt="" src="https://secure.gravatar.com/avatar/fb959c642c28af50acf7b69fec4b1b41?s=60&amp;d=mm&amp;r=g" srcset="https://secure.gravatar.com/avatar/fb959c642c28af50acf7b69fec4b1b41?s=120&amp;d=mm&amp;r=g 2x" class="avatar avatar-60 photo" height="60" width="60" loading="lazy">
+                                                                            </div>
+                                                                        </footer>-->
+                                                                        <!-- .comment-meta -->
+                                                                    <!--</div>
+                                                                    <div class="block block-right">
+                                                                        <div class="comment-author">
+                                                                            <h6 class="heading fn">Lahm</h6>
+                                                                        </div>-->
+                                                                        <!--!comment-author-->
+                                                                        <!--<div class="comment-content">
+                                                                            <p>Awesome. I like it</p>
+                                                                        </div>-->
+                                                                        <!-- .comment-content -->
+                                                                        <!--<div class="comment-metadata">
+                                                                            <a href="~/Asset/Web/manga/massa-consectetur-mattis/#comment-717">
+                                                                                January 12, 2018 at 2:02 pm
+                                                                            </a>
+                                                                        </div>-->
+                                                                        <!-- .comment-metadata -->
+                                                                    <!--</div>
 
+                                                                    <div class="reply">
+                                                                        <a rel="nofollow" class="comment-reply-link" href="~/Asset/Web/manga/massa-consectetur-mattis/?replytocom=717#respond" data-commentid="717" data-postid="449" data-belowelement="div-comment-717" data-respondelement="respond" data-replyto="Reply to Lahm" aria-label="Reply to Lahm">Reply</a>
+                                                                    </div>
+                                                                </article>
+                                                            </li>--><!-- #comment-## -->
+                                                        <!--</ol>--><!-- .comment-list -->
+                                                    <!--</article>
+                                                </li>--><!-- #comment-## -->
+                                            <!--</ol>--><!-- .comment-list -->
 
-                                                        </div>
-                                                        <!-- .comment-content -->
-                                                        <div class="comment-metadata">
-                                                            <a href="~/Asset/Web/manga/massa-consectetur-mattis/#comment-717">
-                                                                January 12, 2018 at 2:02 pm
-                                                            </a>
-                                                        </div>
-                                                        <!-- .comment-metadata -->
-                                                    </div>
-
-                                                    <div class="reply">
-                                                        <a rel="nofollow" class="comment-reply-link" href="~/Asset/Web/manga/massa-consectetur-mattis/?replytocom=717#respond" data-commentid="717" data-postid="449" data-belowelement="div-comment-717" data-respondelement="respond" data-replyto="Reply to Lahm" aria-label="Reply to Lahm">Reply</a>
-                                                    </div>
-
-                                                </article>
-                                            </li><!-- #comment-## -->
-                                        </ol><!-- .comment-list -->
+                                        </div>
 
 
 
@@ -459,12 +452,8 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -472,4 +461,17 @@
 
     </div>
 </div>
-
+@section js{
+    <script src="~/Scripts/react/reactTomTatTruyen.js" type="text/babel"></script>
+    <script>
+        const maTruyen = @(Model.MaTruyen)
+        var soChuong = -1
+        $(document).ready(function () {
+            $("body").addClass("manga-page")
+        })
+        $(document).ready(async function () {
+            BinhLuan = await API.layBinhLuan(maTruyen, soChuong)
+            render()
+        })
+    </script>
+}

@@ -281,9 +281,9 @@
         })
         return result
     },
-    XuatCacTruyenTheLoai: async function (page, pagesize, maLoai) {
+    XuatCacTruyenTheLoai: async function (page, pagesize, maLoai, loaiTruyen) {
         let result = null
-        await $.get("/Home/XuatCacTruyenTheLoai?page=" + page + "&pagesize=" + pagesize + "&maLoai="+maLoai, function (data) {
+        await $.get("/Home/XuatCacTruyenTheLoai?page=" + page + "&pagesize=" + pagesize + "&maLoai=" + maLoai + "&loaiTruyen=" + loaiTruyen, function (data) {
             result = data
         })
         return result
@@ -343,6 +343,13 @@
         })
         return result
     },
+    layBinhLuan: async function (maTruyen, soChuong) {
+        let result
+        await $.get("/Truyen/layBinhLuan/" + maTruyen + "?&soChuong=" + soChuong, function (data) {
+            result = data
+        })
+        return result
+    }
 
 }
 
@@ -398,7 +405,7 @@ function vaitroTg(so) {
     return vt;
 }
 // chuyển tiếng việt có dấu thành không dấu
-function locdau(obj) {
+const locdau =(obj) => {
     var str;
     if (eval(obj))
         str = eval(obj).value;

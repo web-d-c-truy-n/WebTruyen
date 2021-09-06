@@ -31,6 +31,7 @@ namespace WebTruyen.Models
                         }
                     }
                     db.SaveChanges();
+                    guiThongBao();
                     transaction.Commit();
                 }
                 catch (DbUpdateException ex)
@@ -109,6 +110,46 @@ namespace WebTruyen.Models
             {
                 SqlException Ex = ex.GetBaseException() as SqlException;
             }            
+        }
+
+        public int luotXem()
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            return db.LuotXems.Where(x => x.MaTruyen == this.MaTruyen).ToArray().Length;
+        }
+
+        public int luotThich()
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            return db.LuotThichTruyens.Where(x => x.MaTruyen == this.MaTruyen).ToArray().Length;
+        }
+
+        public List<BinhLuan> binhLuan()
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            return db.BinhLuans.Where(x=>x.MaTruyen == this.MaTruyen).ToList();
+        }
+        public int soLuonDanhGia()
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            return db.DanhGias.Where(x => x.MaTruyen == this.MaTruyen).ToArray().Length;
+        }
+
+        public double trungBinhDanhGia()
+        {
+            double soLuong;
+            double trungBinh;
+            double tong = 0;
+            DanhGia[] danhGias;
+            webtruyenptEntities db = new webtruyenptEntities();
+            soLuong = db.DanhGias.Where(x => x.MaTruyen == this.MaTruyen).ToArray().Length;
+            danhGias = db.DanhGias.Where(x => x.MaTruyen == this.MaTruyen).ToArray();
+            foreach(DanhGia danhGia in danhGias)
+            {
+                tong += int.Parse(danhGia.DanhGia1);
+            }
+            trungBinh = Math.Round(tong / soLuong, 1);
+            return trungBinh;
         }
     }
 }
