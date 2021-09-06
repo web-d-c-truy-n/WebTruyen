@@ -76,13 +76,14 @@ namespace WebTruyen.Models
                 throw Ex;
             }
         }
-        public void binhLuan(BinhLuan binhLuan)
+        public int binhLuan(BinhLuan binhLuan)
         {
             try
             {
                 webtruyenptEntities db = new webtruyenptEntities();
                 BinhLuan binhLuan1 = db.BinhLuans.FirstOrDefault(x => x.MaBinhLuan == binhLuan.PhanHoi);
-                binhLuan.SoChuong = binhLuan1.SoChuong;
+                if (binhLuan1 !=null)
+                    binhLuan.SoChuong = binhLuan1.SoChuong;
                 this.MaTK = binhLuan.MaTK;
                 this.MaTruyen = binhLuan.MaTruyen;
                 this.SoChuong = binhLuan.SoChuong;
@@ -92,6 +93,7 @@ namespace WebTruyen.Models
                 this.LoaiHD = hdTaiKhoan.binhLuan;
                 db.HanhDongCuaTKs.Add(this);
                 db.SaveChanges();
+                return this.MaHD;
             }
             catch(DbUpdateException ex)
             {
@@ -100,7 +102,7 @@ namespace WebTruyen.Models
             }
         }
 
-        public void traoDoiNhom(TraoDoiNhom traoDoiNhom)
+        public int traoDoiNhom(TraoDoiNhom traoDoiNhom)
         {
             try
             {
@@ -113,6 +115,7 @@ namespace WebTruyen.Models
                 this.LoaiHD = hdTaiKhoan.binhLuan;
                 db.HanhDongCuaTKs.Add(this);
                 db.SaveChanges();
+                return this.MaHD;
             }
             catch (DbUpdateException ex)
             {
@@ -121,7 +124,7 @@ namespace WebTruyen.Models
             }
         }
 
-        public void thongBao(ThongBao thongBao)
+        public int thongBao(ThongBao thongBao)
         {
             try
             {
@@ -138,6 +141,7 @@ namespace WebTruyen.Models
                 this.LoaiHD = hdTaiKhoan.thongBao;
                 db.HanhDongCuaTKs.Add(this);
                 db.SaveChanges();
+                return this.MaHD;
             }
             catch (DbUpdateException ex)
             {

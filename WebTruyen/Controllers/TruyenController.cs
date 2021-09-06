@@ -62,5 +62,28 @@ namespace WebTruyen.Controllers
                     x.PhanHoi
                 }).ToArray(), JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public ActionResult vietBinhLuan(int maTruyen, int? soChuong, string noiDung, int? phanHoi)
+        {
+            soChuong = soChuong == -1 ? null : soChuong;
+            BinhLuan binhLuan = new BinhLuan();
+            binhLuan.MaTruyen = maTruyen;
+            binhLuan.SoChuong = soChuong;
+            binhLuan.NoiDung = noiDung;
+            binhLuan.MaTK = Auth.MaTk();
+            binhLuan.PhanHoi = phanHoi == -1?null:phanHoi;
+            HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+            int maBinhLuan = hanhDongCuaTK.binhLuan(binhLuan);
+            var x = db.BinhLuans.FirstOrDefault(xx => xx.MaBinhLuan == maBinhLuan);
+            return Json(new
+            {
+                x.MaBinhLuan,
+                x.HovaTen,
+                x.Avatar,
+                x.NoiDung,
+                NgayBinhLuan = x.NgayBinhLuan.ToString("dd/MM/yyyy hh:mm:ss tt"),
+                x.PhanHoi
+            });
+        }
     }
 }

@@ -349,7 +349,24 @@
             result = data
         })
         return result
-    }
+    },
+    vietBinhLuan: async function (maTruyen, soChuong, noiDung, phanHoi) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/Truyen/vietBinhLuan',
+            data: JSON.stringify({ maTruyen: maTruyen, soChuong: soChuong, noiDung: noiDung, phanHoi: phanHoi}),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
 
 }
 

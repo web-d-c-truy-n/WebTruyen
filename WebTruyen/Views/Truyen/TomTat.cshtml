@@ -247,111 +247,28 @@
                                 <div id="manga-discussion" class="c-blog__heading style-2 font-heading">
                                     <i class="ion-ios-star"></i>
                                     <h4> BÌNH LUẬN ĐÁNH GIÁ </h4>
-
                                 </div>
                                 <div class="manga-discussion wrapper">
-
                                     <div class="hr mv40"></div>
-
                                     <div id="madara-comments" class="comments-area">
-
-
                                         <div id="respond" class="comment-respond">
-                                            <h4 id="reply-title" class="comment-reply-title">HÃY VIẾT CẢM NHẬN CỦA BẠN <small><a rel="nofollow" id="cancel-comment-reply-link" href="/manga/massa-consectetur-mattis/#respond" style="display:none;">Cancel reply</a></small></h4>
-                                            <form action="~/Asset/Web/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate="" onsubmit="return false">
+                                            <h4 class="comment-reply-title"><span id="reply-title">HÃY VIẾT CẢM NHẬN CỦA BẠN</span> <small><a rel="nofollow" id="cancel-comment-reply-link" href="##" style="display:none;">Cancel reply</a></small></h4>
+                                            <form method="post" id="commentform" class="comment-form" novalidate="" onsubmit="return false">
                                                 <p class="comment-notes"><span id="email-notes"><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="Comment"></textarea></span></p><p class="comment-form-author"></p>
                                                 <p class="form-submit">
-                                                    <input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="449" id="comment_post_ID">
-                                                    <input type="hidden" name="comment_parent" id="comment_parent" value="0">
-                                                </p>                <input type="hidden" name="wp_manga_chapter_id" value="0">
+                                                    <input name="submit" type="submit" id="submit" onclick="guiBinhLuan()" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="449" id="comment_post_ID">
+                                                    <input type="hidden" id="comment_parent" value="-1">
+                                                </p>                
                                             </form>
                                         </div><!-- #respond -->
                                         <h4 class="comments-title">
                                             @Model.binhLuan().Count Comments
                                         </h4>
-
                                         <div id="comments">
-                                            <!--<ol class="comment-list">
-                                                <li class="comment byuser comment-author-san4es_tv even thread-even depth-1" id="comment-717">
-                                                    <article id="div-comment-717" class="comment-body">
-                                                        <div class="block block-left">
-                                                            <footer class="comment-meta">
-                                                                <div class="comment-avatar">
-                                                                    <img alt="" src="https://secure.gravatar.com/avatar/fb959c642c28af50acf7b69fec4b1b41?s=60&amp;d=mm&amp;r=g" srcset="https://secure.gravatar.com/avatar/fb959c642c28af50acf7b69fec4b1b41?s=120&amp;d=mm&amp;r=g 2x" class="avatar avatar-60 photo" height="60" width="60" loading="lazy">
-                                                                </div>
-                                                            </footer>-->
-                                                            <!-- .comment-meta -->
-                                                        <!--</div>
-                                                        <div class="block block-right">
-                                                            <div class="comment-author">
-                                                                <h6 class="heading fn">Lahm</h6>
-                                                            </div>-->
-                                                            <!--!comment-author-->
-                                                            <!--<div class="comment-content">
-                                                                <p>Awesome. I like it</p>
-                                                            </div>-->
-                                                            <!-- .comment-content -->
-                                                            <!--<div class="comment-metadata">
-                                                                <a href="~/Asset/Web/manga/massa-consectetur-mattis/#comment-717">
-                                                                    January 12, 2018 at 2:02 pm
-                                                                </a>
-                                                            </div>-->
-                                                            <!-- .comment-metadata -->
-                                                        <!--</div>
-
-                                                        <div class="reply">
-                                                            <a rel="nofollow" class="comment-reply-link" href="~/Asset/Web/manga/massa-consectetur-mattis/?replytocom=717#respond" data-commentid="717" data-postid="449" data-belowelement="div-comment-717" data-respondelement="respond" data-replyto="Reply to Lahm" aria-label="Reply to Lahm">Reply</a>
-                                                        </div>
-                                                        <ol class="comment-list comment-reply" id="comments">
-                                                            <li class="comment byuser comment-author-san4es_tv even thread-even depth-1" id="comment-717">
-                                                                <article id="div-comment-717" class="comment-body">
-                                                                    <div class="block block-left">
-                                                                        <footer class="comment-meta">
-                                                                            <div class="comment-avatar">
-                                                                                <img alt="" src="https://secure.gravatar.com/avatar/fb959c642c28af50acf7b69fec4b1b41?s=60&amp;d=mm&amp;r=g" srcset="https://secure.gravatar.com/avatar/fb959c642c28af50acf7b69fec4b1b41?s=120&amp;d=mm&amp;r=g 2x" class="avatar avatar-60 photo" height="60" width="60" loading="lazy">
-                                                                            </div>
-                                                                        </footer>-->
-                                                                        <!-- .comment-meta -->
-                                                                    <!--</div>
-                                                                    <div class="block block-right">
-                                                                        <div class="comment-author">
-                                                                            <h6 class="heading fn">Lahm</h6>
-                                                                        </div>-->
-                                                                        <!--!comment-author-->
-                                                                        <!--<div class="comment-content">
-                                                                            <p>Awesome. I like it</p>
-                                                                        </div>-->
-                                                                        <!-- .comment-content -->
-                                                                        <!--<div class="comment-metadata">
-                                                                            <a href="~/Asset/Web/manga/massa-consectetur-mattis/#comment-717">
-                                                                                January 12, 2018 at 2:02 pm
-                                                                            </a>
-                                                                        </div>-->
-                                                                        <!-- .comment-metadata -->
-                                                                    <!--</div>
-
-                                                                    <div class="reply">
-                                                                        <a rel="nofollow" class="comment-reply-link" href="~/Asset/Web/manga/massa-consectetur-mattis/?replytocom=717#respond" data-commentid="717" data-postid="449" data-belowelement="div-comment-717" data-respondelement="respond" data-replyto="Reply to Lahm" aria-label="Reply to Lahm">Reply</a>
-                                                                    </div>
-                                                                </article>
-                                                            </li>--><!-- #comment-## -->
-                                                        <!--</ol>--><!-- .comment-list -->
-                                                    <!--</article>
-                                                </li>--><!-- #comment-## -->
-                                            <!--</ol>--><!-- .comment-list -->
-
                                         </div>
-
-
-
-
-
                                     </div><!-- #comments -->
                                 </div>
-
                                 <!-- END comments-area -->
-
-
                                 <div class="row c-row related-manga">
                                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                                         <div class="c-blog__heading style-2 font-heading">
@@ -468,10 +385,24 @@
         var soChuong = -1
         $(document).ready(function () {
             $("body").addClass("manga-page")
+            $("#cancel-comment-reply-link").click(function () {
+                $("#comment_parent").val(-1)
+                $("#reply-title").text("HÃY VIẾT CẢM NHẬN CỦA BẠN")
+                $("#cancel-comment-reply-link").hide()
+            })
         })
         $(document).ready(async function () {
             BinhLuan = await API.layBinhLuan(maTruyen, soChuong)
             render()
         })
+        async function guiBinhLuan() {
+            debugger
+            let noiDung = $("#comment").val()
+            let phanHoi = parseInt($("#comment_parent").val())
+            let rs = await API.vietBinhLuan(maTruyen, soChuong, noiDung, phanHoi);
+            BinhLuan.push(rs)
+            render()
+            $("#comment").val("")
+        }
     </script>
 }

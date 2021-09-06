@@ -1,5 +1,10 @@
 ﻿var BinhLuan = [];
 class BinhLuans extends React.Component {
+    reply = (maBinhLuan, HovaTen) => {
+        document.getElementById("comment_parent").value = maBinhLuan
+        $("#reply-title").text("Trả lời cho " + HovaTen)
+        $("#cancel-comment-reply-link").show()
+    }
     load = () => {
         debugger
         let BinhLuanCha = BinhLuan.filter((x) => {
@@ -66,8 +71,8 @@ class BinhLuans extends React.Component {
                                 </div>
                             </div>
 
-                            <div class="reply">
-                                <a rel="nofollow" class="comment-reply-link" href="~/Asset/Web/manga/massa-consectetur-mattis/?replytocom=717#respond" data-commentid="717" data-postid="449" data-belowelement="div-comment-717" data-respondelement="respond" data-replyto="Reply to Lahm" aria-label="Reply to Lahm">Reply</a>
+                    <div class="reply">
+                        <a rel="nofollow" onClick={() => this.reply(item.MaBinhLuan, item.HovaTen)} class="comment-reply-link" href="##" data-commentid="717" data-postid="449" data-belowelement="div-comment-717" data-respondelement="respond" data-replyto="Reply to Lahm">Reply</a>
                     </div>
                     {BinhLuanCon.length > 0?
                         <ol class="comment-list comment-reply" id="comments">
