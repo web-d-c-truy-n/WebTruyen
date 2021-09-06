@@ -111,5 +111,17 @@ namespace WebTruyen.Controllers
             vvTruyen[] vvTruyens = Truyen.timKiem(timKiem).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
             return Json(vvTruyens, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult thongtintruyen()
+        {
+            return View();
+        }
+        public ActionResult truyentranh()
+        {
+            return View();
+        }
+        public ActionResult truyenchu()
+        {
+            return View();
+        }
     }
 }

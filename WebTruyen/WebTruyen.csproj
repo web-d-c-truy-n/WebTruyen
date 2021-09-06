@@ -3280,6 +3280,10 @@
     <Content Include="Views\AdminWeb\DSTacGia.cshtml" />
     <Content Include="Views\TacGia\TrangTacGia.cshtml" />
     <Content Include="Views\Home\testReact.cshtml" />
+    <Content Include="Views\Home\thongtintruyen.cshtml" />
+    <Content Include="Views\Shared\Layoutdoctruyen.cshtml" />
+    <Content Include="Views\Home\truyentranh.cshtml" />
+    <Content Include="Views\Home\truyenchu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
