@@ -21,7 +21,7 @@ namespace WebTruyen.Controllers
         {
             string[] maTruyens = id.Split('-');
             int maTruyen = int.Parse(maTruyens[maTruyens.Length - 1]);
-            Truyen truyen = db.Truyens.FirstOrDefault(x=>x.MaTruyen == maTruyen);
+            Truyen truyen = db.Truyens.FirstOrDefault(x => x.MaTruyen == maTruyen);
             return View(truyen);
         }
         public ActionResult truyentranh(string id, int Chuong)
@@ -43,7 +43,7 @@ namespace WebTruyen.Controllers
 
         public ActionResult layBinhLuan(int id, int? soChuong)
         {
-            if (soChuong != null || soChuong !=-1)                
+            if (soChuong != null || soChuong != -1)
                 return Json(db.BinhLuans.Where(x => x.MaTruyen == id).ToList().Select(x => new {
                     x.MaBinhLuan,
                     x.HovaTen,
@@ -71,7 +71,7 @@ namespace WebTruyen.Controllers
             binhLuan.SoChuong = soChuong;
             binhLuan.NoiDung = noiDung;
             binhLuan.MaTK = Auth.MaTk();
-            binhLuan.PhanHoi = phanHoi == -1?null:phanHoi;
+            binhLuan.PhanHoi = phanHoi == -1 ? null : phanHoi;
             HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
             int maBinhLuan = hanhDongCuaTK.binhLuan(binhLuan);
             var x = db.BinhLuans.FirstOrDefault(xx => xx.MaBinhLuan == maBinhLuan);
@@ -84,6 +84,27 @@ namespace WebTruyen.Controllers
                 NgayBinhLuan = x.NgayBinhLuan.ToString("dd/MM/yyyy hh:mm:ss tt"),
                 x.PhanHoi
             });
+        }
+        [HttpPost]
+        public ActionResult danhGia(int maTruyen, int danhGia)
+        {
+            DanhGia danhGia1 = new DanhGia();
+            danhGia1.MaTK = Auth.MaTk();
+            danhGia1.MaTruyen = maTruyen;
+            danhGia1.DanhGia1 = danhGia.ToString();
+            HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+            hanhDongCuaTK.danhGia(danhGia1);
+            return Json(true);
+        }
+        [HttpPost]
+        public ActionResult thichTruyen(int maTruyen, bool isThich)
+        {
+            LuotThichTruyen luotThichTruyen = new LuotThichTruyen();
+            luotThichTruyen.MaTruyen = maTruyen;
+            luotThichTruyen.MaTK = Auth.MaTk();
+            HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+            hanhDongCuaTK.thichTruyen(luotThichTruyen, isThich);
+            return Json(true);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace WebTruyen.Helper
             {
                 return db.TaiKhoans.Find(maTK);
             }
-            
+
         }
         public static void themTKNoiBo(TaiKhoan taiKhoan)
         {
@@ -51,7 +51,7 @@ namespace WebTruyen.Helper
         {
             webtruyenptEntities db = new webtruyenptEntities();
             List<TaiKhoan> taiKhoan = db.TaiKhoans.Where(x => (x.Mail == mail) || (x.SDT == mail)).ToList();
-            if (taiKhoan != null && taiKhoan.Count >0)
+            if (taiKhoan != null && taiKhoan.Count > 0)
             {
                 TaiKhoan taiKhoan1 = taiKhoanNoiBo(taiKhoan[0].MaTK);
                 try
@@ -60,7 +60,7 @@ namespace WebTruyen.Helper
                     HttpContext.Current.Session["taiKhoan"] = taiKhoan1.MaTK;
                     return "Đăng nhập thành công";
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     return e.Message;
                 }
@@ -83,7 +83,7 @@ namespace WebTruyen.Helper
             {
                 return null;
             }
-            
+
         }
         public static TacGia tacGia()
         {
@@ -91,7 +91,7 @@ namespace WebTruyen.Helper
             {
                 int idtk = (int)HttpContext.Current.Session["taiKhoan"];
                 webtruyenptEntities db = new webtruyenptEntities();
-                TacGia tacGia = db.TacGias.Where(x=>x.MaTG == idtk).FirstOrDefault();
+                TacGia tacGia = db.TacGias.Where(x => x.MaTG == idtk).FirstOrDefault();
                 return tacGia;
             }
             catch (Exception e)
@@ -109,24 +109,25 @@ namespace WebTruyen.Helper
             {
                 webtruyenptEntities db = new webtruyenptEntities();
                 TaiKhoan taiKhoan1 = db.TaiKhoans.Find(taiKhoan.MaTK);
-                taiKhoan1.HovaTen = taiKhoan.HovaTen;
-                taiKhoan1.Mail = taiKhoan.Mail;
-                taiKhoan1.SDT = taiKhoan.SDT;
-                if (taiKhoan.MatKhau != null)
+                taiKhoan1.HovaTen = taiKhoan.HovaTen == "" ? null : taiKhoan.HovaTen ?? taiKhoan1.HovaTen;
+                taiKhoan1.Mail = taiKhoan.Mail == "" ? null : taiKhoan.Mail ?? taiKhoan1.Mail;
+                taiKhoan1.SDT = taiKhoan.SDT == "" ? null : taiKhoan.SDT ?? taiKhoan1.SDT;
+                if (taiKhoan.MatKhau != null && taiKhoan.MatKhau != "")
                 {
                     taiKhoan1.MatKhau = Commons.MD5(taiKhoan.MatKhau);
                 }
-                if (taiKhoan.Avatar != null)
+                if (taiKhoan.Avatar != null && taiKhoan.Avatar != "")
                 {
                     taiKhoan1.Avatar = taiKhoan.Avatar;
                 }
                 db.SaveChanges();
                 return true;
-            }catch (Exception e)
+            }
+            catch (Exception e)
             {
                 return false;
             }
-            
+
         }
     }
 }

@@ -22,7 +22,7 @@ namespace WebTruyen.Models
                     this.Khoa = false;
                     db.Truyens.Add(this);
                     db.SaveChanges();
-                    if (truyenTacGias != null && truyenTacGias.Count >0)
+                    if (truyenTacGias != null && truyenTacGias.Count > 0)
                     {
                         foreach (TruyenTacGia truyenTacGia in truyenTacGias)
                         {
@@ -53,13 +53,13 @@ namespace WebTruyen.Models
                 SqlException Ex = ex.GetBaseException() as SqlException;
                 throw Ex;
             }
-        }        
+        }
         public static List<vvTruyen> timKiem(string timKiem)
         {
             try
             {
                 webtruyenptEntities db = new webtruyenptEntities();
-                return db.Database.SqlQuery<vvTruyen>($"TIMKIEM_Truyen N'{timKiem}'").OrderBy(x=>x.NgayDang).ToList();
+                return db.Database.SqlQuery<vvTruyen>($"TIMKIEM_Truyen N'{timKiem}'").OrderBy(x => x.NgayDang).ToList();
             }
             catch (DbUpdateException ex)
             {
@@ -90,7 +90,7 @@ namespace WebTruyen.Models
             {
                 SqlException Ex = ex.GetBaseException() as SqlException;
                 throw Ex;
-            }            
+            }
         }
 
         public void CapNhatLuotThich(int maTK)
@@ -109,7 +109,7 @@ namespace WebTruyen.Models
             catch (DbUpdateException ex)
             {
                 SqlException Ex = ex.GetBaseException() as SqlException;
-            }            
+            }
         }
 
         public int luotXem()
@@ -127,7 +127,7 @@ namespace WebTruyen.Models
         public List<BinhLuan> binhLuan()
         {
             webtruyenptEntities db = new webtruyenptEntities();
-            return db.BinhLuans.Where(x=>x.MaTruyen == this.MaTruyen).ToList();
+            return db.BinhLuans.Where(x => x.MaTruyen == this.MaTruyen).ToList();
         }
         public int soLuonDanhGia()
         {
@@ -144,12 +144,18 @@ namespace WebTruyen.Models
             webtruyenptEntities db = new webtruyenptEntities();
             soLuong = db.DanhGias.Where(x => x.MaTruyen == this.MaTruyen).ToArray().Length;
             danhGias = db.DanhGias.Where(x => x.MaTruyen == this.MaTruyen).ToArray();
-            foreach(DanhGia danhGia in danhGias)
+            foreach (DanhGia danhGia in danhGias)
             {
                 tong += int.Parse(danhGia.DanhGia1);
             }
             trungBinh = Math.Round(tong / soLuong, 1);
             return trungBinh;
+        }
+
+        public List<LuotThichTruyen> LuotThich()
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            return db.LuotThichTruyens.Where(x => x.MaTruyen == this.MaTruyen).ToList();
         }
     }
 }

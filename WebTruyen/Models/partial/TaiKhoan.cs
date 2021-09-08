@@ -37,13 +37,15 @@ namespace WebTruyen.Models
             int _30p = 1800;
             int _1h = 3600;
             matKhau = Commons.MD5(matKhau);
-            if(this.TinhTrang == ttTaiKhoan.biKhoa30p && Commons.khoanCach2Giay(this.NgayKhoa?? DateTime.Now,DateTime.Now) <= _30p)
+            if (this.TinhTrang == ttTaiKhoan.biKhoa30p && Commons.khoanCach2Giay(this.NgayKhoa ?? DateTime.Now, DateTime.Now) <= _30p)
             {
                 throw new InvalidOperationException("Tài khoản đã bị khóa 30 phút");
-            }else if (this.TinhTrang == ttTaiKhoan.biKhoa1h && Commons.khoanCach2Giay(this.NgayKhoa ?? DateTime.Now, DateTime.Now) <= _1h)
+            }
+            else if (this.TinhTrang == ttTaiKhoan.biKhoa1h && Commons.khoanCach2Giay(this.NgayKhoa ?? DateTime.Now, DateTime.Now) <= _1h)
             {
                 throw new InvalidOperationException("Tài khoản đã bị khóa 1h");
-            }else if (this.TinhTrang == ttTaiKhoan.biKhoanVV)
+            }
+            else if (this.TinhTrang == ttTaiKhoan.biKhoanVV)
             {
                 throw new InvalidOperationException("Tài khoản đã bị khóa vĩnh viễn");
             }
@@ -73,9 +75,9 @@ namespace WebTruyen.Models
                 db.TaiKhoans.Add(this);
                 db.SaveChanges();
             }
-            catch(DbUpdateException ex)
+            catch (DbUpdateException ex)
             {
-                SqlException Ex = ex.GetBaseException() as SqlException;                
+                SqlException Ex = ex.GetBaseException() as SqlException;
                 throw Ex;
             }
         }
@@ -139,7 +141,7 @@ namespace WebTruyen.Models
             }
         }
         // vai trò admin
-        public void khoaTK(webtruyenptEntities db,int tinhTrang)
+        public void khoaTK(webtruyenptEntities db, int tinhTrang)
         {
             try
             {
@@ -358,6 +360,16 @@ namespace WebTruyen.Models
                 SqlException Ex = ex.GetBaseException() as SqlException;
                 throw Ex;
             }
+        }
+
+        public bool isThichTruyen(int maTruyen)
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            LuotThichTruyen luotThich = db.LuotThichTruyens.FirstOrDefault(x => x.MaTK == this.MaTK && x.MaTruyen == maTruyen);
+            if (luotThich != null)
+                return true;
+            else
+                return false;
         }
     }
 }

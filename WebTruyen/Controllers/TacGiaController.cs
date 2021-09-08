@@ -34,30 +34,18 @@ namespace WebTruyen.Controllers
         [HttpPost]
         public ActionResult ThemAnh(HttpPostedFileBase file)
         {
-            if (!IsImage(file))
+            if (!Commons.IsImage(file))
             {
-                return Json(new {result = false, msg = "Đây không phải là hình ảnh!!!" });
+                return Json(new { result = false, msg = "Đây không phải là hình ảnh!!!" });
             }
             string path = Server.MapPath("~/Asset/TacGia/Anh/");
-            string fileName = Guid.NewGuid().ToString() +"_"+ file.FileName;
+            string fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
             file.SaveAs(path + fileName);
             QuanLyHinhAnh anh = new QuanLyHinhAnh();
-            anh.URL = "/Asset/TacGia/Anh/"+fileName;
+            anh.URL = "/Asset/TacGia/Anh/" + fileName;
             anh.MaTK = Helper.Auth.user().MaTK;
-            anh.them();            
-            return Json(new { result = true, msg = "Lưu thành công", anh.URL, anh.MaAnh});
-        }
-        private bool IsImage(HttpPostedFileBase file)
-        {
-            if (file.ContentType.Contains("image"))
-            {
-                return true;
-            }
-
-            string[] formats = new string[] { ".jpg", ".png", ".gif", ".jpeg" };
-
-            // linq from Henrik Stenbæk
-            return formats.Any(item => file.FileName.EndsWith(item, StringComparison.OrdinalIgnoreCase));
+            anh.them();
+            return Json(new { result = true, msg = "Lưu thành công", anh.URL, anh.MaAnh });
         }
         // đăng truyện
         [HttpPost]
@@ -69,7 +57,7 @@ namespace WebTruyen.Controllers
                 {
                     int maTK = Auth.MaTk();
                     ThanhVienNhom thanhVienNhom = db.ThanhVienNhoms.FirstOrDefault(x => x.MaNhom == dangNhom && x.MaTK == maTK);
-                    thanhVienNhom.vietTruyen(truyen,vaiTro);
+                    thanhVienNhom.vietTruyen(truyen, vaiTro);
                     return Json(true);
                 }
                 List<TruyenTacGia> truyenTacGias = new List<TruyenTacGia>();
