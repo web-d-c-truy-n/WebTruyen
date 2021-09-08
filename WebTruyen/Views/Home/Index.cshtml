@@ -357,7 +357,7 @@
 
                                                         <div class="slider__thumb">
                                                             <div class="slider__thumb_item c-image-hover">
-                                                                <span class="manga-title-badges hot">HOT</span>                    <a href="@Url.Action("TomTat","Truyen",new {id = WebTruyen.Helper.Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen) })" tabindex="0">
+                                                                <span class="manga-title-badges hot">HOT</span>                    <a href="./manga/miharu-rokujou/" tabindex="0">
                                                                     <img data-src="@truyen.QuanLyHinhAnh.URL" data-srcset="@truyen.QuanLyHinhAnh.URL 125w, @truyen.QuanLyHinhAnh.URL 193w" data-sizes="(max-width: 125px) 100vw, 125px" class="img-responsive effect-fade lazyloaded" src="@truyen.QuanLyHinhAnh.URL" style="padding-top:180px; width:125px ;height:180px; " alt="wallhaven-529968" sizes="(max-width: 125px) 100vw, 125px" srcset="@truyen.QuanLyHinhAnh.URL 125w, @truyen.QuanLyHinhAnh.URL 193w">                        <div class="slider-overlay"></div>
                                                                 </a>
                                                             </div>
@@ -367,7 +367,7 @@
                                                             <div class="slider__content_item">
                                                                 <div class="post-title font-title">
                                                                     <h4>
-                                                                        <a href="@Url.Action("TomTat","Truyen",new {id = WebTruyen.Helper.Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen) })" tabindex="0">@truyen.TenTruyen</a>
+                                                                        <a href="./manga/miharu-rokujou/" tabindex="0">@truyen.TenTruyen</a>
                                                                     </h4>
                                                                 </div>
                                                                 <div class="post-on font-meta">
@@ -1593,13 +1593,13 @@
                                                 @foreach(vTruyen truyenYeuThich in ViewBag.truyenYeuThich) { 
                                                     <div class="popular-item-wrap">
                                                         <div class="popular-img widget-thumbnail c-image-hover">
-                                                            <a title="Manga Video Chapters" href="@Url.Action("TomTat","Truyen",new {id =WebTruyen.Helper.Commons.convertToUnSign3(truyenYeuThich.TenTruyen+"-"+truyenYeuThich.MaTruyen).ToLower() })">
+                                                            <a title="Manga Video Chapters" href="./manga/massa-consectetur-mattis/">
                                                                 <img width="75" height="106" class="img-responsive effect-fade lazyloaded" src="@(truyenYeuThich.AnhBia)" style="padding-top:106px;" alt="wallhaven-550618">
                                                             </a>
                                                         </div>
                                                         <div class="popular-content">
                                                             <h5 class="widget-title">
-                                                                <a title="Manga Video Chapters" href="@Url.Action("TomTat","Truyen",new {id = WebTruyen.Helper.Commons.convertToUnSign3(truyenYeuThich.TenTruyen +"-"+ truyenYeuThich.MaTruyen) })">@(truyenYeuThich.TenTruyen)</a>
+                                                                <a title="Manga Video Chapters" href="./manga/massa-consectetur-mattis/">@(truyenYeuThich.TenTruyen)</a>
                                                             </h5>
                                                             <div class="list-chapter">
                                                                 <div class="chapter-item ">

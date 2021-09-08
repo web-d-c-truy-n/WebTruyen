@@ -109,14 +109,14 @@ namespace WebTruyen.Helper
             {
                 webtruyenptEntities db = new webtruyenptEntities();
                 TaiKhoan taiKhoan1 = db.TaiKhoans.Find(taiKhoan.MaTK);
-                taiKhoan1.HovaTen = taiKhoan.HovaTen == ""?null:taiKhoan.HovaTen ?? taiKhoan1.HovaTen;
-                taiKhoan1.Mail = taiKhoan.Mail == ""?null:taiKhoan.Mail ?? taiKhoan1.Mail;
-                taiKhoan1.SDT = taiKhoan.SDT ==""?null:taiKhoan.SDT ?? taiKhoan1.SDT;
-                if (taiKhoan.MatKhau != null && taiKhoan.MatKhau != "")
+                taiKhoan1.HovaTen = taiKhoan.HovaTen;
+                taiKhoan1.Mail = taiKhoan.Mail;
+                taiKhoan1.SDT = taiKhoan.SDT;
+                if (taiKhoan.MatKhau != null)
                 {
                     taiKhoan1.MatKhau = Commons.MD5(taiKhoan.MatKhau);
                 }
-                if (taiKhoan.Avatar != null && taiKhoan.Avatar !="")
+                if (taiKhoan.Avatar != null)
                 {
                     taiKhoan1.Avatar = taiKhoan.Avatar;
                 }

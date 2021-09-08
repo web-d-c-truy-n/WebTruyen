@@ -1,11 +1,5 @@
 ﻿var BinhLuan = [];
 class BinhLuans extends React.Component {
-    Avatar = (image) => {
-        debugger
-        image.onerror = "";
-        image.src = "https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=195&d=mm&r=g";
-        return true;
-    }
     reply = (maBinhLuan, HovaTen) => {
         document.getElementById("comment_parent").value = maBinhLuan
         $("#reply-title").text("Trả lời cho " + HovaTen)
@@ -32,8 +26,8 @@ class BinhLuans extends React.Component {
                                 <article id="div-comment-717" class="comment-body">
                                     <div class="block block-left">
                                         <footer class="comment-meta">
-                                <div class="comment-avatar">
-                                    <img alt="" src={item.Avatar == null ? "https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=195&d=mm&r=g" : item.Avatar} onError={(e) => { e.target.onerror = null; e.target.src = "https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=195&d=mm&r=g" }} class="avatar avatar-60 photo" height="60" width="60" loading="lazy" />
+                                            <div class="comment-avatar">
+                                                <img alt="" src={item.Avatar} srcset="https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=195&d=mm&r=g 2x" class="avatar avatar-60 photo" height="60" width="60" loading="lazy" />
                                             </div>
                                         </footer>
                                     </div>
@@ -59,7 +53,7 @@ class BinhLuans extends React.Component {
                             <div class="block block-left">
                                 <footer class="comment-meta">
                             <div class="comment-avatar">
-                                <img alt="" src={item.Avatar == null ? "https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=195&d=mm&r=g" : item.Avatar} onError={(e) => { e.target.onerror = null; e.target.src = "https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=195&d=mm&r=g" }} class="avatar avatar-60 photo" height="60" width="60" loading="lazy" />
+                                <img alt="" src={item.Avatar} srcset="https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=195&d=mm&r=g 2x" class="avatar avatar-60 photo" height="60" width="60" loading="lazy" />
                                     </div>
                                 </footer>
                             </div>

@@ -1,5 +1,4 @@
 ﻿@using WebTruyen.Models
-@using WebTruyen.Helper
 @model Truyen
 @{
     ViewBag.Title = Model.TenTruyen;
@@ -62,17 +61,7 @@
                                             <div></div>
                                         </div>
                                         <div class="post-rating">
-                                            <div class="post-total-rating allow_vote">
-                                                @for(int i = 1;i<=5; i++) {
-                                                    if (i <= Model.trungBinhDanhGia())
-                                                    {
-                                                        <i class="ion-ios-star ratings_stars rating_current"></i>
-                                                    }
-                                                    else { 
-                                                        <i class="ion-ios-star-outline ratings_stars"></i>
-                                                    }
-                                                }                                                
-                                            <span class="score font-meta total_votes">@Model.trungBinhDanhGia()</span></div><div class="user-rating allow_vote"><i class="ion-ios-star-outline ratings_stars" sao="1"></i><i class="ion-ios-star-outline ratings_stars" sao="2"></i><i class="ion-ios-star-outline ratings_stars" sao="3"></i><i class="ion-ios-star-outline ratings_stars" sao="4"></i><i class="ion-ios-star-outline ratings_stars" sao="5"></i><span class="score font-meta total_votes">Đáng giá của bạn</span></div><input type="hidden" class="rating-post-id" value="449">
+                                            <div class="post-total-rating allow_vote"><i class="ion-ios-star ratings_stars rating_current"></i><i class="ion-ios-star ratings_stars rating_current"></i><i class="ion-ios-star ratings_stars rating_current"></i><i class="ion-ios-star ratings_stars rating_current"></i><i class="ion-ios-star-outline ratings_stars"></i><span class="score font-meta total_votes">4.1</span></div><div class="user-rating allow_vote"><i class="ion-ios-star-outline ratings_stars"></i><i class="ion-ios-star-outline ratings_stars"></i><i class="ion-ios-star-outline ratings_stars"></i><i class="ion-ios-star-outline ratings_stars"></i><i class="ion-ios-star-outline ratings_stars"></i><span class="score font-meta total_votes">Your Rating</span></div><input type="hidden" class="rating-post-id" value="449">
                                         </div>
 
                                         <div class="post-content_item">
@@ -80,7 +69,7 @@
                                                 <h5>Đánh giá</h5>
                                             </div>
                                             <div class="summary-content vote-details" vocab="https://schema.org/" typeof="AggregateRating">
-                                                <span property="itemReviewed" typeof="Book"><span class="rate-title" property="name" title="@Model.TenTruyen">@Model.TenTruyen</span></span><span> <span> Trung bình <span property="ratingValue" id="averagerate">@Model.trungBinhDanhGia()</span> / <span property="bestRating">5</span> </span> </span> tổng số <span property="ratingCount" id="countrate">@Model.soLuonDanhGia()</span>
+                                                <span property="itemReviewed" typeof="Book"><span class="rate-title" property="name" title="@Model.TenTruyen">@Model.TenTruyen</span></span><span> <span> Average <span property="ratingValue" id="averagerate"> 4.1</span> / <span property="bestRating">5</span> </span> </span> out of <span property="ratingCount" id="countrate">85</span>
                                             </div>
                                         </div>
                                         <div class="post-content_item">
@@ -161,8 +150,8 @@
                                             </div>
                                             <div class="add-bookmark">
                                                 <div class="action_icon">
-                                                    <a href="#" class="wp-manga-action-button" data-action="bookmark" data-post="449" id="YeuThich"><i class="fas fa-heart" @Html.Raw(Auth.user().isThichTruyen(Model.MaTruyen)?"style=\"color: red\" thich=\"1\"":"")></i></a>
-                                                </div><div class="action_detail"><span>@Model.luotThich() người đã thích</span></div>
+                                                    <script type="text/javascript">var requireLogin2BookMark = true;</script><a href="#" class="wp-manga-action-button" data-action="bookmark" data-post="449" data-chapter="" data-page="1" title="Bookmark"><i class="icon ion-ios-bookmark"></i></a>
+                                                </div><div class="action_detail"><span>8 Users bookmarked This</span></div>
                                             </div>
                                         </div>
                                     </div>
@@ -285,37 +274,100 @@
                                         <div class="c-blog__heading style-2 font-heading">
                                             <h4>
                                                 <i class="icon ion-ios-star"></i>
-                                                CÓ THỂ BẠN CŨNG THÍCH
+                                                YOU MAY ALSO LIKE
                                             </h4>
                                         </div>
                                     </div>
 
 
-                                    @{ vTruyen[] truyens = db.vTruyens.Where(x => x.MaLoai == Model.MaLoai).OrderBy(x => (x.LuotXem + x.LuotThich)).Take(4).ToArray();}
-                                    @foreach(vTruyen truyen in truyens) { 
-                                        <div class="col-12 col-sm-6 col-md-3">
-                                            <div class="related-reading-wrap related-style-2">
-                                                <div class="related-reading-img widget-thumbnail c-image-hover">
-                                                    <a title="@truyen.TenTruyen" href="@Url.Action("TomTat","Truyen",new {id=WebTruyen.Helper.Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen) })">
-                                                        <img style="width: 193px; height: 278px" src="@truyen.AnhBia" />
+
+                                    <div class="col-12 col-sm-6 col-md-3">
+                                        <div class="related-reading-wrap related-style-2">
+                                            <div class="related-reading-img widget-thumbnail c-image-hover">
+                                                <a title="Monatari Takawoa Yangku" href="~/Asset/Web/manga/monatari-takawoa-yangku/">
+                                                    <img width="193" height="278" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-530467-193x278.png" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-530467-193x278.png 193w, ./wp-content/uploads/2017/10/wallhaven-530467-125x180.png 125w" data-sizes="(max-width: 193px) 100vw, 193px" class="img-responsive effect-fade lazyloaded" src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-530467-193x278.png" style="padding-top:278px;" alt="wallhaven-530467" sizes="(max-width: 193px) 100vw, 193px" srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-530467-193x278.png 193w, ./wp-content/uploads/2017/10/wallhaven-530467-125x180.png 125w">
+                                                </a>
+                                            </div>
+                                            <div class="related-reading-content">
+                                                <h5 class="widget-title">
+                                                    <a href="~/Asset/Web/manga/monatari-takawoa-yangku/" title="Monatari Takawoa Yangku">
+                                                        Monatari Takawoa Yangku
                                                     </a>
-                                                </div>
-                                                <div class="related-reading-content">
-                                                    <h5 class="widget-title">
-                                                        <a href="@Url.Action("TomTat","Truyen",new {id=WebTruyen.Helper.Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen) })" title="@truyen.TenTruyen">
-                                                            @truyen.TenTruyen
-                                                        </a>
-                                                    </h5>
-                                                </div>
-                                                <div class="post-on font-meta">
-                                                    <span>
-                                                        @(truyen.NgayDang?.ToString("dd/MM/yyyy"))
-                                                    </span>
-                                                </div>
+                                                </h5>
+                                            </div>
+                                            <div class="post-on font-meta">
+                                                <span>
+                                                    October 13, 2017
+                                                </span>
                                             </div>
                                         </div>
-                                    }
-                                    
+                                    </div>
+
+                                    <div class="col-12 col-sm-6 col-md-3">
+                                        <div class="related-reading-wrap related-style-2">
+                                            <div class="related-reading-img widget-thumbnail c-image-hover">
+                                                <a title="Kitasou Girl" href="~/Asset/Web/manga/kitasou-girl/">
+                                                    <img width="193" height="278" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-539923-193x278.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-539923-193x278.jpg 193w, ./wp-content/uploads/2017/10/wallhaven-539923-125x180.jpg 125w" data-sizes="(max-width: 193px) 100vw, 193px" class="img-responsive effect-fade lazyloaded" src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-539923-193x278.jpg" style="padding-top:278px;" alt="wallhaven-539923" sizes="(max-width: 193px) 100vw, 193px" srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-539923-193x278.jpg 193w, ./wp-content/uploads/2017/10/wallhaven-539923-125x180.jpg 125w">
+                                                </a>
+                                            </div>
+                                            <div class="related-reading-content">
+                                                <h5 class="widget-title">
+                                                    <a href="~/Asset/Web/manga/kitasou-girl/" title="Kitasou Girl">
+                                                        Kitasou Girl
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div class="post-on font-meta">
+                                                <span>
+                                                    October 11, 2017
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-sm-6 col-md-3">
+                                        <div class="related-reading-wrap related-style-2">
+                                            <div class="related-reading-img widget-thumbnail c-image-hover">
+                                                <a title="Okama Sanmikioa" href="~/Asset/Web/manga/okama-sanmikioa/">
+                                                    <img width="193" height="278" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-551939-193x278.png" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-551939-193x278.png 193w, ./wp-content/uploads/2017/10/wallhaven-551939-125x180.png 125w" data-sizes="(max-width: 193px) 100vw, 193px" class="img-responsive effect-fade lazyloaded" src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-551939-193x278.png" style="padding-top:278px;" alt="wallhaven-551939" sizes="(max-width: 193px) 100vw, 193px" srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-551939-193x278.png 193w, ./wp-content/uploads/2017/10/wallhaven-551939-125x180.png 125w">
+                                                </a>
+                                            </div>
+                                            <div class="related-reading-content">
+                                                <h5 class="widget-title">
+                                                    <a href="~/Asset/Web/manga/okama-sanmikioa/" title="Okama Sanmikioa">
+                                                        Okama Sanmikioa
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div class="post-on font-meta">
+                                                <span>
+                                                    October 11, 2017
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-sm-6 col-md-3">
+                                        <div class="related-reading-wrap related-style-2">
+                                            <div class="related-reading-img widget-thumbnail c-image-hover">
+                                                <a title="Jikimisuji" href="~/Asset/Web/manga/jikimisuji/">
+                                                    <img width="193" height="278" data-src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-523582-193x278.jpg" data-srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-523582-193x278.jpg 193w, ./wp-content/uploads/2017/10/wallhaven-523582-125x180.jpg 125w" data-sizes="(max-width: 193px) 100vw, 193px" class="img-responsive effect-fade lazyloaded" src="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-523582-193x278.jpg" style="padding-top:278px;" alt="wallhaven-523582" sizes="(max-width: 193px) 100vw, 193px" srcset="~/Asset/Web/wp-content/uploads/2017/10/wallhaven-523582-193x278.jpg 193w, ./wp-content/uploads/2017/10/wallhaven-523582-125x180.jpg 125w">
+                                                </a>
+                                            </div>
+                                            <div class="related-reading-content">
+                                                <h5 class="widget-title">
+                                                    <a href="~/Asset/Web/manga/jikimisuji/" title="Jikimisuji">
+                                                        Jikimisuji
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                            <div class="post-on font-meta">
+                                                <span>
+                                                    October 18, 2017
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -338,28 +390,6 @@
                 $("#reply-title").text("HÃY VIẾT CẢM NHẬN CỦA BẠN")
                 $("#cancel-comment-reply-link").hide()
             })
-            $(".ion-ios-star-outline").click(async function () {
-                let danhGia = parseInt($(this).attr("sao"))
-                let rs = await API.danhGia(maTruyen, danhGia)
-                if (rs) {
-                    alert("Đánh giá thành công")
-                }
-            })
-            $("#YeuThich").click(async function () {
-                let isThich = $(this).find("i").attr("thich") != "1"
-                let rs = await API.thichTruyen(maTruyen, isThich)
-                if (rs) {
-                    if (isThich) {
-                        $(this).find("i").css("color", "red")
-                        $(this).find("i").attr("thich", 1)
-                    }
-                    else {
-                        $(this).find("i").css("color", "")
-                        $(this).find("i").attr("thich", 0)
-                    }
-                        
-                }
-            })            
         })
         $(document).ready(async function () {
             BinhLuan = await API.layBinhLuan(maTruyen, soChuong)

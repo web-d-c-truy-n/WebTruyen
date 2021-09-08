@@ -85,26 +85,5 @@ namespace WebTruyen.Controllers
                 x.PhanHoi
             });
         }
-        [HttpPost]
-        public ActionResult danhGia(int maTruyen, int danhGia)
-        {
-            DanhGia danhGia1 = new DanhGia();
-            danhGia1.MaTK = Auth.MaTk();
-            danhGia1.MaTruyen = maTruyen;
-            danhGia1.DanhGia1 = danhGia.ToString();
-            HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
-            hanhDongCuaTK.danhGia(danhGia1);
-            return Json(true);
-        }
-        [HttpPost]
-        public ActionResult thichTruyen(int maTruyen, bool isThich)
-        {
-            LuotThichTruyen luotThichTruyen = new LuotThichTruyen();
-            luotThichTruyen.MaTruyen = maTruyen;
-            luotThichTruyen.MaTK = Auth.MaTk();
-            HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
-            hanhDongCuaTK.thichTruyen(luotThichTruyen, isThich);
-            return Json(true);
-        }
     }
 }
