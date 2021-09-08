@@ -30,18 +30,11 @@ namespace WebTruyen.Models
             }
         }
 
-        public void thichTruyen(LuotThichTruyen luotThichTruyen, bool isThich)
+        public void thichTruyen(LuotThichTruyen luotThichTruyen)
         {
             try
             {
                 webtruyenptEntities db = new webtruyenptEntities();
-                if (!isThich)
-                {
-                    HanhDongCuaTK hanhDongCuaTK = db.HanhDongCuaTKs.FirstOrDefault(x => x.MaTruyen == luotThichTruyen.MaTruyen && x.MaTK == luotThichTruyen.MaTK && x.LoaiHD == hdTaiKhoan.thichTruyen);
-                    db.HanhDongCuaTKs.Remove(hanhDongCuaTK);
-                    db.SaveChanges();
-                    return;
-                }
                 if (db.LuotThichTruyens.Where(x =>
                     x.MaTK == luotThichTruyen.MaTK &&
                     x.MaTruyen == luotThichTruyen.MaTruyen).ToArray().Length > 0)

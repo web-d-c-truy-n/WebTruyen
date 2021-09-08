@@ -359,15 +359,5 @@ namespace WebTruyen.Models
                 throw Ex;
             }
         }
-
-        public bool isThichTruyen(int maTruyen)
-        {
-            webtruyenptEntities db = new webtruyenptEntities();
-            LuotThichTruyen luotThich = db.LuotThichTruyens.FirstOrDefault(x => x.MaTK == this.MaTK && x.MaTruyen == maTruyen);
-            if (luotThich != null)
-                return true;
-            else
-                return false;
-        }
     }
 }
