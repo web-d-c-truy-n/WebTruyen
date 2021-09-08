@@ -14,24 +14,15 @@ namespace WebTruyen.Models
     
     public partial class BinhLuan
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BinhLuan()
-        {
-            this.CacPhanHoi = new HashSet<BinhLuan>();
-        }
-    
         public int MaBinhLuan { get; set; }
-        public int MaTruyen { get; set; }
+        public Nullable<int> MaTruyen { get; set; }
         public int MaTK { get; set; }
         public string NoiDung { get; set; }
         public System.DateTime NgayBinhLuan { get; set; }
         public Nullable<int> PhanHoi { get; set; }
-        public int SoChuong { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BinhLuan> CacPhanHoi { get; set; }
-        public virtual BinhLuan phanHoi { get; set; }
-        public virtual ChuongTruyen ChuongTruyen { get; set; }
-        public virtual TaiKhoan TaiKhoan { get; set; }
+        public Nullable<int> SoChuong { get; set; }
+        public int LoaiHD { get; set; }
+        public string HovaTen { get; set; }
+        public string Avatar { get; set; }
     }
 }

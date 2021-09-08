@@ -29,7 +29,7 @@ namespace WebTruyen.Controllers
         // đăng xuất
         public ActionResult Logout()
         {
-            Helper.AdminAuth.logout();
+            Helper.Auth.logout();
             return Json(true);
         }
         // trang quản lý tài khoản
@@ -39,17 +39,13 @@ namespace WebTruyen.Controllers
             return View(listTaiKhoanAdmin);
         }
         [HttpPost]
-        public ActionResult RegisterAdmin(Admin admin)
+        public ActionResult RegisterAdmin(TaiKhoan admin)
         {
-            if (db.Admins.Where(x=>x.Username == admin.Username).ToList().Count > 0)
+            if (db.TaiKhoans.Where(x=>x.Mail == admin.Mail).ToList().Count > 0)
             {
                 return Json(new { msg = "Tên tài khoản đã tồn tại" });
             }
-            admin.Password = Helper.Commons.MD5(admin.Password);
-            admin.Vaitro = 0;
-            admin.Ngaytao = DateTime.Now;
-            db.Admins.Add(admin);
-            db.SaveChanges();
+            admin.dangKyAdmin(db);
             return Json(new {msg="Đăng ký thành công" });
         }
         #region quản lý tài khoản
@@ -74,18 +70,17 @@ namespace WebTruyen.Controllers
         [HttpPost]
         public ActionResult dsTacPham(int page, int pagesize)
         {
-            var data = (from tr in db.Truyens join tl in db.TheLoais 
-                        on tr.MaLoai equals tl.MaLoai
-                        select new {tr.MaTruyen, tr.TacGiaGoc, tr.TenTruyen, Luotthich = tr.Luotthiches.Count }).Take(pagesize).ToList();
-            return Json(data);
+            //var data = (from tr in db.Truyens join tl in db.TheLoais 
+            //            on tr.MaLoai equals tl.MaLoai
+            //            select new {tr.MaTruyen, tr.TacGiaGoc, tr.TenTruyen, Luotthich = tr.Luotthiches.Count }).Take(pagesize).ToList();
+            return null;//Json(data);
         }
 
         [HttpPost]
         public ActionResult setTinhTrang(int id,int tinhTrang)
         {
             TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
-            taiKhoan.TinhTrang = tinhTrang;
-            db.SaveChanges();
+            taiKhoan.khoaTK(db,tinhTrang);
             return Json(true);
         }
         [HttpPost]
@@ -107,16 +102,22 @@ namespace WebTruyen.Controllers
                 NgayTao = taiKhoan.NgayTao.ToString("dd/MM/yyyy")
             }, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult CapNhatTKAdmin(TaiKhoan taiKhoan)
+        {
+            bool rs = Helper.Auth.SuaTk(taiKhoan);
+            return Json(rs);
+        }
         #endregion
+        #region quản lý tác giả
         public ActionResult DSTacGia(int page, int pagesize)
         {
-            List<TacGia> taiKhoans = db.TacGias.OrderBy(x => x.MaTG).Skip((page - 1) * pagesize).Take(pagesize).ToList();
+            List<TacGia> taiKhoans = db.TacGias.OrderBy(x => x.NgayDangKy).Skip((page - 1) * pagesize).Take(pagesize).ToList();
             var data = taiKhoans.Select(x => new
             {
                 x.MaTG,
                 x.ButDanh,
-                TenTK = x.TaiKhoan.HovaTen,
-                NgayDK = x.NgayDangKy.ToString("dd/MM/yyyy"),
+                TenTK = x.TaiKhoan().HovaTen,
+                NgayDK = x.NgayDangKy?.ToString("dd/MM/yyyy"),
                 x.VaiTro,
                 x.DaDuyet
             });
@@ -125,22 +126,16 @@ namespace WebTruyen.Controllers
         [HttpPost]
         public ActionResult XetDuyetTG(int id)
         {
-            TacGia tacGia = db.TacGias.Find(id);
-            tacGia.DaDuyet = true;
-            db.SaveChanges();
+            TaiKhoan tacGia = Helper.Auth.user();
+            tacGia.duyetTacGia(id);            
             return Json(true);
         }
         public ActionResult LayThongTinTG(int id)
         {
             TacGia tacGia = db.TacGias.Find(id);
-            return Json(new { tacGia.MaTG, tacGia.MaTK, NgayDangKy = tacGia.NgayDangKy.ToString("dd/MM/yyyy"), tacGia.DaDuyet, tacGia.ButDanh, tacGia.VaiTro }, JsonRequestBehavior.AllowGet);
+            return Json(new { tacGia.MaTG, NgayDangKy = tacGia.NgayDangKy?.ToString("dd/MM/yyyy"), tacGia.DaDuyet, tacGia.ButDanh, tacGia.VaiTro }, JsonRequestBehavior.AllowGet);
         }
-
-        public ActionResult CapNhatTKAdmin(TaiKhoan taiKhoan)
-        {
-            bool rs = Helper.Auth.SuaTk(taiKhoan);
-            return Json(rs);
-        }
+        #endregion
         [HttpPost]
         public ActionResult XoaTacGia(int MaTG)
         {

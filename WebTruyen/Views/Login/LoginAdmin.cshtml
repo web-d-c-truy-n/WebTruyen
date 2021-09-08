@@ -20,9 +20,6 @@
                             <span class="fas fa-envelope"></span>
                         </div>
                     </div>
-                    <p id="thongBao">
-
-                    </p>
                 </div>
                 <div class="input-group mb-3">
                     <input type="password" class="form-control" placeholder="Mật khẩu" id="password" required>
@@ -32,6 +29,9 @@
                         </div>
                     </div>
                 </div>
+                <p id="thongBao" class="text-danger">
+
+                </p>
                 <div class="row">
                     <div class="col-8">
                         <div class="icheck-primary">
@@ -69,8 +69,8 @@
                 let username =$("#username").val()
                 let password = $("#password").val()
                 let daDangNhap = await API.loginAdmin(username, password)
-                if (!daDangNhap) {
-                    $("#thongBao").text("Tên tài khoản hoặc mật khẩu không đúng")
+                if (daDangNhap != "Đăng nhập thành công") {
+                    $("#thongBao").text(daDangNhap)
                 }
                 else {
                     window.location.href = "@Url.Action("Index","AdminWeb")"

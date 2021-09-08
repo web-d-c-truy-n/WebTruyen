@@ -25,22 +25,26 @@ namespace WebTruyen.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<ChuongTruyen> ChuongTruyens { get; set; }
-        public virtual DbSet<Luotthich> Luotthiches { get; set; }
-        public virtual DbSet<Luotxem> Luotxems { get; set; }
+        public virtual DbSet<HanhDongCuaTK> HanhDongCuaTKs { get; set; }
         public virtual DbSet<NhomTG> NhomTGs { get; set; }
         public virtual DbSet<QuanLyHinhAnh> QuanLyHinhAnhs { get; set; }
-        public virtual DbSet<TacGia> TacGias { get; set; }
+        public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<ThanhVienNhom> ThanhVienNhoms { get; set; }
         public virtual DbSet<TheLoai> TheLoais { get; set; }
-        public virtual DbSet<TheodoiTG> TheodoiTGs { get; set; }
+        public virtual DbSet<Truyen> Truyens { get; set; }
+        public virtual DbSet<TruyenTacGia> TruyenTacGias { get; set; }
+        public virtual DbSet<Admin> Admins { get; set; }
+        public virtual DbSet<BinhLuan> BinhLuans { get; set; }
+        public virtual DbSet<LuotThichChuong> LuotThichChuongs { get; set; }
+        public virtual DbSet<LuotThichTruyen> LuotThichTruyens { get; set; }
+        public virtual DbSet<LuotXem> LuotXems { get; set; }
+        public virtual DbSet<TheodoTG> TheodoTGs { get; set; }
         public virtual DbSet<ThongBao> ThongBaos { get; set; }
         public virtual DbSet<TraoDoiNhom> TraoDoiNhoms { get; set; }
-        public virtual DbSet<TruyenTacGia> TruyenTacGias { get; set; }
         public virtual DbSet<vTruyen> vTruyens { get; set; }
-        public virtual DbSet<BinhLuan> BinhLuans { get; set; }
-        public virtual DbSet<Truyen> Truyens { get; set; }
-        public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
+        public virtual DbSet<TacGia> TacGias { get; set; }
+        public virtual DbSet<vvTruyen> vvTruyens { get; set; }
+        public virtual DbSet<DanhGia> DanhGias { get; set; }
     }
 }

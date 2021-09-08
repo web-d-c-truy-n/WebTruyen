@@ -18,12 +18,12 @@
         return result
     },
     // đăng ký
-    register: async function (HovaTen, Mail, MatKhau, SDT ) {
+    register: async function (HovaTen, Mail, MatKhau, SDT, Captcha) {
         let result = false
         await $.ajax({
             type: "POST",
             url: '/Login/Register',
-            data: JSON.stringify({ HovaTen: HovaTen, Mail: Mail, MatKhau: MatKhau, SDT:SDT }),
+            data: JSON.stringify({ HovaTen: HovaTen, Mail: Mail, MatKhau: MatKhau, SDT: SDT, Captcha: Captcha }),
             dataType: "json",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
@@ -166,7 +166,7 @@
             data: JSON.stringify({ id: id, tinhTrang: tinhTrang }),
             dataType: "json",
             contentType: 'application/json; charset=utf-8',
-            success: function (data) {
+            success: function (data) {                
                 result = data
             },
             error: function () {
@@ -281,9 +281,9 @@
         })
         return result
     },
-    XuatCacTruyenTheLoai: async function (page, pagesize, maLoai) {
+    XuatCacTruyenTheLoai: async function (page, pagesize, maLoai, loaiTruyen) {
         let result = null
-        await $.get("/Home/XuatCacTruyenTheLoai?page=" + page + "&pagesize=" + pagesize + "&maLoai="+maLoai, function (data) {
+        await $.get("/Home/XuatCacTruyenTheLoai?page=" + page + "&pagesize=" + pagesize + "&maLoai=" + maLoai + "&loaiTruyen=" + loaiTruyen, function (data) {
             result = data
         })
         return result
@@ -328,8 +328,113 @@
             }
         })
         return result
+    },
+    getCaptcha: async function () {        
+        let result
+        await $.get("/Home/getCaptcha", function (data) {
+            result = data
+        })
+        return result
+    },
+    timkiemTruyen: async function (timkiem, page, pagesize) {
+        let result
+        await $.get("/Home/timkiemTruyen?timKiem=" + timkiem + "&page=" + page + "&pagesize=" + pagesize, function (data) {
+            result = data
+        })
+        return result
+    },
+    layBinhLuan: async function (maTruyen, soChuong) {
+        let result
+        await $.get("/Truyen/layBinhLuan/" + maTruyen + "?&soChuong=" + soChuong, function (data) {
+            result = data
+        })
+        return result
+    },
+    vietBinhLuan: async function (maTruyen, soChuong, noiDung, phanHoi) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/Truyen/vietBinhLuan',
+            data: JSON.stringify({ maTruyen: maTruyen, soChuong: soChuong, noiDung: noiDung, phanHoi: phanHoi}),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
+    danhGia: async function (maTruyen, danhGia) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/Truyen/danhGia',
+            data: JSON.stringify({ maTruyen: maTruyen, danhGia: danhGia}),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
+    thichTruyen: async function (maTruyen, isThich) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/Truyen/thichTruyen',
+            data: JSON.stringify({ maTruyen: maTruyen, isThich: isThich }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
+    CapNhatTKUser: async function (HovaTen, Mail, SDT) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/Home/CapNhatTaiKhoanUser',
+            data: JSON.stringify({HovaTen: HovaTen, Mail: Mail, SDT: SDT }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
+    doiMatKhau: async function (mkHT, mkMoi, xnMK) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/Home/doiMatKhau',
+            data: JSON.stringify({ mkHT: mkHT, mkMoi: mkMoi, xnMK: xnMK}),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
     }
-
 }
 
 const ttTaiKhoan = {
@@ -384,7 +489,7 @@ function vaitroTg(so) {
     return vt;
 }
 // chuyển tiếng việt có dấu thành không dấu
-function locdau(obj) {
+const locdau =(obj) => {
     var str;
     if (eval(obj))
         str = eval(obj).value;

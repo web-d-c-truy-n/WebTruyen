@@ -23,9 +23,9 @@ namespace WebTruyen.Controllers
         }
         public ActionResult TrangTacGia()
         {
-            if (Helper.Auth.tacGia() != null)
+            if (Helper.Auth.user() != null)
             {
-                ViewBag.anhCuaTG = Helper.Auth.tacGia().QuanLyHinhAnhs.ToList();
+                ViewBag.anhCuaTG = Helper.Auth.user().QuanLyHinhAnhs.ToList();
                 ViewBag.theLoai = db.TheLoais.ToList();
                 ViewBag.cacTacGia = db.TacGias;
             }
@@ -34,7 +34,7 @@ namespace WebTruyen.Controllers
         [HttpPost]
         public ActionResult ThemAnh(HttpPostedFileBase file)
         {
-            if (!IsImage(file))
+            if (!Commons.IsImage(file))
             {
                 return Json(new {result = false, msg = "Đây không phải là hình ảnh!!!" });
             }
@@ -43,64 +43,42 @@ namespace WebTruyen.Controllers
             file.SaveAs(path + fileName);
             QuanLyHinhAnh anh = new QuanLyHinhAnh();
             anh.URL = "/Asset/TacGia/Anh/"+fileName;
-            anh.MaTG = Helper.Auth.user().TacGias.First().MaTG;
-            db.QuanLyHinhAnhs.Add(anh);
-            db.SaveChanges();
+            anh.MaTK = Helper.Auth.user().MaTK;
+            anh.them();            
             return Json(new { result = true, msg = "Lưu thành công", anh.URL, anh.MaAnh});
-        }
-        private bool IsImage(HttpPostedFileBase file)
-        {
-            if (file.ContentType.Contains("image"))
-            {
-                return true;
-            }
-
-            string[] formats = new string[] { ".jpg", ".png", ".gif", ".jpeg" };
-
-            // linq from Henrik Stenbæk
-            return formats.Any(item => file.FileName.EndsWith(item, StringComparison.OrdinalIgnoreCase));
         }
         // đăng truyện
         [HttpPost]
         public ActionResult DangTruyen(Truyen truyen, int vaiTro, int?[] dongTG, int? dangNhom)
         {
-            using (System.Data.Entity.DbContextTransaction transaction = db.Database.BeginTransaction())
+            try
             {
-                try
+                if (dangNhom != null)
                 {
-                    truyen.NgayTao = DateTime.Now;
-                    truyen.DaDuyet = false;
-                    truyen.Khoa = false;
-                    db.Truyens.Add(truyen);
-                    db.SaveChanges();                    
-                    TruyenTacGia truyenTacGia = new TruyenTacGia();
-                    truyenTacGia.MaTG = Helper.Auth.tacGia().MaTG;
-                    truyenTacGia.MaTruyen = truyen.MaTruyen;
-                    truyenTacGia.VaiTro = vaiTro;
-                    truyenTacGia.DangNhom = dangNhom;
-                    db.TruyenTacGias.Add(truyenTacGia);                    
-                    if (dongTG != null)
-                    {
-                        foreach (int idtg in dongTG)
-                        {
-                            TruyenTacGia truyenTacGia2 = new TruyenTacGia();
-                            truyenTacGia2.MaTG = idtg;
-                            truyenTacGia2.MaTruyen = truyen.MaTruyen;
-                            truyenTacGia2.VaiTro = vaiTro;
-                            truyenTacGia2.DangNhom = dangNhom;
-                            db.TruyenTacGias.Add(truyenTacGia2);
-                        }
-                    }   
-                    db.SaveChanges();
-                    transaction.Commit();
+                    int maTK = Auth.MaTk();
+                    ThanhVienNhom thanhVienNhom = db.ThanhVienNhoms.FirstOrDefault(x => x.MaNhom == dangNhom && x.MaTK == maTK);
+                    thanhVienNhom.vietTruyen(truyen,vaiTro);
                     return Json(true);
                 }
-                catch (Exception e)
+                List<TruyenTacGia> truyenTacGias = new List<TruyenTacGia>();
+                foreach (int dtg in dongTG)
                 {
-                    transaction.Rollback();
-                    return Json(false);
+                    TruyenTacGia truyenTacGia = new TruyenTacGia();
+                    truyenTacGia.MaTK = dtg;
+                    truyenTacGia.VaiTro = vaiTro;
+                    truyenTacGias.Add(truyenTacGia);
                 }
-            }                            
+                TruyenTacGia truyenTacGia1 = new TruyenTacGia();
+                truyenTacGia1.MaTK = Auth.MaTk();
+                truyenTacGia1.VaiTro = vaiTro;
+                truyenTacGias.Add(truyenTacGia1);
+                truyen.them(truyenTacGias);
+                return Json(true);
+            }
+            catch (Exception e)
+            {
+                return Json(false);
+            }
         }
     }
 }

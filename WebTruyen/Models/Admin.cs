@@ -17,7 +17,7 @@ namespace WebTruyen.Models
         public int MaTK { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public int Vaitro { get; set; }
-        public System.DateTime Ngaytao { get; set; }
+        public int VaiTro { get; set; }
+        public System.DateTime NgayTao { get; set; }
     }
 }

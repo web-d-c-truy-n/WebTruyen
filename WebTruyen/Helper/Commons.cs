@@ -9,6 +9,7 @@ using System.Web;
 
 namespace WebTruyen.Helper
 {
+    [Serializable()]
     public class Commons
     {
         // mã hóa MD5
@@ -30,7 +31,7 @@ namespace WebTruyen.Helper
             }
         }
         // Chuyển object sang string
-        public string ObjectToString(object obj)
+        public static string ObjectToString(object obj)
         {
             using (MemoryStream ms = new MemoryStream())
             {
@@ -39,7 +40,7 @@ namespace WebTruyen.Helper
             }
         }
         // Chuyển string sang object
-        public object StringToObject(string base64String)
+        public static object StringToObject(string base64String)
         {
             byte[] bytes = Convert.FromBase64String(base64String);
             using (MemoryStream ms = new MemoryStream(bytes, 0, bytes.Length))
@@ -52,16 +53,106 @@ namespace WebTruyen.Helper
         // chuyển tiếng việt có dấu thành không dấu
         public static string convertToUnSign3(string s)
         {
-            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
+            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");            
             string temp = s.Normalize(NormalizationForm.FormD);
-            return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ","-");
+            string str = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-");
+            str = RemoveSpecialCharacters(str);
+            return str;
+        }
+        public static string RemoveSpecialCharacters(string str)
+        {
+            string str2 = "";
+            string kytu = "!@%^*()+=<>?\\/,.:;'\"&#[]~$_, ";
+            foreach (char c in str)
+            {                
+                if (!kytu.ToCharArray().Contains(c))
+                {
+                    str2 += c;
+                }
+            }
+            return str2.ToLower();
+        }
+        public static int khoanCach2Giay(DateTime ngayDau, DateTime ngayCuoi)
+        {
+            TimeSpan timeSpan = ngayCuoi - ngayDau;
+            return (int)timeSpan.TotalSeconds;
+        }
+        public static string readFile(string path)
+        {
+            try
+            {
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    string line, str = "";
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        str += line;
+                    }
+                    sr.Close();
+                    return str;
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
+        public static bool writeFile(string path, string text)
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(path))
+                {
+                    writer.Write(text);
+                    writer.Close();
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool IsImage(HttpPostedFileBase file)
+        {
+            if (file.ContentType.Contains("image"))
+            {
+                return true;
+            }
+
+            string[] formats = new string[] { ".jpg", ".png", ".gif", ".jpeg" };
+
+            // linq from Henrik Stenbæk
+            return formats.Any(item => file.FileName.EndsWith(item, StringComparison.OrdinalIgnoreCase));
+        }
     }
 
     public struct vtAdmin
     {
         public const int admin = 1;
+    }
+    public struct vtTaiKhoan
+    {
+        public const int admin = 0;
+        public const int docGia = 1;
+        public const int tacGiaChuaDuyet = 2;
+        public const int tacGiaDaDuyet = 3;
+        public const int tacGiaBiKhoa = 4;
+        public const int dichGiaChuaDuyet = 5;
+        public const int dichGiaDaDuyet = 6;
+        public const int dichGiaBiKhoa = 7;
+    }
+    public struct hdTaiKhoan
+    {
+        public const int xemChuong = 1;
+        public const int thichTruyen = 2;
+        public const int theoDoiTacGia = 3;
+        public const int thongBao = 4;
+        public const int binhLuan = 5;
+        public const int traoDoi = 6;
+        public const int thichChuong = 7;
+        public const int danhGia = 8;
     }
     public struct vtTacGia
     {
@@ -79,6 +170,11 @@ namespace WebTruyen.Helper
     public struct ttTruyen
     {
         public const int dangTH = 1;
-        public const int hoanThanh = 2;        
+        public const int hoanThanh = 2;
+    }
+    public struct vtNhom
+    {
+        public const int nhomTruong = 1;
+        public const int thanhVien = 2;
     }
 }

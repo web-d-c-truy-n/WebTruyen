@@ -76,6 +76,9 @@
     <Reference Include="React.Web.Mvc4, Version=5.2.0.0, Culture=neutral, PublicKeyToken=9aed67b161f7db78, processorArchitecture=MSIL">
       <HintPath>..\packages\React.Web.Mvc4.5.2.11\lib\net40\React.Web.Mvc4.dll</HintPath>
     </Reference>
+    <Reference Include="Rijndael256, Version=3.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Rijndael256.3.2.0\lib\net452\Rijndael256.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -161,15 +164,17 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\TacGiaController.cs" />
+    <Compile Include="Controllers\TruyenController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helper\AdminAuth.cs" />
     <Compile Include="Helper\Auth.cs" />
+    <Compile Include="Helper\Captcha.cs" />
     <Compile Include="Helper\Commons.cs" />
     <Compile Include="Helper\Login.cs" />
     <Compile Include="Helper\LoginAdmin.cs" />
     <Compile Include="Helper\LoginTacGia.cs" />
+    <Compile Include="Helper\SupportTaiKhoan.cs" />
     <Compile Include="Models\Admin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -179,10 +184,19 @@
     <Compile Include="Models\ChuongTruyen.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Luotthich.cs">
+    <Compile Include="Models\DanhGia.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Luotxem.cs">
+    <Compile Include="Models\HanhDongCuaTK.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LuotThichChuong.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LuotThichTruyen.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LuotXem.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">
@@ -203,6 +217,16 @@
     <Compile Include="Models\NhomTG.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\partial\Admin.cs" />
+    <Compile Include="Models\partial\ChuongTruyen.cs" />
+    <Compile Include="Models\partial\HanhDongCuaTK.cs" />
+    <Compile Include="Models\partial\NhomTG.cs" />
+    <Compile Include="Models\partial\QuanLyHinhAnh.cs" />
+    <Compile Include="Models\partial\TacGia.cs" />
+    <Compile Include="Models\partial\TaiKhoan.cs" />
+    <Compile Include="Models\partial\ThanhVienNhom.cs" />
+    <Compile Include="Models\partial\TheLoai.cs" />
+    <Compile Include="Models\partial\Truyen.cs" />
     <Compile Include="Models\QuanLyHinhAnh.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -218,7 +242,7 @@
     <Compile Include="Models\TheLoai.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TheodoiTG.cs">
+    <Compile Include="Models\TheodoTG.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ThongBao.cs">
@@ -234,6 +258,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vTruyen.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vvTruyen.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2825,7 +2852,10 @@
     <Content Include="Asset\Web\wp-content\themes\madara\js\smoothscroll.js" />
     <Content Include="Asset\Web\wp-content\themes\madara\js\template.js" />
     <Content Include="Asset\Web\wp-content\themes\madara\logo.png" />
+    <Content Include="Asset\Web\wp-content\themes\madara\Mika.Pikazo.600.3427482.jpg" />
+    <Content Include="Asset\Web\wp-content\themes\madara\SKET.Dance.600.893564.jpg" />
     <Content Include="Asset\Web\wp-content\themes\madara\style.css" />
+    <Content Include="Asset\Web\wp-content\themes\madara\The.Avengers.600.2204331.jpg" />
     <Content Include="Asset\Web\wp-includes\js\dist\a11y.min.js" />
     <Content Include="Asset\Web\wp-includes\js\dist\dom-ready.min.js" />
     <Content Include="Asset\Web\wp-includes\js\dist\hooks.min.js" />
@@ -3221,6 +3251,8 @@
     <Content Include="Scripts\react\react.min.js" />
     <Content Include="Scripts\react\reactAdmin.js" />
     <Content Include="Scripts\react\reactHome.js" />
+    <Content Include="Scripts\react\reactTacGia.js" />
+    <Content Include="Scripts\react\reactTomTatTruyen.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -3252,13 +3284,15 @@
     <Content Include="Views\AdminWeb\DSTacGia.cshtml" />
     <Content Include="Views\TacGia\TrangTacGia.cshtml" />
     <Content Include="Views\Home\testReact.cshtml" />
+    <Content Include="Views\Shared\Layoutdoctruyen.cshtml" />
+    <Content Include="Views\Truyen\TomTat.cshtml" />
+    <Content Include="Views\Truyen\truyentranh.cshtml" />
+    <Content Include="Views\Truyen\truyenchu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Asset\TacGia\Anh\" />
-    <Folder Include="playerAction\Admin\" />
-    <Folder Include="playerAction\IP\" />
-    <Folder Include="playerAction\TaiKhoan\" />
+    <Folder Include="Asset\TaiKhoan\Avatar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

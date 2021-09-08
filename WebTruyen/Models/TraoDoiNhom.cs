@@ -14,23 +14,12 @@ namespace WebTruyen.Models
     
     public partial class TraoDoiNhom
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TraoDoiNhom()
-        {
-            this.CacPhanHoi = new HashSet<TraoDoiNhom>();
-        }
-    
         public int MaTraoDoi { get; set; }
-        public int MaNhom { get; set; }
+        public Nullable<int> MaNhom { get; set; }
         public int MaTV { get; set; }
         public string NoiDung { get; set; }
         public System.DateTime NgayViet { get; set; }
         public Nullable<int> PhanHoi { get; set; }
-    
-        public virtual NhomTG NhomTG { get; set; }
-        public virtual ThanhVienNhom ThanhVienNhom { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TraoDoiNhom> CacPhanHoi { get; set; }
-        public virtual TraoDoiNhom phanHoi { get; set; }
+        public int LoaiHD { get; set; }
     }
 }

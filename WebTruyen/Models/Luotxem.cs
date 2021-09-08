@@ -12,15 +12,12 @@ namespace WebTruyen.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Luotxem
+    public partial class LuotXem
     {
         public int MaTruyen { get; set; }
         public int MaTK { get; set; }
-        public bool Thich { get; set; }
-        public System.DateTime Ngayxem { get; set; }
-        public int SoChuong { get; set; }
-    
-        public virtual ChuongTruyen ChuongTruyen { get; set; }
-        public virtual TaiKhoan TaiKhoan { get; set; }
+        public System.DateTime NgayXem { get; set; }
+        public Nullable<int> SoChuong { get; set; }
+        public int LoaiHD { get; set; }
     }
 }
