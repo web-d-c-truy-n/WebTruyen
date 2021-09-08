@@ -84,10 +84,20 @@ namespace WebTruyen.Controllers
         {
             return PartialView();
         }
-
         public PartialViewResult tacPham()
         {
             return PartialView();
+        }
+        public ActionResult laySoChuongTruyen(int id)
+        {
+            var chuongTruyens = db.ChuongTruyens.Where(x => x.MaTruyen == id).Select(x => new { x.MaTruyen, x.SoChuong, x.TenChuong }).ToArray();
+            return Json(chuongTruyens, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult createOrUpdateChuong(ChuongTruyen chuongTruyen)
+        {
+            chuongTruyen.createOrUpdate();
+            return Json(true);
         }
     }
 }

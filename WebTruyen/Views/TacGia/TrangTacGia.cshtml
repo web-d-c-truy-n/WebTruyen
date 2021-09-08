@@ -381,28 +381,42 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-3 widget c-popular">
-                                                                    <img src="" class="img-responsive effect-fade lazyloaded" id="anhBia"/>
+                                                                    <img src="" class="img-responsive effect-fade lazyloaded" id="anhBia" />
                                                                     <button class="btn widget-view-more btn-block" data-toggle="modal" data-target="#chonAnh" id="btn_themAnhBia">Thêm ảnh bìa</button>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane" id="ThemChuong">
                                                             <div class="row">
-                                                                <div class="form-group col-md-12">
+                                                                <div class="form-group col-md-9">
                                                                     <label for="usr">Tên truyện:</label>
                                                                     <select id="c_tenTruyen" class="form-control">
-
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-md-3">
+                                                                    <label for="usr">Số chương:</label>
+                                                                    <select id="c_tenChuong" class="form-control">
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
-                                                                <div class="col-md-9">
-                                                                    <textarea id="editor"></textarea>
-                                                                    <div class="col-md-12 widget c-popular">
-                                                                        <button class="btn widget-view-more btn-block" data-toggle="modal" data-target="#dangTacPham" id="btn_dangTacPham">Đăng chương</button>
-                                                                    </div>
+                                                                <div class="form-group col-md-12">
+                                                                    <label for="usr">Tên Chương:</label>
+                                                                    <input id="tenChuong" class="form-control" />
                                                                 </div>
                                                             </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <textarea id="editor_e"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12 widget c-popular" style="display:flex">
+                                                                    <button class="btn widget-view-more" style="margin:5px;padding:10px" id="dangChuong">Đăng</button>
+                                                                    <button class="btn btn-default" style="margin:5px;padding:10px" id="luuNhapChuong">Lưu nháp</button>
+                                                                </div>
+                                                            </div>
+                                                            <div id="truyenTranh" hidden></div>
                                                         </div>
                                                         @{ 
                                                             Html.RenderAction("thongTinTacGia", "TacGia");
@@ -453,7 +467,7 @@
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div id="allAnh" class="container tab-pane active">                        
+                    <div id="allAnh" class="container tab-pane active">
 
                     </div>
                     <div id="menu1" class="container tab-pane fade">
@@ -473,7 +487,7 @@
 
                     </div>
                 </div>
-                
+
 
             </div>
 
@@ -522,10 +536,12 @@
                 }
                 <label class="mr-sm-2">Đồng sáng tác</label>
                 <select class="selectpicker" multiple data-live-search="true" id="dongTG">
-                    @foreach(TacGia tacGia in ViewBag.cacTacGia) { 
-                        if (tacGia.MaTG != Auth.tacGia().MaTG) { 
+                    @foreach (TacGia tacGia in ViewBag.cacTacGia)
+                    {
+                        if (tacGia.MaTG != Auth.tacGia().MaTG)
+                        {
                             <option value="@tacGia.MaTG">@(tacGia.ButDanh)</option>
-                        }                        
+                        }
                     }
                 </select>
                 <button type="button" id="dangTruyen" class="btn btn-primary mb-2">Đăng tác phẩm</button>
@@ -554,9 +570,18 @@
     <script src="~/Scripts/react/reactTacGia.js" type="text/babel"></script>
     <script>
         $(document).ready(function () {
-            reload()
             reload_Truyen()
         })
+        async function reload_Truyen() {
+            debugger
+            let Truyen = await API.layTruyenTG(-1)
+            let truyen = ""
+            Truyen.forEach((item, index) => {
+                truyen += '<option value="' + item.MaTruyen + ',' + item.LoaiTruyen + '">' + item.TenTruyen + '</option>'
+            })
+            $("#c_tenTruyen").html(truyen)
+            $("#c_tenTruyen").change()
+        }
         var anhBia = true
         $('#editor').trumbowyg({
             btnsDef: {
@@ -646,11 +671,70 @@
                     $('#editor').trumbowyg('html', "")
                     $("#tenTruyen").val("")
                     $(".close").click()
-                    reload_Truyen()
                     alert("Đăng truyện thành công")
                 } else {
                     $("body").ajaxOff()
                     alert("Đăng thất bại")
+                }
+                reload_Truyen()
+
+            })
+        })
+    </script>
+    <script>
+        $('#editor_e').trumbowyg({
+            btnsDef: {
+                insertImage: {
+                    fn: function () {
+                        anhBia = false
+                        $("#btn_themAnhBia").click()
+                    },
+                    ico: 'insertImage'
+                },
+            },
+            btns: [
+                ['strong', 'em'],
+                ['justifyLeft', 'justifyCenter', 'insertImage'],
+            ]
+        });
+        $(document).ready(function () {
+            $("#c_tenTruyen").change(async function () {
+                let maTr = $(this).val().split(",")[0]
+                let soChuong = await API.laySoChuongTruyen(maTr)
+                let chuongMoi = soChuong.length+1
+                let chuong = '<option value="' + maTr + ',' + chuongMoi + '">' + ("Mới") + '</option>'
+                soChuong.forEach(function (item, index) {
+                    chuong += '<option value="' + item.MaTruyen + ',' + item.SoChuong + '">' + ("Chương" + item.SoChuong+": "+ item.TenChuong )+ '</option>'
+                })
+                $("#c_tenChuong").html(chuong)
+            })
+            $("#c_tenChuong").change(async function () {
+                debugger
+                let maTr = parseInt($(this).val().split(",")[0])
+                let soChuong = parseInt($(this).val().split(",")[1])
+                let noiDung = await API.layNoiDungChuong(maTr, soChuong)
+                $("#editor_e").trumbowyg("html", noiDung.NoiDung)
+            })
+            $("#dangChuong,#luuNhapChuong").click(async function () {
+                debugger
+                let maTr = parseInt($("#c_tenChuong").val().split(",")[0])
+                let soChuong = parseInt($("#c_tenChuong").val().split(",")[1])
+                let tenChuong = $("#tenChuong").val()
+                let loaiTruyen = parseInt($("#c_tenTruyen").val().split(",")[1])
+                let noiDung = $("#editor_e").trumbowyg("html")
+                if (loaiTruyen == 2) {
+                    $("#truyenTranh").html(noiDung)
+                    noiDung = ""
+                    $("#truyenTranh").find("[maAnh]").each(function () {
+                        noiDung += $(this).attr("maAnh")+","
+                    })
+                    $("#truyenTranh").html("")
+                    noiDung = noiDung.substring(0, noiDung.length - 1)
+                }
+                let Dang = $(this).attr("id") == "#dangChuong"
+                let rs = await API.createOrUpdateChuong(maTr, soChuong, tenChuong, noiDung, Dang)
+                if (rs) {
+                    alert("Đăng chương thành công")
                 }
 
             })

@@ -6,9 +6,8 @@ class Image extends React.Component {
             $("#anhBia").attr("idAnh", id)
             $("#dongAnhBia").click()
         } else {
-            debugger
-            let Url = $(this).attr("src")
-            $('#editor').trumbowyg('html', '<img src = "' + Url + '" />');
+            let html = $('#editor_e').trumbowyg('html')
+            $('#editor_e').trumbowyg('html', html + '<img src = "' + Url + '" maAnh ="' + id + '" />');
             $("#dongAnhBia").click()
         }
     }
@@ -27,20 +26,8 @@ class Image extends React.Component {
             </div>
     }
 }
-class Truyen extends React.Component {
-    render = async () => {
-        let Truyen = await API.layTruyenTG(-1)
-        let truyen = []
-        Truyen.forEach((item, index) => {
-            truyen.push(<option value={item.MaTruyen}>{item.TenTruyen}</option>)
-        })
-        return { truyen }
-    }
-}
 const reload = () => {
     ReactDOM.render(<Image load={true} />, document.getElementById('allAnh'))
 }
-const reload_Truyen = () =>{
-    ReactDOM.render(<Truyen />, document.getElementById('c_tenTruyen'))
-}
+reload()
 

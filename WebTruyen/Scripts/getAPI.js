@@ -441,6 +441,37 @@
             result = data
         })
         return result
+    },
+    laySoChuongTruyen: async function (maTruyen) {
+        let result
+        await $.get("/TacGia/laySoChuongTruyen/" + maTruyen, function (data) {
+            result = data
+        })
+        return result
+    },
+    layNoiDungChuong: async function (maTruyen, soChuong) {
+        let result
+        await $.get("/Home/layNoiDungChuong?maTr=" + maTruyen + "&soChuong=" + soChuong, function (data) {
+            result = data
+        })
+        return result
+    },
+    createOrUpdateChuong: async function (MaTruyen, SoChuong, TenChuong, NoiDung, Dang) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/TacGia/createOrUpdateChuong',
+            data: JSON.stringify({ MaTruyen: MaTruyen, SoChuong: SoChuong, TenChuong: TenChuong, NoiDung: NoiDung, Dang: Dang }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
     }
 }
 

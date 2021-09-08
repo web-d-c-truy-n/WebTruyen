@@ -14,6 +14,7 @@ namespace WebTruyen.Models
             webtruyenptEntities db = new webtruyenptEntities();
             try
             {
+                this.NgayTao = DateTime.Now;
                 db.ChuongTruyens.Add(this);
                 db.SaveChanges();
                 guithongbao();
@@ -100,6 +101,30 @@ namespace WebTruyen.Models
                 luotXem.SoChuong = this.SoChuong;
                 HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
                 hanhDongCuaTK.Xem(luotXem);
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
+        public void createOrUpdate()
+        {
+            try
+            {
+                webtruyenptEntities db = new webtruyenptEntities();
+                ChuongTruyen chuongTruyen = db.ChuongTruyens.FirstOrDefault(x => x.MaTruyen == this.MaTruyen && x.SoChuong == this.SoChuong);
+                if (chuongTruyen != null)
+                {
+                    chuongTruyen.NoiDung = this.NoiDung;
+                    chuongTruyen.TenChuong = this.TenChuong;
+                    chuongTruyen.Dang = this.Dang;
+                    chuongTruyen.sua(db);
+                }
+                else
+                {
+                    them();
+                }
             }
             catch (DbUpdateException ex)
             {

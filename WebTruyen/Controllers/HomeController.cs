@@ -185,12 +185,17 @@ namespace WebTruyen.Controllers
         public ActionResult layTruyenTG(int id)
         {
             id = id == -1 ? Auth.MaTk() : id;
-            Truyen[] truyens = (from tg in db.TruyenTacGias
+            vvTruyen[] truyens = (from tg in db.TruyenTacGias
                                 where tg.MaTK == id
-                                join tr in db.Truyens
+                                join tr in db.vvTruyens
                                 on tg.MaTruyen equals tr.MaTruyen
                                 select tr).ToArray();
             return Json(truyens, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult layNoiDungChuong(int maTr, int soChuong)
+        {
+            ChuongTruyen noiDung = db.ChuongTruyens.FirstOrDefault(x=>x.MaTruyen == maTr && x.SoChuong == soChuong);
+            return Json(new {noiDung.MaTruyen, noiDung.SoChuong, noiDung.TenChuong,noiDung.NoiDung, NgayTao = noiDung.NgayTao.ToString("dd/MM/yyyy") }, JsonRequestBehavior.AllowGet);
         }
     }
 }
