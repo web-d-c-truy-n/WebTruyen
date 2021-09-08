@@ -93,13 +93,24 @@ namespace WebTruyen.Controllers
         {
             return PartialView();
         }
-        public PartialViewResult Lichsu()
+        [ChildActionOnly]
+        public ActionResult Lichsu()
         {
-            return PartialView();
+            List<vvTruyen> truyens = (from tr in db.vvTruyens
+                                    join lx in db.LuotXems
+                                    on tr.MaTruyen equals lx.MaTruyen
+                                    orderby lx.NgayXem descending
+                                    group tr by tr.MaTruyen).SelectMany(x => x).ToList();
+            return PartialView(truyens);
         }
         public PartialViewResult Theodoi()
         {
-            return PartialView();
+            List<vvTruyen> truyens = (from tr in db.vvTruyens
+                                      join lx in db.LuotThichTruyens
+                                      on tr.MaTruyen equals lx.MaTruyen
+                                      orderby lx.NgayThich descending
+                                      group tr by tr.MaTruyen).SelectMany(x => x).ToList();
+            return PartialView(truyens);
         }
         // xuất ra các danh sách truyện hot ở trang chủ
         public ActionResult XuatCacTruyenIndex(int page, int pagesize)

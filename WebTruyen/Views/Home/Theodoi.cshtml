@@ -1,4 +1,6 @@
-﻿<div class="tab-pane" id="truyenYeuThich">
+﻿@using WebTruyen.Models
+@model List<vvTruyen>
+<div class="tab-pane" id="truyenYeuThich">
     <table class="table table-hover list-bookmark">
         <thead>
             <tr>
@@ -8,24 +10,26 @@
             </tr>
         </thead>
         <tbody>
+            @foreach(vvTruyen truyen in Model)
+            {
             <tr>
                 <td>
                     <div class="mange-name">
                         <div class="item-thumb">
-                            <a href="https://tvtruyen.net/manga/toi-se-di-den-cung-voi-hoang-de/" title="Tôi Sẽ Đi Đến Cùng Với Hoàng Đế">
-                                <img width="75" height="106" src="https://tvtruyen.net/wp-content/uploads/2021/07/toi-se-di-den-cung-voi-hoang-de-75x106.jpg" class="img-responsive" style="" alt="Tôi Sẽ Đi Đến Cùng Với Hoàng Đế">
+                            <a href="@truyen.AnhBia" title="@truyen.TenTruyen">
+                                <img width="75" height="106" src="@truyen.AnhBia" class="img-responsive" style="" alt="@truyen.TenTruyen">
                             </a>
                         </div>
                         <div class="item-infor">
                             <div class="post-title">
                                 <h3>
-                                    <a href="https://tvtruyen.net/manga/toi-se-di-den-cung-voi-hoang-de/">Tôi Sẽ Đi Đến Cùng Với Hoàng Đế</a>
+                                    <a href="@Url.Action("thongTin","Truyen",new {id = WebTruyen.Helper.Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen) })">@truyen.TenTruyen</a>
                                 </h3>
                             </div>
                             <div class="list-chapter">
                                 <div class="chapter-item ">
                                     <span class="chapter font-meta">
-                                        <a href="https://tvtruyen.net/manga/toi-se-di-den-cung-voi-hoang-de/chap-59/" class="btn-link"> Chap 59 </a>
+                                        <a href="https://tvtruyen.net/manga/toi-se-di-den-cung-voi-hoang-de/chap-59/" class="btn-link"> Chương: @truyen.SoChuong1 </a>
                                     </span>
                                     <span class="post-on font-meta">
                                         <a href="https://tvtruyen.net/manga/toi-se-di-den-cung-voi-hoang-de/chap-59/" title="13 phút trước" class="c-new-tag"><!-- --></a>
@@ -33,7 +37,7 @@
                                 </div>
                                 <div class="chapter-item ">
                                     <span class="chapter font-meta">
-                                        <a href="https://tvtruyen.net/manga/toi-se-di-den-cung-voi-hoang-de/chap-58/" class="btn-link"> Chap 58 </a>
+                                        <a href="https://tvtruyen.net/manga/toi-se-di-den-cung-voi-hoang-de/chap-58/" class="btn-link"> Chương: @truyen.SoChuong2 </a>
                                     </span>
                                     <span class="post-on font-meta">
                                         <a href="https://tvtruyen.net/manga/toi-se-di-den-cung-voi-hoang-de/chap-58/" title="22 giờ trước" class="c-new-tag"><!-- --></a>
@@ -45,19 +49,21 @@
                 </td>
                 <td>
                     <div class="post-on">
-                        22/07/2021
+                        @(truyen.NgayDang?.ToString("dd/MM/yyyy"))
                     </div>
                 </td>
                 <td>
                     <div class="action">
                         <div class="checkbox">
-                            <input id="4045" class="bookmark-checkbox" value="4045" type="checkbox">
-                            <label for="4045"></label>
+                            <input id="@truyen.MaTruyen" class="bookmark-checkbox" value="@truyen.MaTruyen" type="checkbox">
+                            <label for="@truyen.MaTruyen"></label>
                         </div>
-                        <a class="wp-manga-delete-bookmark" href="javascript:void(0)" data-post-id="4045"><i class="icon ion-ios-close"></i></a>
+                        <a class="wp-manga-delete-bookmark" href="javascript:void(0)" data-post-id="@truyen.MaTruyen"><i class="icon ion-ios-close"></i></a>
                     </div>
                 </td>
             </tr>
+            }
+            
             <tr>
                 <td colspan="3">
                     <div class="remove-all float-right">

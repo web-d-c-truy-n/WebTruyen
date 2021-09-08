@@ -208,11 +208,12 @@
                                                                     </div>
                                                                 </div>
                                                             </form>
-
                                                         </div>
                                                         @Html.Partial("DangKiTacGia")
-                                                        @Html.Partial("Theodoi")
-                                                        @*@Html.Partial("Lichsu")*@
+                                                        @{
+                                                            Html.RenderAction("Theodoi", "Home");
+                                                            Html.RenderAction("Lichsu", "Home");
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>
