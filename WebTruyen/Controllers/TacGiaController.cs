@@ -34,7 +34,7 @@ namespace WebTruyen.Controllers
         [HttpPost]
         public ActionResult ThemAnh(HttpPostedFileBase file)
         {
-            if (!IsImage(file))
+            if (!Commons.IsImage(file))
             {
                 return Json(new {result = false, msg = "Đây không phải là hình ảnh!!!" });
             }
@@ -46,18 +46,6 @@ namespace WebTruyen.Controllers
             anh.MaTK = Helper.Auth.user().MaTK;
             anh.them();            
             return Json(new { result = true, msg = "Lưu thành công", anh.URL, anh.MaAnh});
-        }
-        private bool IsImage(HttpPostedFileBase file)
-        {
-            if (file.ContentType.Contains("image"))
-            {
-                return true;
-            }
-
-            string[] formats = new string[] { ".jpg", ".png", ".gif", ".jpeg" };
-
-            // linq from Henrik Stenbæk
-            return formats.Any(item => file.FileName.EndsWith(item, StringComparison.OrdinalIgnoreCase));
         }
         // đăng truyện
         [HttpPost]

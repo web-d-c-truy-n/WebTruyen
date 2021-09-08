@@ -87,7 +87,7 @@ namespace WebTruyen.Controllers
         [Login]
         public ActionResult ThongtinTK()
         {
-            return View();
+            return View(Auth.user());
         }
         public PartialViewResult DangKiTacGia()
         {
@@ -130,6 +130,47 @@ namespace WebTruyen.Controllers
         {
             vvTruyen[] vvTruyens = Truyen.timKiem(timKiem).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
             return Json(vvTruyens, JsonRequestBehavior.AllowGet);
+        }
+        [Login]
+        [HttpPost]
+        public ActionResult upAvatar()
+        {
+            HttpFileCollectionBase files = Request.Files;
+            HttpPostedFileBase avatar = files[0];
+            if (!Commons.IsImage(avatar))
+            {
+                return Json("Đây không phải là hình ảnh");
+            }
+            int maTK = Auth.MaTk();
+            string path = Server.MapPath("~/Asset/TaiKhoan/Avatar/");
+            avatar.SaveAs(path + maTK + "-" + avatar.FileName);
+            TaiKhoan taiKhoan = db.TaiKhoans.FirstOrDefault(x => x.MaTK == maTK);
+            taiKhoan.Avatar = "/Asset/TaiKhoan/Avatar/" + Auth.MaTk() + "-" + avatar.FileName;
+            db.SaveChanges();
+            return Json("Cập nhật avatar thành công");
+        }
+        [Login]
+        [HttpPost]        
+        public ActionResult CapNhatTaiKhoanUser(TaiKhoan taiKhoan)
+        {
+            taiKhoan.MaTK = Auth.MaTk();
+            bool rs = Auth.SuaTk(taiKhoan);
+            return Json(rs);
+        }
+        [Login]
+        [HttpPost]
+        public ActionResult doiMatKhau(string mkHT, string mkMoi, string xnMK)
+        {
+            if (mkMoi != xnMK)
+                return Json("Xác nhận mật khẩu không chính xác");
+            string mk = Auth.user().MatKhau;
+            mkHT = Commons.MD5(mkHT);
+            if (mk != mkHT)
+                return Json("Mật khẩu hiện tại không chính xác");
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(Auth.MaTk());
+            taiKhoan.MatKhau = Commons.MD5(mkMoi);
+            db.SaveChanges();
+            return Json("Đổi mật khẩu thành công");
         }
     }
 }

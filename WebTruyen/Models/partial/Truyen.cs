@@ -151,5 +151,11 @@ namespace WebTruyen.Models
             trungBinh = Math.Round(tong / soLuong, 1);
             return trungBinh;
         }
+
+        public List<LuotThichTruyen> LuotThich()
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            return db.LuotThichTruyens.Where(x => x.MaTruyen == this.MaTruyen).ToList();
+        }
     }
 }
