@@ -1,0 +1,378 @@
+﻿@using WebTruyen.Models
+@using WebTruyen.Helper
+@model Truyen
+@{
+    ViewBag.Title = Model.TenTruyen;
+    Layout = "~/Views/Shared/_Layoutwebindex.cshtml";
+    webtruyenptEntities db = new webtruyenptEntities();
+}
+<style>
+    .comment-list.comment-reply {
+        padding-left: 50px !important;
+        padding-top: 50px !important;
+    }
+</style>
+<div class="site-content">
+    <div class="post-449 wp-manga type-wp-manga status-publish has-post-thumbnail hentry wp-manga-tag-cartoon wp-manga-tag-kitasou-girl wp-manga-tag-kyoto wp-manga-release-92 wp-manga-author-nasimi wp-manga-artist-bikimisha wp-manga-genre-action wp-manga-genre-anime">
+        <div class="profile-manga summary-layout-1" style="background-image: url(./wp-content/themes/madara/images/bg-search.jpg);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12">
+                        <div class="c-breadcrumb-wrapper">
+                            <div class="c-breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li>
+                                        <a href="/">
+                                            Home
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/">
+                                            Truyện
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            @Model.TenTruyen
+                                        </a>
+                                    </li>
+                                </ol>
+                            </div>
+
+                        </div>
+
+                        <div class="post-title">
+                            <span class="manga-title-badges new">NEW</span>
+                            <h1>
+                                @Model.TenTruyen
+                            </h1>
+                        </div>
+                        <div class="tab-summary ">
+                            <div class="summary_image">
+                                <a href="~/Asset/Web/manga/massa-consectetur-mattis/">
+                                    <img width="193" height="278" src="@Model.QuanLyHinhAnh.URL" />
+                                </a>
+                            </div>
+                            <div class="summary_content_wrap">
+                                <div class="summary_content">
+                                    <div class="post-content">
+                                        <div class="loader-inner ball-pulse">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+                                        <div class="post-rating">
+                                            <div class="post-total-rating allow_vote">
+                                                @for(int i = 1;i<=5; i++) {
+                                                    if (i <= Model.trungBinhDanhGia())
+                                                    {
+                                                        <i class="ion-ios-star ratings_stars rating_current"></i>
+                                                    }
+                                                    else { 
+                                                        <i class="ion-ios-star-outline ratings_stars"></i>
+                                                    }
+                                                }                                                
+                                            <span class="score font-meta total_votes">@Model.trungBinhDanhGia()</span></div><div class="user-rating allow_vote"><i class="ion-ios-star-outline ratings_stars" sao="1"></i><i class="ion-ios-star-outline ratings_stars" sao="2"></i><i class="ion-ios-star-outline ratings_stars" sao="3"></i><i class="ion-ios-star-outline ratings_stars" sao="4"></i><i class="ion-ios-star-outline ratings_stars" sao="5"></i><span class="score font-meta total_votes">Đáng giá của bạn</span></div><input type="hidden" class="rating-post-id" value="449">
+                                        </div>
+
+                                        <div class="post-content_item">
+                                            <div class="summary-heading">
+                                                <h5>Đánh giá</h5>
+                                            </div>
+                                            <div class="summary-content vote-details" vocab="https://schema.org/" typeof="AggregateRating">
+                                                <span property="itemReviewed" typeof="Book"><span class="rate-title" property="name" title="@Model.TenTruyen">@Model.TenTruyen</span></span><span> <span> Trung bình <span property="ratingValue" id="averagerate">@Model.trungBinhDanhGia()</span> / <span property="bestRating">5</span> </span> </span> tổng số <span property="ratingCount" id="countrate">@Model.soLuonDanhGia()</span>
+                                            </div>
+                                        </div>
+                                        <div class="post-content_item">
+                                            <div class="summary-heading">
+                                                <h5>
+                                                    Xếp hạng
+                                                </h5>
+                                            </div>
+                                            <div class="summary-content">
+                                                Lượt thích @Model.luotThich(), Lượt xem @Model.luotXem()
+                                            </div>
+                                        </div><div class="post-content_item">
+                                            <div class="summary-heading">
+                                                <h5>
+                                                    Tác giả
+                                                </h5>
+                                            </div>
+                                            <div class="summary-content">
+                                                <div class="author-content">
+                                                    <a href="~/Asset/Web/manga-author/nasimi/" rel="tag">Nasimi</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="post-content_item">
+                                            <div class="summary-heading">
+                                                <h5>
+                                                    Thể Loại
+                                                </h5>
+                                            </div>
+                                            <div class="summary-content">
+                                                <div class="genres-content">
+                                                    <a href="@Url.Action("theLoai","Home",new {id = WebTruyen.Helper.Commons.convertToUnSign3(Model.TheLoai.TenLoai+"-"+Model.MaLoai).ToLower() })" rel="tag">@Model.TheLoai.TenLoai</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="post-content_item">
+                                            <div class="summary-heading">
+                                                <h5>
+                                                    Loại truyện
+                                                </h5>
+                                            </div>
+                                            <div class="summary-content">
+                                                <div class="tags-content">
+                                                    <a href="@(Model.LoaiTruyen ==1?Url.Action("TruyenChu","Home"):Url.Action("TruyenTranh","Home"))" rel="tag">@(Model.LoaiTruyen ==1?"Truyện chữ":"Truyện tranh")</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="post-status">
+
+                                        <div class="post-content_item">
+                                            <div class="summary-heading">
+                                                <h5>
+                                                    Release
+                                                </h5>
+                                            </div>
+                                            <div class="summary-content">
+                                                <a href="~/Asset/Web/manga-release/2015/" rel="tag">2015</a>
+                                            </div>
+                                        </div>
+                                        <div class="post-content_item">
+                                            <div class="summary-heading">
+                                                <h5>
+                                                    Status
+                                                </h5>
+                                            </div>
+                                            <div class="summary-content">
+                                                OnGoing
+                                            </div>
+                                        </div><div class="manga-action">
+                                            <div class="count-comment">
+                                                <div class="action_icon">
+                                                    <a href="#manga-discussion"><i class="icon ion-md-chatbubbles"></i></a>
+                                                </div>
+                                                <div class="action_detail">
+                                                    <span class="disqus-comment-count" data-disqus-url="~/Asset/Web/manga/massa-consectetur-mattis/">Comments</span>
+                                                </div>
+                                            </div>
+                                            <div class="add-bookmark">
+                                                <div class="action_icon">
+                                                    <a href="#" class="wp-manga-action-button" data-action="bookmark" data-post="449" id="YeuThich"><i class="fas fa-heart" @Html.Raw(Auth.user().isThichTruyen(Model.MaTruyen)?"style=\"color: red\" thich=\"1\"":"")></i></a>
+                                                </div><div class="action_detail"><span>@Model.luotThich() người đã thích</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div id="init-links" class="nav-links">
+                                        <a href="#" id="btn-read-last" class="c-btn c-btn_style-1">
+                                            Đọc trang đầu
+                                        </a>
+                                        <a href="#" id="btn-read-first" class="c-btn c-btn_style-1">Đọc trang cuối</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="c-page-content style-1">
+            <div class="content-area">
+                <div class="container">
+                    <div class="row ">
+                        <div class="main-col col-md-12 col-sm-12 sidebar-hidden">
+                            <!-- container & no-sidebar-->
+                            <div class="main-col-inner">
+                                <div class="c-page">
+                                    <!-- <div class="c-page__inner"> -->
+                                    <div class="c-page__content">
+
+                                        <div class="c-blog__heading style-2 font-heading">
+
+                                            <h2 class="h4">
+                                                <i class="icon ion-ios-star"></i>
+                                                Tóm Tắt
+                                            </h2>
+                                        </div>
+
+                                        <div class="description-summary">
+
+                                            <div class="summary__content show-more">
+                                                @Html.Raw(Model.MoTa)
+                                            </div>
+
+                                            <div class="c-content-readmore">
+                                                <span class="btn btn-link content-readmore less" style="display: inline-block;">
+                                                    Show more
+                                                </span>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="c-blog__heading style-2 font-heading">
+                                            <h2 class="h4">
+                                                <i class="icon ion-ios-star"></i>
+                                                CÁC CHƯƠNG
+                                            </h2>
+                                            <a href="#" title="Change Order" class="btn-reverse-order"><i class="icon ion-md-swap"></i></a>
+                                        </div>
+                                        <div class="page-content-listing single-page">
+                                            <div class="listing-chapters_wrap cols-1  show-more">
+                                                @{ChuongTruyen[] chuongTruyen = db.ChuongTruyens.Where(x => x.MaTruyen == Model.MaTruyen).OrderBy(x => x.SoChuong).ToArray();}
+                                                <ul class="main version-chap">
+                                                    @foreach (ChuongTruyen chuong in chuongTruyen)
+                                                    {
+                                                        <li class="wp-manga-chapter    ">
+                                                            <a href="~/Asset/Web/manga/massa-consectetur-mattis/episode-122/">
+                                                                CHƯƠNG @(chuong.SoChuong): @chuong.TenChuong
+                                                            </a>
+
+                                                            <span class="chapter-release-date">
+                                                                <i>@chuong.NgayTao.ToString("dd/MM/yyyy")</i>
+                                                            </span>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                                <div class="c-chapter-readmore">
+                                                    <span class="btn btn-link chapter-readmore">
+                                                        Show more
+                                                    </span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- </div> -->
+                                </div>
+
+                                <!-- comments-area -->
+
+                                <div id="manga-discussion" class="c-blog__heading style-2 font-heading">
+                                    <i class="ion-ios-star"></i>
+                                    <h4> BÌNH LUẬN ĐÁNH GIÁ </h4>
+                                </div>
+                                <div class="manga-discussion wrapper">
+                                    <div class="hr mv40"></div>
+                                    <div id="madara-comments" class="comments-area">
+                                        <div id="respond" class="comment-respond">
+                                            <h4 class="comment-reply-title"><span id="reply-title">HÃY VIẾT CẢM NHẬN CỦA BẠN</span> <small><a rel="nofollow" id="cancel-comment-reply-link" href="##" style="display:none;">Cancel reply</a></small></h4>
+                                            <form method="post" id="commentform" class="comment-form" novalidate="" onsubmit="return false">
+                                                <p class="comment-notes"><span id="email-notes"><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="Comment"></textarea></span></p><p class="comment-form-author"></p>
+                                                <p class="form-submit">
+                                                    <input name="submit" type="submit" id="submit" onclick="guiBinhLuan()" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="449" id="comment_post_ID">
+                                                    <input type="hidden" id="comment_parent" value="-1">
+                                                </p>                
+                                            </form>
+                                        </div><!-- #respond -->
+                                        <h4 class="comments-title">
+                                            @Model.binhLuan().Count Comments
+                                        </h4>
+                                        <div id="comments">
+                                        </div>
+                                    </div><!-- #comments -->
+                                </div>
+                                <!-- END comments-area -->
+                                <div class="row c-row related-manga">
+                                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                        <div class="c-blog__heading style-2 font-heading">
+                                            <h4>
+                                                <i class="icon ion-ios-star"></i>
+                                                CÓ THỂ BẠN CŨNG THÍCH
+                                            </h4>
+                                        </div>
+                                    </div>
+
+
+                                    @{ vTruyen[] truyens = db.vTruyens.Where(x => x.MaLoai == Model.MaLoai).OrderBy(x => (x.LuotXem + x.LuotThich)).Take(4).ToArray();}
+                                    @foreach(vTruyen truyen in truyens) { 
+                                        <div class="col-12 col-sm-6 col-md-3">
+                                            <div class="related-reading-wrap related-style-2">
+                                                <div class="related-reading-img widget-thumbnail c-image-hover">
+                                                    <a title="@truyen.TenTruyen" href="@Url.Action("TomTat","Truyen",new {id=WebTruyen.Helper.Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen) })">
+                                                        <img style="width: 193px; height: 278px" src="@truyen.AnhBia" />
+                                                    </a>
+                                                </div>
+                                                <div class="related-reading-content">
+                                                    <h5 class="widget-title">
+                                                        <a href="@Url.Action("TomTat","Truyen",new {id=WebTruyen.Helper.Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen) })" title="@truyen.TenTruyen">
+                                                            @truyen.TenTruyen
+                                                        </a>
+                                                    </h5>
+                                                </div>
+                                                <div class="post-on font-meta">
+                                                    <span>
+                                                        @(truyen.NgayDang?.ToString("dd/MM/yyyy"))
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@section js{
+    <script src="~/Scripts/react/reactTomTatTruyen.js" type="text/babel"></script>
+    <script>
+        const maTruyen = @(Model.MaTruyen)
+        var soChuong = -1
+        $(document).ready(function () {
+            $("body").addClass("manga-page")
+            $("#cancel-comment-reply-link").click(function () {
+                $("#comment_parent").val(-1)
+                $("#reply-title").text("HÃY VIẾT CẢM NHẬN CỦA BẠN")
+                $("#cancel-comment-reply-link").hide()
+            })
+            $(".ion-ios-star-outline").click(async function () {
+                let danhGia = parseInt($(this).attr("sao"))
+                let rs = await API.danhGia(maTruyen, danhGia)
+                if (rs) {
+                    alert("Đánh giá thành công")
+                }
+            })
+            $("#YeuThich").click(async function () {
+                let isThich = $(this).find("i").attr("thich") != "1"
+                let rs = await API.thichTruyen(maTruyen, isThich)
+                if (rs) {
+                    if (isThich) {
+                        $(this).find("i").css("color", "red")
+                        $(this).find("i").attr("thich", 1)
+                    }
+                    else {
+                        $(this).find("i").css("color", "")
+                        $(this).find("i").attr("thich", 0)
+                    }
+                        
+                }
+            })            
+        })
+        $(document).ready(async function () {
+            BinhLuan = await API.layBinhLuan(maTruyen, soChuong)
+            render()
+        })
+        async function guiBinhLuan() {
+            debugger
+            let noiDung = $("#comment").val()
+            let phanHoi = parseInt($("#comment_parent").val())
+            let rs = await API.vietBinhLuan(maTruyen, soChuong, noiDung, phanHoi);
+            BinhLuan.push(rs)
+            render()
+            $("#comment").val("")
+        }
+    </script>
+}

@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "LoginAdmin";
+    Layout = "~/Views/Shared/_LayoutLoginAdmin.cshtml";
+}
+<div class="login-box">
+    <!-- /.login-logo -->
+    <div class="card card-outline card-primary">
+        <div class="card-header text-center">
+            <a href="~/Asset/Admin/index2.html" class="h1"><b>Admin</b>Website Truyện</a>
+        </div>
+        <div class="card-body">
+            <p class="login-box-msg">Sign in to start your session</p>
+
+            <form action="~/Asset/Admin/index3.html" method="post">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Tên tài khoản" id="username" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" placeholder="Mật khẩu" id="password" required>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <p id="thongBao" class="text-danger">
+
+                </p>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">
+                                Remember Me
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-4">
+                        <button type="button" class="btn btn-primary btn-block" id="dangnhap">Đăng nhập</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+            <!-- /.social-auth-links -->
+
+            <p class="mb-1">
+                <a href="forgot-password.html">I forgot my password</a>
+            </p>
+            <p class="mb-0">
+                <a href="@Url.Action("ThemAdmin","AdminWeb")" class="text-center">Register a new Admin</a>
+            </p>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+@section js{
+    <script>
+        $(document).ready(function () {
+            $("#dangnhap").click(async function () {
+                debugger
+                let username =$("#username").val()
+                let password = $("#password").val()
+                let daDangNhap = await API.loginAdmin(username, password)
+                if (daDangNhap != "Đăng nhập thành công") {
+                    $("#thongBao").text(daDangNhap)
+                }
+                else {
+                    window.location.href = "@Url.Action("Index","AdminWeb")"
+                }
+            })
+        })
+    </script>
+}
+
+
