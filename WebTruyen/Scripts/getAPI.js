@@ -367,7 +367,74 @@
         })
         return result
     },
-
+    danhGia: async function (maTruyen, danhGia) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/Truyen/danhGia',
+            data: JSON.stringify({ maTruyen: maTruyen, danhGia: danhGia}),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
+    thichTruyen: async function (maTruyen, isThich) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/Truyen/thichTruyen',
+            data: JSON.stringify({ maTruyen: maTruyen, isThich: isThich }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
+    CapNhatTKUser: async function (HovaTen, Mail, SDT) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/Home/CapNhatTaiKhoanUser',
+            data: JSON.stringify({HovaTen: HovaTen, Mail: Mail, SDT: SDT }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
+    doiMatKhau: async function (mkHT, mkMoi, xnMK) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/Home/doiMatKhau',
+            data: JSON.stringify({ mkHT: mkHT, mkMoi: mkMoi, xnMK: xnMK}),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    }
 }
 
 const ttTaiKhoan = {

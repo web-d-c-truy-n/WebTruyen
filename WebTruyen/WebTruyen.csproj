@@ -3293,7 +3293,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Asset\TacGia\Anh\" />
-    <Folder Include="Asset\TaiKhoan\" />
+    <Folder Include="Asset\TaiKhoan\Avatar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

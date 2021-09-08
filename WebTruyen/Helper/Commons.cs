@@ -53,11 +53,25 @@ namespace WebTruyen.Helper
         // chuyển tiếng việt có dấu thành không dấu
         public static string convertToUnSign3(string s)
         {
-            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
+            Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");            
             string temp = s.Normalize(NormalizationForm.FormD);
-            return regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-");
+            string str = regex.Replace(temp, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D').Replace(" ", "-");
+            str = RemoveSpecialCharacters(str);
+            return str;
         }
-
+        public static string RemoveSpecialCharacters(string str)
+        {
+            string str2 = "";
+            string kytu = "!@%^*()+=<>?\\/,.:;'\"&#[]~$_, ";
+            foreach (char c in str)
+            {                
+                if (!kytu.ToCharArray().Contains(c))
+                {
+                    str2 += c;
+                }
+            }
+            return str2.ToLower();
+        }
         public static int khoanCach2Giay(DateTime ngayDau, DateTime ngayCuoi)
         {
             TimeSpan timeSpan = ngayCuoi - ngayDau;
@@ -99,6 +113,18 @@ namespace WebTruyen.Helper
             {
                 return false;
             }
+        }
+        public static bool IsImage(HttpPostedFileBase file)
+        {
+            if (file.ContentType.Contains("image"))
+            {
+                return true;
+            }
+
+            string[] formats = new string[] { ".jpg", ".png", ".gif", ".jpeg" };
+
+            // linq from Henrik Stenbæk
+            return formats.Any(item => file.FileName.EndsWith(item, StringComparison.OrdinalIgnoreCase));
         }
     }
 
