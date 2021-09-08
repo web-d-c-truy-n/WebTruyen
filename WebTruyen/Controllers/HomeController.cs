@@ -90,12 +90,17 @@ namespace WebTruyen.Controllers
             return View(Auth.user());
         }
         public PartialViewResult DangKiTacGia()
-        {
+        {            
             return PartialView();
         }
         public PartialViewResult Lichsu()
         {
-            return PartialView();
+            List<Truyen> truyens = (from tr in db.Truyens
+                                    join lx in db.LuotXems
+                                    on tr.MaTruyen equals lx.MaTruyen
+                                    orderby lx.NgayXem descending
+                                    group tr by tr.MaTruyen).SelectMany(x => x).ToList();
+            return PartialView(truyens);
         }
         public PartialViewResult Theodoi()
         {

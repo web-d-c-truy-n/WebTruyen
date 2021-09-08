@@ -3252,6 +3252,7 @@
     <Content Include="Scripts\react\reactAdmin.js" />
     <Content Include="Scripts\react\reactHome.js" />
     <Content Include="Scripts\react\reactTacGia.js" />
+    <Content Include="Scripts\react\reactThongTinTK.js" />
     <Content Include="Scripts\react\reactTomTatTruyen.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

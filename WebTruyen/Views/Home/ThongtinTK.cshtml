@@ -76,139 +76,138 @@
                                                             <form method="post" id="form-account-settings" data-force-strong-password="1" onsubmit="return false">
                                                                 <input type="hidden" value="981" name="userID">
                                                                 <input type="hidden" id="_wpnonce" name="_wpnonce" value="c0d5ad0b0f"><input type="hidden" name="_wp_http_referer" value="/user-settings/?tab=account-settings"> <div class="tab-group-item">
-    <div class="tab-item">
-        <div class="choose-avatar">
-            <div class="loading-overlay">
-                <div class="loading-icon">
-                    <i class="fas fa-spinner fa-spin"></i>
-                </div>
-            </div>
-            <div class="c-user-avatar">
-                <img alt="" src="@(Model.Avatar??"pp")" onError="this.onerror=null;this.src='https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=390&amp;d=mm&amp;r=g';" class="avatar avatar-195 photo" height="195" width="195" loading="lazy" id="Avatar">
-            </div>
-        </div>
-        <div class="form form-choose-avatar">
-            <div class="select-flie">
-                Chỉ dành cho tệp .jpg .png hoặc .gif <label class="select-avata">
-                    <input type="file" name="wp-manga-user-avatar" id="upFile" onchange="loadFile(event, 'Avatar')">
-                    <span class="file-name"></span>
-                </label>
-                <input type="submit" value="Tải lên" name="wp-manga-upload-avatar" id="wp-manga-upload-avatar" onclick="upload('upFile','@Url.Action("upAvatar","Home")')" />
+                                                                <div class="tab-item">
+                                                                    <div class="choose-avatar">
+                                                                        <div class="loading-overlay">
+                                                                            <div class="loading-icon">
+                                                                                <i class="fas fa-spinner fa-spin"></i>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="c-user-avatar">
+                                                                            <img alt="" src="@(Model.Avatar??"pp")" onError="this.onerror=null;this.src='https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=390&amp;d=mm&amp;r=g';" class="avatar avatar-195 photo" height="195" width="195" loading="lazy" id="Avatar">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form form-choose-avatar">
+                                                                        <div class="select-flie">
+                                                                            Chỉ dành cho tệp .jpg .png hoặc .gif <label class="select-avata">
+                                                                                <input type="file" name="wp-manga-user-avatar" id="upFile" onchange="loadFile(event, 'Avatar')">
+                                                                                <span class="file-name"></span>
+                                                                            </label>
+                                                                            <input type="submit" value="Tải lên" name="wp-manga-upload-avatar" id="wp-manga-upload-avatar" onclick="upload('upFile','@Url.Action("upAvatar","Home")')" />
 
-            </div>
-        </div>
-    </div>
-    <div class="tab-item">
-        <div class="settings-title">
-            <h3>
-                Thay đổi tên hiển thị của bạn
-            </h3>
-        </div>
-        <div class="form-group row">
-            <label for="name-input" class="col-md-3">Tên hiển thị hiện tại</label>
-            <div class="col-md-9">
-                <span class="show">@Model.HovaTen</span>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="name-input" class="col-md-3">Tên hiển thị mới</label>
-            <div class="col-md-9">
-                <input class="form-control" type="text" value="" name="user-new-name" id="user-new-name">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="name-input-submit" class="col-md-3"></label>
-            <div class="col-md-9">
-                <input class="form-control" type="submit" value="Gửi đi" id="name-input-submit" name="account-form-submit">
-            </div>
-        </div>
-    </div>
-    <div class="tab-item">
-        <div class="settings-title">
-            <h3>
-                Thay đổi địa chỉ email của bạn
-            </h3>
-        </div>
-        <div class="form-group row">
-            <label for="email-input" class="col-md-3">Email của bạn</label>
-            <div class="col-md-9">
-                <span class="show">@Model.Mail</span>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="email-input" class="col-md-3">Địa chỉ email tử mới</label>
-            <div class="col-md-9">
-                <input class="form-control" type="email" value="" id="email-input" name="user-new-email">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="email-input-submit" class="col-md-3"></label>
-            <div class="col-md-9">
-                <input class="form-control" type="submit" value="Gửi đi" id="email-input-submit" name="account-form-submit">
-            </div>
-        </div>
-    </div>
-    <div class="tab-item">
-        <div class="settings-title">
-            <h3>
-                Thay đổi địa chỉ email của bạn
-            </h3>
-        </div>
-        <div class="form-group row">
-            <label for="email-input" class="col-md-3">Số điện thoại của bạn</label>
-            <div class="col-md-9">
-                <span class="show">@Model.SDT</span>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="email-input" class="col-md-3">Số điện thoại mới</label>
-            <div class="col-md-9">
-                <input class="form-control" type="number" value="" id="phone-input" name="phone-input">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="email-input-submit" class="col-md-3"></label>
-            <div class="col-md-9">
-                <input class="form-control" type="submit" value="Gửi đi" id="phone-input-submit" name="account-form-submit">
-            </div>
-        </div>
-    </div>
-    <div class="tab-item">
-        <div class="settings-title">
-            <h3>
-                Thay đổi mật khẩu của bạn
-            </h3>
-        </div>
-        <div class="form-group row">
-            <label for="currrent-password-input" class="col-md-3">Mật khẩu hiện tại</label>
-            <div class="col-md-9">
-                <input class="form-control" type="password" value="" id="currrent-password-input" name="user-current-password">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="new-password-input" class="col-md-3">mật khẩu mới</label>
-            <div class="col-md-9">
-                <input class="form-control" type="password" value="" id="new-password-input" name="user-new-password">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="comfirm-password-input" class="col-md-3">Xác nhận mật khẩu</label>
-            <div class="col-md-9">
-                <input class="form-control" type="password" value="" id="comfirm-password-input" name="user-new-password-confirm">
-                <span id="password-strength"></span>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="password-input-submit" class="col-md-3"></label>
-            <div class="col-md-9">
-                <label id="checkbox-weak-password" style="display:none"><input type="checkbox" id="agree-weak-password">I agree to use this weak password</label>
-                <input class="form-control" type="submit" value="Gửi đi" id="password-input-submit" name="account-form-submit">
-            </div>
-        </div>
-    </div>
-</div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="tab-item">
+                                                                    <div class="settings-title">
+                                                                        <h3>
+                                                                            Thay đổi tên hiển thị của bạn
+                                                                        </h3>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="name-input" class="col-md-3">Tên hiển thị hiện tại</label>
+                                                                        <div class="col-md-9">
+                                                                            <span class="show">@Model.HovaTen</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="name-input" class="col-md-3">Tên hiển thị mới</label>
+                                                                        <div class="col-md-9">
+                                                                            <input class="form-control" type="text" value="" name="user-new-name" id="user-new-name">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="name-input-submit" class="col-md-3"></label>
+                                                                        <div class="col-md-9">
+                                                                            <input class="form-control" type="submit" value="Gửi đi" id="name-input-submit" name="account-form-submit">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="tab-item">
+                                                                    <div class="settings-title">
+                                                                        <h3>
+                                                                            Thay đổi địa chỉ email của bạn
+                                                                        </h3>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="email-input" class="col-md-3">Email của bạn</label>
+                                                                        <div class="col-md-9">
+                                                                            <span class="show">@Model.Mail</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="email-input" class="col-md-3">Địa chỉ email tử mới</label>
+                                                                        <div class="col-md-9">
+                                                                            <input class="form-control" type="email" value="" id="email-input" name="user-new-email">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="email-input-submit" class="col-md-3"></label>
+                                                                        <div class="col-md-9">
+                                                                            <input class="form-control" type="submit" value="Gửi đi" id="email-input-submit" name="account-form-submit">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="tab-item">
+                                                                    <div class="settings-title">
+                                                                        <h3>
+                                                                            Thay đổi địa chỉ email của bạn
+                                                                        </h3>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="email-input" class="col-md-3">Số điện thoại của bạn</label>
+                                                                        <div class="col-md-9">
+                                                                            <span class="show">@Model.SDT</span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="email-input" class="col-md-3">Số điện thoại mới</label>
+                                                                        <div class="col-md-9">
+                                                                            <input class="form-control" type="number" value="" id="phone-input" name="phone-input">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="email-input-submit" class="col-md-3"></label>
+                                                                        <div class="col-md-9">
+                                                                            <input class="form-control" type="submit" value="Gửi đi" id="phone-input-submit" name="account-form-submit">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="tab-item">
+                                                                    <div class="settings-title">
+                                                                        <h3>
+                                                                            Thay đổi mật khẩu của bạn
+                                                                        </h3>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="currrent-password-input" class="col-md-3">Mật khẩu hiện tại</label>
+                                                                        <div class="col-md-9">
+                                                                            <input class="form-control" type="password" value="" id="currrent-password-input" name="user-current-password">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="new-password-input" class="col-md-3">mật khẩu mới</label>
+                                                                        <div class="col-md-9">
+                                                                            <input class="form-control" type="password" value="" id="new-password-input" name="user-new-password">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="comfirm-password-input" class="col-md-3">Xác nhận mật khẩu</label>
+                                                                        <div class="col-md-9">
+                                                                            <input class="form-control" type="password" value="" id="comfirm-password-input" name="user-new-password-confirm">
+                                                                            <span id="password-strength"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="password-input-submit" class="col-md-3"></label>
+                                                                        <div class="col-md-9">
+                                                                            <label id="checkbox-weak-password" style="display:none"><input type="checkbox" id="agree-weak-password">I agree to use this weak password</label>
+                                                                            <input class="form-control" type="submit" value="Gửi đi" id="password-input-submit" name="account-form-submit">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                             </form>
-
                                                         </div>
                                                         @Html.Partial("DangKiTacGia")
                                                         @Html.Partial("Theodoi")
