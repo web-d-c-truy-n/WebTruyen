@@ -73,7 +73,7 @@ namespace WebTruyen.Controllers
             int idtk = (int)Session["taiKhoan"];
             webtruyenptEntities db = new webtruyenptEntities();
             TaiKhoan taiKhoan = db.TaiKhoans.Find(idtk);
-            taiKhoan.dangKyTacGia(db, vaiTro, butDanh);
+            taiKhoan.dangKyTacGia(db,vaiTro,butDanh);
             return Json(true);
         }
         public ActionResult Tomtat()
@@ -90,12 +90,17 @@ namespace WebTruyen.Controllers
             return View();
         }
         public PartialViewResult DangKiTacGia()
-        {
+        {            
             return PartialView();
         }
         public PartialViewResult Lichsu()
         {
-            return PartialView();
+            List<Truyen> truyens = (from tr in db.Truyens
+                                    join lx in db.LuotXems
+                                    on tr.MaTruyen equals lx.MaTruyen
+                                    orderby lx.NgayXem descending
+                                    group tr by tr.MaTruyen).SelectMany(x => x).ToList();
+            return PartialView(truyens);
         }
         public PartialViewResult Theodoi()
         {
@@ -104,15 +109,15 @@ namespace WebTruyen.Controllers
         // xuất ra các danh sách truyện hot ở trang chủ
         public ActionResult XuatCacTruyenIndex(int page, int pagesize)
         {
-            var vvTruyens = db.vvTruyens.OrderBy(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
+            var vvTruyens = db.vvTruyens.OrderBy(x=>x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
             return Json(vvTruyens, JsonRequestBehavior.AllowGet);
         }
         public ActionResult XuatCacTruyenTheLoai(int page, int pagesize, int maLoai, int loaiTruyen)
         {
             vvTruyen[] vvTruyens;
             if (maLoai != -1 && loaiTruyen == -1)
-                vvTruyens = db.vvTruyens.Where(x => x.MaLoai == maLoai).OrderBy(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
-            else if (maLoai == -1 && loaiTruyen != -1)
+                vvTruyens = db.vvTruyens.Where(x=>x.MaLoai == maLoai).OrderBy(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
+            else if (maLoai == -1 && loaiTruyen !=-1)
                 vvTruyens = db.vvTruyens.Where(x => x.LoaiTruyen == loaiTruyen).OrderBy(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
             else
                 vvTruyens = db.vvTruyens.Where(x => x.MaLoai == maLoai && x.LoaiTruyen == loaiTruyen).OrderBy(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
@@ -123,54 +128,13 @@ namespace WebTruyen.Controllers
         {
             Captcha captcha = new Captcha();
             Session["Captcha"] = captcha.captchaText;
-            return Json(captcha.Img(), JsonRequestBehavior.AllowGet);
+            return Json(captcha.Img(),JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult timKiemTruyen(string timKiem, int page, int pagesize)
         {
             vvTruyen[] vvTruyens = Truyen.timKiem(timKiem).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
             return Json(vvTruyens, JsonRequestBehavior.AllowGet);
-        }
-        [Login]
-        [HttpPost]
-        public ActionResult upAvatar()
-        {
-            HttpFileCollectionBase files = Request.Files;
-            HttpPostedFileBase avatar = files[0];
-            if (!Commons.IsImage(avatar))
-            {
-                return Json("Đây không phải là hình ảnh");
-            }
-            int maTK = Auth.MaTk();
-            string path = Server.MapPath("~/Asset/TaiKhoan/Avatar/");
-            avatar.SaveAs(path + maTK + "-" + avatar.FileName);
-            TaiKhoan taiKhoan = db.TaiKhoans.FirstOrDefault(x => x.MaTK == maTK);
-            taiKhoan.Avatar = "/Asset/TaiKhoan/Avatar/" + Auth.MaTk() + "-" + avatar.FileName;
-            db.SaveChanges();
-            return Json("Cập nhật avatar thành công");
-        }
-        [Login]
-        [HttpPost]
-        public ActionResult CapNhatTaiKhoanUser(TaiKhoan taiKhoan)
-        {
-            taiKhoan.MaTK = Auth.MaTk();
-            bool rs = Auth.SuaTk(taiKhoan);
-            return Json(rs);
-        }
-        [Login]
-        [HttpPost]
-        public ActionResult doiMatKhau(string mkHT, string mkMoi, string xnMK)
-        {
-            if (mkMoi != xnMK)
-                return Json("Xác nhận mật khẩu không chính xác");
-            string mk = Auth.user().MatKhau;
-            mkHT = Commons.MD5(mkHT);
-            if (mk != mkHT)
-                return Json("Mật khẩu hiện tại không chính xác");
-            TaiKhoan taiKhoan = db.TaiKhoans.Find(Auth.MaTk());
-            taiKhoan.MatKhau = Commons.MD5(mkMoi);
-            db.SaveChanges();
-            return Json("Đổi mật khẩu thành công");
         }
     }
 }
