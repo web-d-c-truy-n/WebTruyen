@@ -16,14 +16,14 @@
                 <td>
                     <div class="mange-name">
                         <div class="item-thumb">
-                            <a href="@truyen.AnhBia" title="@truyen.TenTruyen">
+                            <a href="@Url.Action("tomTat","Truyen",new {id = WebTruyen.Helper.Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen) })" title="@truyen.TenTruyen">
                                 <img width="75" height="106" src="@truyen.AnhBia" class="img-responsive" style="" alt="@truyen.TenTruyen">
                             </a>
                         </div>
                         <div class="item-infor">
                             <div class="post-title">
                                 <h3>
-                                    <a href="@Url.Action("thongTin","Truyen",new {id = WebTruyen.Helper.Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen) })">@truyen.TenTruyen</a>
+                                    <a href="@Url.Action("tomTat","Truyen",new {id = WebTruyen.Helper.Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen) })">@truyen.TenTruyen</a>
                                 </h3>
                             </div>
                             <div class="list-chapter">

@@ -80,5 +80,14 @@ namespace WebTruyen.Controllers
                 return Json(false);
             }
         }
+        public PartialViewResult thongTinTacGia()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult tacPham()
+        {
+            return PartialView();
+        }
     }
 }

@@ -3289,6 +3289,8 @@
     <Content Include="Views\Truyen\TomTat.cshtml" />
     <Content Include="Views\Truyen\truyentranh.cshtml" />
     <Content Include="Views\Truyen\truyenchu.cshtml" />
+    <Content Include="Views\TacGia\thongTinTacGia.cshtml" />
+    <Content Include="Views\TacGia\tacPham.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

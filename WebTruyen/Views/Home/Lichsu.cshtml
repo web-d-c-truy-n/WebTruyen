@@ -8,14 +8,14 @@
                     <div class="col-md-4">
                         <div class="history-content">
                             <div class="item-thumb">
-                                <a href="@Url.Action("thongTin","Truyen",new {id = WebTruyen.Helper.Commons.convertToUnSign3(truyen.TenTruyen + "-"+ truyen.MaTruyen) })" title="@truyen.MaTruyen">
+                                <a href="@Url.Action("TomTat","Truyen",new {id = WebTruyen.Helper.Commons.convertToUnSign3(truyen.TenTruyen + "-"+ truyen.MaTruyen) })" title="@truyen.MaTruyen">
                                     <img width="75" height="106" src="@truyen.AnhBia" class="img-responsive" style="" alt="@truyen.MaTruyen">
                                 </a>
                             </div>
                             <div class="item-infor">
                                 <div class="settings-title">
                                     <h3>
-                                        <a href="https://tvtruyen.net/manga/toi-se-di-den-cung-voi-hoang-de/">@truyen.TenTruyen</a>
+                                        <a href="@Url.Action("TomTat","Truyen",new {id = WebTruyen.Helper.Commons.convertToUnSign3(truyen.TenTruyen + "-"+ truyen.MaTruyen) })">@truyen.TenTruyen</a>
                                     </h3>
                                 </div>
                                 <div class="chapter">
@@ -28,9 +28,6 @@
                                 <div class="post-on font-meta">
                                     @(truyen.NgayDang?.ToString("dd/MM/yyyy"))
                                 </div>
-                            </div>
-                            <div class="action">
-                                <a href="javascript:void(0)" class="remove-manga-history" data-manga="4045"><i class="icon ion-ios-close"></i></a>
                             </div>
                         </div>
                     </div>

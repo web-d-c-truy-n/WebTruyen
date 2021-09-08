@@ -308,5 +308,25 @@
 
         }
     </script>
+    <script>
+        $(document).ready(function () {
+            $("#delete-bookmark-manga").click(async function () {
+                debugger
+                let check = []
+                $("#truyenYeuThich").find(".bookmark-checkbox").each(function () {
+                    if ($(this).is(":checked")) {
+                        check.push(this)
+                    }
+                })
+                check.forEach(async function (item, index) {
+                    let maTruyen = parseInt($(item).val())
+                    let rs = await API.thichTruyen(maTruyen, false)
+                })
+                check.forEach(function (item, index) {
+                    $(item).parents("tr").remove()
+                })
+            })
+        })
+    </script>
 }
 

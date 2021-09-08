@@ -434,6 +434,13 @@
             }
         })
         return result
+    },
+    layTruyenTG: async function (maTK) {
+        let result
+        await $.get("/Home/layTruyenTG/" + maTK, function (data) {
+            result = data
+        })
+        return result
     }
 }
 

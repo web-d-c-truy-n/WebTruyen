@@ -93,7 +93,6 @@ namespace WebTruyen.Controllers
         {
             return PartialView();
         }
-        [ChildActionOnly]
         public ActionResult Lichsu()
         {
             List<vvTruyen> truyens = (from tr in db.vvTruyens
@@ -182,6 +181,16 @@ namespace WebTruyen.Controllers
             taiKhoan.MatKhau = Commons.MD5(mkMoi);
             db.SaveChanges();
             return Json("Đổi mật khẩu thành công");
+        }
+        public ActionResult layTruyenTG(int id)
+        {
+            id = id == -1 ? Auth.MaTk() : id;
+            Truyen[] truyens = (from tg in db.TruyenTacGias
+                                where tg.MaTK == id
+                                join tr in db.Truyens
+                                on tg.MaTruyen equals tr.MaTruyen
+                                select tr).ToArray();
+            return Json(truyens, JsonRequestBehavior.AllowGet);
         }
     }
 }
