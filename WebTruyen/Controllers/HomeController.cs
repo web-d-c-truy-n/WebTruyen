@@ -87,7 +87,7 @@ namespace WebTruyen.Controllers
         [Login]
         public ActionResult ThongtinTK()
         {
-            return View(Auth.user());
+            return View();
         }
         public PartialViewResult DangKiTacGia()
         {
