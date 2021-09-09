@@ -61,13 +61,16 @@ namespace WebTruyen.Controllers
                     return Json(true);
                 }
                 List<TruyenTacGia> truyenTacGias = new List<TruyenTacGia>();
-                foreach (int dtg in dongTG)
+                if (dongTG != null)
                 {
-                    TruyenTacGia truyenTacGia = new TruyenTacGia();
-                    truyenTacGia.MaTK = dtg;
-                    truyenTacGia.VaiTro = vaiTro;
-                    truyenTacGias.Add(truyenTacGia);
-                }
+                    foreach (int dtg in dongTG)
+                    {
+                        TruyenTacGia truyenTacGia = new TruyenTacGia();
+                        truyenTacGia.MaTK = dtg;
+                        truyenTacGia.VaiTro = vaiTro;
+                        truyenTacGias.Add(truyenTacGia);
+                    }
+                }                
                 TruyenTacGia truyenTacGia1 = new TruyenTacGia();
                 truyenTacGia1.MaTK = Auth.MaTk();
                 truyenTacGia1.VaiTro = vaiTro;

@@ -18,7 +18,8 @@ namespace WebTruyen.Models
                 try
                 {
                     this.NgayTao = DateTime.Now;
-                    this.DaDuyet = false;
+                    this.DaDuyet = true;
+                    this.NgayDang = DateTime.Now;
                     this.Khoa = false;
                     db.Truyens.Add(this);
                     db.SaveChanges();

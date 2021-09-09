@@ -734,6 +734,7 @@
                 let Dang = $(this).attr("id") == "#dangChuong"
                 let rs = await API.createOrUpdateChuong(maTr, soChuong, tenChuong, noiDung, Dang)
                 if (rs) {
+                    $("#c_tenTruyen").change()
                     alert("Đăng chương thành công")
                 }
 
