@@ -15,13 +15,18 @@ namespace WebTruyen.Models
             try
             {
                 webtruyenptEntities db = new webtruyenptEntities();
-                this.MaTK = luotXem.MaTK;
-                this.MaTruyen = luotXem.MaTruyen;
-                this.NgayHanhDong = DateTime.Now;
-                this.SoChuong = luotXem.SoChuong;
-                this.LoaiHD = hdTaiKhoan.xemChuong;
-                db.HanhDongCuaTKs.Add(this);
-                db.SaveChanges();
+                HanhDongCuaTK hanhDongCuaTK = db.HanhDongCuaTKs.OrderByDescending(x => x.NgayHanhDong).FirstOrDefault(x => x.MaTK == luotXem.MaTK && x.LoaiHD == 1 && x.MaTruyen == luotXem.MaTruyen && x.SoChuong == luotXem.SoChuong);
+                int _30p = 60 * 30;
+                if (hanhDongCuaTK == null || Commons.khoanCach2Giay(hanhDongCuaTK.NgayHanhDong,DateTime.Now) >= _30p)
+                {
+                    this.MaTK = luotXem.MaTK;
+                    this.MaTruyen = luotXem.MaTruyen;
+                    this.NgayHanhDong = DateTime.Now;
+                    this.SoChuong = luotXem.SoChuong;
+                    this.LoaiHD = hdTaiKhoan.xemChuong;
+                    db.HanhDongCuaTKs.Add(this);
+                    db.SaveChanges();
+                }                
             }
             catch (DbUpdateException ex)
             {
@@ -59,11 +64,18 @@ namespace WebTruyen.Models
                 throw Ex;
             }
         }
-        public void thichChuong(LuotThichChuong luotThichChuong)
+        public void thichChuong(LuotThichChuong luotThichChuong, bool isThich)
         {
             try
             {
                 webtruyenptEntities db = new webtruyenptEntities();
+                if (!isThich)
+                {
+                    HanhDongCuaTK hanhDongCuaTK = db.HanhDongCuaTKs.FirstOrDefault(x => x.MaTruyen == luotThichChuong.MaTruyen && x.MaTK == luotThichChuong.MaTK && x.LoaiHD == hdTaiKhoan.thichChuong && x.SoChuong == luotThichChuong.SoChuong);
+                    db.HanhDongCuaTKs.Remove(hanhDongCuaTK);
+                    db.SaveChanges();
+                    return;
+                }
                 if (db.LuotThichChuongs.Where(x => 
                     x.MaTK == luotThichChuong.MaTK && 
                     x.MaTruyen == luotThichChuong.MaTruyen && 

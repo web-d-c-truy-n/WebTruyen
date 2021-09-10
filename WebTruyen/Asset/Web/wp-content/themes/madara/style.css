@@ -5513,7 +5513,6 @@ License URI: license.txt
     overflow: hidden;
     word-break: break-word;
     word-wrap: break-word;
-    line-height: 30px;
     position: relative;
   }
   body.manga-page .summary__content.show-more:after {

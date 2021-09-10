@@ -349,8 +349,8 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
               <PropertyRef Name="SoChuong" />
             </Principal>
             <Dependent Role="HanhDongCuaTK">
-              <PropertyRef Name="SoChuong" />
               <PropertyRef Name="MaTruyen" />
+              <PropertyRef Name="SoChuong" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -718,8 +718,8 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
           <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Dang" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="HanhDongCuaTKs" Relationship="Self.FK_HanhDongCuaTK_ChuongTruyen" FromRole="ChuongTruyen" ToRole="HanhDongCuaTK" />
           <NavigationProperty Name="Truyen" Relationship="webtruyenptModel.FK_ChuongTruyen_Truyen" FromRole="ChuongTruyen" ToRole="Truyen" />
+          <NavigationProperty Name="HanhDongCuaTKs" Relationship="webtruyenptModel.FK_HanhDongCuaTK_ChuongTruyen" FromRole="ChuongTruyen" ToRole="HanhDongCuaTK" />
         </EntityType>
         <EntityType Name="HanhDongCuaTK">
           <Key>
@@ -736,13 +736,13 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
           <Property Name="TacGia" Type="Int32" />
           <Property Name="PhanHoi" Type="Int32" />
           <Property Name="MaNhom" Type="Int32" />
-          <NavigationProperty Name="ChuongTruyen" Relationship="Self.FK_HanhDongCuaTK_ChuongTruyen" FromRole="HanhDongCuaTK" ToRole="ChuongTruyen" />
           <NavigationProperty Name="HanhDongCuaTK1" Relationship="Self.FK_HanhDongCuaTK_HanhDongCuaTK" FromRole="HanhDongCuaTK" ToRole="HanhDongCuaTK1" />
           <NavigationProperty Name="HanhDongCuaTK2" Relationship="Self.FK_HanhDongCuaTK_HanhDongCuaTK" FromRole="HanhDongCuaTK1" ToRole="HanhDongCuaTK" />
           <NavigationProperty Name="NhomTG" Relationship="Self.FK_HanhDongCuaTK_NhomTG" FromRole="HanhDongCuaTK" ToRole="NhomTG" />
           <NavigationProperty Name="TaiKhoan" Relationship="Self.FK_HanhDongCuaTK_TaiKhoan" FromRole="HanhDongCuaTK" ToRole="TaiKhoan" />
           <NavigationProperty Name="TaiKhoan1" Relationship="Self.FK_HanhDongCuaTK_TaiKhoan1" FromRole="HanhDongCuaTK" ToRole="TaiKhoan" />
           <NavigationProperty Name="Truyen" Relationship="Self.FK_HanhDongCuaTK_Truyen" FromRole="HanhDongCuaTK" ToRole="Truyen" />
+          <NavigationProperty Name="ChuongTruyen" Relationship="webtruyenptModel.FK_HanhDongCuaTK_ChuongTruyen" FromRole="HanhDongCuaTK" ToRole="ChuongTruyen" />
         </EntityType>
         <EntityType Name="NhomTG">
           <Key>
@@ -944,20 +944,6 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
           <Property Name="PhanHoi" Type="Int32" />
           <Property Name="LoaiHD" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="FK_HanhDongCuaTK_ChuongTruyen">
-          <End Role="ChuongTruyen" Type="Self.ChuongTruyen" Multiplicity="0..1" />
-          <End Role="HanhDongCuaTK" Type="Self.HanhDongCuaTK" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ChuongTruyen">
-              <PropertyRef Name="MaTruyen" />
-              <PropertyRef Name="SoChuong" />
-            </Principal>
-            <Dependent Role="HanhDongCuaTK">
-              <PropertyRef Name="SoChuong" />
-              <PropertyRef Name="MaTruyen" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_HanhDongCuaTK_HanhDongCuaTK">
           <End Role="HanhDongCuaTK" Type="Self.HanhDongCuaTK" Multiplicity="0..1" />
           <End Role="HanhDongCuaTK1" Type="Self.HanhDongCuaTK" Multiplicity="*" />
@@ -1108,10 +1094,6 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
           <EntitySet Name="TheodoTGs" EntityType="Self.TheodoTG" />
           <EntitySet Name="ThongBaos" EntityType="Self.ThongBao" />
           <EntitySet Name="TraoDoiNhoms" EntityType="Self.TraoDoiNhom" />
-          <AssociationSet Name="FK_HanhDongCuaTK_ChuongTruyen" Association="Self.FK_HanhDongCuaTK_ChuongTruyen">
-            <End Role="ChuongTruyen" EntitySet="ChuongTruyens" />
-            <End Role="HanhDongCuaTK" EntitySet="HanhDongCuaTKs" />
-          </AssociationSet>
           <AssociationSet Name="FK_HanhDongCuaTK_HanhDongCuaTK" Association="Self.FK_HanhDongCuaTK_HanhDongCuaTK">
             <End Role="HanhDongCuaTK" EntitySet="HanhDongCuaTKs" />
             <End Role="HanhDongCuaTK1" EntitySet="HanhDongCuaTKs" />
@@ -1168,6 +1150,10 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
           <EntitySet Name="TacGias" EntityType="webtruyenptModel.TacGia" />
           <EntitySet Name="vvTruyens" EntityType="webtruyenptModel.vvTruyen" />
           <EntitySet Name="DanhGias" EntityType="webtruyenptModel.DanhGia" />
+          <AssociationSet Name="FK_HanhDongCuaTK_ChuongTruyen" Association="webtruyenptModel.FK_HanhDongCuaTK_ChuongTruyen">
+            <End Role="ChuongTruyen" EntitySet="ChuongTruyens" />
+            <End Role="HanhDongCuaTK" EntitySet="HanhDongCuaTKs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="vTruyen">
           <Key>
@@ -1265,6 +1251,20 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
           <Property Name="NgayDanhGia" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DanhGia1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <Association Name="FK_HanhDongCuaTK_ChuongTruyen">
+          <End Type="webtruyenptModel.ChuongTruyen" Role="ChuongTruyen" Multiplicity="0..1" />
+          <End Type="webtruyenptModel.HanhDongCuaTK" Role="HanhDongCuaTK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChuongTruyen">
+              <PropertyRef Name="MaTruyen" />
+              <PropertyRef Name="SoChuong" />
+            </Principal>
+            <Dependent Role="HanhDongCuaTK">
+              <PropertyRef Name="MaTruyen" />
+              <PropertyRef Name="SoChuong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

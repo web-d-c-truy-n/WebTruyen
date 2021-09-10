@@ -472,7 +472,24 @@
             }
         })
         return result
-    }
+    },
+    thichChuong: async function (maTruyen, soChuong, isThich) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/Truyen/thichChuong',
+            data: JSON.stringify({ maTruyen: maTruyen, soChuong: soChuong, isThich: isThich }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
 }
 
 const ttTaiKhoan = {

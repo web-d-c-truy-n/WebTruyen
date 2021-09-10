@@ -2838,6 +2838,8 @@
     <Content Include="Asset\Web\wp-content\themes\madara\css\fonts\ct-icon\ct-icon.css" />
     <Content Include="Asset\Web\wp-content\themes\madara\css\fonts\ionicons\css\ionicons.min.css" />
     <Content Include="Asset\Web\wp-content\themes\madara\css\loaders.min.css" />
+    <Content Include="Asset\Web\wp-content\themes\madara\images\cursorLeft.png" />
+    <Content Include="Asset\Web\wp-content\themes\madara\images\cursorRight.png" />
     <Content Include="Asset\Web\wp-content\themes\madara\js\ajax.js" />
     <Content Include="Asset\Web\wp-content\themes\madara\js\aos.js" />
     <Content Include="Asset\Web\wp-content\themes\madara\js\bootstrap.min.js" />

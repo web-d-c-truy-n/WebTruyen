@@ -612,7 +612,7 @@
 					}
 
 					text.addClass('active');
-					text.animate({'height': h});
+					text.animate({'height': (h)});
 				} else {
 					btn.addClass('less');
 					btn.removeClass('more');

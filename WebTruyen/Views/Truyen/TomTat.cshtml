@@ -95,15 +95,31 @@
                                             <div class="summary-content">
                                                 Lượt thích @Model.luotThich(), Lượt xem @Model.luotXem()
                                             </div>
-                                        </div><div class="post-content_item">
+                                        </div>
+                                        <div class="post-content_item">
                                             <div class="summary-heading">
                                                 <h5>
-                                                    Tác giả
+                                                    Tác giả gốc
                                                 </h5>
                                             </div>
                                             <div class="summary-content">
                                                 <div class="author-content">
-                                                    <a href="~/Asset/Web/manga-author/nasimi/" rel="tag">Nasimi</a>
+                                                     <a href="~/Asset/Web/manga-author/nasimi/" rel="tag">@Model.TacGiaGoc</a>@(",")
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="post-content_item">
+                                            <div class="summary-heading">
+                                                <h5>
+                                                    @(Model.TruyenTacGias.First().VaiTro == vtTacGia.tacGia?"Tác giả":"Dịch giả")
+                                                </h5>
+                                            </div>
+                                            <div class="summary-content">
+                                                <div class="author-content">
+                                                    @foreach (TruyenTacGia tacGia in Model.TruyenTacGias)
+                                                    {
+                                                        <a href="~/Asset/Web/manga-author/nasimi/" rel="tag">@tacGia.TaiKhoan.ButDanh</a>@(",")
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
@@ -169,15 +185,14 @@
                                             </div>
                                         </div>
                                     </div>
-
-
-                                    <div id="init-links" class="nav-links">
-                                        <a href="#" id="btn-read-last" class="c-btn c-btn_style-1">
-                                            Đọc trang đầu
-                                        </a>
-                                        <a href="#" id="btn-read-first" class="c-btn c-btn_style-1">Đọc trang cuối</a>
+                                    <div id="init-links" class="nav-links">                                        
+                                            <a href="@Url.Action("Truyen","Truyen",new {id=Commons.convertToUnSign3(Model.TenTruyen+"-"+Model.MaTruyen),Chuong = Model.ChuongTruyens.OrderBy(x=>x.SoChuong).First().SoChuong })" id="btn-read-first" class="c-btn c-btn_style-1">
+                                                Đọc trang đầu
+                                            </a>
+                                            <a href="@Url.Action("Truyen","Truyen",new {id=Commons.convertToUnSign3(Model.TenTruyen+"-"+Model.MaTruyen),Chuong = Model.ChuongTruyens.OrderBy(x=>x.SoChuong).Last().SoChuong })" id="btn-read-last" class="c-btn c-btn_style-1">
+                                                Đọc trang cuối
+                                            </a>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -234,7 +249,7 @@
                                                     @foreach (ChuongTruyen chuong in chuongTruyen)
                                                     {
                                                         <li class="wp-manga-chapter    ">
-                                                            <a href="~/Asset/Web/manga/massa-consectetur-mattis/episode-122/">
+                                                            <a href="@Url.Action("Truyen","Truyen",new {id=Commons.convertToUnSign3(Model.TenTruyen+"-"+Model.MaTruyen),Chuong = chuong.SoChuong })">
                                                                 CHƯƠNG @(chuong.SoChuong): @chuong.TenChuong
                                                             </a>
 

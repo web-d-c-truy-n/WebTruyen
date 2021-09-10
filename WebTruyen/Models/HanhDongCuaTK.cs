@@ -32,7 +32,6 @@ namespace WebTruyen.Models
         public Nullable<int> PhanHoi { get; set; }
         public Nullable<int> MaNhom { get; set; }
     
-        public virtual ChuongTruyen ChuongTruyen { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HanhDongCuaTK> HanhDongCuaTK1 { get; set; }
         public virtual HanhDongCuaTK HanhDongCuaTK2 { get; set; }
@@ -40,5 +39,6 @@ namespace WebTruyen.Models
         public virtual TaiKhoan TaiKhoan { get; set; }
         public virtual TaiKhoan TaiKhoan1 { get; set; }
         public virtual Truyen Truyen { get; set; }
+        public virtual ChuongTruyen ChuongTruyen { get; set; }
     }
 }

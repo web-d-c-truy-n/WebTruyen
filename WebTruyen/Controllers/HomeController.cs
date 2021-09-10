@@ -99,7 +99,7 @@ namespace WebTruyen.Controllers
                                     join lx in db.LuotXems
                                     on tr.MaTruyen equals lx.MaTruyen
                                     orderby lx.NgayXem descending
-                                    group tr by tr.MaTruyen).SelectMany(x => x).ToList();
+                                    group tr by tr).Select(x => x.Key).ToList();
             return PartialView(truyens);
         }
         public PartialViewResult Theodoi()
@@ -192,6 +192,7 @@ namespace WebTruyen.Controllers
                                 select tr).ToArray();
             return Json(truyens, JsonRequestBehavior.AllowGet);
         }
+        [Login]
         public ActionResult layNoiDungChuong(int maTr, int soChuong)
         {
             ChuongTruyen noiDung = db.ChuongTruyens.FirstOrDefault(x=>x.MaTruyen == maTr && x.SoChuong == soChuong);

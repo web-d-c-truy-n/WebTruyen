@@ -24,26 +24,39 @@ namespace WebTruyen.Controllers
             Truyen truyen = db.Truyens.FirstOrDefault(x => x.MaTruyen == maTruyen);
             return View(truyen);
         }
-        public ActionResult truyentranh(string id, int Chuong)
+        public ActionResult Truyen(string id, int Chuong)
         {
             string[] maTruyens = id.Split('-');
             int maTruyen = int.Parse(maTruyens[maTruyens.Length - 1]);
-            ChuongTruyen chuongTruyen = db.ChuongTruyens.FirstOrDefault(x => x.MaTruyen == maTruyen && x.SoChuong == Chuong);
-            chuongTruyen.CapNhatLuotXem(Auth.MaTk());
-            return View(chuongTruyen);
+            Truyen truyen = db.Truyens.Find(maTruyen);
+            if (truyen.LoaiTruyen == loaiTruyen.truyenChu)
+            {
+                ChuongTruyen chuongTruyen = db.ChuongTruyens.FirstOrDefault(x => x.MaTruyen == maTruyen && x.SoChuong == Chuong);
+                chuongTruyen.CapNhatLuotXem(Auth.MaTk());                
+                return View("truyenchu",chuongTruyen);
+            }
+            else
+            {
+                ChuongTruyen chuongTruyen = db.ChuongTruyens.FirstOrDefault(x => x.MaTruyen == maTruyen && x.SoChuong == Chuong);
+                chuongTruyen.CapNhatLuotXem(Auth.MaTk());
+                int[] maAnh = chuongTruyen.NoiDung.Split(',').Select(x => int.Parse(x)).ToArray();
+                QuanLyHinhAnh[] quanLyHinhAnhs = db.Database.SqlQuery<QuanLyHinhAnh>($"layAnhTruyenTranh '{chuongTruyen.NoiDung}'").ToArray();
+                ViewBag.Json = Newtonsoft.Json.JsonConvert.SerializeObject(quanLyHinhAnhs.Select(x=>new {x.MaAnh,x.URL}));
+                return View("truyentranh", chuongTruyen);
+            }
         }
-        public ActionResult truyenchu(string id, int Chuong)
+        public ActionResult truyentranh()
+        {            
+            return View();
+        }
+        public ActionResult truyenchu(int maTruyen, int Chuong)
         {
-            string[] maTruyens = id.Split('-');
-            int maTruyen = int.Parse(maTruyens[maTruyens.Length - 1]);
-            ChuongTruyen chuongTruyen = db.ChuongTruyens.FirstOrDefault(x => x.MaTruyen == maTruyen && x.SoChuong == Chuong);
-            chuongTruyen.CapNhatLuotXem(Auth.MaTk());
-            return View(chuongTruyen);
+            return View();
         }
 
         public ActionResult layBinhLuan(int id, int? soChuong)
         {
-            if (soChuong != null || soChuong != -1)
+            if (soChuong == null || soChuong == -1)
                 return Json(db.BinhLuans.Where(x => x.MaTruyen == id).ToList().Select(x => new {
                     x.MaBinhLuan,
                     x.HovaTen,
@@ -104,6 +117,17 @@ namespace WebTruyen.Controllers
             luotThichTruyen.MaTK = Auth.MaTk();
             HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
             hanhDongCuaTK.thichTruyen(luotThichTruyen, isThich);
+            return Json(true);
+        }
+        [HttpPost]
+        public ActionResult thichChuong(int maTruyen,int soChuong, bool isThich)
+        {
+            LuotThichChuong luotThichChuong = new LuotThichChuong();
+            luotThichChuong.MaTruyen = maTruyen;
+            luotThichChuong.MaTK = Auth.MaTk();
+            luotThichChuong.SoChuong = soChuong;
+            HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+            hanhDongCuaTK.thichChuong(luotThichChuong, isThich);
             return Json(true);
         }
     }

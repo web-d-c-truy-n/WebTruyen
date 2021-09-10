@@ -27,8 +27,8 @@ namespace WebTruyen.Models
         public string NoiDung { get; set; }
         public bool Dang { get; set; }
     
+        public virtual Truyen Truyen { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HanhDongCuaTK> HanhDongCuaTKs { get; set; }
-        public virtual Truyen Truyen { get; set; }
     }
 }

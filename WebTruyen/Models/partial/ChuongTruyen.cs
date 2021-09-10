@@ -4,6 +4,8 @@ using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
+using WebTruyen.Helper;
 
 namespace WebTruyen.Models
 {
@@ -73,7 +75,7 @@ namespace WebTruyen.Models
                 throw Ex;
             }
         }
-        public void CapNhatLuotThich(int maTK)
+        public void CapNhatLuotThich(int maTK,bool isThich)
         {
             try
             {
@@ -82,7 +84,7 @@ namespace WebTruyen.Models
                 luotThichChuong.MaTruyen = this.MaTruyen;
                 luotThichChuong.SoChuong = this.SoChuong;
                 HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
-                hanhDongCuaTK.thichChuong(luotThichChuong);
+                hanhDongCuaTK.thichChuong(luotThichChuong,isThich);
             }
             catch (DbUpdateException ex)
             {
@@ -131,6 +133,11 @@ namespace WebTruyen.Models
                 SqlException Ex = ex.GetBaseException() as SqlException;
                 throw Ex;
             }
+        }
+        public List<BinhLuan> binhLuan()
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            return db.BinhLuans.Where(x => x.MaTruyen == this.MaTruyen && x.SoChuong == this.SoChuong).ToList();
         }
     }
 }

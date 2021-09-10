@@ -378,15 +378,12 @@
                                                                         </div>
 
                                                                         <div class="chapter-item ">
-
                                                                             <span class="chapter ">
                                                                                 @{ ChuongTruyen[] chuong = truyen.ChuongTruyens.OrderByDescending(x => x.SoChuong).ToArray(); }
-                                                                                <a href="./manga/miharu-rokujou/volume-1/chapter-15/" tabindex="0">@(chuong.Length > 0?chuong[0].TenChuong:"")</a>
+                                                                                <a href="@(chuong.Length > 0?Url.Action("Truyen","Truyen",new {id=WebTruyen.Helper.Commons.convertToUnSign3(truyen.TenTruyen+"-"+truyen.MaTruyen),Chuong = chuong[0].SoChuong }):"#")" tabindex="0">@(chuong.Length > 0?chuong[0].TenChuong:"")</a>
                                                                             </span>
-
-
                                                                             <span class="chapter ">
-                                                                                <a href="./manga/miharu-rokujou/volume-1/chapter-14/" tabindex="0">@(chuong.Length > 1?chuong[1].TenChuong:"")</a>
+                                                                                <a href="@(chuong.Length > 1?Url.Action("Truyen","Truyen",new {id=WebTruyen.Helper.Commons.convertToUnSign3(truyen.TenTruyen+"-"+truyen.MaTruyen),Chuong = chuong[1].SoChuong }):"#")" tabindex="0">@(chuong.Length > 1?chuong[1].TenChuong:"")</a>
                                                                             </span>
 
                                                                         </div>
@@ -1607,12 +1604,12 @@
                                                                     <div class="chapter-item ">
                                                                         <span class="chapter font-meta">
                                                                             @{ ChuongTruyen[] chuong = db.ChuongTruyens.Where(x => x.MaTruyen == truyenYeuThich.MaTruyen).OrderByDescending(x => x.SoChuong).ToArray(); }
-                                                                            <a href="./manga/massa-consectetur-mattis/episode-121/" class="btn-link">@(chuong.Length > 0?chuong[0].TenChuong:"") </a>
+                                                                            <a href="@(chuong.Length > 0?Url.Action("Truyen","Truyen",new {id=WebTruyen.Helper.Commons.convertToUnSign3(truyenYeuThich.TenTruyen+"-"+truyenYeuThich.MaTruyen),Chuong = chuong[0].SoChuong }):"#")" class="btn-link">@(chuong.Length > 0?chuong[0].TenChuong:"") </a>
                                                                         </span>
                                                                     </div>
                                                                     <div class="chapter-item ">
                                                                         <span class="chapter font-meta">
-                                                                            <a href="./manga/massa-consectetur-mattis/episode-121/" class="btn-link">@(chuong.Length > 1?chuong[1].TenChuong:"") </a>
+                                                                            <a href="@(chuong.Length > 1?Url.Action("Truyen","Truyen",new {id=WebTruyen.Helper.Commons.convertToUnSign3(truyenYeuThich.TenTruyen+"-"+truyenYeuThich.MaTruyen),Chuong = chuong[1].SoChuong }):"#")" class="btn-link">@(chuong.Length > 1?chuong[1].TenChuong:"") </a>
                                                                         </span>
                                                                     </div>
                                                                 </div>

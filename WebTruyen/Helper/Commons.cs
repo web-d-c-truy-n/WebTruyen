@@ -177,4 +177,9 @@ namespace WebTruyen.Helper
         public const int nhomTruong = 1;
         public const int thanhVien = 2;
     }
+    public struct loaiTruyen
+    {
+        public const int truyenChu = 1;
+        public const int truyenTranh = 2;
+    }
 }

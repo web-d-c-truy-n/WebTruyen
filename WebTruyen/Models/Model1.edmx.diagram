@@ -22,7 +22,6 @@
         <EntityTypeShape EntityType="webtruyenptModel.TheodoTG" Width="1.5" PointX="10.75" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="webtruyenptModel.ThongBao" Width="1.5" PointX="7.75" PointY="11.375" IsExpanded="true" />
         <EntityTypeShape EntityType="webtruyenptModel.TraoDoiNhom" Width="1.5" PointX="10.75" PointY="10.375" IsExpanded="true" />
-        <AssociationConnector Association="webtruyenptModel.FK_HanhDongCuaTK_ChuongTruyen" ManuallyRouted="false" />
         <AssociationConnector Association="webtruyenptModel.FK_HanhDongCuaTK_HanhDongCuaTK" ManuallyRouted="false" />
         <AssociationConnector Association="webtruyenptModel.FK_HanhDongCuaTK_NhomTG" ManuallyRouted="false" />
         <AssociationConnector Association="webtruyenptModel.FK_HanhDongCuaTK_TaiKhoan" ManuallyRouted="false" />
@@ -40,6 +39,7 @@
         <EntityTypeShape EntityType="webtruyenptModel.TacGia" Width="1.5" PointX="13.375" PointY="5.75" />
         <EntityTypeShape EntityType="webtruyenptModel.vvTruyen" Width="1.5" PointX="13.375" PointY="8.75" />
         <EntityTypeShape EntityType="webtruyenptModel.DanhGia" Width="1.5" PointX="10.375" PointY="13.75" />
+        <AssociationConnector Association="webtruyenptModel.FK_HanhDongCuaTK_ChuongTruyen" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

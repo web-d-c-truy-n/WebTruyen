@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="chapter">
                                     <span class="chap">
-                                        <a href="https://tvtruyen.net/manga/toi-se-di-den-cung-voi-hoang-de/chap-1/">
+                                        <a href="@(Url.Action("Truyen","Truyen",new {id=WebTruyen.Helper.Commons.convertToUnSign3(truyen.TenTruyen+"-"+truyen.MaTruyen),Chuong = truyen.SoChuong1 }))">
                                             Chương: @truyen.SoChuong1: @truyen.TenChuong1
                                         </a>
                                     </span>

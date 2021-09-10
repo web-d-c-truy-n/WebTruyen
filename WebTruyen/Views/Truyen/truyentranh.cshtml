@@ -1,5 +1,8 @@
-﻿
+﻿@using WebTruyen.Models
+@model ChuongTruyen
 @{
+    webtruyenptEntities db = new webtruyenptEntities();
+    ViewBag.ChuongTruyen = Model;
     ViewBag.Title = "truyentranh";
     Layout = "~/Views/Shared/Layoutdoctruyen.cshtml";
 }
@@ -10,16 +13,43 @@
             <div class="ad c-ads custom-code body-top-ads"><img src="./wp-content/uploads/2017/10/ads-1.jpg" alt="Madara Ads Before Content"></div>
             <div class="reading-content">
                 <input type="hidden" id="wp-manga-current-chap" data-id="1607" value="chapter-1">
-                <a href="javascript:void(0)" class="page-link-hover page-prev-link" style="cursor: url(&quot;https://live.mangabooth.com/wp-content/themes/madara/images/cursorLeft.png&quot;), auto;"></a>
-                <img id="image-3" data-image-paged="3" data-src="https://s3-us-west-2.amazonaws.com/mangastorm//4.jpeg" class="wp-manga-chapter-img img-responsive effect-fade ls-is-cached lazyloaded" src="https://s3-us-west-2.amazonaws.com/mangastorm//4.jpeg">
-                <a href="javascript:void(0)" id="btn_view_full_image">View Full Size Image</a>
-                <a href="javascript:void(0)" class="page-link-hover page-next-link"></a>
-                <script type="text/javascript" id="chapter_preloaded_images">
-			var chapter_preloaded_images = ["https:\/\/s3-us-west-2.amazonaws.com\/mangastorm\/\/1.jpeg","https:\/\/s3-us-west-2.amazonaws.com\/mangastorm\/\/2.jpeg","https:\/\/s3-us-west-2.amazonaws.com\/mangastorm\/\/3.jpeg","https:\/\/s3-us-west-2.amazonaws.com\/mangastorm\/\/4.jpeg","https:\/\/s3-us-west-2.amazonaws.com\/mangastorm\/\/5.jpeg","https:\/\/s3-us-west-2.amazonaws.com\/mangastorm\/\/6.jpeg","https:\/\/s3-us-west-2.amazonaws.com\/mangastorm\/\/7.jpeg"], chapter_images_per_page = 1;
-                </script>
+                <a id="prev_page" href="javascript:void(0)" class="page-link-hover page-prev-link" style="cursor: url(&quot;/Asset/Web/wp-content/themes/madara/images/cursorLeft.png&quot;), auto;"></a>
+                <img id="image" data-image-paged="3" class="wp-manga-chapter-img img-responsive effect-fade ls-is-cached lazyloaded" src="">
+                <a id="next_page" href="javascript:void(0)" class="page-link-hover page-next-link" style="cursor: url(&quot;/Asset/Web/wp-content/themes/madara/images/cursorRight.png&quot;), auto;"></a>
             </div>
             <div class="ad c-ads custom-code body-bottom-ads"><img src="./wp-content/uploads/2017/10/ads-1.jpg" alt="Madara Ads After Content"></div>
         </div>
     </div>
 </div>
 
+@section js{
+    <script>
+        var truyenTranh = @Html.Raw(ViewBag.Json)
+        var page = 0
+        function setPage(_page) {
+            if (_page >= 0 && _page < truyenTranh.length) {
+                page = _page                
+                $("#prev_page").show()
+                $("#next_page").show()
+                if (page <= 0) {
+                    $("#prev_page").hide()
+                }
+                if (page == truyenTranh.length - 1) {
+                    $("#next_page").hide()
+                }
+            }                           
+        }
+        $(document).ready(function () {
+            setPage(page)
+            $("#image").attr("src", truyenTranh[page].URL)
+            $("#next_page").click(function () {
+                setPage(page + 1)
+                $("#image").attr("src", truyenTranh[page].URL)
+            })
+            $("#prev_page").click(function () {
+                setPage(page - 1)
+                $("#image").attr("src", truyenTranh[page].URL)
+            })
+        })
+    </script>
+} 
