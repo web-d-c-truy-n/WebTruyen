@@ -189,5 +189,32 @@ namespace WebTruyen.Models
                 throw Ex;
             }
         }
+        public void theoDoiTG(TheodoTG theodoTG, bool isTheoDoi)
+        {
+            try
+            {
+                webtruyenptEntities db = new webtruyenptEntities();
+                if (!isTheoDoi)
+                {
+                    HanhDongCuaTK hanhDongCuaTK = db.HanhDongCuaTKs.FirstOrDefault(x => x.TacGia == theodoTG.MaTG && x.MaTK == theodoTG.MaTK && x.LoaiHD == hdTaiKhoan.theoDoiTacGia);
+                    db.HanhDongCuaTKs.Remove(hanhDongCuaTK);
+                    db.SaveChanges();
+                    return;
+                }
+                if (db.TheodoTGs.Where(x => x.MaTK == theodoTG.MaTK && x.MaTG == theodoTG.MaTG).ToArray().Length > 0)
+                    return;
+                this.MaTK = theodoTG.MaTK;
+                this.TacGia = theodoTG.MaTG;
+                this.NgayHanhDong = DateTime.Now;
+                this.LoaiHD = hdTaiKhoan.theoDoiTacGia;
+                db.HanhDongCuaTKs.Add(this);
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
     }
 }

@@ -1,4 +1,12 @@
-<div class="tab-pane" id="ThongTinTacGia">
+﻿@using WebTruyen.Models
+@using WebTruyen.Helper
+@model TaiKhoan
+@{
+    webtruyenptEntities db = new webtruyenptEntities();
+    Layout = null;
+}
+
+<div class="tab-pane active" id="ThongTinTacGia">
     <div class="tab-item">
         <div class="choose-avatar">
             <div class="loading-overlay">
@@ -6,16 +14,17 @@
                     <i class="fas fa-spinner fa-spin"></i>
                 </div>
             </div>
-            <div class="c-user-avatar">
-                <img alt="" src="/Asset/TaiKhoan/Avatar/2-211226356_1560097657656922_8485193369241692719_n.jpg" onerror="this.onerror=null;this.src='https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=390&amp;d=mm&amp;r=g';" class="avatar avatar-195 photo" height="195" width="195" loading="lazy" id="Avatar">
-            </div>
-        </div>
-        <div class="form form-choose-avatar">
-            <div>
-                <h1>Bút danh:</h1>
-                <h2>Lượt xem:</h2>
-                <h2>Lượt thích:</h2>
-                <h2>Lượt theo dõi:</h2>
+            <div class="c-user-avatar row">
+                <img alt="" src="@(Model.Avatar??"/se")" onerror="this.onerror=null;this.src='https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=390&amp;d=mm&amp;r=g';" class="avatar avatar-195 photo" height="195" width="195" loading="lazy" id="Avatar">
+                <div style="margin-left:20px">
+                    <h1>Bút danh: @(Model.ButDanh??Model.HovaTen)</h1>                    
+                    <p>Lượt theo dõi: @Model.luotTheoDoi().Count</p>
+                    @if (ViewBag.isTheoDoi??false) { 
+                        <button type="button" class="btn btn-info" id="theoDoi"><i class="fas fa-heart" @Html.Raw(Auth.user().isTheoDoi(Model.MaTK) ? "style=\"color: red\" thich=\"1\"" : "")></i>Theo dõi</button>
+                    }
+                    
+                </div>
+
             </div>
         </div>
         <div class="tab-pane active" id="truyenYeuThich">
@@ -28,29 +37,30 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach (vvTruyen truyen in Model.vvTruyens()) {
                     <tr>
                         <td>
                             <div class="mange-name">
                                 <div class="item-thumb">
-                                    <a href="/Truyen/tomTat/xuyen-thanh-phao-hoi-minh-tinh-sau-ta-bao-hong-16" title="Xuyên thành pháo hôi minh tinh sau ta bạo hồng">
-                                        <img width="75" height="106" src="/Asset/TacGia/Anh/6b68653a-38fd-4dee-a650-deab98354a38_6032781654b808129056318e.jpg" class="img-responsive" style="" alt="Xuyên thành pháo hôi minh tinh sau ta bạo hồng">
+                                    <a href="@Url.Action("TomTat", "Truyen", new {id = Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen) })" title="@truyen.TenTruyen">
+                                        <img width="75" height="106" src="@truyen.AnhBia" class="img-responsive" style="" alt="@truyen.TenTruyen">
                                     </a>
                                 </div>
                                 <div class="item-infor">
                                     <div class="post-title">
                                         <h3>
-                                            <a href="/Truyen/tomTat/xuyen-thanh-phao-hoi-minh-tinh-sau-ta-bao-hong-16">Xuyên thành pháo hôi minh tinh sau ta bạo hồng</a>
+                                            <a href="@Url.Action("TomTat", "Truyen", new {id = Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen) })">@truyen.TenTruyen</a>
                                         </h3>
                                     </div>
                                     <div class="list-chapter">
                                         <div class="chapter-item ">
                                             <span class="chapter font-meta">
-                                                <a href="/Truyen/Truyen/xuyen-thanh-phao-hoi-minh-tinh-sau-ta-bao-hong-16?Chuong=2" class="btn-link"> Chap 000 </a>
+                                                <a href="@Url.Action("Truyen", "Truyen", new {id = Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen),Chuong = truyen.SoChuong1 })" class="btn-link"> @truyen.TenChuong1 </a>
                                             </span>
                                         </div>
                                         <div class="chapter-item ">
                                             <span class="chapter font-meta">
-                                                <a href="/Truyen/Truyen/xuyen-thanh-phao-hoi-minh-tinh-sau-ta-bao-hong-16?Chuong=1" class="btn-link"> Chương 1 </a>
+                                                <a href="@Url.Action("Truyen", "Truyen", new {id = Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen),Chuong = truyen.SoChuong2 })" class="btn-link"> @truyen.TenChuong2 </a>
                                             </span>
                                         </div>
                                     </div>
@@ -59,7 +69,7 @@
                         </td>
                         <td>
                             <div class="post-on">
-                                09/09/2021
+                                @(truyen.NgayDang?.ToString("dd/MM/yyyy"))
                             </div>
                         </td>
                         <td>
@@ -72,7 +82,10 @@
                             </div>
                         </td>
                     </tr>
-
+                    }
+                    
+                    @if (ViewBag.isTheoDoi == null)
+                    {
                     <tr>
                         <td colspan="3">
                             <div class="remove-all float-right">
@@ -84,6 +97,14 @@
                             </div>
                         </td>
                     </tr>
+                    }
+                    else { 
+                <tr>
+                    <td colspan="3">                        
+                    </td>
+                </tr>
+                    }
+
                 </tbody>
             </table>
         </div>

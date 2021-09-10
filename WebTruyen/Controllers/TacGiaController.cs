@@ -70,7 +70,7 @@ namespace WebTruyen.Controllers
                         truyenTacGia.VaiTro = vaiTro;
                         truyenTacGias.Add(truyenTacGia);
                     }
-                }                
+                }
                 TruyenTacGia truyenTacGia1 = new TruyenTacGia();
                 truyenTacGia1.MaTK = Auth.MaTk();
                 truyenTacGia1.VaiTro = vaiTro;
@@ -85,7 +85,7 @@ namespace WebTruyen.Controllers
         }
         public PartialViewResult thongTinTacGia()
         {
-            return PartialView();
+            return PartialView(Auth.user());
         }
         public PartialViewResult tacPham()
         {
@@ -101,6 +101,30 @@ namespace WebTruyen.Controllers
         {
             chuongTruyen.createOrUpdate();
             return Json(true);
+        }
+        [HttpPost]
+        public ActionResult xoaChuong(int maTruyen, int soChuong)
+        {
+            ChuongTruyen chuongTruyen = db.ChuongTruyens.FirstOrDefault(x => x.MaTruyen == maTruyen && x.SoChuong == soChuong);
+            chuongTruyen.xoa(db);
+            return Json(true);
+        }
+        public PartialViewResult thongKe()
+        {
+            return PartialView();
+        }
+        public ActionResult layThongKe(int soNgay)
+        {
+            int maTK = Auth.MaTk();
+            var LuotXem = db.Database.SqlQuery<ThongKe>($"tkLuotXem {soNgay},{maTK}");
+            var LuotThich = db.Database.SqlQuery<ThongKe>($"tkLuotThich {soNgay},{maTK}");
+            var LuotTheoDoi = db.Database.SqlQuery<ThongKe>($"tkLuotTheoDoi {soNgay},{maTK}");
+            var json = new { LuotThich, LuotXem, LuotTheoDoi };
+            return Json(json, JsonRequestBehavior.AllowGet);
+        }
+        private class ThongKe{
+            public DateTime Ngay { get; set; }
+            public int SoLuong { get; set; }
         }
     }
 }

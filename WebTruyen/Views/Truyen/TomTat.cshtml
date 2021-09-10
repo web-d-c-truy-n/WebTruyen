@@ -118,7 +118,7 @@
                                                 <div class="author-content">
                                                     @foreach (TruyenTacGia tacGia in Model.TruyenTacGias)
                                                     {
-                                                        <a href="~/Asset/Web/manga-author/nasimi/" rel="tag">@tacGia.TaiKhoan.ButDanh</a>@(",")
+                                                        <a href="@Url.Action("TacGia","Home",new {id=Commons.convertToUnSign3(tacGia.TaiKhoan.ButDanh +"-"+ tacGia.MaTK) })" rel="tag">@tacGia.TaiKhoan.ButDanh</a>@(",")
                                                     }
                                                 </div>
                                             </div>

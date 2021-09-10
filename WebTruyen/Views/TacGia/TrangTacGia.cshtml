@@ -354,13 +354,16 @@
                                                                 <div class="col-md-12 widget c-popular" style="display:flex">
                                                                     <button class="btn widget-view-more" style="margin:5px;padding:10px" id="dangChuong">Đăng</button>
                                                                     <button class="btn btn-default" style="margin:5px;padding:10px" id="luuNhapChuong">Lưu nháp</button>
+                                                                    <button class="btn btn-danger" style="margin:5px;padding:10px" id="xoa">Xóa</button>
                                                                 </div>
                                                             </div>
                                                             <div id="truyenTranh" hidden></div>
                                                         </div>
+
                                                         @{ 
                                                             Html.RenderAction("thongTinTacGia", "TacGia");
                                                             Html.RenderAction("tacPham", "TacGia");
+                                                            Html.RenderAction("thongKe", "TacGia");
                                                         }
                                                     </div>
                                                 </div>
@@ -678,6 +681,10 @@
                     alert("Đăng chương thành công")
                 }
 
+            })
+            $("#xoa").click(function () {
+                let maTr = parseInt($("#c_tenChuong").val().split(",")[0])
+                let soChuong = parseInt($("#c_tenChuong").val().split(",")[1])
             })
         })
     </script>

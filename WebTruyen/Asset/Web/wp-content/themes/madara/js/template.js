@@ -307,38 +307,38 @@
 		});
         
 		// search
-		$('.main-menu-search .open-search-main-menu').on('click', function () {
-			var $this = $(this);
+		//$('.main-menu-search .open-search-main-menu').on('click', function () {
+		//	var $this = $(this);
 
-			if ($this.hasClass('search-open')) {
-				$this.parents('.c-header__top').find('.search-main-menu').removeClass('active');
-				setTimeout(function () {
-					$this.parents('.c-header__top').find('.search-main-menu').find('input[type="text"]').blur();
-				}, 200);
-				$this.removeClass('search-open');
+		//	if ($this.hasClass('search-open')) {
+		//		$this.parents('.c-header__top').find('.search-main-menu').removeClass('active');
+		//		setTimeout(function () {
+		//			$this.parents('.c-header__top').find('.search-main-menu').find('input[type="text"]').blur();
+		//		}, 200);
+		//		$this.removeClass('search-open');
 				
-				if($('body').hasClass('mobile')){
-					var $adv_search_link = $('.link-adv-search', $('#blog-post-search'));
-					if($adv_search_link.length > 0){
-						$adv_search_link.remove();
-					}
-				}
-			} else {
-				$this.parents('.c-header__top').find('.search-main-menu').addClass('active');
-				setTimeout(function () {
-					$this.parents('.c-header__top').find('.search-main-menu').find('input[type="text"]').focus();
-				}, 200);
-				$this.addClass('search-open');
+		//		if($('body').hasClass('mobile')){
+		//			var $adv_search_link = $('.link-adv-search', $('#blog-post-search'));
+		//			if($adv_search_link.length > 0){
+		//				$adv_search_link.remove();
+		//			}
+		//		}
+		//	} else {
+		//		$this.parents('.c-header__top').find('.search-main-menu').addClass('active');
+		//		setTimeout(function () {
+		//			$this.parents('.c-header__top').find('.search-main-menu').find('input[type="text"]').focus();
+		//		}, 200);
+		//		$this.addClass('search-open');
 				
-				if($('body').hasClass('mobile')){
-					var $adv_search_link = $('.link-adv-search', $this.closest('.widget-manga-search'));
-					if($adv_search_link.length > 0){
-						$('#blog-post-search').append($adv_search_link.clone());
-					}
-				}
-			}
-			;
-		});
+		//		if($('body').hasClass('mobile')){
+		//			var $adv_search_link = $('.link-adv-search', $this.closest('.widget-manga-search'));
+		//			if($adv_search_link.length > 0){
+		//				$('#blog-post-search').append($adv_search_link.clone());
+		//			}
+		//		}
+		//	}
+		//	;
+		//});
 
 		$(".genres_wrap .btn-genres").click(function () {
 			var $this = $(this);

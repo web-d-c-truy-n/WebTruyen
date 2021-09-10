@@ -490,6 +490,30 @@
         })
         return result
     },
+    layThongKe: async function (soNgay) {
+        let result
+        await $.get("/TacGia/layThongKe?soNgay=" + soNgay, function (data) {
+            result = data
+        })
+        return result
+    },
+    theoDoi: async function (maTG,isTheoDoi) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/Home/theoDoi',
+            data: JSON.stringify({ maTG: maTG, isTheoDoi: isTheoDoi}),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    }
 }
 
 const ttTaiKhoan = {

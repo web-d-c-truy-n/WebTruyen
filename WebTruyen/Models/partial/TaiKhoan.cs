@@ -380,5 +380,36 @@ namespace WebTruyen.Models
             else
                 return false;
         }
+        public List<vvTruyen> vvTruyens()
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            List<vvTruyen> vvTruyens = (from tr in db.vvTruyens
+                                        join tg in db.TruyenTacGias
+                                        on tr.MaTruyen equals tg.MaTruyen
+                                        where tg.MaTK == this.MaTK
+                                        select tr).ToList();
+            return vvTruyens;
+        }
+        public List<Truyen> Truyens()
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            List<Truyen> Truyens = (from tr in db.Truyens
+                                        join tg in db.TruyenTacGias
+                                        on tr.MaTruyen equals tg.MaTruyen
+                                        where tg.MaTK == this.MaTK
+                                        select tr).ToList();
+            return Truyens;
+        }
+        public List<TheodoTG> luotTheoDoi()
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            return db.TheodoTGs.Where(x => x.MaTG == this.MaTK).ToList();
+        }
+        public bool isTheoDoi(int maTG)
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            TheodoTG theodoTG = db.TheodoTGs.FirstOrDefault(x => x.MaTG == maTG && x.MaTK == MaTK);
+            return theodoTG != null;
+        }
     }
 }

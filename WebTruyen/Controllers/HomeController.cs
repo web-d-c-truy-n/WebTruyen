@@ -198,5 +198,31 @@ namespace WebTruyen.Controllers
             ChuongTruyen noiDung = db.ChuongTruyens.FirstOrDefault(x=>x.MaTruyen == maTr && x.SoChuong == soChuong);
             return Json(new {noiDung.MaTruyen, noiDung.SoChuong, noiDung.TenChuong,noiDung.NoiDung, NgayTao = noiDung.NgayTao.ToString("dd/MM/yyyy") }, JsonRequestBehavior.AllowGet);
         }
+        [Login]
+        public PartialViewResult ttTacGia(int id)
+        {            
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            ViewBag.isTheoDoi = true;
+            return PartialView("~/Views/TacGia/thongTinTacGia.cshtml",taiKhoan);
+        }
+        [Login]
+        public ActionResult TacGia(string id)
+        {
+            int MaTG = int.Parse(id.Split('-').Last());
+            TaiKhoan taiKhoan = db.TaiKhoans.Find(MaTG);
+            return View(taiKhoan);
+        }
+        [Login]
+        [HttpPost]
+        public ActionResult theoDoi(int maTG, bool isTheoDoi)
+        {
+            TheodoTG theodoTG = new TheodoTG();
+            theodoTG.MaTG = maTG;
+            theodoTG.MaTK = Auth.MaTk();
+            HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+            hanhDongCuaTK.theoDoiTG(theodoTG, isTheoDoi);
+            return Json(true);
+            
+        }
     }
 }
