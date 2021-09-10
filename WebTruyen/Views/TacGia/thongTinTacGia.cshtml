@@ -1,137 +1,92 @@
 <div class="tab-pane" id="ThongTinTacGia">
-    <form method="post" id="form-account-settings" data-force-strong-password="1" onsubmit="return false">
-        <input type="hidden" value="981" name="userID">
-        <input type="hidden" id="_wpnonce" name="_wpnonce" value="c0d5ad0b0f"><input type="hidden" name="_wp_http_referer" value="/user-settings/?tab=account-settings"> <div class="tab-group-item">
-            <div class="tab-item">
-                <div class="choose-avatar">
-                    <div class="loading-overlay">
-                        <div class="loading-icon">
-                            <i class="fas fa-spinner fa-spin"></i>
-                        </div>
-                    </div>
-                    <div class="c-user-avatar">
-                        <img alt="" src="/Asset/TaiKhoan/Avatar/2-211226356_1560097657656922_8485193369241692719_n.jpg" onerror="this.onerror=null;this.src='https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=390&amp;d=mm&amp;r=g';" class="avatar avatar-195 photo" height="195" width="195" loading="lazy" id="Avatar">
-                    </div>
-                </div>
-                <div class="form form-choose-avatar">
-                    <div class="select-flie">
-                        Chỉ dành cho tệp .jpg .png hoặc .gif <label class="select-avata">
-                            <input type="file" name="wp-manga-user-avatar" id="upFile" onchange="loadFile(event, 'Avatar')">
-                            <span class="file-name"></span>
-                        </label>
-                        <input type="submit" value="Tải lên" name="wp-manga-upload-avatar" id="wp-manga-upload-avatar" onclick="upload('upFile','/Home/upAvatar')">
-
-                    </div>
+    <div class="tab-item">
+        <div class="choose-avatar">
+            <div class="loading-overlay">
+                <div class="loading-icon">
+                    <i class="fas fa-spinner fa-spin"></i>
                 </div>
             </div>
-            <div class="tab-item">
-                <div class="settings-title">
-                    <h3>
-                        Thay đổi tên hiển thị của bạn
-                    </h3>
-                </div>
-                <div class="form-group row">
-                    <label for="name-input" class="col-md-3">Tên hiển thị hiện tại</label>
-                    <div class="col-md-9">
-                        <span class="show">Đoàn Thị Thu Thảo</span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="name-input" class="col-md-3">Tên hiển thị mới</label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="text" value="" name="user-new-name" id="user-new-name">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="name-input-submit" class="col-md-3"></label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="submit" value="Gửi đi" id="name-input-submit" name="account-form-submit">
-                    </div>
-                </div>
-            </div>
-            <div class="tab-item">
-                <div class="settings-title">
-                    <h3>
-                        Thay đổi địa chỉ email của bạn
-                    </h3>
-                </div>
-                <div class="form-group row">
-                    <label for="email-input" class="col-md-3">Email của bạn</label>
-                    <div class="col-md-9">
-                        <span class="show">thuthao@gmail.com</span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="email-input" class="col-md-3">Địa chỉ email tử mới</label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="email" value="" id="email-input" name="user-new-email">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="email-input-submit" class="col-md-3"></label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="submit" value="Gửi đi" id="email-input-submit" name="account-form-submit">
-                    </div>
-                </div>
-            </div>
-            <div class="tab-item">
-                <div class="settings-title">
-                    <h3>
-                        Thay đổi địa chỉ email của bạn
-                    </h3>
-                </div>
-                <div class="form-group row">
-                    <label for="email-input" class="col-md-3">Số điện thoại của bạn</label>
-                    <div class="col-md-9">
-                        <span class="show">0972345345</span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="email-input" class="col-md-3">Số điện thoại mới</label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="number" value="" id="phone-input" name="phone-input">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="email-input-submit" class="col-md-3"></label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="submit" value="Gửi đi" id="phone-input-submit" name="account-form-submit">
-                    </div>
-                </div>
-            </div>
-            <div class="tab-item">
-                <div class="settings-title">
-                    <h3>
-                        Thay đổi mật khẩu của bạn
-                    </h3>
-                </div>
-                <div class="form-group row">
-                    <label for="currrent-password-input" class="col-md-3">Mật khẩu hiện tại</label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="password" value="" id="currrent-password-input" name="user-current-password">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="new-password-input" class="col-md-3">mật khẩu mới</label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="password" value="" id="new-password-input" name="user-new-password">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="comfirm-password-input" class="col-md-3">Xác nhận mật khẩu</label>
-                    <div class="col-md-9">
-                        <input class="form-control" type="password" value="" id="comfirm-password-input" name="user-new-password-confirm">
-                        <span id="password-strength"></span>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="password-input-submit" class="col-md-3"></label>
-                    <div class="col-md-9">
-                        <label id="checkbox-weak-password" style="display:none"><input type="checkbox" id="agree-weak-password">I agree to use this weak password</label>
-                        <input class="form-control" type="submit" value="Gửi đi" id="password-input-submit" name="account-form-submit">
-                    </div>
-                </div>
+            <div class="c-user-avatar">
+                <img alt="" src="/Asset/TaiKhoan/Avatar/2-211226356_1560097657656922_8485193369241692719_n.jpg" onerror="this.onerror=null;this.src='https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=390&amp;d=mm&amp;r=g';" class="avatar avatar-195 photo" height="195" width="195" loading="lazy" id="Avatar">
             </div>
         </div>
-    </form>
+        <div class="form form-choose-avatar">
+            <div>
+                <h1>Bút danh:</h1>
+                <h2>Lượt xem:</h2>
+                <h2>Lượt thích:</h2>
+                <h2>Lượt theo dõi:</h2>
+            </div>
+        </div>
+        <div class="tab-pane active" id="truyenYeuThich">
+            <table class="table table-hover list-bookmark">
+                <thead>
+                    <tr>
+                        <th>Tên truyện tranh</th>
+                        <th>Thời gian cập nhật</th>
+                        <th>Biên tập</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="mange-name">
+                                <div class="item-thumb">
+                                    <a href="/Truyen/tomTat/xuyen-thanh-phao-hoi-minh-tinh-sau-ta-bao-hong-16" title="Xuyên thành pháo hôi minh tinh sau ta bạo hồng">
+                                        <img width="75" height="106" src="/Asset/TacGia/Anh/6b68653a-38fd-4dee-a650-deab98354a38_6032781654b808129056318e.jpg" class="img-responsive" style="" alt="Xuyên thành pháo hôi minh tinh sau ta bạo hồng">
+                                    </a>
+                                </div>
+                                <div class="item-infor">
+                                    <div class="post-title">
+                                        <h3>
+                                            <a href="/Truyen/tomTat/xuyen-thanh-phao-hoi-minh-tinh-sau-ta-bao-hong-16">Xuyên thành pháo hôi minh tinh sau ta bạo hồng</a>
+                                        </h3>
+                                    </div>
+                                    <div class="list-chapter">
+                                        <div class="chapter-item ">
+                                            <span class="chapter font-meta">
+                                                <a href="/Truyen/Truyen/xuyen-thanh-phao-hoi-minh-tinh-sau-ta-bao-hong-16?Chuong=2" class="btn-link"> Chap 000 </a>
+                                            </span>
+                                        </div>
+                                        <div class="chapter-item ">
+                                            <span class="chapter font-meta">
+                                                <a href="/Truyen/Truyen/xuyen-thanh-phao-hoi-minh-tinh-sau-ta-bao-hong-16?Chuong=1" class="btn-link"> Chương 1 </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="post-on">
+                                09/09/2021
+                            </div>
+                        </td>
+                        <td>
+                            <div class="action">
+                                <div class="checkbox">
+                                    <input id="16" class="bookmark-checkbox" value="16" type="checkbox">
+                                    <label for="16"></label>
+                                </div>
+                                <a class="wp-manga-delete-bookmark" href="javascript:void(0)" data-post-id="16"><i class="icon ion-ios-close"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="3">
+                            <div class="remove-all float-right">
+                                <div class="checkbox">
+                                    <input id="checkall" type="checkbox">
+                                    <label for="checkall">Rà soát tất cả</label>
+                                </div>
+                                <button type="button" id="delete-bookmark-manga" class="btn btn-default">Xóa bỏ</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>

@@ -10,10 +10,12 @@ namespace WebTruyen.Controllers
     {
         private webtruyenptEntities db;
 
-        public AdminWebController() {
+        public AdminWebController() 
+        {
             {
                 db = new webtruyenptEntities();
-            } }
+            } 
+        }
 
         // GET: AdminWeb
         public ActionResult Index()
