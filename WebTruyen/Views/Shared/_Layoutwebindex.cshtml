@@ -252,6 +252,8 @@
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/getAPI.js"></script>
+    <script src="~/Scripts/AjaxEffect.js"></script>
     @RenderSection("css", required: false)
 </head>
 <body class="home page-template page-template-page-templates page-template-front-page page-template-page-templatesfront-page-php page page-id-12 wp-embed-responsive header-style-1 sticky-enabled sticky-style-1 is-sidebar text-ui-dark sticky__active">
@@ -318,10 +320,61 @@
                                                     <div class="widget-content">
                                                         <div class="search-navigation__wrap">                                                            
                                                             <ul class="main-menu-search nav-menu">
-                                                                <li class="menu-search">
+                                                                <li class="menu-search" id="thongBao">                                                                    
                                                                     <a href="javascript:;" class="open-search-main-menu">
                                                                         <i class="fas fa-bell"></i>
+                                                                        @if (HttpContext.Current.Session["taiKhoan"] != null && Auth.user().thongBaos().Count > 0)
+                                                                        {
+                                                                            <span class="badge badge-pill badge-danger" style="position:absolute; top:5px" id="soThongBao">@Auth.user().thongBaos().Count</span>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <span class="badge badge-pill badge-danger" style="position:absolute; top:5px;" id="soThongBao"></span>
+                                                                        }
                                                                     </a>
+                                                                    <style>
+                                                                        #dsthongBao {
+                                                                            display: none;
+                                                                            position: absolute;
+                                                                            background-color: #00d2ff;
+                                                                            left:-150px;
+                                                                            z-index: 99999
+                                                                        }
+                                                                        #dsthongBao a{
+                                                                            width: 300px;                                                                            
+                                                                        }
+                                                                    </style>
+                                                                    <div id="dsthongBao">
+                                                                                                                                                                                                                       
+                                                                    </div>
+                                                                    <script>
+                                                                        $(document).ready(function () {
+                                                                            let show = false
+                                                                            $("#thongBao").mouseenter(function () {                                                                                
+                                                                                show = true
+                                                                            })
+                                                                            $("#thongBao").mouseleave(function () {                                                                                
+                                                                                show = false
+                                                                            })
+                                                                            $(window).click(function () {                                                                                
+                                                                                if (!show) {
+                                                                                    $("#dsthongBao").hide()
+                                                                                }
+                                                                            })
+                                                                            $("#thongBao > a").click(async function () {
+                                                                                $("#dsthongBao").toggle()
+                                                                                debugger
+                                                                                let thongBao = await API.getThongBao()
+                                                                                html = ""
+                                                                                thongBao.forEach(function (item, index) {
+                                                                                    html += '<a class="dropdown-item text-wrap text-left" href="#">' + item + '</a>'
+                                                                                })
+                                                                                $("#dsthongBao").html(html)
+                                                                                $("#soThongBao").text("")
+                                                                                                                                                               
+                                                                            })
+                                                                        })                                                                        
+                                                                    </script>
                                                                 </li>                                                               
                                                             </ul>
 
@@ -458,7 +511,6 @@
                                         </ul>
                                     </li>
 
-                                    <i class="mobile-icon icon ion-md-more"></i>
 
                                 </ul>
                             </div>
@@ -790,8 +842,6 @@
             }
         }
     </script>    
-    <script src="~/Scripts/getAPI.js"></script>
-    <script src="~/Scripts/AjaxEffect.js"></script>
     @RenderSection("js", required: false)
     <script>
         $(document).ready(function () {
@@ -809,6 +859,9 @@
                     $("#dadangnhap").hide()
                     $("#dangxuat").show()
                     $("#tendangnhap").text(dangnhap.HovaTen);
+                    let soThongBao = await API.demThongBao()
+                    if (soThongBao > 0)
+                        $("#soThongBao").text(soThongBao)
                 }
                 else {
                     $("#thongBao").text(dangnhap.msg)
@@ -848,6 +901,7 @@
                     $("#dadangnhap").show()
                     $("#dangxuat").hide()
                     $("#tendangnhap").text("Tài khoản");
+                    $("#soThongBao").text("")
                 }
             })
 

@@ -64,7 +64,8 @@ namespace WebTruyen.Models
                     thongBao.MaTK = luotThichTruyen.MaTK;
                     thongBao.MaTruyen = this.MaTruyen;
                     thongBao.SoChuong = this.SoChuong;
-                    thongBao.ThongBao1 = $"Truyện {this.Truyen.TenTruyen} đã cập nhật chương mới\nChương: {this.SoChuong} {this.TenChuong}";
+                    string tenTruyen = db.Truyens.Find(this.MaTruyen).TenTruyen;
+                    thongBao.ThongBao1 = $"Truyện {tenTruyen} đã cập nhật chương mới\nChương: {this.SoChuong} {this.TenChuong}";
                     HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
                     hanhDongCuaTK.thongBao(thongBao);
                 }

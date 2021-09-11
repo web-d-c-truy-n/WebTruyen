@@ -66,6 +66,9 @@
                                                         <li class="active">
                                                             <a data-toggle="tab" href="#thongTinTK"><i class="icon ion-md-person"></i>Cài đặt tài khoản </a>
                                                         </li>
+                                                        <li>
+                                                            <a data-toggle="tab" href="#TheoDoi"><i class="fa fa-rss"></i>Theo Dõi</a>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -213,6 +216,7 @@
                                                         @{
                                                             Html.RenderAction("Theodoi", "Home");
                                                             Html.RenderAction("Lichsu", "Home");
+                                                            Html.RenderAction("dsTheoDoi", "Home");
                                                         }
                                                     </div>
                                                 </div>
@@ -336,6 +340,16 @@
                 
             }
             updateChart(7)
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(".xoaTheoDoi").click(async function () {
+                debugger
+                let maTK = parseInt($(this).attr("maTK"))
+                let rs = await API.theoDoi(maTK, false)
+                $(this).parents(".col-md-4").remove()
+            })
         })
     </script>
 }

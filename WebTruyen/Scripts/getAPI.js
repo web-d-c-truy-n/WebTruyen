@@ -513,6 +513,20 @@
             }
         })
         return result
+    },
+    getThongBao: async function () {
+        let result
+        await $.get("/Home/getThongBao", function (data) {
+            result = data
+        })
+        return result
+    },
+    demThongBao: async function () {
+        let result
+        await $.get("/Home/demThongBao", function (data) {
+            result = data
+        })
+        return result
     }
 }
 

@@ -114,7 +114,7 @@ namespace WebTruyen.Controllers
         // xuất ra các danh sách truyện hot ở trang chủ
         public ActionResult XuatCacTruyenIndex(int page, int pagesize)
         {
-            var vvTruyens = db.vvTruyens.OrderBy(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
+            var vvTruyens = db.vvTruyens.OrderByDescending(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
             return Json(vvTruyens, JsonRequestBehavior.AllowGet);
         }
         public ActionResult XuatCacTruyenTheLoai(int page, int pagesize, int maLoai, int loaiTruyen)
@@ -223,6 +223,32 @@ namespace WebTruyen.Controllers
             hanhDongCuaTK.theoDoiTG(theodoTG, isTheoDoi);
             return Json(true);
             
+        }
+        [Login]
+        public ActionResult dsTheoDoi()
+        {
+            int maTK = Auth.MaTk();
+            List<TaiKhoan> theodoTG = (from td in db.TheodoTGs
+                                 where td.MaTK == maTK
+                                 join tk in db.TaiKhoans
+                                 on td.MaTG equals tk.MaTK
+                                 select tk).ToList();
+            return PartialView(theodoTG);
+        }
+        [Login]
+        public ActionResult getThongBao()
+        {
+            List<ThongBao> thongBaos = Auth.user().thongBaos();
+            foreach (ThongBao thongBao in thongBaos)
+            {
+                thongBao.xem();
+            }
+            return Json(thongBaos.Select(x => x.ThongBao1),JsonRequestBehavior.AllowGet);
+        }
+        [Login]
+        public ActionResult demThongBao()
+        {
+            return Json(Auth.user().thongBaos().Count, JsonRequestBehavior.AllowGet);
         }
     }
 }

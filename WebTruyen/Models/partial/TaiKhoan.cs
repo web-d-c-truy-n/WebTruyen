@@ -411,5 +411,10 @@ namespace WebTruyen.Models
             TheodoTG theodoTG = db.TheodoTGs.FirstOrDefault(x => x.MaTG == maTG && x.MaTK == MaTK);
             return theodoTG != null;
         }
+        public List<ThongBao> thongBaos()
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            return db.ThongBaos.Where(x => x.MaTK == this.MaTK && !(x.DaXem??false)).OrderByDescending(x=>x.MaThongBao).ToList();
+        }
     }
 }

@@ -1,0 +1,32 @@
+﻿@using WebTruyen.Models
+@model List<TaiKhoan>
+<div class="tab-pane" id="TheoDoi">
+    <div class="tab-group-item">
+        <div class="tab-item">
+            <div class="row">
+                @foreach (TaiKhoan taiKhoan in Model)
+                {
+                <div class="col-md-4">
+                    <div class="history-content">
+                        <div class="item-thumb">
+                            <a href="@Url.Action("TomTat","Truyen",new {id = WebTruyen.Helper.Commons.convertToUnSign3(taiKhoan.ButDanh + "-"+ taiKhoan.MaTK) })" title="@taiKhoan.ButDanh">
+                                <img width="75" height="106" src="@(taiKhoan.Avatar??"pp")" onError="this.onerror=null;this.src='https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=390&amp;d=mm&amp;r=g';" class="img-responsive" style="" alt="@taiKhoan.ButDanh">
+                            </a>
+                        </div>
+                        <div class="item-infor">
+                            <div class="settings-title">
+                                <h3>
+                                    <a href="@Url.Action("TomTat","Truyen",new {id = WebTruyen.Helper.Commons.convertToUnSign3(taiKhoan.ButDanh + "-"+ taiKhoan.MaTK) })">@taiKhoan.ButDanh</a>
+                                </h3>
+                            </div>
+                            <div class="action">
+                                <a href="javascript:void(0)" class="remove-manga-history xoaTheoDoi" maTK="@taiKhoan.MaTK"><i class="icon ion-ios-close"></i></a>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>                    
+                }
+            </div>
+        </div>
+    </div>
+</div>

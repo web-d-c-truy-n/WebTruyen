@@ -226,6 +226,7 @@
     <Compile Include="Models\partial\TaiKhoan.cs" />
     <Compile Include="Models\partial\ThanhVienNhom.cs" />
     <Compile Include="Models\partial\TheLoai.cs" />
+    <Compile Include="Models\partial\ThongBao.cs" />
     <Compile Include="Models\partial\Truyen.cs" />
     <Compile Include="Models\QuanLyHinhAnh.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -3295,6 +3296,7 @@
     <Content Include="Views\TacGia\thongKe.cshtml" />
     <Content Include="Views\TacGia\thongTinTacGia.cshtml" />
     <Content Include="Views\Home\TacGia.cshtml" />
+    <Content Include="Views\Home\dsTheoDoi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
