@@ -2835,13 +2835,14 @@
     <Content Include="Asset\TacGia\uploader-master\src\css\jquery.dm-uploader.css" />
     <Content Include="Asset\TacGia\uploader-master\src\js\jquery.dm-uploader.js" />
     <Content Include="Asset\TacGia\uploader-master\styles.css" />
-    <Content Include="Asset\Web\wp-content\themes\Edogawa.Conan.600.1914970.jpg" />
+    <Content Include="Asset\Web\wp-content\themes\madara\Anime_la_gi_05.jpg" />
     <Content Include="Asset\Web\wp-content\themes\madara\Arknights.600.3425269.jpg" />
     <Content Include="Asset\Web\wp-content\themes\madara\Attack.on.Titan.600.1519438.jpg" />
     <Content Include="Asset\Web\wp-content\themes\madara\css\bootstrap.min.css" />
     <Content Include="Asset\Web\wp-content\themes\madara\css\fonts\ct-icon\ct-icon.css" />
     <Content Include="Asset\Web\wp-content\themes\madara\css\fonts\ionicons\css\ionicons.min.css" />
     <Content Include="Asset\Web\wp-content\themes\madara\css\loaders.min.css" />
+    <Content Include="Asset\Web\wp-content\themes\madara\fan-tich-cuc-day-thuyen-conan-kaitou-kid-den-voi-nhau-517f07ba.jpg" />
     <Content Include="Asset\Web\wp-content\themes\madara\images\cursorLeft.png" />
     <Content Include="Asset\Web\wp-content\themes\madara\images\cursorRight.png" />
     <Content Include="Asset\Web\wp-content\themes\madara\js\ajax.js" />
@@ -2862,8 +2863,6 @@
     <Content Include="Asset\Web\wp-content\themes\madara\SKET.Dance.600.893564.jpg" />
     <Content Include="Asset\Web\wp-content\themes\madara\style.css" />
     <Content Include="Asset\Web\wp-content\themes\madara\The.Avengers.600.2204331.jpg" />
-    <Content Include="Asset\Web\wp-content\themes\NARUTO_.SHIPPŪDEN.600.3437262.jpg" />
-    <Content Include="Asset\Web\wp-content\themes\Uzumaki.Naruto.600.3441997.jpg" />
     <Content Include="Asset\Web\wp-includes\js\dist\a11y.min.js" />
     <Content Include="Asset\Web\wp-includes\js\dist\dom-ready.min.js" />
     <Content Include="Asset\Web\wp-includes\js\dist\hooks.min.js" />
