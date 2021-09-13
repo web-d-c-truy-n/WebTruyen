@@ -1647,14 +1647,14 @@
                     truyenXemNhieu = await API.timkiemTruyen($(this).val(), page, 20)
                     reader();
                 })
-                $("#navigation-ajax").click(async function () {
+                $("#navigation-ajax").click(async function () {                    
                     let showTruyen
                     page++
                     let timnKiem
                     $(".timkiem").each(function () {
                         timnKiem = $(this).val()
                     })
-                    if (timnKiem != "" || timnKiem != null) {
+                    if (timnKiem != "" && timnKiem != null) {
                         showTruyen = await API.timkiemTruyen(timnKiem, page, 20)
                     }
                     else if (theLoai != -1) {

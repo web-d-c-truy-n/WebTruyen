@@ -416,5 +416,10 @@ namespace WebTruyen.Models
             webtruyenptEntities db = new webtruyenptEntities();
             return db.ThongBaos.Where(x => x.MaTK == this.MaTK && !(x.DaXem??false)).OrderByDescending(x=>x.MaThongBao).ToList();
         }
+        public List<ThongBao> allThongBao()
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            return db.ThongBaos.Where(x => x.MaTK == this.MaTK).OrderByDescending(x => x.MaThongBao).ToList();
+        }
     }
 }

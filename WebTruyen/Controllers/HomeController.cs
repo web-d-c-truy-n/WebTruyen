@@ -123,7 +123,7 @@ namespace WebTruyen.Controllers
             if (maLoai != -1 && loaiTruyen == -1)
                 vvTruyens = db.vvTruyens.Where(x => x.MaLoai == maLoai).OrderBy(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
             else if (maLoai == -1 && loaiTruyen != -1)
-                vvTruyens = db.vvTruyens.Where(x => x.LoaiTruyen == loaiTruyen).OrderBy(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
+                vvTruyens = db.vvTruyens.Where(x => x.LoaiTruyen == loaiTruyen).OrderByDescending(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
             else
                 vvTruyens = db.vvTruyens.Where(x => x.MaLoai == maLoai && x.LoaiTruyen == loaiTruyen).OrderBy(x => x.NgayDang).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
             return Json(vvTruyens, JsonRequestBehavior.AllowGet);
@@ -243,7 +243,7 @@ namespace WebTruyen.Controllers
             {
                 thongBao.xem();
             }
-            return Json(thongBaos.Select(x => x.ThongBao1),JsonRequestBehavior.AllowGet);
+            return Json(Auth.user().allThongBao().Select(x => x.ThongBao1),JsonRequestBehavior.AllowGet);
         }
         [Login]
         public ActionResult demThongBao()

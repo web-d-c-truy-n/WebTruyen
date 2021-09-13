@@ -60,7 +60,7 @@ namespace WebTruyen.Models
             try
             {
                 webtruyenptEntities db = new webtruyenptEntities();
-                return db.Database.SqlQuery<vvTruyen>($"TIMKIEM_Truyen N'{timKiem}'").OrderBy(x => x.NgayDang).ToList();
+                return db.Database.SqlQuery<vvTruyen>($"TIMKIEM_Truyen N'{timKiem}'").ToList();
             }
             catch (DbUpdateException ex)
             {

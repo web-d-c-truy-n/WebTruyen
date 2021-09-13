@@ -335,17 +335,26 @@
                                                                     <style>
                                                                         #dsthongBao {
                                                                             display: none;
-                                                                            position: absolute;
-                                                                            background-color: #00d2ff;
+                                                                            position: absolute;                                                                            
                                                                             left:-150px;
-                                                                            z-index: 99999
+                                                                            z-index: 99999;
+                                                                            overflow-y: scroll;
+                                                                            height:500px;
                                                                         }
-                                                                        #dsthongBao a{
-                                                                            width: 300px;                                                                            
+                                                                            #dsthongBao::-webkit-scrollbar {
+                                                                                display: none;
+                                                                            }
+                                                                        #dsthongBao {
+                                                                            -ms-overflow-style: none; /* IE and Edge */
+                                                                            scrollbar-width: none; /* Firefox */
+                                                                        }
+                                                                        #dsthongBao a {
+                                                                            width: 300px;
+                                                                            background-color: #00d2ff;
                                                                         }
                                                                     </style>
                                                                     <div id="dsthongBao">
-                                                                                                                                                                                                                       
+
                                                                     </div>
                                                                     <script>
                                                                         $(document).ready(function () {
