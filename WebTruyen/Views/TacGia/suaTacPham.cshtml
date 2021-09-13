@@ -1,0 +1,294 @@
+﻿@using WebTruyen.Models
+@using WebTruyen.Helper
+@model Truyen
+@{
+    webtruyenptEntities db = new webtruyenptEntities();
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>suaTacPham</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="~/Asset/TacGia/Trumbowyg-master/dist/ui/trumbowyg.min.css" rel="stylesheet" />
+    <link href="~/Asset/TacGia/uploader-master/src/css/jquery.dm-uploader.css" rel="stylesheet" />
+    <link href="~/Asset/TacGia/uploader-master/styles.css" rel="stylesheet" />
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .widget-view-more {
+            background-color: #00d2ff;
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 6px 0px;
+            transition: background-color 200ms ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="usr">Tên truyện:</label>
+                <input type="text" class="form-control" id="tenTruyen" name="username" value="@Model.TenTruyen" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <textarea id="editor">@Html.Raw(Model.MoTa)</textarea>
+                <div class="col-md-12 widget c-popular">
+                    <button class="btn widget-view-more btn-block" data-toggle="modal" data-target="#dangTacPham" id="btn_dangTacPham">Đăng tác phẩm</button>
+                </div>
+            </div>
+            <div class="col-md-3 widget c-popular">
+                <img src="@Model.QuanLyHinhAnh.URL" class="img-responsive effect-fade lazyloaded" id="anhBia" idAnh="@Model.QuanLyHinhAnh.MaAnh" />
+                <button class="btn widget-view-more btn-block" data-toggle="modal" data-target="#chonAnh" id="btn_themAnhBia">Thêm ảnh bìa</button>
+            </div>
+        </div>
+        <!-- The Modal ảnh bìa -->
+        <div class="modal" id="chonAnh">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modal Heading</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#allAnh">Danh sách ảnh</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#menu">Tải Ảnh</a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div id="allAnh" class="container tab-pane active" style="overflow-y:scroll; height:500px">
+
+                            </div>
+                            <div id="menu" class="container tab-pane fade">
+                                <div id="drag-and-drop-zone" class="dm-uploader p-5">
+                                    <h3 class="mb-5 mt-5 text-muted">Kéo ảnh vào đây</h3>
+
+                                    <div class="btn btn-primary btn-block mb-5">
+                                        <span>Chọn tệp</span>
+                                        <input type="file" title='Click to add Files' />
+                                    </div>
+                                </div><!-- /uploader -->
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-striped active" role="progressbar" id="progress"
+                                         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" id="dongAnh" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- The Modal đăng ảnh-->
+        <div class="modal" id="dangTacPham">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modal Heading</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <label class="mr-sm-2">Loại truyện</label>
+                        <select class="form-control mb-2 mr-sm-2" id="theLoai">
+                            @foreach (TheLoai theLoai in ViewBag.theLoai)
+                            {
+                                <option value="@theLoai.MaLoai" @Html.Raw(Model.MaLoai == theLoai.MaLoai ? "selected" : "")>@theLoai.TenLoai</option>
+                            }
+                        </select>
+                        <label class="mr-sm-2">Tác giả gốc</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Nhập tác giả gốc" id="tacGiaGoc" value="@Model.TacGiaGoc">
+                        <br />
+                        <label class="mr-sm-2">Loại truyện</label>
+                        <select class="form-control mb-2 mr-sm-2" id="loaiTruyen">
+                            <option value="1" @Html.Raw(Model.LoaiTruyen == loaiTruyen.truyenChu ? "selected" : "")>Truyện Chữ</option>
+                            <option value="2" @Html.Raw(Model.LoaiTruyen == loaiTruyen.truyenTranh ? "selected" : "")>Truyện Tranh</option>
+                        </select>
+                        @if (Auth.tacGia().VaiTro == vtTacGia.dichGia)
+                        {
+                            <label class="mr-sm-2">Vai Trò</label>
+                            <select class="form-control mb-2 mr-sm-2" id="vaiTro">
+                                <option value="1" @Html.Raw(Model.TruyenTacGias.First().VaiTro == vtTacGia.tacGia ? "selected" : "")>Tác Giả</option>
+                                <option value="2" @Html.Raw(Model.TruyenTacGias.First().VaiTro == vtTacGia.dichGia ? "selected" : "")>Dịch Giả</option>
+                            </select>
+                        }
+                        <div class="form-group">
+                            <label for="sel1">Đồng sáng tác</label>
+                            <select class="form-control" id="sel1" multiple>
+                                @foreach (TacGia tacGia in ViewBag.cacTacGia)
+                                {
+                                    TruyenTacGia tg = db.TruyenTacGias.FirstOrDefault(x=>x.MaTK == tacGia.MaTG && x.MaTruyen == Model.MaTruyen);
+                                    string selected = tg != null ? "selected" : "";
+                                    if (tacGia.MaTG != Auth.tacGia().MaTG)
+                                    {
+                                        <option value="@tacGia.MaTG" @Html.Raw(selected)>@(tacGia.ButDanh)</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <button type="button" id="dangTruyen" class="btn btn-primary mb-2">Đăng tác phẩm</button>
+                        <button type="button" id="luuNhap" class="btn btn-primary mb-2">Lưu nháp</button>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" id="dongAnh" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="~/Asset/TacGia/Trumbowyg-master/dist/trumbowyg.min.js"></script>
+    <script src="~/Asset/TacGia/uploader-master/src/js/jquery.dm-uploader.js"></script>
+    <script src="~/Scripts/react/reactTacGia.js" type="text/babel"></script>
+    <script>
+        var anhTG = [
+            @foreach (QuanLyHinhAnh anh in ViewBag.anhCuaTG)
+            {
+                @Html.Raw("{url: '"+anh.URL+"', MaAnh: "+anh.MaAnh+"},")
+            }
+        ]
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#editor').trumbowyg({
+                btnsDef: {
+                    insertImage: {
+                        fn: function () {
+                            anhBia = false
+                            $("#btn_themAnhBia").click()
+                        },
+                        ico: 'insertImage'
+                    },
+                },
+                btns: [
+                    ['strong', 'em'],
+                    ['justifyLeft', 'justifyCenter'],
+                ]
+            });
+            $('#drag-and-drop-zone').dmUploader({ //
+                    url: '@Url.Action("ThemAnh","TacGia")',
+                    maxFileSize: 3000000, // 3 Megs
+                    onDragEnter: function () {
+                        // Happens when dragging something over the DnD area
+                        this.addClass('active');
+                    },
+                    onDragLeave: function () {
+                        // Happens when dragging something OUT of the DnD area
+                        this.removeClass('active');
+                    },
+                    onBeforeUpload: function (id) {
+                        $("#progress").css({ width: "0" })
+                    },
+                    onUploadProgress: function (id, percent) {
+                        // Updating file progress
+                    },
+                    onUploadSuccess: function (id, data) {
+                        debugger
+                        if (data.result) {
+                            $("#progress").css({ width: "100%" })
+                            window.setTimeout(function () { $("#progress").css({ width: "0%" }) }, 1000)
+                            //let anh = $("[id_anh]").first().clone(true)
+                            //$(anh).appendTo('#allAnh')
+                            //$(anh).attr("id_anh", data.MaAnh)
+                            //$(anh).attr("src", data.URL)
+                            anhTG.push({ url: data.URL, MaAnh: data.MaAnh })
+                            reload()
+                        } else {
+                            alert(data.msg)
+                        }
+                        // A file was successfully uploaded
+                    },
+                    onUploadError: function (id, xhr, status, message) {
+                    },
+                    onFallbackMode: function () {
+                        // When the browser doesn't support this plugin :(
+                    },
+                    onFileSizeError: function (file) {
+
+                    }
+                });
+        })
+        $(document).ready(function () {
+            $("#dangTruyen,#luuNhap").click(async function () {
+                debugger
+                let tamAn = $(this).attr("id") == "luuNhap"
+                let theLoai = parseInt($("#theLoai").val())
+                let tacGiaGoc = $("#tacGiaGoc").val()
+                let loaiTruyen = parseInt($("#loaiTruyen").val())
+                let anhBia = parseInt($("#anhBia").attr("idAnh"))
+                let noiDung = $('#editor').trumbowyg('html')
+                if (noiDung.length > 1900) {
+                    alert("Nội dung không được quá 2000 ký tự")
+                    return
+                }
+                let dongTG = $('#dongTG').val();
+                dongTG = dongTG.map(x => parseInt(x));
+                let tenTruyen = $("#tenTruyen").val()
+                let vaiTro = ($("#vaiTro").val() == null ? 1 : $("#vaiTro").val())
+                $("body").ajaxOn()
+                let rs = await API.DangTruyen(tenTruyen, theLoai, tacGiaGoc, tamAn, anhBia, loaiTruyen, noiDung, vaiTro, dongTG)
+                if (rs) {
+                    $("body").ajaxOff()
+                    $("#tacGiaGoc").val("");
+                    $('#editor').trumbowyg('html', "")
+                    $("#tenTruyen").val("")
+                    $(".close").click()
+                    alert("Đăng truyện thành công")
+                } else {
+                    $("body").ajaxOff()
+                    alert("Đăng thất bại")
+                }
+                reload_Truyen()
+
+            })
+        })
+    </script>
+</body>
+</html>
