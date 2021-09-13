@@ -87,10 +87,6 @@ namespace WebTruyen.Controllers
         {
             return PartialView(Auth.user());
         }
-        public PartialViewResult tacPham()
-        {
-            return PartialView();
-        }
         public ActionResult laySoChuongTruyen(int id)
         {
             var chuongTruyens = db.ChuongTruyens.Where(x => x.MaTruyen == id).Select(x => new { x.MaTruyen, x.SoChuong, x.TenChuong }).ToArray();
@@ -143,6 +139,23 @@ namespace WebTruyen.Controllers
                 ViewBag.cacTacGia = db.TacGias;
             }
             return View(truyen);
+        }
+        [HttpPost]
+        public ActionResult xoaTruyen(int maTruyen)
+        {
+            Truyen truyen = db.Truyens.Find(maTruyen);
+            db.Truyens.Remove(truyen);
+            db.SaveChanges();
+            return Json(true);
+        }     
+        [HttpPost]
+        public ActionResult suaButDanh(string butDanh)
+        {
+            int maTK = Auth.MaTk();
+            TaiKhoan tacGia = db.TaiKhoans.Find(maTK);
+            tacGia.ButDanh = butDanh;
+            db.SaveChanges();
+            return Json(true);
         }
     }
 }

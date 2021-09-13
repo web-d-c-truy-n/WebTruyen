@@ -58,6 +58,7 @@ namespace WebTruyen.Models
                     db.SaveChanges();
                     foreach (TruyenTacGia tacGia1 in truyenTacGias)
                     {
+                        tacGia1.MaTruyen = this.MaTruyen;
                         db.TruyenTacGias.Add(tacGia1);
                     }
                     db.SaveChanges();
@@ -177,7 +178,7 @@ namespace WebTruyen.Models
         public void CreateOrUpdate(List<TruyenTacGia> truyenTacGias)
         {
             webtruyenptEntities db = new webtruyenptEntities();
-            if(this.MaTruyen != null)
+            if(this.MaTruyen != 0)
             {
                 Truyen truyen = db.Truyens.Find(MaTruyen);
                 truyen.TenTruyen = this.TenTruyen;

@@ -196,6 +196,18 @@ namespace WebTruyen.Controllers
         public ActionResult layNoiDungChuong(int maTr, int soChuong)
         {
             ChuongTruyen noiDung = db.ChuongTruyens.FirstOrDefault(x=>x.MaTruyen == maTr && x.SoChuong == soChuong);
+            Truyen truyen = db.Truyens.Find(maTr);
+            if (truyen.LoaiTruyen == loaiTruyen.truyenTranh)
+            {
+                int[] maAnh = noiDung.NoiDung.Split(',').Select(x => int.Parse(x)).ToArray();
+                string nd = "";
+                foreach (int anh in maAnh)
+                {
+                    QuanLyHinhAnh qla = db.QuanLyHinhAnhs.Find(anh);
+                    nd += "<img src = '" + qla.URL + "' maAnh ='" + qla.MaAnh + "' />";
+                }
+                noiDung.NoiDung = nd;
+            }
             return Json(new {noiDung.MaTruyen, noiDung.SoChuong, noiDung.TenChuong,noiDung.NoiDung, NgayTao = noiDung.NgayTao.ToString("dd/MM/yyyy") }, JsonRequestBehavior.AllowGet);
         }
         [Login]

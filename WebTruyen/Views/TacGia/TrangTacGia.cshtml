@@ -287,10 +287,7 @@
                                                     <ul class="nav nav-tabs" id="menuuser">
                                                         <li class="active">
                                                             <a href="#ThongTinTacGia" data-toggle="tab"><i class="fas fa-cloud"></i>Thông tin tác giả</a>
-                                                        </li>
-                                                        <li class="">
-                                                            <a href="#TacPham" data-toggle="tab"><i class="fas fa-heart"></i>Tác phẩm</a>
-                                                        </li>
+                                                        </li>                                                        
                                                         <li class="">
                                                             <a href="#DangTacPhan" data-toggle="tab"><i class="icon ion-md-alarm"></i>Đăng tác phẩm</a>
                                                         </li>
@@ -354,7 +351,7 @@
                                                                 <div class="col-md-12 widget c-popular" style="display:flex">
                                                                     <button class="btn widget-view-more" style="margin:5px;padding:10px" id="dangChuong">Đăng</button>
                                                                     <button class="btn btn-default" style="margin:5px;padding:10px" id="luuNhapChuong">Lưu nháp</button>
-                                                                    <button class="btn btn-danger" style="margin:5px;padding:10px" id="xoa">Xóa</button>
+                                                                    <button class="btn btn-danger" style="margin:5px;padding:10px" id="xoaChuong">Xóa</button>
                                                                 </div>
                                                             </div>
                                                             <div id="truyenTranh" hidden></div>
@@ -362,7 +359,6 @@
 
                                                         @{
                                                             Html.RenderAction("thongTinTacGia", "TacGia");
-                                                            Html.RenderAction("tacPham", "TacGia");
                                                             Html.RenderAction("thongKe", "TacGia");
                                                         }
                                                     </div>
@@ -448,13 +444,13 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Đăng tác phẩm</h4>
+                <h4 class="modal-title">Tùy chọn</h4>
                 <button type="button" class="close" data-dismiss="modal" onclick="anhBia = true">&times;</button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
-                <label class="mr-sm-2">Loại truyện</label>
+                <label class="mr-sm-2">Thể loại</label>
                 <select class="form-control mb-2 mr-sm-2" id="theLoai">
                     @foreach (TheLoai theLoai in ViewBag.theLoai)
                     {
@@ -496,6 +492,27 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
 
+        </div>
+    </div>
+</div>
+<!--Modal tác giả-->
+<!-- The Modal -->
+<div class="modal fade" id="suaTruyen">
+    <div class="modal-dialog modal2-xl" style="width: 80%">
+        <div class="modal-content2">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Sửa truyện</h4>
+                <button type="button" class="close" data-dismiss="modal" onclick="anhBia = true">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="anhBia = true" id="dongAnhBia">Close</button>
+            </div>
         </div>
     </div>
 </div>
@@ -607,7 +624,7 @@
                 let tenTruyen = $("#tenTruyen").val()
                 let vaiTro = ($("#vaiTro").val() == null ? 1 : $("#vaiTro").val())
                 $("body").ajaxOn()
-                let rs = await API.DangTruyen(tenTruyen, theLoai, tacGiaGoc, tamAn, anhBia, loaiTruyen, noiDung, vaiTro, dongTG)
+                let rs = await API.DangTruyen(0,tenTruyen, theLoai, tacGiaGoc, tamAn, anhBia, loaiTruyen, noiDung, vaiTro, dongTG)
                 if (rs) {
                     $("body").ajaxOff()
                     $("#tacGiaGoc").val("");
@@ -657,6 +674,7 @@
                 let soChuong = parseInt($(this).val().split(",")[1])
                 let noiDung = await API.layNoiDungChuong(maTr, soChuong)
                 $("#editor_e").trumbowyg("html", noiDung.NoiDung)
+                $("#tenChuong").val(noiDung.TenChuong)
             })
             $("#dangChuong,#luuNhapChuong").click(async function () {
                 debugger
@@ -674,7 +692,7 @@
                     $("#truyenTranh").html("")
                     noiDung = noiDung.substring(0, noiDung.length - 1)
                 }
-                let Dang = $(this).attr("id") == "#dangChuong"
+                let Dang = $(this).attr("id") == "dangChuong"
                 let rs = await API.createOrUpdateChuong(maTr, soChuong, tenChuong, noiDung, Dang)
                 if (rs) {
                     $("#c_tenTruyen").change()
@@ -682,9 +700,17 @@
                 }
 
             })
-            $("#xoa").click(function () {
-                let maTr = parseInt($("#c_tenChuong").val().split(",")[0])
-                let soChuong = parseInt($("#c_tenChuong").val().split(",")[1])
+            $("#xoaChuong").click(async function () {
+                if (confirm("Bạn có muốn xóa chương này")) {
+                    let maTr = parseInt($("#c_tenChuong").val().split(",")[0])
+                    let soChuong = parseInt($("#c_tenChuong").val().split(",")[1])
+                    let rs = await API.xoaChuongTG(maTr, soChuong)
+                    if (rs) {
+                        $("#c_tenTruyen").change()
+                        alert("Xóa chương thành công")
+                    }
+                }
+                
             })
         })
     </script>
@@ -766,6 +792,46 @@
             thongKe(7)
             $("#soNgay").change(function () {
                 thongKe(parseInt($(this).val()))
+            })
+        })
+    </script>
+    <script>
+        function suaTruyen(maTruyen) {
+            let iframe = '<iframe src="/TacGia/suaTacPham/' + maTruyen + '" width="100%" height="300px" onload="offAjax()"></iframe>'
+            $("#suaTruyen").find(".modal-body").html(iframe)
+            $("#suaTruyen").ajaxOn()
+        }
+        function offAjax() {
+            $("#suaTruyen").ajaxOff()
+        }
+        $(document).ready(function () {
+            $("#delete-bookmark-manga").click(function () {
+                debugger
+                if (confirm("Bạn chắc chắn muốn xóa!")) {
+                    let check = []
+                    $("#truyenCuaTG").find(".bookmark-checkbox").each(function () {
+                        if ($(this).is(":checked")) {
+                            check.push(this)
+                        }
+                    })
+                    check.forEach(async function (item, index) {
+                        let maTruyen = parseInt($(item).val())
+                        let rs = await API.xoaTruyenTG(maTruyen)
+                    })
+                    check.forEach(function (item, index) {
+                        $(item).parents("tr").remove()
+                    })
+                }                
+            })
+            $("#suaButDanh").click(async function () {
+                let butDanh = prompt("Nhập bút danh mới:");
+                if (butDanh != null && butDanh != "") {
+                    let rs = await API.suaButDanh(butDanh)
+                    if (rs) {
+                        $(this).prev().text(butDanh)
+                        alert("Sửa bút danh thành công")
+                    }
+                }
             })
         })
     </script>

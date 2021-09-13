@@ -527,6 +527,57 @@
             result = data
         })
         return result
+    },
+    xoaTruyenTG: async function (maTruyen) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/TacGia/xoaTruyen',
+            data: JSON.stringify({ maTruyen: maTruyen }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
+    xoaChuongTG: async function (maTruyen, soChuong) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/TacGia/xoaChuong',
+            data: JSON.stringify({ maTruyen: maTruyen, soChuong: soChuong }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
+    suaButDanh: async function (butDanh) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/TacGia/suaButDanh',
+            data: JSON.stringify({ butDanh: butDanh }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
     }
 }
 

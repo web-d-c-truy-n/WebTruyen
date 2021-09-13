@@ -39,8 +39,13 @@ namespace WebTruyen.Controllers
             {
                 ChuongTruyen chuongTruyen = db.ChuongTruyens.FirstOrDefault(x => x.MaTruyen == maTruyen && x.SoChuong == Chuong);
                 chuongTruyen.CapNhatLuotXem(Auth.MaTk());
-                int[] maAnh = chuongTruyen.NoiDung.Split(',').Select(x => int.Parse(x)).ToArray();
-                QuanLyHinhAnh[] quanLyHinhAnhs = db.Database.SqlQuery<QuanLyHinhAnh>($"layAnhTruyenTranh '{chuongTruyen.NoiDung}'").ToArray();
+                int[] maAnh = chuongTruyen.NoiDung.Split(',').Select(x => int.Parse(x)).ToArray();                
+                List<QuanLyHinhAnh> quanLyHinhAnhs = new List<QuanLyHinhAnh>();
+                foreach(int anh in maAnh)
+                {
+                    QuanLyHinhAnh quanLyHinhAnh = db.QuanLyHinhAnhs.Find(anh);
+                    quanLyHinhAnhs.Add(quanLyHinhAnh);
+                }
                 ViewBag.Json = Newtonsoft.Json.JsonConvert.SerializeObject(quanLyHinhAnhs.Select(x=>new {x.MaAnh,x.URL}));
                 return View("truyentranh", chuongTruyen);
             }

@@ -17,18 +17,24 @@
             <div class="c-user-avatar row">
                 <img alt="" src="@(Model.Avatar??"/se")" onerror="this.onerror=null;this.src='https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=390&amp;d=mm&amp;r=g';" class="avatar avatar-195 photo" height="195" width="195" loading="lazy" id="Avatar">
                 <div style="margin-left:20px">
-                    <h1>Bút danh: @(Model.ButDanh??Model.HovaTen)</h1>
+                    @if (ViewBag.isTheoDoi == null)
+                    {
+                        <h1>Bút danh:<span>@(Model.ButDanh ?? Model.HovaTen) </span> <i class="fas fa-pencil-alt" id="suaButDanh" style="cursor:pointer"></i></h1>
+                    }
+                    else
+                    {
+                        <h1>Bút danh: @(Model.ButDanh??Model.HovaTen)</h1>
+                    }
+                    
                     <p>Lượt theo dõi: @Model.luotTheoDoi().Count</p>
                     @if (ViewBag.isTheoDoi ?? false)
                     {
                         <button type="button" class="btn btn-info" id="theoDoi"><i class="fas fa-heart" @Html.Raw(Auth.user().isTheoDoi(Model.MaTK) ? "style=\"color: red\" thich=\"1\"" : "")></i>Theo dõi</button>
                     }
-
                 </div>
-
             </div>
         </div>
-        <div class="tab-pane active" id="truyenYeuThich">
+        <div class="tab-pane active" id="truyenCuaTG">
             <table class="table table-hover list-bookmark">
                 <thead>
                     <tr>
@@ -77,11 +83,11 @@
                             <td>
                                 <div class="action">
                                     <div class="checkbox">
-                                        <input id="16" class="bookmark-checkbox" value="16" type="checkbox">
-                                        <label for="16"></label>
+                                        <input id="@truyen.MaTruyen" class="bookmark-checkbox" value="@truyen.MaTruyen" type="checkbox">
+                                        <label for="@truyen.MaTruyen"></label>
                                     </div>
                                     @if (ViewBag.isTheoDoi == null) { 
-                                        <a class="wp-manga-delete-bookmark" href="javascript:void(0)" data-post-id="@truyen.MaTruyen" data-toggle="modal" data-target="#suaTruyen"><i class="icon ion-ios-settings"></i></a>
+                                        <a class="wp-manga-delete-bookmark" href="javascript:void(0)" onclick="suaTruyen(@truyen.MaTruyen)" data-toggle="modal" data-target="#suaTruyen"><i class="icon ion-ios-settings"></i></a>
                                     }                                    
                                 </div>
                             </td>
@@ -109,50 +115,8 @@
                             </td>
                         </tr>
                     }
-
                 </tbody>
             </table>
-        </div>
-    </div>
-
-</div>
-<!--Modal tác giả-->
-<!-- The Modal -->
-<div class="modal fade" id="suaTruyen">
-    <div class="modal-dialog modal2-xl" style="width: 80%">
-        <div class="modal-content2">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h4 class="modal-title">Chọn Ảnh</h4>
-                <button type="button" class="close" data-dismiss="modal" onclick="anhBia = true">&times;</button>
-            </div>
-            <!-- Modal body -->
-            <div class="modal-body">
-                <div class="tab-pane" id="DangTacPhan">
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <label for="usr">Tên truyện:</label>
-                            <input type="text" class="form-control" id="tenTruyen" name="username">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-9">
-                            <textarea id="editor"></textarea>
-                            <div class="col-md-12 widget c-popular">
-                                <button class="btn widget-view-more btn-block" data-toggle="modal" data-target="#dangTacPham" id="btn_dangTacPham">Đăng tác phẩm</button>
-                            </div>
-                        </div>
-                        <div class="col-md-3 widget c-popular">
-                            <img src="" class="img-responsive effect-fade lazyloaded" id="anhBia" />
-                            <button class="btn widget-view-more btn-block" data-toggle="modal" data-target="#chonAnh" id="btn_themAnhBia">Thêm ảnh bìa</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="anhBia = true" id="dongAnhBia">Close</button>
-            </div>
         </div>
     </div>
 </div>
