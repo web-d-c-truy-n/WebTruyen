@@ -43,16 +43,32 @@ namespace WebTruyen.Models
                 }
             }
         }
-        public void sua(webtruyenptEntities db)
+        public void sua(webtruyenptEntities db,List<TruyenTacGia> truyenTacGias)
         {
-            try
+            using (System.Data.Entity.DbContextTransaction transaction = db.Database.BeginTransaction())
             {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException ex)
-            {
-                SqlException Ex = ex.GetBaseException() as SqlException;
-                throw Ex;
+                try
+                {
+                    db.SaveChanges();
+                    var TruyenTGs = db.TruyenTacGias.Where(x => x.MaTruyen == this.MaTruyen);
+                    foreach (TruyenTacGia tacGia in TruyenTGs)
+                    {
+                        db.TruyenTacGias.Remove(tacGia);
+                    }
+                    db.SaveChanges();
+                    foreach (TruyenTacGia tacGia1 in truyenTacGias)
+                    {
+                        db.TruyenTacGias.Add(tacGia1);
+                    }
+                    db.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (DbUpdateException ex)
+                {
+                    transaction.Rollback();
+                    SqlException Ex = ex.GetBaseException() as SqlException;
+                    throw Ex;
+                }
             }
         }
         public static List<vvTruyen> timKiem(string timKiem)
@@ -157,6 +173,26 @@ namespace WebTruyen.Models
         {
             webtruyenptEntities db = new webtruyenptEntities();
             return db.LuotThichTruyens.Where(x => x.MaTruyen == this.MaTruyen).ToList();
+        }
+        public void CreateOrUpdate(List<TruyenTacGia> truyenTacGias)
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            if(this.MaTruyen != null)
+            {
+                Truyen truyen = db.Truyens.Find(MaTruyen);
+                truyen.TenTruyen = this.TenTruyen;
+                truyen.MoTa = this.MoTa;
+                truyen.AnhBia = this.AnhBia;
+                truyen.MaLoai = this.MaLoai;
+                truyen.TacGiaGoc = this.TacGiaGoc;
+                truyen.LoaiTruyen = this.LoaiTruyen;
+                truyen.TamAn = this.TamAn;
+                truyen.sua(db, truyenTacGias);
+            }
+            else
+            {
+                them(truyenTacGias);
+            }
         }
     }
 }

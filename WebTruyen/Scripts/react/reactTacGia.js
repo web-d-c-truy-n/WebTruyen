@@ -1,14 +1,15 @@
 ﻿
 class Image extends React.Component {
     clickAnh = (Url, id) => {
+        debugger
         if (anhBia) {
             $("#anhBia").attr("src", Url)
             $("#anhBia").attr("idAnh", id)
-            $("#dongAnhBia").click()
+            $("#dongAnh").click()
         } else {
             let html = $('#editor_e').trumbowyg('html')
             $('#editor_e').trumbowyg('html', html + '<img src = "' + Url + '" maAnh ="' + id + '" />');
-            $("#dongAnhBia").click()
+            $("#dongAnh").click()
         }
     }
     load = () => {

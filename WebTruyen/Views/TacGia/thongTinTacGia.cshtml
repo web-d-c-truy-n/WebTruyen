@@ -17,12 +17,13 @@
             <div class="c-user-avatar row">
                 <img alt="" src="@(Model.Avatar??"/se")" onerror="this.onerror=null;this.src='https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=390&amp;d=mm&amp;r=g';" class="avatar avatar-195 photo" height="195" width="195" loading="lazy" id="Avatar">
                 <div style="margin-left:20px">
-                    <h1>Bút danh: @(Model.ButDanh??Model.HovaTen)</h1>                    
+                    <h1>Bút danh: @(Model.ButDanh??Model.HovaTen)</h1>
                     <p>Lượt theo dõi: @Model.luotTheoDoi().Count</p>
-                    @if (ViewBag.isTheoDoi??false) { 
+                    @if (ViewBag.isTheoDoi ?? false)
+                    {
                         <button type="button" class="btn btn-info" id="theoDoi"><i class="fas fa-heart" @Html.Raw(Auth.user().isTheoDoi(Model.MaTK) ? "style=\"color: red\" thich=\"1\"" : "")></i>Theo dõi</button>
                     }
-                    
+
                 </div>
 
             </div>
@@ -37,72 +38,76 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (vvTruyen truyen in Model.vvTruyens()) {
-                    <tr>
-                        <td>
-                            <div class="mange-name">
-                                <div class="item-thumb">
-                                    <a href="@Url.Action("TomTat", "Truyen", new {id = Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen) })" title="@truyen.TenTruyen">
-                                        <img width="75" height="106" src="@truyen.AnhBia" class="img-responsive" style="" alt="@truyen.TenTruyen">
-                                    </a>
-                                </div>
-                                <div class="item-infor">
-                                    <div class="post-title">
-                                        <h3>
-                                            <a href="@Url.Action("TomTat", "Truyen", new {id = Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen) })">@truyen.TenTruyen</a>
-                                        </h3>
+                    @foreach (vvTruyen truyen in Model.vvTruyens())
+                    {
+                        <tr>
+                            <td>
+                                <div class="mange-name">
+                                    <div class="item-thumb">
+                                        <a href="@Url.Action("TomTat", "Truyen", new {id = Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen) })" title="@truyen.TenTruyen">
+                                            <img width="75" height="106" src="@truyen.AnhBia" class="img-responsive" style="" alt="@truyen.TenTruyen">
+                                        </a>
                                     </div>
-                                    <div class="list-chapter">
-                                        <div class="chapter-item ">
-                                            <span class="chapter font-meta">
-                                                <a href="@Url.Action("Truyen", "Truyen", new {id = Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen),Chuong = truyen.SoChuong1 })" class="btn-link"> @truyen.TenChuong1 </a>
-                                            </span>
+                                    <div class="item-infor">
+                                        <div class="post-title">
+                                            <h3>
+                                                <a href="@Url.Action("TomTat", "Truyen", new {id = Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen) })">@truyen.TenTruyen</a>
+                                            </h3>
                                         </div>
-                                        <div class="chapter-item ">
-                                            <span class="chapter font-meta">
-                                                <a href="@Url.Action("Truyen", "Truyen", new {id = Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen),Chuong = truyen.SoChuong2 })" class="btn-link"> @truyen.TenChuong2 </a>
-                                            </span>
+                                        <div class="list-chapter">
+                                            <div class="chapter-item ">
+                                                <span class="chapter font-meta">
+                                                    <a href="@Url.Action("Truyen", "Truyen", new {id = Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen),Chuong = truyen.SoChuong1 })" class="btn-link"> @truyen.TenChuong1 </a>
+                                                </span>
+                                            </div>
+                                            <div class="chapter-item ">
+                                                <span class="chapter font-meta">
+                                                    <a href="@Url.Action("Truyen", "Truyen", new {id = Commons.convertToUnSign3(truyen.TenTruyen +"-"+truyen.MaTruyen),Chuong = truyen.SoChuong2 })" class="btn-link"> @truyen.TenChuong2 </a>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="post-on">
-                                @(truyen.NgayDang?.ToString("dd/MM/yyyy"))
-                            </div>
-                        </td>
-                        <td>
-                            <div class="action">
-                                <div class="checkbox">
-                                    <input id="16" class="bookmark-checkbox" value="16" type="checkbox">
-                                    <label for="16"></label>
+                            </td>
+                            <td>
+                                <div class="post-on">
+                                    @(truyen.NgayDang?.ToString("dd/MM/yyyy"))
                                 </div>
-                                <a class="wp-manga-delete-bookmark" href="javascript:void(0)" data-post-id="16"><i class="icon ion-ios-close"></i></a>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                            <td>
+                                <div class="action">
+                                    <div class="checkbox">
+                                        <input id="16" class="bookmark-checkbox" value="16" type="checkbox">
+                                        <label for="16"></label>
+                                    </div>
+                                    @if (ViewBag.isTheoDoi == null) { 
+                                        <a class="wp-manga-delete-bookmark" href="javascript:void(0)" data-post-id="@truyen.MaTruyen" data-toggle="modal" data-target="#suaTruyen"><i class="icon ion-ios-settings"></i></a>
+                                    }                                    
+                                </div>
+                            </td>
+                        </tr>
                     }
-                    
+
                     @if (ViewBag.isTheoDoi == null)
                     {
-                    <tr>
-                        <td colspan="3">
-                            <div class="remove-all float-right">
-                                <div class="checkbox">
-                                    <input id="checkall" type="checkbox">
-                                    <label for="checkall">Rà soát tất cả</label>
+                        <tr>
+                            <td colspan="3">
+                                <div class="remove-all float-right">
+                                    <div class="checkbox">
+                                        <input id="checkall" type="checkbox">
+                                        <label for="checkall">Rà soát tất cả</label>
+                                    </div>
+                                    <button type="button" id="delete-bookmark-manga" class="btn btn-default">Xóa bỏ</button>
                                 </div>
-                                <button type="button" id="delete-bookmark-manga" class="btn btn-default">Xóa bỏ</button>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
                     }
-                    else { 
-                <tr>
-                    <td colspan="3">                        
-                    </td>
-                </tr>
+                    else
+                    {
+                        <tr>
+                            <td colspan="3">
+                            </td>
+                        </tr>
                     }
 
                 </tbody>
@@ -110,4 +115,44 @@
         </div>
     </div>
 
+</div>
+<!--Modal tác giả-->
+<!-- The Modal -->
+<div class="modal fade" id="suaTruyen">
+    <div class="modal-dialog modal2-xl" style="width: 80%">
+        <div class="modal-content2">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Chọn Ảnh</h4>
+                <button type="button" class="close" data-dismiss="modal" onclick="anhBia = true">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="tab-pane" id="DangTacPhan">
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label for="usr">Tên truyện:</label>
+                            <input type="text" class="form-control" id="tenTruyen" name="username">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <textarea id="editor"></textarea>
+                            <div class="col-md-12 widget c-popular">
+                                <button class="btn widget-view-more btn-block" data-toggle="modal" data-target="#dangTacPham" id="btn_dangTacPham">Đăng tác phẩm</button>
+                            </div>
+                        </div>
+                        <div class="col-md-3 widget c-popular">
+                            <img src="" class="img-responsive effect-fade lazyloaded" id="anhBia" />
+                            <button class="btn widget-view-more btn-block" data-toggle="modal" data-target="#chonAnh" id="btn_themAnhBia">Thêm ảnh bìa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="anhBia = true" id="dongAnhBia">Close</button>
+            </div>
+        </div>
+    </div>
 </div>

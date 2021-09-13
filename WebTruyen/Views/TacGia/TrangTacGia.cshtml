@@ -360,7 +360,7 @@
                                                             <div id="truyenTranh" hidden></div>
                                                         </div>
 
-                                                        @{ 
+                                                        @{
                                                             Html.RenderAction("thongTinTacGia", "TacGia");
                                                             Html.RenderAction("tacPham", "TacGia");
                                                             Html.RenderAction("thongKe", "TacGia");
@@ -410,7 +410,7 @@
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div id="allAnh" class="container tab-pane active">
+                    <div id="allAnh" class="container tab-pane active" style="overflow-y:scroll; height:500px">
 
                     </div>
                     <div id="menu1" class="container tab-pane fade">
@@ -436,7 +436,7 @@
 
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="anhBia = true" id="dongAnhBia">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="anhBia = true" id="dongAnh">Close</button>
             </div>
 
         </div>
@@ -644,10 +644,10 @@
             $("#c_tenTruyen").change(async function () {
                 let maTr = $(this).val().split(",")[0]
                 let soChuong = await API.laySoChuongTruyen(maTr)
-                let chuongMoi = soChuong.length+1
+                let chuongMoi = soChuong.length + 1
                 let chuong = '<option value="' + maTr + ',' + chuongMoi + '">' + ("Mới") + '</option>'
                 soChuong.forEach(function (item, index) {
-                    chuong += '<option value="' + item.MaTruyen + ',' + item.SoChuong + '">' + ("Chương" + item.SoChuong+": "+ item.TenChuong )+ '</option>'
+                    chuong += '<option value="' + item.MaTruyen + ',' + item.SoChuong + '">' + ("Chương" + item.SoChuong + ": " + item.TenChuong) + '</option>'
                 })
                 $("#c_tenChuong").html(chuong)
             })
@@ -669,7 +669,7 @@
                     $("#truyenTranh").html(noiDung)
                     noiDung = ""
                     $("#truyenTranh").find("[maAnh]").each(function () {
-                        noiDung += $(this).attr("maAnh")+","
+                        noiDung += $(this).attr("maAnh") + ","
                     })
                     $("#truyenTranh").html("")
                     noiDung = noiDung.substring(0, noiDung.length - 1)
@@ -685,6 +685,87 @@
             $("#xoa").click(function () {
                 let maTr = parseInt($("#c_tenChuong").val().split(",")[0])
                 let soChuong = parseInt($("#c_tenChuong").val().split(",")[1])
+            })
+        })
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script>
+        $(document).ready(async function () {
+            async function thongKe(ngay) {
+                let duLieu = await API.layThongKe(ngay)
+                let labelsThich = []
+                let dataThich = []
+                let labelsXem = []
+                let dataXem = []
+                let labelsTheoDoi = []
+                let dataTheoDoi = []
+                duLieu.LuotThich.forEach(function (item, index) {
+                    labelsThich.push(item.Ngay)
+                    dataThich.push(item.SoLuong)
+                })
+                duLieu.LuotXem.forEach(function (item, index) {
+                    labelsXem.push(item.Ngay)
+                    dataXem.push(item.SoLuong)
+                })
+                duLieu.LuotTheoDoi.forEach(function (item, index) {
+                    labelsTheoDoi.push(item.Ngay)
+                    dataTheoDoi.push(item.SoLuong)
+                })
+                new Chart("chartLuotThich", {
+                    type: "bar",
+                    data: {
+                        labels: labelsThich,
+                        datasets: [{
+                            backgroundColor: "blue",
+                            data: dataThich
+                        }]
+                    },
+                    options: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: "Lượt thích trong " + ngay + " ngày"
+                        }
+                    }
+                });
+                new Chart("chartLuotXem", {
+                    type: "bar",
+                    data: {
+                        labels: labelsXem,
+                        datasets: [{
+                            backgroundColor: "blue",
+                            data: dataXem
+                        }]
+                    },
+                    options: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: "Lượt thích trong " + ngay + " ngày"
+                        }
+                    }
+                });
+                new Chart("chartLuotTheoDoi", {
+                    type: "bar",
+                    data: {
+                        labels: labelsTheoDoi,
+                        datasets: [{
+                            backgroundColor: "blue",
+                            data: dataTheoDoi
+                        }]
+                    },
+                    options: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: "Lượt thích trong " + ngay + " ngày"
+                        }
+                    }
+                });
+            }
+            thongKe(7)
+            $("#soNgay").change(function () {
+                thongKe(parseInt($(this).val()))
             })
         })
     </script>

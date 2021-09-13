@@ -75,7 +75,7 @@ namespace WebTruyen.Controllers
                 truyenTacGia1.MaTK = Auth.MaTk();
                 truyenTacGia1.VaiTro = vaiTro;
                 truyenTacGias.Add(truyenTacGia1);
-                truyen.them(truyenTacGias);
+                truyen.CreateOrUpdate(truyenTacGias);
                 return Json(true);
             }
             catch (Exception e)
@@ -111,7 +111,13 @@ namespace WebTruyen.Controllers
         }
         public PartialViewResult thongKe()
         {
-            return PartialView();
+            int maTK = Auth.MaTk();
+            List<Truyen> Truyen = (from tr in db.Truyens
+                                       join tg in db.TruyenTacGias
+                                       on tr.MaTruyen equals tg.MaTruyen
+                                       where tg.MaTK == maTK
+                                       select tr).ToList();
+            return PartialView(Truyen);
         }
         public ActionResult layThongKe(int soNgay)
         {
@@ -119,12 +125,24 @@ namespace WebTruyen.Controllers
             var LuotXem = db.Database.SqlQuery<ThongKe>($"tkLuotXem {soNgay},{maTK}");
             var LuotThich = db.Database.SqlQuery<ThongKe>($"tkLuotThich {soNgay},{maTK}");
             var LuotTheoDoi = db.Database.SqlQuery<ThongKe>($"tkLuotTheoDoi {soNgay},{maTK}");
-            var json = new { LuotThich, LuotXem, LuotTheoDoi };
+            var json = new { LuotThich = LuotThich.Select(x=>new {Ngay = x.Ngay.ToString("dd/MM/yyyy"), x.SoLuong }), LuotXem = LuotXem.Select(x=>new {Ngay = x.Ngay.ToString("dd/MM/yyyy"), x.SoLuong }), LuotTheoDoi = LuotTheoDoi.Select(x=>new {Ngay = x.Ngay.ToString("dd/MM/yyyy"), x.SoLuong }) };
             return Json(json, JsonRequestBehavior.AllowGet);
         }
         private class ThongKe{
             public DateTime Ngay { get; set; }
             public int SoLuong { get; set; }
+        }
+        public ActionResult suaTacPham(int id)
+        {
+            Truyen truyen = db.Truyens.Find(id);
+            int maTK = Auth.MaTk();
+            if (Helper.Auth.user() != null)
+            {
+                ViewBag.anhCuaTG = Helper.Auth.user().QuanLyHinhAnhs.ToList();
+                ViewBag.theLoai = db.TheLoais.ToList();
+                ViewBag.cacTacGia = db.TacGias;
+            }
+            return View(truyen);
         }
     }
 }

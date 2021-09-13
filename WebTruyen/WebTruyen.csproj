@@ -3301,6 +3301,7 @@
     <Content Include="Views\TacGia\thongTinTacGia.cshtml" />
     <Content Include="Views\Home\TacGia.cshtml" />
     <Content Include="Views\Home\dsTheoDoi.cshtml" />
+    <Content Include="Views\TacGia\suaTacPham.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
