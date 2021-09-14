@@ -288,8 +288,8 @@ warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary k
           <Property Name="TinhTrang" Type="int" />
           <Property Name="MoTa" Type="nvarchar" MaxLength="2000" Nullable="false" />
           <Property Name="AnhBia" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="LuotXem" Type="int" />
           <Property Name="LuotThich" Type="int" />
+          <Property Name="LuotXem" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'webtruyenpt.webtruyenpt.DanhGia' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -616,8 +616,8 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
     [vTruyen].[TinhTrang] AS [TinhTrang], 
     [vTruyen].[MoTa] AS [MoTa], 
     [vTruyen].[AnhBia] AS [AnhBia], 
-    [vTruyen].[LuotXem] AS [LuotXem], 
-    [vTruyen].[LuotThich] AS [LuotThich]
+    [vTruyen].[LuotThich] AS [LuotThich], 
+    [vTruyen].[LuotXem] AS [LuotXem]
     FROM [dbo].[vTruyen] AS [vTruyen]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="DanhGia" EntityType="Self.DanhGia" store:Type="Views" store:Schema="webtruyenpt">

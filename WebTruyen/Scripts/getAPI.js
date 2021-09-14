@@ -578,6 +578,13 @@
             }
         })
         return result
+    },
+    layTruyenTGAdmin: async function (maTG) {
+        let result
+        await $.get("/AdminWeb/layTruyenTG?maTG=" + maTG, function (data) {
+            result = data
+        })
+        return result
     }
 }
 

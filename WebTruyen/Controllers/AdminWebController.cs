@@ -101,7 +101,9 @@ namespace WebTruyen.Controllers
                 taiKhoan.Mail,
                 taiKhoan.SDT,
                 taiKhoan.TinhTrang,
-                NgayTao = taiKhoan.NgayTao.ToString("dd/MM/yyyy")
+                NgayTao = taiKhoan.NgayTao.ToString("dd/MM/yyyy"),
+                taiKhoan.Avatar,
+                ButDanh = taiKhoan.ButDanh ?? taiKhoan.HovaTen
             }, JsonRequestBehavior.AllowGet);
         }
         public ActionResult CapNhatTKAdmin(TaiKhoan taiKhoan)
@@ -136,6 +138,15 @@ namespace WebTruyen.Controllers
         {
             TacGia tacGia = db.TacGias.Find(id);
             return Json(new { tacGia.MaTG, NgayDangKy = tacGia.NgayDangKy?.ToString("dd/MM/yyyy"), tacGia.DaDuyet, tacGia.ButDanh, tacGia.VaiTro }, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult layTruyenTG(int maTG)
+        {
+           List<vTruyen> truyen = (from tr in db.vTruyens
+                              join tg in db.TruyenTacGias
+                              on tr.MaTruyen equals tg.MaTruyen
+                              where tg.MaTK == maTG
+                              select tr).ToList();
+            return Json(truyen.Select(x=>new {x.MaTruyen,x.TenTruyen,x.AnhBia, NgayTao = x.NgayTao.ToString("dd/MM/yyyy"), NgayDang = x.NgayDang?.ToString("dd/MM/yyyy") }), JsonRequestBehavior.AllowGet);
         }
         #endregion
         [HttpPost]
