@@ -18,8 +18,7 @@ namespace WebTruyen.Models
                 try
                 {
                     this.NgayTao = DateTime.Now;
-                    this.DaDuyet = true;
-                    this.NgayDang = DateTime.Now;
+                    this.DaDuyet = false;
                     this.Khoa = false;
                     db.Truyens.Add(this);
                     db.SaveChanges();
@@ -32,7 +31,16 @@ namespace WebTruyen.Models
                         }
                     }
                     db.SaveChanges();
-                    guiThongBao();
+                    List<Admin> admins = db.Admins.ToList();
+                    foreach (Admin admin in admins)
+                    {
+                        ThongBao thongBao = new ThongBao();
+                        thongBao.MaTK = admin.MaTK;
+                        thongBao.MaTruyen = this.MaTruyen;
+                        thongBao.ThongBao1 = $"Truyện {this.TenTruyen} cần được phê duyệt";
+                        HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+                        hanhDongCuaTK.thongBao(thongBao);
+                    }                    
                     transaction.Commit();
                 }
                 catch (DbUpdateException ex)
@@ -72,12 +80,25 @@ namespace WebTruyen.Models
                 }
             }
         }
-        public static List<vvTruyen> timKiem(string timKiem)
+        public static List<vvTruyen> timKiem(string timKiem, int skip, int take)
         {
             try
             {
                 webtruyenptEntities db = new webtruyenptEntities();
-                return db.Database.SqlQuery<vvTruyen>($"TIMKIEM_Truyen N'{timKiem}'").ToList();
+                return db.Database.SqlQuery<vvTruyen>($"TIMKIEM_Truyen N'{timKiem}',{skip},{take}").ToList();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
+        public static List<Truyen> timKiem2(string timKiem, int skip, int take)
+        {
+            try
+            {
+                webtruyenptEntities db = new webtruyenptEntities();
+                return db.Database.SqlQuery<Truyen>($"TIMKIEM_Truyen2 N'{timKiem}',{skip},{take}").ToList();
             }
             catch (DbUpdateException ex)
             {
@@ -86,7 +107,7 @@ namespace WebTruyen.Models
             }
         }
 
-        private void guiThongBao()
+        public void guiThongBao()
         {
             try
             {

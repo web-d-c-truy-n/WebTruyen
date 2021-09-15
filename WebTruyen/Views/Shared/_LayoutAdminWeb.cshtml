@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using WebTruyen.Helper
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -38,7 +39,7 @@
             <!-- SEARCH FORM -->
             <form class="form-inline ml-3">
                 <div class="input-group input-group-sm">
-                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search" id="search">
                     <div class="input-group-append">
                         <button class="btn btn-navbar" type="submit">
                             <i class="fas fa-search"></i>
@@ -160,7 +161,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="info">
-                        <a href="@Url.Action("Index","AdminWeb")" class="d-block">Admin</a>
+                        <a href="@Url.Action("Index","AdminWeb")" class="d-block">@Auth.user().HovaTen</a>
                     </div>
                 </div>
 
@@ -237,8 +238,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <p id="dangxuat">Đăng xuất</p>
+                            <a href="#" class="nav-link" id="dangXuat">
+                                <p>Đăng xuất</p>
                             </a>
                         </li>
                     </ul>
@@ -293,7 +294,10 @@
                     $(".nav-link").removeClass("active")
                     $(this).addClass("active")
                 })
-
+                $("#dangXuat").click(async function () {
+                    let rs = await API.logout()
+                    window.location.href = "/login/loginadmin"
+                })
 
             })
         </script>

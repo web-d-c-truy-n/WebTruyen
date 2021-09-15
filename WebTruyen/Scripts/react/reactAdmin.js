@@ -214,7 +214,7 @@ class QLTaiKhoan extends React.Component {
         $("#avatar").attr("src",thongtin.Avatar)
     }
     dsTaiKhoan = async (page) => {
-        let data = await API.dsTaiKhoan(page, 10)
+        let data = await API.dsTaiKhoan(page, 10, $("#search").val())
         let html = []
         let dstk = this.dsTaiKhoan
         let state = this.setState                
@@ -455,9 +455,18 @@ class QLTacGia extends React.Component {
 
         ReactDOM.render(table(truyen), document.getElementById('tacPham'))
     }
+    Khoa = async (id,page) => {
+        let rs = await API.KhoaTacGia(parseInt(id))
+        if (rs) {
+            this.dsTacGia(page)
+            toast.success("Khóa tác giả thành công!")
+        } else {
+            toast.error("Khóa tác giả thất bại!")
+        }
+    }
     dsTacGia = async (page) => {
         debugger
-        let data = await API.DSTacGia(page, 10)
+        let data = await API.DSTacGia(page, 10, $("#search").val())
         let html = []
         data.forEach((x) => {
             let html2 = <tr>
@@ -466,15 +475,16 @@ class QLTacGia extends React.Component {
                 <td>{x.TenTK}</td>
                 <td>{x.NgayDK}</td>
                 <td>{vaitroTg(x.VaiTro)}</td>
-                <td>{x.DaDuyet ? <input type="checkbox" checked disabled /> : <input type="checkbox" disabled />}</td>
+                <td>{x.Khoa ? "Bị khóa" : "Hoạt động"}</td>
+                <td>{x.DaDuyet ? <input type="checkbox" checked disabled /> : <input type="checkbox" disabled />}</td>                
                 <td>
                     <div class="dropdown">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                             <a href="##">Tùy chỉnh</a>
                         </button>
                         <div class="dropdown-menu">
-                            {x.DaDuyet?"":< a class="dropdown-item" href="##" onClick={() => this.Duyet(x.MaTG, page)}>Duyệt</a>}
-                            <a class="dropdown-item" href="##" onClick={() => this.Edit(x.MaTG, true, page)}>Khóa</a>
+                            {x.DaDuyet ? "" : < a class="dropdown-item" href="##" onClick={() => this.Duyet(x.MaTG, page)}>Duyệt</a>}
+                            <a class="dropdown-item" href="##" onClick={() => this.Khoa(x.MaTG, page)}>{x.Khoa ? "Gỡ khóa" : "Khóa"}</a>
                         </div>
                     </div>
                     <div>
@@ -507,6 +517,7 @@ class QLTacGia extends React.Component {
                         <th>Tên Tài Khoản</th>
                         <th>Ngày Đăng ký</th>
                         <th>Vai trò</th>
+                        <th>Tình trạng</th>
                         <th>Xét duyệt</th>
                         <th></th>
                     </tr>
@@ -618,15 +629,253 @@ class QLTacGia extends React.Component {
     }
 }
 
+class QLTruyen extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    Duyet = async (id, page) => {
+        let duyetTruyen = 1
+        let rs = await API.thaoTac(id, duyetTruyen)
+        if (rs) {
+            this.dsTruyen(page)
+        }
+    }
+    Delete = async (id, page) => {
+        debugger
+        let cf = confirm("Bạn có muốn xóa chứ?")
+        if (!cf) return
+        let xoaTruyen = 3
+        let rs = await API.thaoTac(parseInt(id), xoaTruyen)
+        if (rs) {
+            this.dsTruyen(page)
+            toast.success("Xóa thành công!")
+        } else {
+            toast.error("Xóa thất bại!")
+        }
+    }
+    Khoa = async (id, page) => {
+        let khoaTruyen = 2
+        let rs = await API.thaoTac(parseInt(id), khoaTruyen)
+        if (rs) {
+            this.dsTruyen(page)
+            toast.success("Khóa truyện thành công!")
+        } else {
+            toast.error("Khóa truyện thất bại!")
+        }
+    }
+    Details = async (maTruyen) => {
+        debugger
+        let thongtin = await API.chiTietTruyen(maTruyen)
+        let x = thongtin
+        let truyen = (
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card card-primary card-outline">
+                                <div class="card-body box-profile">
+                                    <div class="text-center">
+                                        <img class="profile-user-img img-fluid" id="avatar" src={x.AnhBia} alt="User profile picture" />
+                                    </div>
+                                    <h3 class="profile-username text-center tenTK">{x.TenTruyen}</h3>
+                                    <p><strong>Tác giả</strong></p>
+                                    <ul class="list-group list-group-unbordered mb-3">
+                                        {x.TacGia.map((x) => {
+                                            return (
+                                                <li class="list-group-item">
+                                                    <b></b> <a class="float-right" href={"/Home/TacGia/"+locdau2(x.ButDanh + "-" + x.MaTG)}>{x.ButDanh}</a>
+                                                </li>
+                                                )
+                                        })}                                                                                
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="card">
+                                <div class="card-header p-2">
+                                    <ul class="nav nav-pills">
+                                        <li class="nav-item"><a class="nav-link active" href="#chiTiet" data-toggle="tab">Chi tiết</a></li>
+                                    </ul>
+                                </div>
+                                <div class="card-body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="settings">
+                                            <div class="form-horizontal">
+                                                <div class="form-group row">
+                                                    <label for="inputName" class="col-sm-2 col-form-label">Thể loại</label>
+                                                    <div class="col-sm-10">
+                                                        <p class="float-right">{x.TheLoai}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="inputName" class="col-sm-2 col-form-label">Loại truyện</label>
+                                                    <div class="col-sm-10">
+                                                        <p class="float-right">{x.LoaiTruyen}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="inputName" class="col-sm-2 col-form-label">Tiến độ</label>
+                                                    <div class="col-sm-10">
+                                                        <p class="float-right">{x.TienDo}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="inputName" class="col-sm-2 col-form-label">Tình trạng</label>
+                                                    <div class="col-sm-10">
+                                                        <p class="float-right">{x.TinhTrang}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="inputEmail" class="col-sm-2 col-form-label">Mô Tả</label>
+                                                    <div class="col-sm-10">
+                                                        <p class="float-right"><a href={"/Truyen/TomTat/" + locdau2(x.TenTruyen + "-" + x.MaTruyen)}>xem mô tả</a></p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="inputName2" class="col-sm-2 col-form-label">Lượt xem</label>
+                                                    <div class="col-sm-10">
+                                                        <p class="float-right">{x.LuotXem}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row checkbox">
+                                                    <label for="inputName2" class="col-sm-2 col-form-label">Lượt thích</label>
+                                                    <div class="col-sm-10">
+                                                        <p class="float-right">{x.LuotThich}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        )
+        ReactDOM.render(truyen, document.getElementById('moadal-body'))
+    }
+    dsTruyen = async (page) => {
+        debugger        
+        let data = await API.dsTruyen(page, 10, $("#search").val())
+        let html = []
+        data.forEach((x) => {
+            let html2 = <tr>
+                <td>{x.MaTruyen}</td>
+                <td>{x.TenTruyen}</td>
+                <td><img src={x.AnhBia} height="50px" /></td>
+                <td>{x.NgayTao}</td>
+                <td>{x.NgayDang}</td>
+                <td>{x.DaDuyet ? <input type="checkbox" checked disabled /> : <input type="checkbox" disabled />}</td>
+                <td>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <a href="##">Tùy chỉnh</a>
+                        </button>
+                        <div class="dropdown-menu">
+                            {x.DaDuyet ? "" : < a class="dropdown-item" href="##" onClick={() => this.Duyet(x.MaTruyen, page)}>Duyệt</a>}
+                            <a class="dropdown-item" href="##" onClick={() => this.Khoa(x.MaTruyen, page)}>{x.Khoa?"Gỡ khóa":"Khóa"}</a>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-default thongtin" data-toggle="modal" data-target="#myModal" onClick={() => this.Details(x.MaTruyen)}>
+                            <a href="##">Details</a>
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-default xoaTK" onClick={() => this.Delete(x.MaTruyen, page)}>
+                            <a href="##">Delete</a>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            html.push(html2)
+        })
+        ReactDOM.render(<QLTruyen load={false} page={page} pagesize={Math.ceil(CountTr / 10)}>{html}</QLTruyen>, document.getElementById('body'))
+    }
+    load = async () => {
+        this.dsTruyen(1)
+    }
+    render() {
+        return (<Commons>
+            {this.props.load ? this.load() : ""}
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Mã Truyện</th>
+                        <th>Tên truyện</th>
+                        <th>Ảnh bìa</th>
+                        <th>Ngày Tạo</th>
+                        <th>Ngày đăng</th>
+                        <th>Xét duyệt</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.props.children}
+                </tbody>
+                <tfoot>
+                    <Pagination page={this.props.page} pagesize={this.props.pagesize} fpageClick={this.dsTruyen} />
+                </tfoot>
+            </table>
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Thông tin chi tiết truyện</h4>
+                            <button type="button" class="close" data-dismiss="modal" onClick={() => this.dsTaiKhoan(this.props.page)}>&times;</button>
+                        </div>
+                        <div class="modal-body" id="moadal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={() => this.dsTaiKhoan(this.props.page)}>Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Commons>)
+    }
+}
+
+
+
 $(document).ready(function () {
+    let index =0, qlTaiKhoan= 1, qlTacGia = 2, qlTruyen = 3
+    let hienTai = 0
     ReactDOM.render(<Index />, document.getElementById('body'))
     $("#QLTaiKhoan").click(function () {
+        $("#search").val("")
+        hienTai = qlTaiKhoan
         ReactDOM.render(<QLTaiKhoan load={true} />, document.getElementById('body'))
     })
     $("#dashboard").click(function () {
+        $("#search").val("")
+        hienTai = index
         ReactDOM.render(<Index />, document.getElementById('body'))
     })
     $("#TacGia").click(function () {
+        $("#search").val("")
+        hienTai = qlTacGia
         ReactDOM.render(<QLTacGia load={true} />, document.getElementById('body'))
+    })
+    $("#QLTruyen").click(function () {
+        $("#search").val("")
+        hienTai = qlTruyen
+        ReactDOM.render(<QLTruyen load={true} />, document.getElementById('body'))
+    })
+    $("#search").keyup(function () {
+        switch (hienTai) {
+            case qlTaiKhoan:
+                ReactDOM.render(<QLTaiKhoan load={true} />, document.getElementById('body'))
+                break;
+            case qlTacGia:
+                ReactDOM.render(<QLTacGia load={true} />, document.getElementById('body'))
+                break;
+            case qlTruyen:
+                ReactDOM.render(<QLTruyen load={true} />, document.getElementById('body'))
+                break;
+        }
     })
 })

@@ -105,11 +105,11 @@
         return result
     },
     // danh sách tài khoản
-    dsTaiKhoan: async function (page, pagesize) {
+    dsTaiKhoan: async function (page, pagesize, timKiem) {
         let result = null
         await $.ajax({
             type: "GET",
-            url: '/AdminWeb/dsTaiKhoan?page=' + page + "&pagesize=" + pagesize,
+            url: '/AdminWeb/dsTaiKhoan?page=' + page + "&pagesize=" + pagesize + "&timKiem=" + timKiem,
             dataType: "json",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
@@ -257,7 +257,7 @@
         })
         return result
     },
-    DangTruyen: async function (MaTruyen,tenTruyen, maLoai, tacGiaGoc, tamAn, anhBia, loaiTruyen, moTa, vaiTro, dongTG) {
+    DangTruyen: async function (MaTruyen, tenTruyen, maLoai, tacGiaGoc, tamAn, anhBia, loaiTruyen, moTa, vaiTro, dongTG) {
         let result = null
         await $.ajax({
             type: "POST",
@@ -305,9 +305,9 @@
         })
         return result
     },
-    DSTacGia: async function (page, pagesize) {
+    DSTacGia: async function (page, pagesize, timKiem) {
         let result
-        await $.get("/AdminWeb/DSTacGia?page=" + page + "&pagesize=" + pagesize, function (data) {
+        await $.get("/AdminWeb/DSTacGia?page=" + page + "&pagesize=" + pagesize + "&timKiem=" + timKiem, function (data) {
             result = data
         })
         return result
@@ -497,12 +497,12 @@
         })
         return result
     },
-    theoDoi: async function (maTG,isTheoDoi) {
+    theoDoi: async function (maTG, isTheoDoi) {
         let result = false
         await $.ajax({
             type: "POST",
             url: '/Home/theoDoi',
-            data: JSON.stringify({ maTG: maTG, isTheoDoi: isTheoDoi}),
+            data: JSON.stringify({ maTG: maTG, isTheoDoi: isTheoDoi }),
             dataType: "json",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
@@ -585,7 +585,57 @@
             result = data
         })
         return result
+    },
+    dsTruyen: async function (page, pagesize, timKiem) {
+        let result
+        await $.get("/AdminWeb/dsTruyen?page=" + page + "&pagesize=" + pagesize + "&timKiem=" + timKiem, function (data) {
+            result = data
+        })
+        return result
+    },
+    chiTietTruyen: async function (maTruyen) {
+        let result
+        await $.get("/AdminWeb/chiTietTruyen?maTruyen=" + maTruyen, function (data) {
+            result = data
+        })
+        return result
+    },
+    thaoTac: async function (maTruyen, thaoTac) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/AdminWeb/thaoTac',
+            data: JSON.stringify({ maTruyen: maTruyen, thaoTac: thaoTac }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
+    KhoaTacGia: async function (maTG) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/AdminWeb/KhoaTacGia',
+            data: JSON.stringify({ maTG: maTG }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
     }
+
+
 }
 
 const ttTaiKhoan = {

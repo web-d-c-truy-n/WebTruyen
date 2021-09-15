@@ -178,12 +178,12 @@ namespace WebTruyen.Models
                 throw Ex;
             }
         }
-        public static List<TaiKhoan> timKiem(string timkiem)
+        public static List<TaiKhoan> timKiem(string timkiem, int skip, int take)
         {
             try
             {
                 webtruyenptEntities db = new webtruyenptEntities();
-                return db.Database.SqlQuery<TaiKhoan>($"TIMKIEM_TAIKHOAN '{timkiem}'").ToList();
+                return db.Database.SqlQuery<TaiKhoan>($"TIMKIEM_TAIKHOAN N'{timkiem}',{skip},{take}").ToList();
             }
             catch (DbUpdateException ex)
             {
@@ -200,6 +200,16 @@ namespace WebTruyen.Models
                 this.VaiTro = vaiTro == vtTacGia.tacGia ? vtTaiKhoan.tacGiaChuaDuyet : vtTaiKhoan.dichGiaChuaDuyet;
                 this.ngayDKTG = DateTime.Now;
                 db.SaveChanges();
+                List<Admin> admins = db.Admins.ToList();
+                foreach (Admin admin in admins)
+                {
+                    ThongBao thongBao = new ThongBao();
+                    thongBao.MaTK = admin.MaTK;
+                    thongBao.TacGia = this.MaTK;
+                    thongBao.ThongBao1 = $"Tác giả {this.ButDanh} cần được phê duyệt";
+                    HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+                    hanhDongCuaTK.thongBao(thongBao);
+                }
             }
             catch (DbUpdateException ex)
             {
@@ -212,7 +222,10 @@ namespace WebTruyen.Models
         {
             try
             {
+                this.NgayTao = DateTime.Now;
+                this.MatKhau = Commons.MD5(this.MatKhau);
                 this.VaiTro = vtTaiKhoan.admin;
+                db.TaiKhoans.Add(this);
                 db.SaveChanges();
             }
             catch (DbUpdateException ex)
@@ -230,6 +243,11 @@ namespace WebTruyen.Models
                 webtruyenptEntities db = new webtruyenptEntities();
                 TacGia tacGia = db.TacGias.Where(x => x.MaTG == maTK).First();
                 tacGia.duyetTG();
+                ThongBao thongBao = new ThongBao();
+                thongBao.MaTK = maTK;
+                thongBao.ThongBao1 = "Bạn đã được duyệt tác giả";
+                HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+                hanhDongCuaTK.thongBao(thongBao);
             }
             catch (DbUpdateException ex)
             {
@@ -248,6 +266,16 @@ namespace WebTruyen.Models
                 truyen.DaDuyet = true;
                 truyen.NgayDang = DateTime.Now;
                 db.SaveChanges();
+                foreach(TruyenTacGia truyenTacGia in truyen.TruyenTacGias)
+                {
+                    ThongBao thongBao = new ThongBao();
+                    thongBao.MaTK = truyenTacGia.MaTK;
+                    thongBao.MaTruyen = truyen.MaTruyen;
+                    thongBao.ThongBao1 = $"Truyện {truyen.TenTruyen} đã được duyệt";
+                    HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+                    hanhDongCuaTK.thongBao(thongBao);
+                }
+                truyen.guiThongBao();
             }
             catch (DbUpdateException ex)
             {
@@ -264,6 +292,11 @@ namespace WebTruyen.Models
                 webtruyenptEntities db = new webtruyenptEntities();
                 TacGia tacGia = db.TacGias.Where(x => x.MaTG == maTK).First();
                 tacGia.xoaTG();
+                ThongBao thongBao = new ThongBao();
+                thongBao.MaTK = maTK;
+                thongBao.ThongBao1 = $"Bạn đã bị xóa tác giả";
+                HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+                hanhDongCuaTK.thongBao(thongBao);
             }
             catch (DbUpdateException ex)
             {
@@ -280,6 +313,11 @@ namespace WebTruyen.Models
                 webtruyenptEntities db = new webtruyenptEntities();
                 TacGia tacGia = db.TacGias.Where(x => x.MaTG == maTK).First();
                 tacGia.khoaTG();
+                ThongBao thongBao = new ThongBao();
+                thongBao.MaTK = maTK;                
+                thongBao.ThongBao1 = $"Bạn đã bị khóa tác giả";
+                HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+                hanhDongCuaTK.thongBao(thongBao);
             }
             catch (DbUpdateException ex)
             {
@@ -299,6 +337,15 @@ namespace WebTruyen.Models
                 {
                     db.Truyens.Remove(truyen);
                     db.SaveChanges();
+                    foreach (TruyenTacGia truyenTacGia in truyen.TruyenTacGias)
+                    {
+                        ThongBao thongBao = new ThongBao();
+                        thongBao.MaTK = truyenTacGia.MaTK;
+                        thongBao.MaTruyen = truyen.MaTruyen;
+                        thongBao.ThongBao1 = $"Truyện {truyen.TenTruyen} đã bị xóa";
+                        HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+                        hanhDongCuaTK.thongBao(thongBao);
+                    }
                 }
             }
             catch (DbUpdateException ex)
@@ -317,6 +364,15 @@ namespace WebTruyen.Models
                 Truyen truyen = db.Truyens.Find(maTruyen);
                 db.Truyens.Remove(truyen);
                 db.SaveChanges();
+                foreach (TruyenTacGia truyenTacGia in truyen.TruyenTacGias)
+                {
+                    ThongBao thongBao = new ThongBao();
+                    thongBao.MaTK = truyenTacGia.MaTK;
+                    thongBao.MaTruyen = truyen.MaTruyen;
+                    thongBao.ThongBao1 = $"Truyện {truyen.TenTruyen} đã bị quản trị viên xóa";
+                    HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+                    hanhDongCuaTK.thongBao(thongBao);
+                }
             }
             catch (DbUpdateException ex)
             {
@@ -352,8 +408,17 @@ namespace WebTruyen.Models
                 if (this.VaiTro != vtTaiKhoan.admin) return;
                 webtruyenptEntities db = new webtruyenptEntities();
                 Truyen truyen = db.Truyens.Find(maTruyen);
-                truyen.Khoa = true;
+                truyen.Khoa = truyen.Khoa??false?false:true;
                 db.SaveChanges();
+                foreach (TruyenTacGia truyenTacGia in truyen.TruyenTacGias)
+                {
+                    ThongBao thongBao = new ThongBao();
+                    thongBao.MaTK = truyenTacGia.MaTK;
+                    thongBao.MaTruyen = truyen.MaTruyen;
+                    thongBao.ThongBao1 = $"Truyện {truyen.TenTruyen} đã bị quản trị viên khóa";
+                    HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+                    hanhDongCuaTK.thongBao(thongBao);
+                }
             }
             catch (DbUpdateException ex)
             {

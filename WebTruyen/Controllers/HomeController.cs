@@ -138,7 +138,7 @@ namespace WebTruyen.Controllers
 
         public ActionResult timKiemTruyen(string timKiem, int page, int pagesize)
         {
-            vvTruyen[] vvTruyens = Truyen.timKiem(timKiem).Skip((page - 1) * pagesize).Take(pagesize).ToArray();
+            vvTruyen[] vvTruyens = Truyen.timKiem(timKiem, (page - 1) * pagesize,pagesize).ToArray();
             return Json(vvTruyens, JsonRequestBehavior.AllowGet);
         }
         [Login]

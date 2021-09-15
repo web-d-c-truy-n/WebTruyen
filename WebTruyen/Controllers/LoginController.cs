@@ -46,7 +46,6 @@ namespace WebTruyen.Controllers
                 return Json(new { msg = "Số điện thoại đã tồn tại" });
             }
             taiKhoan.DangKy();
-            Auth.login(taiKhoan);
             return Json(new { msg = "Đăng ký thành công" });
         }
         // đăng xuất

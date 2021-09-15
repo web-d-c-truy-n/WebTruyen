@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using WebTruyen.Helper;
@@ -43,6 +45,19 @@ namespace WebTruyen.Models
             TaiKhoan taiKhoan = db.TaiKhoans.Find(this.MaTG);
             taiKhoan.VaiTro = vtTaiKhoan.docGia;
             db.SaveChanges();
+        }
+        public static List<TacGia> timKiem(string timKiem, int skip, int take)
+        {
+            try
+            {
+                webtruyenptEntities db = new webtruyenptEntities();
+                return db.Database.SqlQuery<TacGia>($"TIMKIEM_TACGIA '{timKiem}',{skip},{take}").ToList();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
         }
     }
 }

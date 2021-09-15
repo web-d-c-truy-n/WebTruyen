@@ -4,8 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebTruyen.Models;
+using WebTruyen.Helper;
 namespace WebTruyen.Controllers
 {
+    [LoginAdmin]
     public class AdminWebController : Controller
     {
         private webtruyenptEntities db;
@@ -22,6 +24,7 @@ namespace WebTruyen.Controllers
         {
             ViewBag.CountTK = db.TaiKhoans.ToList().Count;
             ViewBag.CountTG = db.TacGias.ToList().Count;
+            ViewBag.CountTr = db.Truyens.ToList().Count;
             return View();
         }
         public ActionResult ThemAdmin()
@@ -48,13 +51,14 @@ namespace WebTruyen.Controllers
                 return Json(new { msg = "Tên tài khoản đã tồn tại" });
             }
             admin.dangKyAdmin(db);
+            Auth.login(admin);
             return Json(new {msg="Đăng ký thành công" });
         }
         #region quản lý tài khoản
         // lấy danh sách tài khoản
-        public ActionResult dsTaiKhoan(int page, int pagesize)
+        public ActionResult dsTaiKhoan(int page, int pagesize, string timKiem)
         {
-            List<TaiKhoan> taiKhoans = db.TaiKhoans.OrderBy(x => x.MaTK).Skip((page -1)* pagesize).Take(pagesize).ToList();
+            List<TaiKhoan> taiKhoans = TaiKhoan.timKiem(timKiem, (page - 1) * pagesize,pagesize);
             var data = taiKhoans.Select(x => new
             {
                 x.MaTK,x.HovaTen, x.Mail, x.SDT, x.TinhTrang,
@@ -67,15 +71,6 @@ namespace WebTruyen.Controllers
         {
             TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
             return View(taiKhoan);
-        }
-        // danh sách tác phẩm
-        [HttpPost]
-        public ActionResult dsTacPham(int page, int pagesize)
-        {
-            //var data = (from tr in db.Truyens join tl in db.TheLoais 
-            //            on tr.MaLoai equals tl.MaLoai
-            //            select new {tr.MaTruyen, tr.TacGiaGoc, tr.TenTruyen, Luotthich = tr.Luotthiches.Count }).Take(pagesize).ToList();
-            return null;//Json(data);
         }
 
         [HttpPost]
@@ -113,9 +108,9 @@ namespace WebTruyen.Controllers
         }
         #endregion
         #region quản lý tác giả
-        public ActionResult DSTacGia(int page, int pagesize)
+        public ActionResult DSTacGia(int page, int pagesize, string timKiem)
         {
-            List<TacGia> taiKhoans = db.TacGias.OrderBy(x => x.NgayDangKy).Skip((page - 1) * pagesize).Take(pagesize).ToList();
+            List<TacGia> taiKhoans = TacGia.timKiem(timKiem, (page - 1) * pagesize, pagesize);            
             var data = taiKhoans.Select(x => new
             {
                 x.MaTG,
@@ -123,7 +118,8 @@ namespace WebTruyen.Controllers
                 TenTK = x.TaiKhoan().HovaTen,
                 NgayDK = x.NgayDangKy?.ToString("dd/MM/yyyy"),
                 x.VaiTro,
-                x.DaDuyet
+                x.DaDuyet,
+                x.Khoa
             });
             return Json(data, JsonRequestBehavior.AllowGet);
         }
@@ -137,7 +133,7 @@ namespace WebTruyen.Controllers
         public ActionResult LayThongTinTG(int id)
         {
             TacGia tacGia = db.TacGias.Find(id);
-            return Json(new { tacGia.MaTG, NgayDangKy = tacGia.NgayDangKy?.ToString("dd/MM/yyyy"), tacGia.DaDuyet, tacGia.ButDanh, tacGia.VaiTro }, JsonRequestBehavior.AllowGet);
+            return Json(new { tacGia.MaTG, NgayDangKy = tacGia.NgayDangKy?.ToString("dd/MM/yyyy"), tacGia.DaDuyet, tacGia.ButDanh, tacGia.VaiTro, tacGia.Khoa }, JsonRequestBehavior.AllowGet);
         }
         public ActionResult layTruyenTG(int maTG)
         {
@@ -148,15 +144,12 @@ namespace WebTruyen.Controllers
                               select tr).ToList();
             return Json(truyen.Select(x=>new {x.MaTruyen,x.TenTruyen,x.AnhBia, NgayTao = x.NgayTao.ToString("dd/MM/yyyy"), NgayDang = x.NgayDang?.ToString("dd/MM/yyyy") }), JsonRequestBehavior.AllowGet);
         }
-        #endregion
         [HttpPost]
         public ActionResult XoaTacGia(int MaTG)
         {
             try
             {
-                TacGia tacGia = db.TacGias.Find(MaTG);
-                db.TacGias.Remove(tacGia);
-                db.SaveChanges();
+                Auth.user().xoaTacGia(MaTG);
                 return Json(true);
             }
             catch(Exception e)
@@ -164,6 +157,97 @@ namespace WebTruyen.Controllers
                 return Json(false);
             }
             
-        }                
+        }
+        [HttpPost]
+        public ActionResult KhoaTacGia(int maTG)
+        {
+            Auth.user().khoaTacGia(maTG);
+            return Json(true);
+        }
+        #endregion
+        #region quản lý truyện
+        public ActionResult dsTruyen(int page, int pagesize,string timKiem)
+        {
+            List<Truyen> truyens = Truyen.timKiem2(timKiem, (page - 1) * pagesize, pagesize);
+            List<dsTruyen2> dsTruyens = new List<dsTruyen2>();
+            foreach (Truyen x in truyens)
+            {
+                dsTruyen2 dsTruyen = new dsTruyen2()
+                {
+                    MaTruyen = x.MaTruyen,
+                    TenTruyen = x.TenTruyen,
+                    AnhBia = db.QuanLyHinhAnhs.Find(x.AnhBia).URL,
+                    NgayTao = x.NgayTao.ToString("dd/MM/yyyy"),
+                    NgayDang = x.NgayDang?.ToString("dd/MM/yyyy"),
+                    DaDuyet = x.DaDuyet ?? false,
+                    Khoa = x.Khoa ?? false
+                };
+                dsTruyens.Add(dsTruyen);
+            }            
+            return Json(dsTruyens, JsonRequestBehavior.AllowGet);
+        }
+        private class dsTruyen2
+        {
+            public int MaTruyen { get; set; }
+            public string TenTruyen { get; set; }
+            public string AnhBia { get; set; }
+            public string NgayTao { get; set; }
+            public string NgayDang { get; set; }
+            public bool DaDuyet { get; set; }
+            public bool Khoa { get; set; }
+        }
+        public ActionResult chiTietTruyen(int maTruyen)
+        {
+            Truyen x = db.Truyens.Find(maTruyen);
+            string TinhTrang;
+            if (x.Khoa??false)
+            {
+                TinhTrang = "Bị khóa";
+            }else if (x.DaDuyet ?? false)
+            {
+                TinhTrang = "Đã duyệt";
+            }
+            else
+            {
+                TinhTrang = "Chưa duyệt";
+            }
+            var chiTiet = new
+            {
+                x.MaTruyen,
+                AnhBia = x.QuanLyHinhAnh.URL,
+                x.TenTruyen,
+                TheLoai = x.TheLoai.TenLoai,
+                LoaiTruyen = x.LoaiTruyen == Helper.loaiTruyen.truyenChu?"Truyện chữ":"Truyện tranh",
+                TienDo = x.TinhTrang == Helper.ttTruyen.hoanThanh?"Hoàn thành":"Đang thực hiện",
+                LuotXem = x.luotXem(),
+                LuotThich = x.LuotThich().Count,
+                TinhTrang,
+                TacGia = (from tg in db.TacGias 
+                          join tr_tg in db.TruyenTacGias
+                          on tg.MaTG equals tr_tg.MaTK
+                          where tr_tg.MaTruyen == x.MaTruyen
+                          select new {tg.MaTG, tg.ButDanh}).ToArray(),
+            };
+            return Json(chiTiet, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult thaoTac(int maTruyen, int thaoTac)
+        {
+            int duyetTruyen = 1, khoaTruyen = 2, xoaTruyen = 3;
+            if (thaoTac == duyetTruyen)
+            {
+                Auth.user().duyetTruyen(maTruyen);
+            }
+            else if (thaoTac == khoaTruyen)
+            {
+                Auth.user().khoaTruyen(maTruyen);
+            }
+            else if (thaoTac == xoaTruyen)
+            {
+                Auth.user().xoaTruyen_admin(maTruyen);
+            }
+            return Json(true);
+        }
+        #endregion
     }
 }

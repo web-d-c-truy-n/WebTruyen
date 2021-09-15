@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebTruyen.Models;
+using WebTruyen.Helper;
 namespace WebTruyen.Models
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
@@ -11,8 +12,8 @@ namespace WebTruyen.Models
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            Admin ad = (Admin)HttpContext.Current.Session["TaikhoanAdmin"];
-            if (ad == null)
+            TaiKhoan ad = Auth.user();
+            if (ad == null || ad.VaiTro != vtTaiKhoan.admin)
             {
                 return false;
             }

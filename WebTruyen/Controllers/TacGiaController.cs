@@ -118,9 +118,9 @@ namespace WebTruyen.Controllers
         public ActionResult layThongKe(int soNgay)
         {
             int maTK = Auth.MaTk();
-            var LuotXem = db.Database.SqlQuery<ThongKe>($"tkLuotXem {soNgay},{maTK}");
-            var LuotThich = db.Database.SqlQuery<ThongKe>($"tkLuotThich {soNgay},{maTK}");
-            var LuotTheoDoi = db.Database.SqlQuery<ThongKe>($"tkLuotTheoDoi {soNgay},{maTK}");
+            var LuotXem = db.Database.SqlQuery<ThongKe>($"tkLuotXem '{soNgay}','{maTK}'");
+            var LuotThich = db.Database.SqlQuery<ThongKe>($"tkLuotThich '{soNgay}','{maTK}'");
+            var LuotTheoDoi = db.Database.SqlQuery<ThongKe>($"tkLuotTheoDoi '{soNgay}','{maTK}'");
             var json = new { LuotThich = LuotThich.Select(x=>new {Ngay = x.Ngay.ToString("dd/MM/yyyy"), x.SoLuong }), LuotXem = LuotXem.Select(x=>new {Ngay = x.Ngay.ToString("dd/MM/yyyy"), x.SoLuong }), LuotTheoDoi = LuotTheoDoi.Select(x=>new {Ngay = x.Ngay.ToString("dd/MM/yyyy"), x.SoLuong }) };
             return Json(json, JsonRequestBehavior.AllowGet);
         }
@@ -143,9 +143,7 @@ namespace WebTruyen.Controllers
         [HttpPost]
         public ActionResult xoaTruyen(int maTruyen)
         {
-            Truyen truyen = db.Truyens.Find(maTruyen);
-            db.Truyens.Remove(truyen);
-            db.SaveChanges();
+            Auth.user().xoaTruyen(maTruyen);
             return Json(true);
         }     
         [HttpPost]

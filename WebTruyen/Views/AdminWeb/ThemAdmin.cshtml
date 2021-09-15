@@ -11,6 +11,14 @@
         <div class="card-body">
             <p class="login-box-msg">Đăng kí Admin</p>
             <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Name" id="HovaTen">
+                <div class="input-group-append">
+                    <div class="input-group-text">
+                        <span class="fas fa-user"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="User name" id="username">
                 <div class="input-group-append">
                     <div class="input-group-text">
@@ -26,7 +34,7 @@
                     </div>
                 </div>
             </div>
-            <div id="thongbao"></div>
+            <div id="thongbao" class="text-danger"></div>
             <div class="row">
                 <div class="col-8">
                     <a href="@Url.Action("LoginAdmin","Login")" class="text-center">Đã là Admin - mời đăng nhập</a>
@@ -47,15 +55,11 @@
         $(document).ready(function () {
             $("#dkadmin").click(async function () {
                 debugger
+                let HovaTen = $("#HovaTen").val()
                 let username = $("#username").val()
                 let password = ($("#password").val())
-                let dkadmin = await API.RegisterAdmin(username, password)
-                if (dkadmin.msg == "Đăng ký thành công") {
-                    alert("Đã đăng ký")
-                }
-                else {
-                    $("#thongbao").text(dkadmin.msg)
-                }
+                let dkadmin = await API.RegisterAdmin(HovaTen, username, password)                
+                $("#thongbao").text(dkadmin.msg)
             })
         })
     </script>
