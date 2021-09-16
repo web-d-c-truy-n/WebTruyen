@@ -56,9 +56,7 @@ namespace WebTruyen.Controllers
         }
 
         public ActionResult testAPI()
-        {
-            Truyen truyen = db.Truyens.Find(1);
-            truyen.CapNhatLuotThich(Auth.user().MaTK);
+        {            
             return View();
         }
 

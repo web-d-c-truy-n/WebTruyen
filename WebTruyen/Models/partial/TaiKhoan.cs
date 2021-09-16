@@ -131,6 +131,8 @@ namespace WebTruyen.Models
                 if (this.VaiTro != vtTaiKhoan.admin) return;
                 webtruyenptEntities db = new webtruyenptEntities();
                 TaiKhoan taiKhoan = db.TaiKhoans.Find(maTK);
+                if (taiKhoan.Mail == "admin")
+                    throw new InvalidOperationException();
                 db.TaiKhoans.Remove(taiKhoan);
                 db.SaveChanges();
             }
@@ -184,6 +186,20 @@ namespace WebTruyen.Models
             {
                 webtruyenptEntities db = new webtruyenptEntities();
                 return db.Database.SqlQuery<TaiKhoan>($"TIMKIEM_TAIKHOAN N'{timkiem}',{skip},{take}").ToList();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
+
+        public static List<TaiKhoan> timKiem_admin(string timkiem, int skip, int take)
+        {
+            try
+            {
+                webtruyenptEntities db = new webtruyenptEntities();
+                return db.Database.SqlQuery<TaiKhoan>($"TIMKIEM_ADMIN N'{timkiem}',{skip},{take}").ToList();
             }
             catch (DbUpdateException ex)
             {

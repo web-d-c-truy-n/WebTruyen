@@ -633,7 +633,23 @@
             }
         })
         return result
-    }
+    },
+    dsAdmin: async function (page, pagesize, timKiem) {
+        let result = null
+        await $.ajax({
+            type: "GET",
+            url: '/AdminWeb/dsAdmin?page=' + page + "&pagesize=" + pagesize + "&timKiem=" + timKiem,
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
 
 
 }

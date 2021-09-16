@@ -126,6 +126,13 @@ namespace WebTruyen.Helper
             // linq from Henrik Stenbæk
             return formats.Any(item => file.FileName.EndsWith(item, StringComparison.OrdinalIgnoreCase));
         }
+
+        public static string CovertSecondToTime(int seconds)
+        {
+            TimeSpan time = TimeSpan.FromSeconds(seconds);
+            string str = time.ToString(@"hh\:mm\:ss");
+            return str;
+        }
     }
 
     public struct vtAdmin

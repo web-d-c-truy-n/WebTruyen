@@ -25,6 +25,11 @@ namespace WebTruyen.Controllers
             ViewBag.CountTK = db.TaiKhoans.ToList().Count;
             ViewBag.CountTG = db.TacGias.ToList().Count;
             ViewBag.CountTr = db.Truyens.ToList().Count;
+            ViewBag.CountAd = db.Admins.ToList().Count;
+            ViewBag.SoNguoiDK = db.TaiKhoans.ToList().Count;
+            ViewBag.SoLuotXem = db.LuotXems.ToList().Count;
+            ViewBag.SoLuotThich = db.LuotThichTruyens.ToList().Count;
+            ViewBag.SoLuotTheoDoi = db.TheodoTGs.ToList().Count;
             return View();
         }
         public ActionResult ThemAdmin()
@@ -77,15 +82,23 @@ namespace WebTruyen.Controllers
         public ActionResult setTinhTrang(int id,int tinhTrang)
         {
             TaiKhoan taiKhoan = db.TaiKhoans.Find(id);
+            if (taiKhoan.Mail == "admin") 
+                return Json(false);
             taiKhoan.khoaTK(db,tinhTrang);
             return Json(true);
         }
         [HttpPost]
         public ActionResult xoaTaiKhoan(int id)
         {
-            db.TaiKhoans.Remove(db.TaiKhoans.Find(id));
-            db.SaveChanges();
-            return Json(true);
+            try
+            {
+                Auth.user().xoaTK(id);
+                return Json(true);
+            }
+            catch
+            {
+                return Json(false);
+            }            
         }
         public ActionResult layTTTaiKhoan(int id)
         {
@@ -103,6 +116,9 @@ namespace WebTruyen.Controllers
         }
         public ActionResult CapNhatTKAdmin(TaiKhoan taiKhoan)
         {
+            string Mail = db.TaiKhoans.Find(taiKhoan.MaTK).Mail;
+            if (Mail == "admin")
+                return Json(false);
             bool rs = Helper.Auth.SuaTk(taiKhoan);
             return Json(rs);
         }
@@ -249,5 +265,19 @@ namespace WebTruyen.Controllers
             return Json(true);
         }
         #endregion
+        public ActionResult dsAdmin(int page, int pagesize, string timKiem)
+        {
+            List<TaiKhoan> taiKhoans = TaiKhoan.timKiem_admin(timKiem, (page - 1) * pagesize, pagesize);
+            var data = taiKhoans.Select(x => new
+            {
+                x.MaTK,
+                x.HovaTen,
+                x.Mail,
+                x.SDT,
+                x.TinhTrang,
+                NgayTao = x.NgayTao.ToString("dd/MM/yyyy")
+            });
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
     }
 }
