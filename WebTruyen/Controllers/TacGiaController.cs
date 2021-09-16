@@ -83,6 +83,7 @@ namespace WebTruyen.Controllers
                 return Json(false);
             }
         }
+        
         public PartialViewResult thongTinTacGia()
         {
             return PartialView(Auth.user());
@@ -154,6 +155,11 @@ namespace WebTruyen.Controllers
             tacGia.ButDanh = butDanh;
             db.SaveChanges();
             return Json(true);
+        }
+       
+        public PartialViewResult thongTinNhomTacGia()
+        {
+            return PartialView();
         }
     }
 }

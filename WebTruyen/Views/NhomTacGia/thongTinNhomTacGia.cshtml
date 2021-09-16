@@ -1,0 +1,333 @@
+﻿@using WebTruyen.Models
+@using WebTruyen.Helper
+@model TaiKhoan
+@{
+    webtruyenptEntities db = new webtruyenptEntities();
+    Layout = null;
+}
+<div class="tab-pane active" id="ThongTinNhom">
+    <div class="tab-item">
+        <div class="choose-avatar">
+            <div class="loading-overlay">
+                <div class="loading-icon">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+            </div>
+            <div class="c-user-avatar row">
+                <img alt="" src="/Asset/TaiKhoan/Avatar/2-211226356_1560097657656922_8485193369241692719_n.jpg" onerror="this.onerror=null;this.src='https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=390&amp;d=mm&amp;r=g';" class="avatar avatar-195 photo" height="195" width="195" loading="lazy" id="Avatar">
+                <div style="margin-left:20px">
+                    <h1>Tên nhóm:<span>AZĐoàn </span> <i class="fas fa-pencil-alt" id="suaButDanh" style="cursor:pointer"></i></h1>
+
+                    <p>Lượt theo dõi: 0</p>
+                    <div>
+                        <p class="p-2 flex items-center text-lg dark:text-dark-text font-normal mb-0">
+                            <i class="fas fa-user mr-2" aria-hidden="true"></i>
+                            <span class="font-bold">Thành viên:</span>
+                        </p><ul class="flex p-2 flex-wrap">
+                            <li class="mr-4 mb-4">
+                                <div class=" flex items-center justify-center overflow-hidden rounded-full cursor-pointer" style="width: 40px; height: 40px;">
+                                    <img class="min-w-full min-h-full block flex-shrink-0" src="#" alt="logo">
+                                </div>
+                            </li>
+                            <li class="mr-4 mb-4">
+                                <div class=" flex items-center justify-center overflow-hidden rounded-full cursor-pointer" style="width: 40px; height: 40px;">
+                                    <img class="min-w-full min-h-full block flex-shrink-0" src="#" alt="logo">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane active" id="truyenCuaTG">
+            <table class="table table-hover list-bookmark">
+                <thead>
+                    <tr>
+                        <th>Tên truyện tranh</th>
+                        <th>Thời gian cập nhật</th>
+                        <th>Biên tập</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="mange-name">
+                                <div class="item-thumb">
+                                    <a href="/Truyen/TomTat/van-dan-chu---17" title="Vấn Đan Chu  ">
+                                        <img width="75" height="106" src="/Asset/TacGia/Anh/59455ef9-7609-4552-9845-c9d5aabaf4f0_611cf4153e48b.jpg" class="img-responsive" style="" alt="Vấn Đan Chu  ">
+                                    </a>
+                                </div>
+                                <div class="item-infor">
+                                    <div class="post-title">
+                                        <h3>
+                                            <a href="/Truyen/TomTat/van-dan-chu---17">Vấn Đan Chu  </a>
+                                        </h3>
+                                    </div>
+                                    <div class="list-chapter">
+                                        <div class="chapter-item ">
+                                            <span class="chapter font-meta">
+                                                <a href="/Truyen/Truyen/van-dan-chu---17?Chuong=1" class="btn-link"> Chương 1 </a>
+                                            </span>
+                                        </div>
+                                        <div class="chapter-item ">
+                                            <span class="chapter font-meta">
+                                                <a href="/Truyen/Truyen/van-dan-chu---17" class="btn-link">  </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="post-on">
+                                14/09/2021
+                            </div>
+                        </td>
+                        <td>
+                            <div class="action">
+                                <div class="checkbox">
+                                    <input id="17" class="bookmark-checkbox" value="17" type="checkbox">
+                                    <label for="17"></label>
+                                </div>
+                                <a class="wp-manga-delete-bookmark" href="javascript:void(0)" onclick="suaTruyen(17)" data-toggle="modal" data-target="#suaTruyen"><i class="icon ion-ios-settings"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="mange-name">
+                                <div class="item-thumb">
+                                    <a href="/Truyen/TomTat/tuyet-the-than-y-phuc-hac-dai-tieu-thu-18" title="Tuyệt thế thần y: Phúc hắc đại tiểu thư">
+                                        <img width="75" height="106" src="/Asset/TacGia/Anh/ab7da1de-ded8-49f4-967d-186519c0614d_58f76621ef21ec599104c390.jpg" class="img-responsive" style="" alt="Tuyệt thế thần y: Phúc hắc đại tiểu thư">
+                                    </a>
+                                </div>
+                                <div class="item-infor">
+                                    <div class="post-title">
+                                        <h3>
+                                            <a href="/Truyen/TomTat/tuyet-the-than-y-phuc-hac-dai-tieu-thu-18">Tuyệt thế thần y: Phúc hắc đại tiểu thư</a>
+                                        </h3>
+                                    </div>
+                                    <div class="list-chapter">
+                                        <div class="chapter-item ">
+                                            <span class="chapter font-meta">
+                                                <a href="/Truyen/Truyen/tuyet-the-than-y-phuc-hac-dai-tieu-thu-18?Chuong=3" class="btn-link"> Chương 2:  Tự cứu ( 2 ) </a>
+                                            </span>
+                                        </div>
+                                        <div class="chapter-item ">
+                                            <span class="chapter font-meta">
+                                                <a href="/Truyen/Truyen/tuyet-the-than-y-phuc-hac-dai-tieu-thu-18?Chuong=2" class="btn-link"> Chương 2:  Tự cứu ( 1 ) </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="post-on">
+                                09/09/2021
+                            </div>
+                        </td>
+                        <td>
+                            <div class="action">
+                                <div class="checkbox">
+                                    <input id="18" class="bookmark-checkbox" value="18" type="checkbox">
+                                    <label for="18"></label>
+                                </div>
+                                <a class="wp-manga-delete-bookmark" href="javascript:void(0)" onclick="suaTruyen(18)" data-toggle="modal" data-target="#suaTruyen"><i class="icon ion-ios-settings"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="mange-name">
+                                <div class="item-thumb">
+                                    <a href="/Truyen/TomTat/mi-vuong-sung-the-quy-y-hoan-kho-phi--y-phi-kinh-the--19" title="Mị vương sủng thê: Quỷ y hoàn khố phi ( Y phi kinh thế )">
+                                        <img width="75" height="106" src="/Asset/TacGia/Anh/9e9e0697-360d-46c6-85f8-d22860b8ad32_5cc0008e54b8083995c9912e.jpg" class="img-responsive" style="" alt="Mị vương sủng thê: Quỷ y hoàn khố phi ( Y phi kinh thế )">
+                                    </a>
+                                </div>
+                                <div class="item-infor">
+                                    <div class="post-title">
+                                        <h3>
+                                            <a href="/Truyen/TomTat/mi-vuong-sung-the-quy-y-hoan-kho-phi--y-phi-kinh-the--19">Mị vương sủng thê: Quỷ y hoàn khố phi ( Y phi kinh thế )</a>
+                                        </h3>
+                                    </div>
+                                    <div class="list-chapter">
+                                        <div class="chapter-item ">
+                                            <span class="chapter font-meta">
+                                                <a href="/Truyen/Truyen/mi-vuong-sung-the-quy-y-hoan-kho-phi--y-phi-kinh-the--19?Chuong=2" class="btn-link"> Chương 2: làm ra vẻ </a>
+                                            </span>
+                                        </div>
+                                        <div class="chapter-item ">
+                                            <span class="chapter font-meta">
+                                                <a href="/Truyen/Truyen/mi-vuong-sung-the-quy-y-hoan-kho-phi--y-phi-kinh-the--19?Chuong=1" class="btn-link"> Chương 1: phế vật tiểu thư </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="post-on">
+                                09/09/2021
+                            </div>
+                        </td>
+                        <td>
+                            <div class="action">
+                                <div class="checkbox">
+                                    <input id="19" class="bookmark-checkbox" value="19" type="checkbox">
+                                    <label for="19"></label>
+                                </div>
+                                <a class="wp-manga-delete-bookmark" href="javascript:void(0)" onclick="suaTruyen(19)" data-toggle="modal" data-target="#suaTruyen"><i class="icon ion-ios-settings"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="mange-name">
+                                <div class="item-thumb">
+                                    <a href="/Truyen/TomTat/su-phu-ta-la-lam-chanh-anh-37" title="Sư Phụ Ta Là Lâm Chánh Anh">
+                                        <img width="75" height="106" src="/Asset/TacGia/Anh/a01d46cb-20bc-46bd-9bba-f28dd8fc7be2_5c4fefaa54b80805d515d481.jpg" class="img-responsive" style="" alt="Sư Phụ Ta Là Lâm Chánh Anh">
+                                    </a>
+                                </div>
+                                <div class="item-infor">
+                                    <div class="post-title">
+                                        <h3>
+                                            <a href="/Truyen/TomTat/su-phu-ta-la-lam-chanh-anh-37">Sư Phụ Ta Là Lâm Chánh Anh</a>
+                                        </h3>
+                                    </div>
+                                    <div class="list-chapter">
+                                        <div class="chapter-item ">
+                                            <span class="chapter font-meta">
+                                                <a href="/Truyen/Truyen/su-phu-ta-la-lam-chanh-anh-37?Chuong=3" class="btn-link"> Chương 3 </a>
+                                            </span>
+                                        </div>
+                                        <div class="chapter-item ">
+                                            <span class="chapter font-meta">
+                                                <a href="/Truyen/Truyen/su-phu-ta-la-lam-chanh-anh-37?Chuong=2" class="btn-link"> Chương 2 </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="post-on">
+                                12/09/2021
+                            </div>
+                        </td>
+                        <td>
+                            <div class="action">
+                                <div class="checkbox">
+                                    <input id="37" class="bookmark-checkbox" value="37" type="checkbox">
+                                    <label for="37"></label>
+                                </div>
+                                <a class="wp-manga-delete-bookmark" href="javascript:void(0)" onclick="suaTruyen(37)" data-toggle="modal" data-target="#suaTruyen"><i class="icon ion-ios-settings"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="mange-name">
+                                <div class="item-thumb">
+                                    <a href="/Truyen/TomTat/am-duong-quy-thuat-38" title="Âm dương quỷ thuật">
+                                        <img width="75" height="106" src="/Asset/TacGia/Anh/9b6b5e1e-1b2e-48a8-a562-2515101ec371_58b9e21e70957c654bb99564.jpg" class="img-responsive" style="" alt="Âm dương quỷ thuật">
+                                    </a>
+                                </div>
+                                <div class="item-infor">
+                                    <div class="post-title">
+                                        <h3>
+                                            <a href="/Truyen/TomTat/am-duong-quy-thuat-38">Âm dương quỷ thuật</a>
+                                        </h3>
+                                    </div>
+                                    <div class="list-chapter">
+                                        <div class="chapter-item ">
+                                            <span class="chapter font-meta">
+                                                <a href="/Truyen/Truyen/am-duong-quy-thuat-38?Chuong=3" class="btn-link"> Chương 3 </a>
+                                            </span>
+                                        </div>
+                                        <div class="chapter-item ">
+                                            <span class="chapter font-meta">
+                                                <a href="/Truyen/Truyen/am-duong-quy-thuat-38?Chuong=2" class="btn-link"> Chương 2 </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="post-on">
+                                12/09/2021
+                            </div>
+                        </td>
+                        <td>
+                            <div class="action">
+                                <div class="checkbox">
+                                    <input id="38" class="bookmark-checkbox" value="38" type="checkbox">
+                                    <label for="38"></label>
+                                </div>
+                                <a class="wp-manga-delete-bookmark" href="javascript:void(0)" onclick="suaTruyen(38)" data-toggle="modal" data-target="#suaTruyen"><i class="icon ion-ios-settings"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="mange-name">
+                                <div class="item-thumb">
+                                    <a href="/Truyen/TomTat/ma-vuong-39" title="Ma Vương">
+                                        <img width="75" height="106" src="/Asset/TacGia/Anh/d535727a-6a0f-434b-9dab-8393afce449a_57d64e7f70957c7bf362a3ed.jpg" class="img-responsive" style="" alt="Ma Vương">
+                                    </a>
+                                </div>
+                                <div class="item-infor">
+                                    <div class="post-title">
+                                        <h3>
+                                            <a href="/Truyen/TomTat/ma-vuong-39">Ma Vương</a>
+                                        </h3>
+                                    </div>
+                                    <div class="list-chapter">
+                                        <div class="chapter-item ">
+                                            <span class="chapter font-meta">
+                                                <a href="/Truyen/Truyen/ma-vuong-39?Chuong=3" class="btn-link"> Chương 3 </a>
+                                            </span>
+                                        </div>
+                                        <div class="chapter-item ">
+                                            <span class="chapter font-meta">
+                                                <a href="/Truyen/Truyen/ma-vuong-39?Chuong=2" class="btn-link"> Chương 2 </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="post-on">
+                                12/09/2021
+                            </div>
+                        </td>
+                        <td>
+                            <div class="action">
+                                <div class="checkbox">
+                                    <input id="39" class="bookmark-checkbox" value="39" type="checkbox">
+                                    <label for="39"></label>
+                                </div>
+                                <a class="wp-manga-delete-bookmark" href="javascript:void(0)" onclick="suaTruyen(39)" data-toggle="modal" data-target="#suaTruyen"><i class="icon ion-ios-settings"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="3">
+                            <div class="remove-all float-right">
+                                <div class="checkbox">
+                                    <input id="checkall" type="checkbox">
+                                    <label for="checkall">Rà soát tất cả</label>
+                                </div>
+                                <button type="button" id="delete-bookmark-manga" class="btn btn-default">Xóa bỏ</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

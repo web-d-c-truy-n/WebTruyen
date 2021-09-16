@@ -1,0 +1,44 @@
+﻿@using WebTruyen.Models
+@using WebTruyen.Helper
+@model TaiKhoan
+@{
+    webtruyenptEntities db = new webtruyenptEntities();
+    Layout = null;
+}
+@{
+    ViewBag.Title = "Đăng Chương";
+
+}
+<div class="tab-pane" id="DangChuong">
+    <div class="row">
+        <div class="form-group col-md-9">
+            <label for="usr">Tên truyện:</label>
+            <select id="c_tenTruyen" class="form-control">
+            </select>
+        </div>
+        <div class="form-group col-md-3">
+            <label for="usr">Số chương:</label>
+            <select id="c_tenChuong" class="form-control">
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label for="usr">Tên Chương:</label>
+            <input id="tenChuong" class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <textarea id="editor_e"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 widget c-popular" style="display:flex">
+            <button class="btn widget-view-more" style="margin:5px;padding:10px" id="dangChuong">Đăng</button>
+            <button class="btn btn-default" style="margin:5px;padding:10px" id="luuNhapChuong">Lưu nháp</button>
+            <button class="btn btn-danger" style="margin:5px;padding:10px" id="xoaChuong">Xóa</button>
+        </div>
+    </div>
+    <div id="truyenTranh" hidden></div>
+</div>

@@ -1,0 +1,32 @@
+﻿@using WebTruyen.Models
+@using WebTruyen.Helper
+@model TaiKhoan
+@{
+    webtruyenptEntities db = new webtruyenptEntities();
+    Layout = null;
+}
+@{
+    ViewBag.Title = "Đăng Tác Phẩm";
+
+}
+<div class="tab-pane" id="DangTacPham">
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label for="usr">Tên truyện:</label>
+            <input type="text" class="form-control" id="tenTruyen" name="username">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <textarea id="editor"></textarea>
+            <div class="col-md-12 widget c-popular">
+                <button class="btn widget-view-more btn-block" data-toggle="modal" data-target="#dangTacPham" id="btn_dangTacPham">Đăng tác phẩm</button>
+            </div>
+        </div>
+        <div class="col-md-3 widget c-popular">
+            <img src="" class="img-responsive effect-fade lazyloaded" id="anhBia" />
+            <button class="btn widget-view-more btn-block" data-toggle="modal" data-target="#chonAnh" id="btn_themAnhBia">Thêm ảnh bìa</button>
+        </div>
+    </div>
+</div>
+

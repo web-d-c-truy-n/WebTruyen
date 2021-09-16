@@ -1,0 +1,39 @@
+﻿@using WebTruyen.Models
+@using WebTruyen.Helper
+@model TaiKhoan
+@{
+    webtruyenptEntities db = new webtruyenptEntities();
+    Layout = null;
+}
+<div class="tab-pane" id="ThanhVien">
+    <div class="tab-group-item">
+        <div class="tab-item">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="history-content">
+                        <div class="item-thumb">
+                            <a href="#" title="#">
+                                <img width="75" height="106" src="https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=390&amp;d=mm&amp;r=g" class="img-responsive" style="" alt="#">
+                            </a>
+                        </div>
+                        <div class="item-infor">
+                            <div class="settings-title">
+                                <h3>
+                                    <a href="#">Tên</a>
+                                </h3>
+                            </div>
+
+                            <div class="post-on font-meta">
+                                20/9/2020
+                            </div>
+                        </div>
+                        <div class="action">
+                            <a href="javascript:void(0)" class="remove-manga-history" data-manga="1930"><i class="icon ion-ios-close"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

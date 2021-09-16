@@ -163,6 +163,7 @@
     <Compile Include="Controllers\AdminWebController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\NhomTacGiaController.cs" />
     <Compile Include="Controllers\TacGiaController.cs" />
     <Compile Include="Controllers\TruyenController.cs" />
     <Compile Include="Global.asax.cs">
@@ -3301,6 +3302,12 @@
     <Content Include="Views\Home\TacGia.cshtml" />
     <Content Include="Views\Home\dsTheoDoi.cshtml" />
     <Content Include="Views\TacGia\suaTacPham.cshtml" />
+    <Content Include="Views\NhomTacGia\NhomTacGia.cshtml" />
+    <Content Include="Views\NhomTacGia\thongTinNhomTacGia.cshtml" />
+    <Content Include="Views\NhomTacGia\DangTacPham.cshtml" />
+    <Content Include="Views\NhomTacGia\DangChuong.cshtml" />
+    <Content Include="Views\NhomTacGia\ThanhVienNhom.cshtml" />
+    <Content Include="Views\NhomTacGia\PheDuyet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
