@@ -2846,6 +2846,7 @@
     <Content Include="Asset\Web\wp-content\themes\madara\fan-tich-cuc-day-thuyen-conan-kaitou-kid-den-voi-nhau-517f07ba.jpg" />
     <Content Include="Asset\Web\wp-content\themes\madara\images\cursorLeft.png" />
     <Content Include="Asset\Web\wp-content\themes\madara\images\cursorRight.png" />
+    <Content Include="Asset\Web\wp-content\themes\madara\images\nhom.jpg" />
     <Content Include="Asset\Web\wp-content\themes\madara\js\ajax.js" />
     <Content Include="Asset\Web\wp-content\themes\madara\js\aos.js" />
     <Content Include="Asset\Web\wp-content\themes\madara\js\bootstrap.min.js" />
@@ -3302,12 +3303,13 @@
     <Content Include="Views\Home\TacGia.cshtml" />
     <Content Include="Views\Home\dsTheoDoi.cshtml" />
     <Content Include="Views\TacGia\suaTacPham.cshtml" />
-    <Content Include="Views\NhomTacGia\NhomTacGia.cshtml" />
+    <Content Include="Views\NhomTacGia\Index.cshtml" />
     <Content Include="Views\NhomTacGia\thongTinNhomTacGia.cshtml" />
     <Content Include="Views\NhomTacGia\DangTacPham.cshtml" />
     <Content Include="Views\NhomTacGia\DangChuong.cshtml" />
     <Content Include="Views\NhomTacGia\ThanhVienNhom.cshtml" />
     <Content Include="Views\NhomTacGia\PheDuyet.cshtml" />
+    <Content Include="Views\TacGia\Nhom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,7 +15,7 @@ namespace WebTruyen.Models
     public partial class TheodoTG
     {
         public int MaTK { get; set; }
-        public int MaTG { get; set; }
+        public Nullable<int> MaTG { get; set; }
         public System.DateTime Ngaytheodoi { get; set; }
         public int LoaiHD { get; set; }
     }

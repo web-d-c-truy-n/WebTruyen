@@ -14,7 +14,7 @@ namespace WebTruyen.Models
     
     public partial class LuotXem
     {
-        public int MaTruyen { get; set; }
+        public Nullable<int> MaTruyen { get; set; }
         public int MaTK { get; set; }
         public System.DateTime NgayXem { get; set; }
         public Nullable<int> SoChuong { get; set; }

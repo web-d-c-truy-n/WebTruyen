@@ -19,6 +19,7 @@ namespace WebTruyen.Models
         {
             this.HanhDongCuaTKs = new HashSet<HanhDongCuaTK>();
             this.HanhDongCuaTKs1 = new HashSet<HanhDongCuaTK>();
+            this.NhomTGs = new HashSet<NhomTG>();
             this.QuanLyHinhAnhs = new HashSet<QuanLyHinhAnh>();
             this.ThanhVienNhoms = new HashSet<ThanhVienNhom>();
             this.TruyenTacGias = new HashSet<TruyenTacGia>();
@@ -41,6 +42,8 @@ namespace WebTruyen.Models
         public virtual ICollection<HanhDongCuaTK> HanhDongCuaTKs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HanhDongCuaTK> HanhDongCuaTKs1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NhomTG> NhomTGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QuanLyHinhAnh> QuanLyHinhAnhs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

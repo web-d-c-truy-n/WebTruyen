@@ -39,12 +39,12 @@ namespace WebTruyen.Models
         public virtual DbSet<LuotThichChuong> LuotThichChuongs { get; set; }
         public virtual DbSet<LuotThichTruyen> LuotThichTruyens { get; set; }
         public virtual DbSet<LuotXem> LuotXems { get; set; }
+        public virtual DbSet<TacGia> TacGias { get; set; }
         public virtual DbSet<TheodoTG> TheodoTGs { get; set; }
         public virtual DbSet<ThongBao> ThongBaos { get; set; }
         public virtual DbSet<TraoDoiNhom> TraoDoiNhoms { get; set; }
         public virtual DbSet<vTruyen> vTruyens { get; set; }
-        public virtual DbSet<TacGia> TacGias { get; set; }
-        public virtual DbSet<vvTruyen> vvTruyens { get; set; }
         public virtual DbSet<DanhGia> DanhGias { get; set; }
+        public virtual DbSet<vvTruyen> vvTruyens { get; set; }
     }
 }

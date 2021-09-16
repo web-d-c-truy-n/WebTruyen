@@ -27,7 +27,7 @@ namespace WebTruyen.Models
         public Nullable<int> TinhTrang { get; set; }
         public string MoTa { get; set; }
         public string AnhBia { get; set; }
-        public Nullable<int> LuotXem { get; set; }
         public Nullable<int> LuotThich { get; set; }
+        public Nullable<int> LuotXem { get; set; }
     }
 }

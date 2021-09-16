@@ -14,7 +14,7 @@ namespace WebTruyen.Models
     
     public partial class LuotThichTruyen
     {
-        public int MaTruyen { get; set; }
+        public Nullable<int> MaTruyen { get; set; }
         public int MaTK { get; set; }
         public System.DateTime NgayThich { get; set; }
         public int LoaiHD { get; set; }

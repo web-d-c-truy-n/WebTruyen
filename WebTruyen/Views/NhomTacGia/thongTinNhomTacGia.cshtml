@@ -14,28 +14,22 @@
                 </div>
             </div>
             <div class="c-user-avatar row">
-                <img alt="" src="/Asset/TaiKhoan/Avatar/2-211226356_1560097657656922_8485193369241692719_n.jpg" onerror="this.onerror=null;this.src='https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=390&amp;d=mm&amp;r=g';" class="avatar avatar-195 photo" height="195" width="195" loading="lazy" id="Avatar">
+                <img alt="" src="~/Asset/Web/wp-content/themes/madara/images/nhom.jpg" onerror="this.onerror=null;this.src='https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=390&amp;d=mm&amp;r=g';" class="avatar avatar-195 photo" height="195" width="195" loading="lazy" id="Avatar">
                 <div style="margin-left:20px">
                     <h1>Tên nhóm:<span>AZĐoàn </span> <i class="fas fa-pencil-alt" id="suaButDanh" style="cursor:pointer"></i></h1>
 
-                    <p>Lượt theo dõi: 0</p>
+                    <p>Số thành viêni: 0</p>
+                    <p>Khẩu hiệu</p>
                     <div>
-                        <p class="p-2 flex items-center text-lg dark:text-dark-text font-normal mb-0">
-                            <i class="fas fa-user mr-2" aria-hidden="true"></i>
-                            <span class="font-bold">Thành viên:</span>
-                        </p><ul class="flex p-2 flex-wrap">
-                            <li class="mr-4 mb-4">
-                                <div class=" flex items-center justify-center overflow-hidden rounded-full cursor-pointer" style="width: 40px; height: 40px;">
-                                    <img class="min-w-full min-h-full block flex-shrink-0" src="#" alt="logo">
-                                </div>
-                            </li>
-                            <li class="mr-4 mb-4">
-                                <div class=" flex items-center justify-center overflow-hidden rounded-full cursor-pointer" style="width: 40px; height: 40px;">
-                                    <img class="min-w-full min-h-full block flex-shrink-0" src="#" alt="logo">
-                                </div>
-                            </li>
-                        </ul>
+                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Đoàn Thị Thu Thảo!"><img class="rounded-circle" width="30px" src="https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=390&amp;d=mm&amp;r=g" /></a>
+                        <a href="javascript:void()" onclick="xemThem()">Xem thêm</a>
                     </div>
+                    <script>
+                        function xemThem() {
+                            $("#menuuser").find('[href="#ThanhVien"]').parent().click()
+                            $("#menuuser").find('[href="#ThanhVien"]').click()
+                        }
+                    </script>
                 </div>
             </div>
         </div>
@@ -331,3 +325,8 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

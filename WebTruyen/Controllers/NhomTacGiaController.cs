@@ -7,6 +7,7 @@ using WebTruyen.Helper;
 using WebTruyen.Models;
 namespace WebTruyen.Controllers
 {
+    [Login]
     public class NhomTacGiaController : Controller
     {
         private webtruyenptEntities db;
@@ -15,11 +16,11 @@ namespace WebTruyen.Controllers
             db = new webtruyenptEntities();
         }
         // GET: NhomTacGia
+        //public ActionResult Index()
+        //{
+        //    return View();
+        //}
         public ActionResult Index()
-        {
-            return View();
-        }
-        public ActionResult NhomTacGia()
         {
             int maTK = Auth.MaTk();
             ViewBag.theLoai = db.TheLoais.ToList();

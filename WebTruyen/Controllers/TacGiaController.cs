@@ -161,5 +161,17 @@ namespace WebTruyen.Controllers
         {
             return PartialView();
         }
+
+        public PartialViewResult Nhom()
+        {
+            int maTK = Auth.MaTk();
+            ViewBag.NhomCuaToi = (from tv in db.ThanhVienNhoms
+                                  where tv.MaTK == maTK
+                                  join gr in db.NhomTGs
+                                  on tv.MaNhom equals gr.MaNhom
+                                  select gr).ToList();
+            ViewBag.NhomKoCuaToi = db.NhomTGs.Where(x=>db.ThanhVienNhoms.Where(x2=>x2.MaTK == maTK).All(y=>x.MaNhom != y.MaNhom)).ToList();
+            return PartialView();
+        }
     }
 }

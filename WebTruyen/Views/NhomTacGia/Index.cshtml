@@ -281,7 +281,7 @@
                                         <div class="row settings-page">
                                             <div class="col-md-3 col-sm-3">
                                                 <div class="nav-tabs-wrap">
-                                                    <ul class="nav nav-tabs">
+                                                    <ul class="nav nav-tabs" id="menuuser">
                                                         <li class="active">
                                                             <a href="#ThongTinNhom" data-toggle="tab"><i class="fas fa-address-card"></i>Thông tin nhóm</a>
                                                         </li>
@@ -312,7 +312,6 @@
                                                             Html.RenderAction("DangChuong", "NhomTacGia");
                                                             Html.RenderAction("ThanhVienNhom", "NhomTacGia");
                                                             Html.RenderAction("PheDuyet", "NhomTacGia");
-
                                                         }
                                                     </div>
                                                 </div>
@@ -422,7 +421,6 @@
                         <option value="2">Dịch Giả</option>
                     </select>
                 }
-                <label class="mr-sm-2">Đồng sáng tác</label>
                 <button type="button" id="dangTruyen" class="btn btn-primary mb-2">Đăng tác phẩm</button>
                 <button type="button" id="luuNhap" class="btn btn-primary mb-2">Lưu nháp</button>
             </div>
