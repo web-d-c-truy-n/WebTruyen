@@ -129,7 +129,7 @@ namespace WebTruyen.Controllers
             public DateTime Ngay { get; set; }
             public int SoLuong { get; set; }
         }
-        public ActionResult suaTacPham(int id)
+        public ActionResult suaTacPham(int id, int? maNhom)
         {
             Truyen truyen = db.Truyens.Find(id);
             int maTK = Auth.MaTk();
@@ -138,6 +138,7 @@ namespace WebTruyen.Controllers
                 ViewBag.anhCuaTG = Helper.Auth.user().QuanLyHinhAnhs.ToList();
                 ViewBag.theLoai = db.TheLoais.ToList();
                 ViewBag.cacTacGia = db.TacGias;
+                ViewBag.maNhom = maNhom;
             }
             return View(truyen);
         }

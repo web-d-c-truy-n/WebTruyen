@@ -34,6 +34,11 @@ namespace WebTruyen.Controllers
         {
             NhomTG nhomTG = db.NhomTGs.Find(maNhom);
             ViewBag.xemNhom = false;
+            ViewBag.TacPham = (from tg in db.TruyenTacGias
+                               where tg.DangNhom == maNhom
+                               join tr in db.vvTruyens
+                               on tg.MaTruyen equals tr.MaTruyen
+                               select tr);
             return PartialView(nhomTG);
         }
         public PartialViewResult DangTacPham()
@@ -98,5 +103,14 @@ namespace WebTruyen.Controllers
             public string Avatar { get; set; }
             public int Vaitro { get; set; }
         }
+        public ActionResult layTruyenNhom(int maNhom)
+        {
+            Truyen[] truyen = (from tg in db.TruyenTacGias
+                             where tg.DangNhom == maNhom
+                             join tr in db.Truyens
+                             on tg.MaTruyen equals tr.MaTruyen
+                             select tr).ToArray();
+            return Json(truyen.Select(x => new { x.MaTruyen, x.TenTruyen }));
+        }        
     }
 }

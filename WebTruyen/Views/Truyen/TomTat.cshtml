@@ -118,7 +118,7 @@
                                                 <div class="author-content">
                                                     @foreach (TruyenTacGia tacGia in Model.TruyenTacGias)
                                                     {
-                                                        <a href="@Url.Action("TacGia","Home",new {id=Commons.convertToUnSign3(tacGia.TaiKhoan.ButDanh +"-"+ tacGia.MaTK) })" rel="tag">@tacGia.TaiKhoan.ButDanh</a>@(",")
+                                                        <a href="@Url.Action("TacGia","Home",new {id=Commons.convertToUnSign3(tacGia.TaiKhoan.ButDanh +"-"+ tacGia.MaTK) })" rel="tag">@(tacGia.DangNhom !=null?db.NhomTGs.Find(tacGia.DangNhom).TenNhom:tacGia.TaiKhoan.ButDanh)</a>@(",")
                                                     }
                                                 </div>
                                             </div>
@@ -244,7 +244,7 @@
                                         </div>
                                         <div class="page-content-listing single-page">
                                             <div class="listing-chapters_wrap cols-1  show-more">
-                                                @{ChuongTruyen[] chuongTruyen = db.ChuongTruyens.Where(x => x.MaTruyen == Model.MaTruyen).OrderBy(x => x.SoChuong).ToArray();}
+                                                @{ChuongTruyen[] chuongTruyen = db.ChuongTruyens.Where(x => x.MaTruyen == Model.MaTruyen && x.Dang).OrderBy(x => x.SoChuong).ToArray();}
                                                 <ul class="main version-chap">
                                                     @foreach (ChuongTruyen chuong in chuongTruyen)
                                                     {

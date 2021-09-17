@@ -157,18 +157,21 @@
                             </select>
                         }
                         <div class="form-group">
-                            <label for="sel1">Đồng sáng tác</label>
-                            <select class="form-control" id="dongTG" multiple>
-                                @foreach (TacGia tacGia in ViewBag.cacTacGia)
-                                {
-                                    TruyenTacGia tg = db.TruyenTacGias.FirstOrDefault(x => x.MaTK == tacGia.MaTG && x.MaTruyen == Model.MaTruyen);
-                                    string selected = tg != null ? "selected" : "";
-                                    if (tacGia.MaTG != Auth.tacGia().MaTG)
+                            @if (ViewBag.maNhom == null)
+                            {
+                                <label for="sel1">Đồng sáng tác</label>
+                                <select class="form-control" id="dongTG" multiple>
+                                    @foreach (TacGia tacGia in ViewBag.cacTacGia)
                                     {
-                                        <option value="@tacGia.MaTG" @Html.Raw(selected)>@(tacGia.ButDanh)</option>
+                                        TruyenTacGia tg = db.TruyenTacGias.FirstOrDefault(x => x.MaTK == tacGia.MaTG && x.MaTruyen == Model.MaTruyen);
+                                        string selected = tg != null ? "selected" : "";
+                                        if (tacGia.MaTG != Auth.tacGia().MaTG)
+                                        {
+                                            <option value="@tacGia.MaTG" @Html.Raw(selected)>@(tacGia.ButDanh)</option>
+                                        }
                                     }
-                                }
-                            </select>
+                                </select>
+                            }
                         </div>
                         <button type="button" id="dangTruyen" class="btn btn-primary mb-2">Đăng tác phẩm</button>
                         <button type="button" id="luuNhap" class="btn btn-primary mb-2">Lưu nháp</button>
@@ -196,7 +199,8 @@
                 @Html.Raw("{url: '"+anh.URL+"', MaAnh: "+anh.MaAnh+"},")
             }
         ]
-        var MaTruyen = @Model.MaTruyen
+        var MaTruyen = @Model.MaTruyen;
+        var MaNhom = @(ViewBag.maNhom??-1);
     </script>
     <script>
         $(document).ready(function () {
@@ -272,11 +276,11 @@
                     return
                 }
                 let dongTG = $('#dongTG').val();
-                dongTG = dongTG.map(x => parseInt(x));
+                dongTG = dongTG?.map(x => parseInt(x));
                 let tenTruyen = $("#tenTruyen").val()
                 let vaiTro = ($("#vaiTro").val() == null ? 1 : $("#vaiTro").val())
                 $("body").ajaxOn()
-                let rs = await API.DangTruyen(MaTruyen, tenTruyen, theLoai, tacGiaGoc, tamAn, anhBia, loaiTruyen, noiDung, vaiTro, dongTG)
+                let rs = await API.DangTruyen(MaTruyen, tenTruyen, theLoai, tacGiaGoc, tamAn, anhBia, loaiTruyen, noiDung, vaiTro, dongTG, MaNhom == -1 ? null : MaNhom)
                 if (rs) {
                     alert("Cập nhật truyện thành công")
                 } else {                    

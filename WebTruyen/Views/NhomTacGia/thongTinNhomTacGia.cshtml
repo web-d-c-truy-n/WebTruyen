@@ -53,29 +53,30 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach(vvTruyen truyen in ViewBag.TacPham) { 
                     <tr>
                         <td>
                             <div class="mange-name">
                                 <div class="item-thumb">
                                     <a href="/Truyen/TomTat/van-dan-chu---17" title="Vấn Đan Chu  ">
-                                        <img width="75" height="106" src="/Asset/TacGia/Anh/59455ef9-7609-4552-9845-c9d5aabaf4f0_611cf4153e48b.jpg" class="img-responsive" style="" alt="Vấn Đan Chu  ">
+                                        <img width="75" height="106" src="@truyen.AnhBia" class="img-responsive" style="" alt="@truyen.TenTruyen">
                                     </a>
                                 </div>
                                 <div class="item-infor">
                                     <div class="post-title">
                                         <h3>
-                                            <a href="/Truyen/TomTat/van-dan-chu---17">Vấn Đan Chu  </a>
+                                            <a href="@Url.Action("TomTat","Truyen",new {id = Commons.convertToUnSign3(truyen.TenTruyen+"-"+truyen.MaTruyen)})">@truyen.TenTruyen</a>
                                         </h3>
                                     </div>
                                     <div class="list-chapter">
                                         <div class="chapter-item ">
                                             <span class="chapter font-meta">
-                                                <a href="/Truyen/Truyen/van-dan-chu---17?Chuong=1" class="btn-link"> Chương 1 </a>
+                                                <a href="@Url.Action("Truyen","Truyen",new {id = Commons.convertToUnSign3(truyen.TenTruyen+"-"+truyen.MaTruyen), Chuong = truyen.SoChuong1})" class="btn-link">@truyen.TenChuong1</a>
                                             </span>
                                         </div>
                                         <div class="chapter-item ">
                                             <span class="chapter font-meta">
-                                                <a href="/Truyen/Truyen/van-dan-chu---17" class="btn-link">  </a>
+                                                <a href="@Url.Action("Truyen","Truyen",new {id = Commons.convertToUnSign3(truyen.TenTruyen+"-"+truyen.MaTruyen), Chuong = truyen.SoChuong1})" class="btn-link">@truyen.TenChuong2</a>
                                             </span>
                                         </div>
                                     </div>
@@ -84,20 +85,25 @@
                         </td>
                         <td>
                             <div class="post-on">
-                                14/09/2021
+                                @(truyen.NgayDang?.ToString("dd/MM/yyyy"))
                             </div>
                         </td>
                         <td>
-                            <div class="action">
-                                <div class="checkbox">
-                                    <input id="17" class="bookmark-checkbox" value="17" type="checkbox">
-                                    <label for="17"></label>
+                            @if (!ViewBag.xemNhom && Auth.user().isTruongNhom(Model.MaNhom))
+                            {
+                                <div class="action">
+                                    <div class="checkbox">
+                                        <input id="17" class="bookmark-checkbox" value="17" type="checkbox">
+                                        <label for="17"></label>
+                                    </div>
+                                    <a class="wp-manga-delete-bookmark" href="javascript:void(0)" onclick="suaTruyen(@truyen.MaTruyen)" data-toggle="modal" data-target="#suaTruyen"><i class="icon ion-ios-settings"></i></a>
                                 </div>
-                                <a class="wp-manga-delete-bookmark" href="javascript:void(0)" onclick="suaTruyen(17)" data-toggle="modal" data-target="#suaTruyen"><i class="icon ion-ios-settings"></i></a>
-                            </div>
+                            }
                         </td>
                     </tr>
-                    @if (!ViewBag.xemNhom)
+                    }
+                    
+                    @if (!ViewBag.xemNhom && Auth.user().isTruongNhom(Model.MaNhom))
                     {
                         <tr>
                             <td colspan="3">

@@ -16,6 +16,7 @@ namespace WebTruyen.Models
             webtruyenptEntities db = new webtruyenptEntities();
             try
             {
+                if (!Auth.user().isTruyenCuaToi(MaTruyen)) return;
                 this.NgayTao = DateTime.Now;
                 db.ChuongTruyens.Add(this);
                 db.SaveChanges();
@@ -31,6 +32,7 @@ namespace WebTruyen.Models
         {
             try
             {
+                if (!Auth.user().isTruyenCuaToi(MaTruyen)) return;
                 db.SaveChanges();
             }
             catch (DbUpdateException ex)
@@ -43,6 +45,7 @@ namespace WebTruyen.Models
         {
             try
             {
+                if (!Auth.user().isTruyenCuaToi(MaTruyen)) return;
                 db.ChuongTruyens.Remove(this);
                 db.SaveChanges();
             }

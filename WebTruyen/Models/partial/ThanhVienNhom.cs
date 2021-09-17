@@ -98,15 +98,17 @@ namespace WebTruyen.Models
         {
             try
             {
+                webtruyenptEntities db = new webtruyenptEntities();
                 if (this.Vaitro != vtNhom.nhomTruong) return;
                 List<TruyenTacGia> truyenTacGia = new List<TruyenTacGia>();
+                ThanhVienNhom[] thanhViens = db.ThanhVienNhoms.Where(x => x.MaNhom == MaNhom).ToArray();
                 truyenTacGia.Add(new TruyenTacGia()
                 {
                     MaTK = this.MaTK,
                     VaiTro = vaiTro,
                     DangNhom = this.MaNhom
                 });
-                truyen.them(truyenTacGia);
+                truyen.CreateOrUpdate(truyenTacGia);
             }
             catch (DbUpdateException ex)
             {

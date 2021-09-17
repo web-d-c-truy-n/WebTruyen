@@ -257,12 +257,12 @@
         })
         return result
     },
-    DangTruyen: async function (MaTruyen, tenTruyen, maLoai, tacGiaGoc, tamAn, anhBia, loaiTruyen, moTa, vaiTro, dongTG) {
+    DangTruyen: async function (MaTruyen, tenTruyen, maLoai, tacGiaGoc, tamAn, anhBia, loaiTruyen, moTa, vaiTro, dongTG, dangNhom = null) {
         let result = null
         await $.ajax({
             type: "POST",
             url: '/TacGia/DangTruyen',
-            data: JSON.stringify({ MaTruyen: MaTruyen, TenTruyen: tenTruyen, MaLoai: maLoai, TacGiaGoc: tacGiaGoc, TamAn: tamAn, AnhBia: anhBia, LoaiTruyen: loaiTruyen, MoTa: moTa, vaiTro: vaiTro, dongTG: dongTG }),
+            data: JSON.stringify({ MaTruyen: MaTruyen, TenTruyen: tenTruyen, MaLoai: maLoai, TacGiaGoc: tacGiaGoc, TamAn: tamAn, AnhBia: anhBia, LoaiTruyen: loaiTruyen, MoTa: moTa, vaiTro: vaiTro, dongTG: dongTG, dangNhom: dangNhom }),
             dataType: "json",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
@@ -759,6 +759,23 @@
         })
         return result
     },
+    layTruyenNhom: async function (maNhom) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/NhomTacGia/layTruyenNhom',
+            data: JSON.stringify({ maNhom: maNhom }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    }
 
 }
 

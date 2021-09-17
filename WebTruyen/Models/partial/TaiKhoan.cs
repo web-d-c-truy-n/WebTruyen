@@ -348,16 +348,16 @@ namespace WebTruyen.Models
             {
                 webtruyenptEntities db = new webtruyenptEntities();
                 Truyen truyen = db.Truyens.Find(maTruyen);
-                bool hopLe = truyen.TruyenTacGias.ToList().Exists(x => x.MaTK == this.MaTK);
+                List<TruyenTacGia> truyenTacGias = truyen.TruyenTacGias.ToList();
+                bool hopLe = truyenTacGias.Exists(x => x.MaTK == this.MaTK);                
                 if (hopLe)
                 {
                     db.Truyens.Remove(truyen);
                     db.SaveChanges();
-                    foreach (TruyenTacGia truyenTacGia in truyen.TruyenTacGias)
+                    foreach (TruyenTacGia truyenTacGia in truyenTacGias)
                     {
                         ThongBao thongBao = new ThongBao();
                         thongBao.MaTK = truyenTacGia.MaTK;
-                        thongBao.MaTruyen = truyen.MaTruyen;
                         thongBao.ThongBao1 = $"Truyện {truyen.TenTruyen} đã bị xóa";
                         HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
                         hanhDongCuaTK.thongBao(thongBao);
@@ -509,6 +509,16 @@ namespace WebTruyen.Models
             int maTK = Auth.MaTk();
             ThanhVienNhom thanhVien = db.ThanhVienNhoms.FirstOrDefault(x => x.MaNhom == maNhom && x.MaTK == maTK);
             return thanhVien.Vaitro == vtNhom.nhomTruong;
+        }
+        public bool isTruyenCuaToi(int maTruyen)
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            if (db.TruyenTacGias.FirstOrDefault(x => x.MaTruyen == maTruyen && x.MaTK == MaTK) != null)
+                return true;
+            int? maNhom = db.TruyenTacGias.FirstOrDefault(x => x.MaTruyen == maTruyen).DangNhom;
+            if (maNhom != null && db.ThanhVienNhoms.FirstOrDefault(x => x.MaTK == MaTK && x.MaNhom == maNhom) != null)
+                return true;
+            return false;
         }
     }
 }

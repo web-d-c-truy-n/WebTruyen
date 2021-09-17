@@ -288,15 +288,21 @@
                                                         <li class="">
                                                             <a href="#ThanhVien" data-toggle="tab"><i class="far fa-address-book"></i>Thành viên</a>
                                                         </li>
+                                                        @if (ViewBag.truongNhom == 1)
+                                                        { 
                                                         <li class="">
                                                             <a href="#DangTacPham" data-toggle="tab"><i class="fas fa-copy"></i>Đăng tác phẩm</a>
                                                         </li>
+                                                        }                                                            
                                                         <li class="">
                                                             <a href="#DangChuong" data-toggle="tab"><i class="fas fa-edit"></i>Đăng chương</a>
                                                         </li>
+                                                        @if (ViewBag.truongNhom == 1)
+                                                        {
                                                         <li class="">
                                                             <a href="#PheDuyet" data-toggle="tab"><i class="fas fa-pen-square"></i>Phê duyệt thành viên</a>
                                                         </li>
+                                                        }
                                                         <li class="">
                                                             <a href="#TraoDoi" data-toggle="tab"><i class="fas fa-comments"></i>Trao đổi</a>
                                                         </li>
@@ -310,11 +316,14 @@
                                                 <div class="tabs-content-wrap">
                                                     <div class="tab-content">
                                                         @{
+                                                            if (ViewBag.truongNhom == 1) {
+                                                                Html.RenderAction("DangTacPham", "NhomTacGia");
+                                                                Html.RenderAction("PheDuyet", "NhomTacGia", new { maNhom = ViewBag.maNhom });
+                                                            }
                                                             Html.RenderAction("thongTinNhomTacGia", "NhomTacGia", new { maNhom = ViewBag.maNhom });
-                                                            Html.RenderAction("DangTacPham", "NhomTacGia");
                                                             Html.RenderAction("DangChuong", "NhomTacGia", new { maNhom = ViewBag.maNhom });
                                                             Html.RenderAction("ThanhVienNhom", "NhomTacGia", new { maNhom = ViewBag.maNhom });
-                                                            Html.RenderAction("PheDuyet", "NhomTacGia", new { maNhom = ViewBag.maNhom });
+
                                                         }
                                                     </div>
                                                 </div>
@@ -374,18 +383,13 @@
                                  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
                             </div>
                         </div>
-
                     </div>
                 </div>
-
-
             </div>
-
             <!-- Modal footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="anhBia = true" id="dongAnh">Close</button>
             </div>
-
         </div>
     </div>
 </div>
@@ -477,7 +481,7 @@
         })
         async function reload_Truyen() {
             debugger
-            let Truyen = await API.layTruyenTG(-1)
+            let Truyen = await API.layTruyenNhom(maNhom)
             let truyen = ""
             Truyen.forEach((item, index) => {
                 truyen += '<option value="' + item.MaTruyen + ',' + item.LoaiTruyen + '">' + item.TenTruyen + '</option>'
@@ -599,5 +603,105 @@
                 $(e).parents("tr").remove()
             }
         }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#dangTruyen,#luuNhap").click(async function () {
+                debugger
+                let tamAn = $(this).attr("id") == "luuNhap"
+                let theLoai = parseInt($("#theLoai").val())
+                let tacGiaGoc = $("#tacGiaGoc").val()
+                let loaiTruyen = parseInt($("#loaiTruyen").val())
+                let anhBia = parseInt($("#anhBia").attr("idAnh"))
+                let noiDung = $('#editor').trumbowyg('html')
+                if (noiDung.length > 1900) {
+                    alert("Nội dung không được quá 2000 ký tự")
+                    return
+                }
+                let tenTruyen = $("#tenTruyen").val()
+                let vaiTro = ($("#vaiTro").val() == null ? 1 : $("#vaiTro").val())
+                $("body").ajaxOn()
+                let rs = await API.DangTruyen(0, tenTruyen, theLoai, tacGiaGoc, tamAn, anhBia, loaiTruyen, noiDung, vaiTro, null, maNhom)
+                if (rs) {
+                    $("body").ajaxOff()
+                    $("#tacGiaGoc").val("");
+                    $('#editor').trumbowyg('html', "")
+                    $("#tenTruyen").val("")
+                    $(".close").click()
+                    alert("Đăng truyện thành công")
+                } else {
+                    $("body").ajaxOff()
+                    alert("Đăng thất bại")
+                }
+                reload_Truyen()
+
+            })
+        })
+        function suaTruyen(maTruyen) {
+            let iframe = '<iframe src="/TacGia/suaTacPham/' + maTruyen + '?maNhom=' + maNhom + '" width="100%" height="300px" onload="offAjax()"></iframe>'
+            $("#suaTruyen").find(".modal-body").html(iframe)
+            $("#suaTruyen").ajaxOn()
+        }
+        function offAjax() {
+            $("#suaTruyen").ajaxOff()
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#c_tenTruyen").change(async function () {
+                let maTr = $(this).val().split(",")[0]
+                let soChuong = await API.laySoChuongTruyen(maTr)
+                let chuongMoi = soChuong.length + 1
+                let chuong = '<option value="' + maTr + ',' + chuongMoi + '">' + ("Mới") + '</option>'
+                soChuong.forEach(function (item, index) {
+                    chuong += '<option value="' + item.MaTruyen + ',' + item.SoChuong + '">' + ("Chương" + item.SoChuong + ": " + item.TenChuong) + '</option>'
+                })
+                $("#c_tenChuong").html(chuong)
+            })
+            $("#c_tenChuong").change(async function () {
+                debugger
+                let maTr = parseInt($(this).val().split(",")[0])
+                let soChuong = parseInt($(this).val().split(",")[1])
+                let noiDung = await API.layNoiDungChuong(maTr, soChuong)
+                $("#editor_e").trumbowyg("html", noiDung.NoiDung)
+                $("#tenChuong").val(noiDung.TenChuong)
+            })
+            $("#dangChuong,#luuNhapChuong").click(async function () {
+                debugger
+                let maTr = parseInt($("#c_tenChuong").val().split(",")[0])
+                let soChuong = parseInt($("#c_tenChuong").val().split(",")[1])
+                let tenChuong = $("#tenChuong").val()
+                let loaiTruyen = parseInt($("#c_tenTruyen").val().split(",")[1])
+                let noiDung = $("#editor_e").trumbowyg("html")
+                if (loaiTruyen == 2) {
+                    $("#truyenTranh").html(noiDung)
+                    noiDung = ""
+                    $("#truyenTranh").find("[maAnh]").each(function () {
+                        noiDung += $(this).attr("maAnh") + ","
+                    })
+                    $("#truyenTranh").html("")
+                    noiDung = noiDung.substring(0, noiDung.length - 1)
+                }
+                let Dang = $(this).attr("id") == "dangChuong"
+                let rs = await API.createOrUpdateChuong(maTr, soChuong, tenChuong, noiDung, Dang)
+                if (rs) {
+                    $("#c_tenTruyen").change()
+                    alert("Đăng chương thành công")
+                }
+
+            })
+            $("#xoaChuong").click(async function () {
+                if (confirm("Bạn có muốn xóa chương này")) {
+                    let maTr = parseInt($("#c_tenChuong").val().split(",")[0])
+                    let soChuong = parseInt($("#c_tenChuong").val().split(",")[1])
+                    let rs = await API.xoaChuongTG(maTr, soChuong)
+                    if (rs) {
+                        $("#c_tenTruyen").change()
+                        alert("Xóa chương thành công")
+                    }
+                }
+
+            })
+        })
     </script>
 }

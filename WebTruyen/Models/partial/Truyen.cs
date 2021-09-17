@@ -17,6 +17,7 @@ namespace WebTruyen.Models
             {
                 try
                 {
+                    if (!Auth.user().isTruyenCuaToi(MaTruyen)) return;
                     this.NgayTao = DateTime.Now;
                     this.DaDuyet = false;
                     this.Khoa = false;
@@ -30,7 +31,8 @@ namespace WebTruyen.Models
                             db.TruyenTacGias.Add(truyenTacGia);
                         }
                     }
-                    db.SaveChanges();
+                    db.SaveChanges();                  
+                    transaction.Commit();
                     List<Admin> admins = db.Admins.ToList();
                     foreach (Admin admin in admins)
                     {
@@ -40,8 +42,7 @@ namespace WebTruyen.Models
                         thongBao.ThongBao1 = $"Truyện {this.TenTruyen} cần được phê duyệt";
                         HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
                         hanhDongCuaTK.thongBao(thongBao);
-                    }                    
-                    transaction.Commit();
+                    }
                 }
                 catch (DbUpdateException ex)
                 {
@@ -57,16 +58,20 @@ namespace WebTruyen.Models
             {
                 try
                 {
+                    if (!Auth.user().isTruyenCuaToi(MaTruyen)) return;
                     db.SaveChanges();
                     var TruyenTGs = db.TruyenTacGias.Where(x => x.MaTruyen == this.MaTruyen);
+                    int? maNhom = null;
                     foreach (TruyenTacGia tacGia in TruyenTGs)
                     {
+                        maNhom = tacGia.DangNhom;
                         db.TruyenTacGias.Remove(tacGia);
                     }
                     db.SaveChanges();
                     foreach (TruyenTacGia tacGia1 in truyenTacGias)
                     {
                         tacGia1.MaTruyen = this.MaTruyen;
+                        tacGia1.DangNhom = maNhom;
                         db.TruyenTacGias.Add(tacGia1);
                     }
                     db.SaveChanges();
@@ -111,19 +116,28 @@ namespace WebTruyen.Models
         {
             try
             {
-                int maTG = Helper.Auth.tacGia().MaTG;
-                string tenTG = Helper.Auth.tacGia().ButDanh;
                 webtruyenptEntities db = new webtruyenptEntities();
-                List<TheodoTG> theodoiTGs = db.TheodoTGs.Where(x => x.MaTG == maTG).ToList();
-                foreach (TheodoTG theodoiTG in theodoiTGs)
+                void thongBaoNguoiXem(int maTG)
                 {
-                    ThongBao thongBao = new ThongBao();
-                    thongBao.ThongBao1 = $"Tác giả {tenTG} đã lên sóng truyện {this.TenTruyen}";
-                    thongBao.MaTruyen = this.MaTruyen;
-                    thongBao.MaTK = theodoiTG.MaTK;
-                    HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
-                    hanhDongCuaTK.thongBao(thongBao);
+                    TaiKhoan tacGia = db.TaiKhoans.Find(maTG);
+                    string tenTG = tacGia.ButDanh;                    
+                    List<TheodoTG> theodoiTGs = db.TheodoTGs.Where(x => x.MaTG == maTG).ToList();
+                    foreach (TheodoTG theodoiTG in theodoiTGs)
+                    {
+                        ThongBao thongBao = new ThongBao();
+                        thongBao.ThongBao1 = $"Tác giả {tenTG} đã lên sóng truyện {this.TenTruyen}";
+                        thongBao.MaTruyen = this.MaTruyen;
+                        thongBao.MaTK = theodoiTG.MaTK;
+                        HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+                        hanhDongCuaTK.thongBao(thongBao);
+                    }
                 }
+                TruyenTacGia[] truyen = db.TruyenTacGias.Where(x => x.MaTruyen == MaTruyen).ToArray();
+                foreach (TruyenTacGia truyenTacGia in truyen)
+                {
+                    thongBaoNguoiXem(truyenTacGia.MaTK);
+                }
+                
             }
             catch (DbUpdateException ex)
             {
