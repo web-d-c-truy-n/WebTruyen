@@ -42,12 +42,12 @@ namespace WebTruyen.Models
                 if (this.Vaitro != vtNhom.nhomTruong) return;
                 webtruyenptEntities db = new webtruyenptEntities();
                 ThanhVienNhom thanhVienNhom = db.ThanhVienNhoms.Where(x => x.MaTK == maTK && x.MaNhom == this.MaNhom).First();
-                thanhVienNhom.Vaitro = vtNhom.nhomTruong;
+                thanhVienNhom.Vaitro = thanhVienNhom.Vaitro == vtNhom.nhomTruong?vtNhom.thanhVien:vtNhom.nhomTruong;
                 db.SaveChanges();
                 ThongBao thongBao = new ThongBao();
                 thongBao.MaTK = maTK;
                 thongBao.MaNhom = this.MaNhom;
-                thongBao.ThongBao1 = $"Bạn đã được thăng chức làm nhóm trưởng của nhóm {this.NhomTG.TenNhom}";
+                thongBao.ThongBao1 = thanhVienNhom.Vaitro==vtNhom.nhomTruong?$"Bạn đã được thăng chức làm nhóm trưởng của nhóm {this.NhomTG.TenNhom}":$"Bạn đã bị cắt chức nhóm trưởng của nhóm {this.NhomTG.TenNhom}";
                 HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
                 hanhDongCuaTK.thongBao(thongBao);
             }

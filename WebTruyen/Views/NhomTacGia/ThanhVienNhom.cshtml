@@ -3,13 +3,18 @@
 @model List<ThanhVienNhom>
 @{
     webtruyenptEntities db = new webtruyenptEntities();
-    Layout = null;
-    bool truongNhom = Auth.user().isTruongNhom(Model[0].MaNhom);
+    Layout = null;   
 }
 <div class="tab-pane" id="ThanhVien">
     <div class="tab-group-item">
         <div class="tab-item">
             <div class="row">
+                <div class="form-group">
+                    <label class="col-form-label">Tìm kiếm: <input class="form-control" type="text" placeholder="Nhập tên thành viên" id="timKiemTV"/></label>                    
+                </div>
+            </div>
+            <div id="thanhVien"></div>
+            @*<div class="row">
                 @foreach(ThanhVienNhom thanhVien in Model) { 
                 <div class="col-md-4">
                     <div class="history-content">
@@ -36,14 +41,18 @@
                             </div>
                         </div>
                         @if (truongNhom) { 
-                            <div class="action">
-                                <a href="javascript:void(0)" class="remove-manga-history" data-manga="1930"><i class="icon ion-ios-close"></i></a>
+                            <div class="action dropdown suaTV">
+                                <a href="javascript:void(0)" class="remove-manga-history" data-toggle="dropdown" onclick="dropdown(this)">...</a>
+                                <div class="dropdown-menu" style="display:none">
+                                    <a class="dropdown-item" href="javascript:void(0)">Thăng làm nhóm trưởng</a>
+                                    <a class="dropdown-item" href="javascript:void(0)">Xóa khỏi nhóm</a>
+                                </div>                                
                             </div>
                         }                        
                     </div>
                 </div>
                 }                
-            </div>
+            </div>*@
         </div>
     </div>
 </div>

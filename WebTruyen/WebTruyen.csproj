@@ -250,6 +250,9 @@
     <Compile Include="Models\ThongBao.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TIMKIEMTV_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TraoDoiNhom.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -2847,6 +2850,7 @@
     <Content Include="Asset\Web\wp-content\themes\madara\images\cursorLeft.png" />
     <Content Include="Asset\Web\wp-content\themes\madara\images\cursorRight.png" />
     <Content Include="Asset\Web\wp-content\themes\madara\images\nhom.jpg" />
+    <Content Include="Asset\Web\wp-content\themes\madara\images\no-avatar.png" />
     <Content Include="Asset\Web\wp-content\themes\madara\js\ajax.js" />
     <Content Include="Asset\Web\wp-content\themes\madara\js\aos.js" />
     <Content Include="Asset\Web\wp-content\themes\madara\js\bootstrap.min.js" />
@@ -3260,6 +3264,7 @@
     <Content Include="Scripts\react\react.min.js" />
     <Content Include="Scripts\react\reactAdmin.js" />
     <Content Include="Scripts\react\reactHome.js" />
+    <Content Include="Scripts\react\reactNhomTG.js" />
     <Content Include="Scripts\react\reactTacGia.js" />
     <Content Include="Scripts\react\reactThongTinTK.js" />
     <Content Include="Scripts\react\reactTomTatTruyen.js" />

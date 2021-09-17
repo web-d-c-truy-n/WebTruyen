@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="webtruyenptModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="webtruyenptModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ChuongTruyen">
           <Key>
             <PropertyRef Name="MaTruyen" />
@@ -509,6 +509,10 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="TIMKIEMTV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="webtruyenpt">
+          <Parameter Name="MANHOM" Type="int" Mode="In" />
+          <Parameter Name="TIMKIEM" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="webtruyenptModelStoreContainer">
           <EntitySet Name="ChuongTruyen" EntityType="Self.ChuongTruyen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HanhDongCuaTK" EntityType="Self.HanhDongCuaTK" Schema="dbo" store:Type="Tables" />
@@ -718,8 +722,7 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
             <End Role="TruyenTacGia" EntitySet="TruyenTacGia" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="webtruyenptModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1315,7 +1318,31 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
             <End Role="Truyen" EntitySet="Truyens" />
             <End Role="TruyenTacGia" EntitySet="TruyenTacGias" />
           </AssociationSet>
+          <FunctionImport Name="TIMKIEMTV" ReturnType="Collection(webtruyenptModel.TIMKIEMTV_Result)">
+            <Parameter Name="MANHOM" Mode="In" Type="Int32" />
+            <Parameter Name="TIMKIEM" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="TIMKIEMTV_Result">
+          <Property Type="Int32" Name="MaTK" Nullable="false" />
+          <Property Type="Int32" Name="MaNhom" Nullable="false" />
+          <Property Type="DateTime" Name="Ngayvaonhom" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="Vaitro" Nullable="false" />
+          <Property Type="String" Name="GhiChu" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="DaDuyet" Nullable="false" />
+          <Property Type="Int32" Name="MaTK1" Nullable="false" />
+          <Property Type="String" Name="HovaTen" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Mail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="MatKhau" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SDT" Nullable="true" MaxLength="12" />
+          <Property Type="DateTime" Name="NgayTao" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="TinhTrang" Nullable="false" />
+          <Property Type="DateTime" Name="NgayKhoa" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Avatar" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="VaiTro1" Nullable="false" />
+          <Property Type="String" Name="ButDanh" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="ngayDKTG" Nullable="true" Precision="23" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1602,6 +1629,30 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="TIMKIEMTV" FunctionName="webtruyenptModel.Store.TIMKIEMTV">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="webtruyenptModel.TIMKIEMTV_Result">
+                <ScalarProperty Name="MaTK" ColumnName="MaTK" />
+                <ScalarProperty Name="MaNhom" ColumnName="MaNhom" />
+                <ScalarProperty Name="Ngayvaonhom" ColumnName="Ngayvaonhom" />
+                <ScalarProperty Name="Vaitro" ColumnName="Vaitro" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+                <ScalarProperty Name="DaDuyet" ColumnName="DaDuyet" />
+                <ScalarProperty Name="MaTK1" ColumnName="MaTK1" />
+                <ScalarProperty Name="HovaTen" ColumnName="HovaTen" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="NgayKhoa" ColumnName="NgayKhoa" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="VaiTro1" ColumnName="VaiTro1" />
+                <ScalarProperty Name="ButDanh" ColumnName="ButDanh" />
+                <ScalarProperty Name="ngayDKTG" ColumnName="ngayDKTG" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

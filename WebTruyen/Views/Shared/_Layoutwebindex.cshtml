@@ -318,9 +318,9 @@
                                             <div id="manga-search-3" class="widget col-12 col-md-12   default no-icon  manga-widget widget-manga-search">
                                                 <div class="widget__inner manga-widget widget-manga-search__inner c-widget-wrap">
                                                     <div class="widget-content">
-                                                        <div class="search-navigation__wrap">                                                            
+                                                        <div class="search-navigation__wrap">
                                                             <ul class="main-menu-search nav-menu">
-                                                                <li class="menu-search" id="thongBao">                                                                    
+                                                                <li class="menu-search" id="thongBao">
                                                                     <a href="javascript:;" class="open-search-main-menu">
                                                                         <i class="fas fa-bell"></i>
                                                                         @if (HttpContext.Current.Session["taiKhoan"] != null && Auth.user().thongBaos().Count > 0)
@@ -335,23 +335,26 @@
                                                                     <style>
                                                                         #dsthongBao {
                                                                             display: none;
-                                                                            position: absolute;                                                                            
-                                                                            left:-150px;
+                                                                            position: absolute;
+                                                                            left: -150px;
                                                                             z-index: 99999;
                                                                             overflow-y: scroll;
-                                                                            height:500px;
+                                                                            height: 500px;
                                                                         }
+
                                                                             #dsthongBao::-webkit-scrollbar {
                                                                                 display: none;
                                                                             }
+
                                                                         #dsthongBao {
                                                                             -ms-overflow-style: none; /* IE and Edge */
                                                                             scrollbar-width: none; /* Firefox */
                                                                         }
-                                                                        #dsthongBao a {
-                                                                            width: 300px;
-                                                                            background-color: #00d2ff;
-                                                                        }
+
+                                                                            #dsthongBao a {
+                                                                                width: 300px;
+                                                                                background-color: #00d2ff;
+                                                                            }
                                                                     </style>
                                                                     <div id="dsthongBao">
 
@@ -359,13 +362,13 @@
                                                                     <script>
                                                                         $(document).ready(function () {
                                                                             let show = false
-                                                                            $("#thongBao").mouseenter(function () {                                                                                
+                                                                            $("#thongBao").mouseenter(function () {
                                                                                 show = true
                                                                             })
-                                                                            $("#thongBao").mouseleave(function () {                                                                                
+                                                                            $("#thongBao").mouseleave(function () {
                                                                                 show = false
                                                                             })
-                                                                            $(window).click(function () {                                                                                
+                                                                            $(window).click(function () {
                                                                                 if (!show) {
                                                                                     $("#dsthongBao").hide()
                                                                                 }
@@ -380,11 +383,11 @@
                                                                                 })
                                                                                 $("#dsthongBao").html(html)
                                                                                 $("#soThongBao").text("")
-                                                                                                                                                               
+
                                                                             })
-                                                                        })                                                                        
+                                                                        })
                                                                     </script>
-                                                                </li>                                                               
+                                                                </li>
                                                             </ul>
 
                                                             <div class="link-adv-search">
@@ -506,9 +509,10 @@
                         <div class="c-sub-nav_wrap">
                             <div class="sub-nav_content">
                                 <ul class="sub-nav_list list-inline second-menu">
-                                    @foreach (TheLoai theLoai in db.TheLoais.OrderBy(x => x.MaLoai).Take(6)) { 
+                                    @foreach (TheLoai theLoai in db.TheLoais.OrderBy(x => x.MaLoai).Take(6))
+                                    {
                                         <li class="menu-item menu-item-type-taxonomy menu-item-object-wp-manga-genre"><a href="@Url.Action("theLoai","Home",routeValues: new {id = Commons.convertToUnSign3(theLoai.TenLoai+"-"+theLoai.MaLoai).ToLower()})">@theLoai.TenLoai</a></li>
-                                    }                                    
+                                    }
                                     <li id="menu-item-72" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children parent menu-item-72">
                                         <a href="#">MORE</a>
                                         <ul class="sub-menu">
@@ -792,7 +796,7 @@
     <script type="text/javascript" src="~/Asset/Web/wp-content/themes/madara/js/core.js?ver=5.7.2" id="madara-core-js"></script>
     <script type="text/javascript" src="~/Asset/Web/wp-content/themes/madara/js/smoothscroll.js?ver=1.4.10" id="smoothscroll-js"></script>
     <script type="text/javascript" src="~/Asset/Web/wp-content/themes/madara/js/lazysizes/lazysizes.min.js?ver=5.3.2" id="lazysizes-js"></script>
-    <script type="text/javascript" src="~/Asset/Web/wp-content/themes/madara/js/bootstrap.min.js?ver=4.6.0" id="bootstrap-js"></script>
+    <script type="text/javascript" src="~/Asset/Web/wp-content/themes/madara/js/bootstrap.min.js?ver=4.6.0" id="bootstrap-js"></script>   
     <script type="text/javascript" src="~/Asset/Web/wp-content/themes/madara/js/shuffle.min.js?ver=5.3.0" id="shuffle-js"></script>
     <script type="text/javascript" src="~/Asset/Web/wp-includes/js/imagesloaded.min.js?ver=4.1.4" id="imagesloaded-js"></script>
     <script type="text/javascript" src="~/Asset/Web/wp-content/themes/madara/js/aos.js?ver=5.7.2" id="aos-js"></script>
@@ -850,7 +854,7 @@
                 modal.style.display = "none";
             }
         }
-    </script>    
+    </script>
     @RenderSection("js", required: false)
     <script>
         $(document).ready(function () {

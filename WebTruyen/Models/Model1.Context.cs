@@ -12,6 +12,8 @@ namespace WebTruyen.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class webtruyenptEntities : DbContext
     {
@@ -46,5 +48,18 @@ namespace WebTruyen.Models
         public virtual DbSet<vTruyen> vTruyens { get; set; }
         public virtual DbSet<DanhGia> DanhGias { get; set; }
         public virtual DbSet<vvTruyen> vvTruyens { get; set; }
+    
+        public virtual ObjectResult<TIMKIEMTV_Result> TIMKIEMTV(Nullable<int> mANHOM, string tIMKIEM)
+        {
+            var mANHOMParameter = mANHOM.HasValue ?
+                new ObjectParameter("MANHOM", mANHOM) :
+                new ObjectParameter("MANHOM", typeof(int));
+    
+            var tIMKIEMParameter = tIMKIEM != null ?
+                new ObjectParameter("TIMKIEM", tIMKIEM) :
+                new ObjectParameter("TIMKIEM", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TIMKIEMTV_Result>("TIMKIEMTV", mANHOMParameter, tIMKIEMParameter);
+        }
     }
 }

@@ -683,7 +683,82 @@
             }
         })
         return result
-    }
+    },
+    pheDuyetThanhVien: async function (maTV, maNhom) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/NhomTacGia/pheDuyetThanhVien',
+            data: JSON.stringify({ maTV: maTV ,maNhom: maNhom }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
+    xoaThanhVien: async function (maTV, maNhom) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/NhomTacGia/xoaThanhVien',
+            data: JSON.stringify({ maTV: maTV, maNhom: maNhom }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
+    roiNhom: async function (maTV, maNhom) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/NhomTacGia/roiNhom',
+            data: JSON.stringify({ maTV: maTV, maNhom: maNhom }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
+    timKiemTV: async function (timKiem, maNhom) {
+        let result
+        await $.get("/NhomTacGia/timKiem?timKiem=" + timKiem + "&maNhom=" + maNhom, function (data) {
+            result = data
+        })
+        return result
+    },
+    thangChuc: async function (maTV, maNhom) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/NhomTacGia/thangChuc',
+            data: JSON.stringify({ maTV: maTV, maNhom: maNhom }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
 
 }
 

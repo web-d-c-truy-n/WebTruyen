@@ -300,6 +300,9 @@
                                                         <li class="">
                                                             <a href="#TraoDoi" data-toggle="tab"><i class="fas fa-comments"></i>Trao đổi</a>
                                                         </li>
+                                                        <li class="">
+                                                            <a href="javadcipt:void(0)"><i class="fas fa-sign-out-alt"></i>Rời nhóm</a>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -307,7 +310,7 @@
                                                 <div class="tabs-content-wrap">
                                                     <div class="tab-content">
                                                         @{
-                                                            Html.RenderAction("thongTinNhomTacGia", "NhomTacGia",new {maNhom = ViewBag.maNhom });
+                                                            Html.RenderAction("thongTinNhomTacGia", "NhomTacGia", new { maNhom = ViewBag.maNhom });
                                                             Html.RenderAction("DangTacPham", "NhomTacGia");
                                                             Html.RenderAction("DangChuong", "NhomTacGia", new { maNhom = ViewBag.maNhom });
                                                             Html.RenderAction("ThanhVienNhom", "NhomTacGia", new { maNhom = ViewBag.maNhom });
@@ -458,6 +461,9 @@
     <script src="~/Asset/TacGia/Trumbowyg-master/dist/trumbowyg.min.js"></script>
     <script src="~/Asset/TacGia/uploader-master/src/js/jquery.dm-uploader.js"></script>
     <script>
+        var maNhom = @ViewBag.maNhom
+    </script>
+    <script>
         var anhTG = [
             @foreach (QuanLyHinhAnh anh in ViewBag.anhCuaTG)
             {
@@ -559,5 +565,39 @@
             });
         })
     </script>
-
+    <script>
+        var truongNhom = @ViewBag.truongNhom;
+        let showMenu = false
+        $(window).click(function () {
+            if (!showMenu)
+                $(".dropdown-menu").hide()
+        })
+    </script>
+    <script src="~/Scripts/react/reactNhomTG.js" type="text/babel"></script>
+    <script src="~/Scripts/react/reactTacGia.js" type="text/babel"></script>
+    <script>
+        function pheDuyet() {
+            let check = []
+            $("#PheDuyet").find(".bookmark-checkbox").each(function () {
+                if ($(this).is(":checked")) {
+                    check.push(this)
+                }
+            })
+            check.forEach(async function (item, index) {
+                let maTV = parseInt($(item).attr("maTV"))
+                let rs = await API.pheDuyetThanhVien(maTV, maNhom)
+            })
+            check.forEach(function (item, index) {
+                $(item).parents("tr").remove()
+            })
+            debugger
+            readerTV()
+        }
+        async function xoaThanhVien(e, maTV) {            
+            let rs = await API.xoaThanhVien(maTV, maNhom)
+            if (rs) {
+                $(e).parents("tr").remove()
+            }
+        }
+    </script>
 }
