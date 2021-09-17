@@ -1,0 +1,95 @@
+﻿@using WebTruyen.Models
+@model NhomTG
+@{
+    ViewBag.Title = "Nhóm - " + Model.TenNhom;
+    Layout = "~/Views/Shared/_Layoutwebindex.cshtml";
+}
+<div class="site-content">
+    <div class="c-page-content style-2">
+        <div class="content-area">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="c-sidebar">
+                            <div class="body-top-sidebar">
+                                <div class="row c-row">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="main-col-inner">
+                            <div id="post-5" class="c-blog-post post-5 page type-page status-publish hentry">
+                                <div class="entry-header">
+                                    <div class="entry-header_wrap">
+                                        <div class="entry-title">
+                                            <h1 class="item-title h2">Thông tin nhóm</h1>
+                                        </div>
+                                        <div class="entry-meta">
+                                            <div class="post-on">
+                                                <span class="font-meta">Ngày</span>
+                                                <div class="c-blog__date">
+                                                    <span class="posted-on"> <a href="##" rel="bookmark">@DateTime.Now.ToString("dd/MM/yyyy")</a></span>
+                                                    <span class="post-category"><br></span>
+                                                </div>
+                                            </div>
+                                            <div class="post-meta total-count font-meta">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="entry-content">
+                                    <div class="entry-content_wrap">
+                                        <div class="row settings-page">
+                                            <div class="col-md-3 col-sm-3">
+                                                <div class="nav-tabs-wrap">
+                                                    <ul class="nav nav-tabs" id="menuuser" role="tablist">
+                                                        <li class="active">
+                                                            <a data-toggle="tab" href="#ThongTinTacGia"><i class="icon ion-md-person"></i>Thông tin nhóm </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9 col-sm-9">
+                                                <div class="tabs-content-wrap">
+                                                    <div class="tab-content">
+                                                        @{
+                                                            Html.RenderAction("ctNhom", new { id = Model.MaNhom });
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="c-sidebar">
+                            <div class="body-bottom-sidebar">
+                                <div class="row c-row">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js{
+    <script>
+        var maNhom = @Html.Raw(Model.MaNhom)
+        $(document).ready(function () {
+            $("#thamGia").click(async function () {
+                debugger
+                if (confirm("Bạn muốn tham gia nhóm này chứ?")) {
+                    let rs = await API.thamGiaNhom(maNhom)
+                    if (rs.rs) {
+                        alert("Đã gửi lời mời")
+                    } else {
+                        alert(rs.msg)
+                    }
+                }                
+            })
+        })
+    </script>
+}

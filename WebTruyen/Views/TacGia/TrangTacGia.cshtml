@@ -363,6 +363,7 @@
                                                         @{
                                                             Html.RenderAction("thongTinTacGia", "TacGia");
                                                             Html.RenderAction("thongKe", "TacGia");
+                                                            Html.RenderAction("Nhom", "TacGia");
                                                         }
                                                     </div>
                                                 </div>
@@ -835,6 +836,18 @@
                         alert("Sửa bút danh thành công")
                     }
                 }
+            })
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#btn_taoNhom").click(async function () {
+                let tenNhom = prompt("Nhập tên nhóm");
+                let rs = await API.taoNhom(tenNhom)
+                if (rs.err == null)
+                    window.location.href = rs.Url;
+                else
+                    alert(rs.err)
             })
         })
     </script>

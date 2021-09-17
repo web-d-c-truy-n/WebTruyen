@@ -502,5 +502,13 @@ namespace WebTruyen.Models
             webtruyenptEntities db = new webtruyenptEntities();
             return db.ThongBaos.Where(x => x.MaTK == this.MaTK).OrderByDescending(x => x.MaThongBao).ToList();
         }
+
+        public bool isTruongNhom(int maNhom)
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            int maTK = Auth.MaTk();
+            ThanhVienNhom thanhVien = db.ThanhVienNhoms.FirstOrDefault(x => x.MaNhom == maNhom && x.MaTK == maTK);
+            return thanhVien.Vaitro == vtNhom.nhomTruong;
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 @using WebTruyen.Models
 @using WebTruyen.Helper
-@model TaiKhoan
+@model List<ThanhVienNhom>
 @{
     webtruyenptEntities db = new webtruyenptEntities();
     Layout = null;
@@ -11,26 +11,33 @@
         <thead>
             <tr>
                 <th>Tên thành viên</th>
-                <th>Ngày đăng kí</th>
+                <th>Ngày tham gia</th>
                 <th>Xét duyệt</th>
             </tr>
         </thead>
         <tbody>
-
+            @foreach(ThanhVienNhom thanhVienNhom in Model)
+            {
             <tr>
                 <td>
                     <div class="mange-name">
                         <div class="item-thumb">
-                            <a href="#" title="Tên thành viên">
-                                <img width="75" height="106" src="https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=390&amp;d=mm&amp;r=g" class="img-responsive" style="" alt="#">
+                            <a href="#" title="@thanhVienNhom.TaiKhoan.ButDanh">
+                                <img width="75" height="106" src="@(thanhVienNhom.TaiKhoan.Avatar??"qq")" onerror="this.onerror=null;this.src='https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=390&amp;d=mm&amp;r=g';" class="img-responsive" style="" alt="#">
                             </a>
                         </div>
-
+                        <div class="item-infor">
+                            <div class="post-title">
+                                <h3>
+                                    <a href="@Url.Action("TacGia","Home",new {id = WebTruyen.Helper.Commons.convertToUnSign3(thanhVienNhom.TaiKhoan.ButDanh + "-" + thanhVienNhom.MaTK) })">@thanhVienNhom.TaiKhoan.ButDanh</a>
+                                </h3>
+                            </div>                            
+                        </div>
                     </div>
                 </td>
                 <td>
                     <div class="post-on">
-                        16/09/2021
+                        @thanhVienNhom.Ngayvaonhom.ToString("dd/MM/yyyy")
                     </div>
                 </td>
                 <td>
@@ -43,8 +50,7 @@
                     </div>
                 </td>
             </tr>
-
-
+            }
             <tr>
                 <td colspan="3">
                     <div class="remove-all float-right">
@@ -52,7 +58,7 @@
                             <input id="checkall" type="checkbox">
                             <label for="checkall">Rà soát tất cả</label>
                         </div>
-                        <button type="button" id="delete-bookmark-manga" class="btn btn-default">Xóa bỏ</button>
+                        <button type="button" id="delete-bookmark-manga" class="btn btn-default">Phê duyệt</button>
                     </div>
                 </td>
             </tr>

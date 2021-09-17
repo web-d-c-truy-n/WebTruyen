@@ -3310,6 +3310,7 @@
     <Content Include="Views\NhomTacGia\ThanhVienNhom.cshtml" />
     <Content Include="Views\NhomTacGia\PheDuyet.cshtml" />
     <Content Include="Views\TacGia\Nhom.cshtml" />
+    <Content Include="Views\TacGia\ThongTinNhom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -307,11 +307,11 @@
                                                 <div class="tabs-content-wrap">
                                                     <div class="tab-content">
                                                         @{
-                                                            Html.RenderAction("thongTinNhomTacGia", "NhomTacGia");
+                                                            Html.RenderAction("thongTinNhomTacGia", "NhomTacGia",new {maNhom = ViewBag.maNhom });
                                                             Html.RenderAction("DangTacPham", "NhomTacGia");
-                                                            Html.RenderAction("DangChuong", "NhomTacGia");
-                                                            Html.RenderAction("ThanhVienNhom", "NhomTacGia");
-                                                            Html.RenderAction("PheDuyet", "NhomTacGia");
+                                                            Html.RenderAction("DangChuong", "NhomTacGia", new { maNhom = ViewBag.maNhom });
+                                                            Html.RenderAction("ThanhVienNhom", "NhomTacGia", new { maNhom = ViewBag.maNhom });
+                                                            Html.RenderAction("PheDuyet", "NhomTacGia", new { maNhom = ViewBag.maNhom });
                                                         }
                                                     </div>
                                                 </div>

@@ -1,38 +1,48 @@
 ﻿@using WebTruyen.Models
 @using WebTruyen.Helper
-@model TaiKhoan
+@model List<ThanhVienNhom>
 @{
     webtruyenptEntities db = new webtruyenptEntities();
     Layout = null;
+    bool truongNhom = Auth.user().isTruongNhom(Model[0].MaNhom);
 }
 <div class="tab-pane" id="ThanhVien">
     <div class="tab-group-item">
         <div class="tab-item">
             <div class="row">
+                @foreach(ThanhVienNhom thanhVien in Model) { 
                 <div class="col-md-4">
                     <div class="history-content">
                         <div class="item-thumb">
                             <a href="#" title="#">
-                                <img width="75" height="106" src="https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=390&amp;d=mm&amp;r=g" class="img-responsive" style="" alt="#">
+                                <img width="75" height="106" src="@(thanhVien.TaiKhoan.Avatar??"yy")" onerror="this.onerror=null;this.src='https://secure.gravatar.com/avatar/b650eff44bd823b9df5d4fbd0d0b8422?s=390&amp;d=mm&amp;r=g';" class="img-responsive" style="" alt="#">
                             </a>
                         </div>
                         <div class="item-infor">
+                            <div class="chapter">
+                                <span class="chap">
+                                    <h3>
+                                        <a href="@Url.Action("TacGia","Home",new {id = WebTruyen.Helper.Commons.convertToUnSign3(thanhVien.TaiKhoan.ButDanh +"-"+thanhVien.MaTK) })">@thanhVien.TaiKhoan.ButDanh</a>
+                                    </h3>
+                                </span>
+                            </div>
                             <div class="settings-title">
                                 <h3>
-                                    <a href="#">Tên</a>
+                                    <a href="#">@(thanhVien.Vaitro==vtNhom.nhomTruong?"Nhóm trưởng":"Thành viên")</a>
                                 </h3>
                             </div>
-
                             <div class="post-on font-meta">
-                                20/9/2020
+                                @thanhVien.Ngayvaonhom.ToString("dd/MM/yyyy")
                             </div>
                         </div>
-                        <div class="action">
-                            <a href="javascript:void(0)" class="remove-manga-history" data-manga="1930"><i class="icon ion-ios-close"></i></a>
-                        </div>
+                        @if (truongNhom) { 
+                            <div class="action">
+                                <a href="javascript:void(0)" class="remove-manga-history" data-manga="1930"><i class="icon ion-ios-close"></i></a>
+                            </div>
+                        }                        
                     </div>
                 </div>
-
+                }                
             </div>
         </div>
     </div>

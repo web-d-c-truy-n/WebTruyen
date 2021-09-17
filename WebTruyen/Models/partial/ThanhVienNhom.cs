@@ -21,6 +21,12 @@ namespace WebTruyen.Models
                 ThanhVienNhom thanhVienNhom = db.ThanhVienNhoms.Where(x => x.MaTK == maTK && x.MaNhom == this.MaNhom).First();
                 thanhVienNhom.DaDuyet = true;
                 db.SaveChanges();
+                ThongBao thongBao = new ThongBao();
+                thongBao.MaTK = maTK;
+                thongBao.MaNhom = this.MaNhom;
+                thongBao.ThongBao1 = $"Bạn đã được duyệt vào nhóm {this.NhomTG.TenNhom}";
+                HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+                hanhDongCuaTK.thongBao(thongBao);
             }
             catch (DbUpdateException ex)
             {
@@ -38,6 +44,12 @@ namespace WebTruyen.Models
                 ThanhVienNhom thanhVienNhom = db.ThanhVienNhoms.Where(x => x.MaTK == maTK && x.MaNhom == this.MaNhom).First();
                 thanhVienNhom.Vaitro = vtNhom.nhomTruong;
                 db.SaveChanges();
+                ThongBao thongBao = new ThongBao();
+                thongBao.MaTK = maTK;
+                thongBao.MaNhom = this.MaNhom;
+                thongBao.ThongBao1 = $"Bạn đã được thăng chức làm nhóm trưởng của nhóm {this.NhomTG.TenNhom}";
+                HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+                hanhDongCuaTK.thongBao(thongBao);
             }
             catch (DbUpdateException ex)
             {
@@ -55,6 +67,12 @@ namespace WebTruyen.Models
                 ThanhVienNhom thanhVienNhom = db.ThanhVienNhoms.Where(x => x.MaTK == maTK && x.MaNhom == this.MaNhom).First();
                 db.ThanhVienNhoms.Remove(thanhVienNhom);
                 db.SaveChanges();
+                ThongBao thongBao = new ThongBao();
+                thongBao.MaTK = maTK;
+                thongBao.MaNhom = this.MaNhom;
+                thongBao.ThongBao1 = $"Bạn đã bị xóa khỏi nhóm {this.NhomTG.TenNhom}";
+                HanhDongCuaTK hanhDongCuaTK = new HanhDongCuaTK();
+                hanhDongCuaTK.thongBao(thongBao);
             }
             catch (DbUpdateException ex)
             {

@@ -5,7 +5,7 @@
     Layout = null;
 }
 
-<div class="tab-pane" id="lichSu">
+<div class="tab-pane" id="Nhom">
     <div class="tab-group-item">
         <div class="tab-item">
             <p>Nhóm của tôi</p>
@@ -20,6 +20,11 @@
                                 </a>
                             </div>
                             <div class="item-infor">
+                                <div class="settings-title">
+                                    <h3>
+                                        <a href="@Url.Action("Index","NhomTacGia",new {id = WebTruyen.Helper.Commons.convertToUnSign3(nhom.TenNhom + "-"+ nhom.MaNhom) })">@nhom.TenNhom</a>
+                                    </h3>
+                                </div>
                                 <div class="post-on font-meta">
                                     @(nhom.NgayThanhLap.ToString("dd/MM/yyyy"))
                                 </div>
@@ -38,11 +43,16 @@
                     <div class="col-md-4">
                         <div class="history-content">
                             <div class="item-thumb">
-                                <a href="@Url.Action("Index","NhomTacGia",new {id = WebTruyen.Helper.Commons.convertToUnSign3(nhom.TenNhom + "-"+ nhom.MaNhom) })" title="@nhom.MaNhom">
+                                <a href="@Url.Action("ThongTinNhom","TacGia",new {id = WebTruyen.Helper.Commons.convertToUnSign3(nhom.TenNhom + "-"+ nhom.MaNhom) })" title="@nhom.MaNhom">
                                     <img width="75" height="106" src="~/Asset/Web/wp-content/themes/madara/images/nhom.jpg" class="img-responsive" style="" alt="@nhom.TenNhom">
                                 </a>
                             </div>
                             <div class="item-infor">
+                                <div class="settings-title">
+                                    <h3>
+                                        <a href="@Url.Action("ThongTinNhom","TacGia",new {id = WebTruyen.Helper.Commons.convertToUnSign3(nhom.TenNhom + "-"+ nhom.MaNhom) })">@nhom.TenNhom</a>
+                                    </h3>
+                                </div>
                                 <div class="post-on font-meta">
                                     @(nhom.NgayThanhLap.ToString("dd/MM/yyyy"))
                                 </div>
@@ -53,6 +63,9 @@
                         </div>
                     </div>
                 }
+            </div>
+            <div class="col-md-12 widget c-popular">
+                <button class="btn widget-view-more btn-block" id="btn_taoNhom">Tạo nhóm mới</button>
             </div>
         </div>
     </div>

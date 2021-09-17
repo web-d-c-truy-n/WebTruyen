@@ -173,5 +173,43 @@ namespace WebTruyen.Controllers
             ViewBag.NhomKoCuaToi = db.NhomTGs.Where(x=>db.ThanhVienNhoms.Where(x2=>x2.MaTK == maTK).All(y=>x.MaNhom != y.MaNhom)).ToList();
             return PartialView();
         }
+        [HttpPost]
+        public ActionResult taoNhom(string tenNhom)
+        {
+            if (db.NhomTGs.FirstOrDefault(x => x.TenNhom == tenNhom) != null)
+                return Json(new { err = "Tên nhóm đã tồn tại" });
+            int maTK = Auth.MaTk();
+            NhomTG nhomTG = new NhomTG();
+            nhomTG.TenNhom = tenNhom;
+            nhomTG.NguoiThanhLap = maTK;
+            nhomTG.taoNhom();
+            return Json(new { Url = Url.Action("Index", "NhomTacGia", new { id = Commons.convertToUnSign3(nhomTG.TenNhom + "-" + nhomTG.MaNhom) }) });
+        }
+        [HttpPost]
+        public ActionResult thamGiaNhom(int maNhom)
+        {
+            try
+            {
+                NhomTG nhom = db.NhomTGs.Find(maNhom);
+                nhom.vaoNhom(Auth.MaTk());
+                return Json(new {rs = true});
+            }catch(Exception e)
+            {
+                return Json(new { rs = false, msg = e.Message});
+            }
+        }
+        public ActionResult ThongTinNhom(string id)
+        {
+            int maNhom = int.Parse(id.Split('-').Last());
+            NhomTG nhom = db.NhomTGs.Find(maNhom);
+            return View(nhom);
+        }
+
+        public PartialViewResult ctNhom(int id)
+        {
+            NhomTG nhomTG = db.NhomTGs.Find(id);
+            ViewBag.xemNhom = true;
+            return PartialView("~/Views/NhomTacGia/thongTinNhomTacGia.cshtml",nhomTG);
+        }
     }
 }

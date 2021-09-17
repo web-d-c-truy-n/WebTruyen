@@ -650,7 +650,40 @@
         })
         return result
     },
-
+    taoNhom: async function (tenNhom) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/TacGia/taoNhom',
+            data: JSON.stringify({ tenNhom: tenNhom }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
+    thamGiaNhom: async function (maNhom) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/TacGia/thamGiaNhom',
+            data: JSON.stringify({ maNhom: maNhom }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    }
 
 }
 
