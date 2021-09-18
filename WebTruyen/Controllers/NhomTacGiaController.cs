@@ -128,6 +128,7 @@ namespace WebTruyen.Controllers
         }
         public ActionResult noiDungTraoDoi(int id)
         {
+            if (!Auth.user().isTrongNhom(id)) return null;
             List <TraoDoiNhom> traoDoiNhoms = db.TraoDoiNhoms.Where(x => x.MaNhom == id).ToList();
             return Json(traoDoiNhoms.Select(x => new { x.MaNhom, x.MaTV, x.MaTraoDoi, x.NoiDung, x.PhanHoi, NgayViet = x.NgayViet.ToString("dd/MM/yyyy"), x.ButDanh, x.Avatar }),JsonRequestBehavior.AllowGet);
         }

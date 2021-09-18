@@ -506,7 +506,7 @@ namespace WebTruyen.Models
         public bool isTruongNhom(int maNhom)
         {
             webtruyenptEntities db = new webtruyenptEntities();
-            int maTK = Auth.MaTk();
+            int maTK = MaTK;
             ThanhVienNhom thanhVien = db.ThanhVienNhoms.FirstOrDefault(x => x.MaNhom == maNhom && x.MaTK == maTK);
             return thanhVien.Vaitro == vtNhom.nhomTruong;
         }
@@ -519,6 +519,13 @@ namespace WebTruyen.Models
             if (maNhom != null && db.ThanhVienNhoms.FirstOrDefault(x => x.MaTK == MaTK && x.MaNhom == maNhom) != null)
                 return true;
             return false;
+        }
+        public bool isTrongNhom(int maNhom)
+        {
+            webtruyenptEntities db = new webtruyenptEntities();
+            int maTK = MaTK;
+            ThanhVienNhom thanhVien = db.ThanhVienNhoms.FirstOrDefault(x => x.MaNhom == maNhom && x.MaTK == maTK);
+            return thanhVien != null;
         }
     }
 }
