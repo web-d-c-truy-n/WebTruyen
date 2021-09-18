@@ -10,7 +10,7 @@
 
                 <div class="row ">
 
-                    <div class="main-col col-md-8 col-sm-8">
+                    <div class="main-col col-md-12 col-sm-12">
 
                         <div class="ad c-ads custom-code body-top-ads"><img src="./wp-content/uploads/2017/10/ads-1.jpg" alt="Madara Ads Before Content"></div>
 
@@ -46,9 +46,9 @@
                                 <div class="entry-content">
                                     <div class="entry-content_wrap">
                                         <p>Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                                        <p><img loading="lazy" class="aligncenter size-full wp-image-365" src="./wp-content/uploads/2017/10/map.jpg" alt="" width="770" height="434" srcset="./wp-content/uploads/2017/10/map.jpg 770w, ./wp-content/uploads/2017/10/map-300x169.jpg 300w, ./wp-content/uploads/2017/10/map-768x433.jpg 768w" sizes="(max-width: 770px) 100vw, 770px"></p>
+                                        
                                         <p>Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                        <p>[contact-form-7 id=”362″ title=”contact us”]</p>
+                                        
                                     </div>
                                 </div>
 
@@ -60,230 +60,10 @@
 
                         </div>
 
-                        <div class="ad c-ads custom-code body-bottom-ads"><img src="./wp-content/uploads/2017/10/ads-1.jpg" alt="Madara Ads After Content"></div>
+                        <div class="ad c-ads custom-code body-bottom-ads"><img src="~/Asset/Web/wp-content/themes/madara/Arknights.600.3425269.jpg" alt="Madara Ads After Content"></div>
 
                     </div>
 
-                    <div class="sidebar-col col-md-4 col-sm-4">
-                        <div id="main-sidebar" class="main-sidebar" role="complementary">
-                            <div class="row">
-                                <div id="manga-search-4" class="widget col-12 col-md-12   default  no-icon heading-style-1 manga-widget widget-manga-search">
-                                    <div class="widget__inner manga-widget widget-manga-search__inner c-widget-wrap">
-                                        <div class="widget-heading font-nav"><h5 class="heading">Search Manga</h5></div><div class="widget-content">
-                                            <div class="search-navigation__wrap">
-
-                                                <script>
-	jQuery(document).ready(function ($) {
-		if ($('.c-header__top .manga-search-form').length !== 0 && $('.c-header__top .manga-search-form.search-form').length !== 0) {
-
-			$('form#blog-post-search').append('<input type="hidden" name="post_type" value="wp-manga">');
-
-			$('form#blog-post-search').addClass("manga-search-form");
-
-			$('form#blog-post-search input[name="s"]').addClass("manga-search-field");
-
-			$('form.manga-search-form.ajax input.manga-search-field').each(function(){
-
-			var searchIcon = $(this).parent().children('.ion-ios-search-strong');
-
-			var append = $(this).parent();
-
-			$(this).autocomplete({
-				appendTo: append,
-				source: function( request, resp ) {
-					$.ajax({
-						url: manga.ajax_url,
-						type: 'POST',
-						dataType: 'json',
-						data: {
-							action: 'wp-manga-search-manga',
-							title: request.term,
-						},
-						success: function( data ) {
-							resp( $.map( data.data, function( item ) {
-								if ( true == data.success ) {
-									return {
-										label: item.title,
-										value: item.title,
-										url: item.url,
-										type: item.type
-									}
-								} else {
-									return {
-										label: item.message,
-										value: item.message,
-										type: item.type,
-										click: false
-									}
-								}
-							}))
-						}
-					});
-				},
-				select: function( e, ui ) {
-					if ( ui.item.url ) {
-						window.location.href = ui.item.url;
-					} else {
-						if ( ui.item.click ) {
-							return true;
-						} else {
-							return false;
-						}
-					}
-				},
-				open: function( e, ui ) {
-					var acData = $(this).data( 'uiAutocomplete' );
-					acData.menu.element.addClass('manga-autocomplete').find('li div').each(function(){
-						var $self = $(this),
-							keyword = $.trim( acData.term ).split(' ').join('|');
-						$self.html( $self.text().replace( new RegExp( "(" + keyword + ")", "gi" ), '<span class="manga-text-highlight">$1</span>' ) );
-					});
-				}
-			}).autocomplete( "instance" )._renderItem = function( ul, item ) {
-				  return $( "<li class='search-item'>" )
-					.append( "<div class='manga-type-" + item.type + "'>" + item.label + "</div>" )
-					.appendTo( ul );
-			};
-		});
-		}
-	});
-                                                </script>
-                                                <ul class="main-menu-search nav-menu">
-                                                    <li class="menu-search">
-                                                        <a href="javascript:;" class="open-search-main-menu">
-                                                            <i class="icon ion-ios-search"></i>
-                                                            <i class="icon ion-android-close"></i>
-                                                        </a>
-                                                        <ul class="search-main-menu">
-                                                            <li>
-                                                                <form class="manga-search-form search-form ajax" action="./" method="get">
-                                                                    <input class="manga-search-field ui-autocomplete-input" type="text" placeholder="Search..." name="s" value="" autocomplete="off">
-                                                                    <input type="hidden" name="post_type" value="wp-manga"> <i class="icon ion-ios-search"></i>
-                                                                    <div class="loader-inner ball-clip-rotate-multiple">
-                                                                        <div></div>
-                                                                        <div></div>
-                                                                    </div>
-                                                                    <input type="submit" value="Search">
-                                                                    <ul id="ui-id-3" tabindex="0" class="ui-menu ui-widget ui-widget-content ui-autocomplete ui-front" style="display: none;"></ul>
-                                                                </form>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-
-                                                <div class="link-adv-search">
-                                                    <a href="./?s=&amp;post_type=wp-manga">Advanced</a>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><div class="row">
-                                <div id="manga-history-id-5" class="widget col-12 col-md-12   default  no-icon heading-style-1 manga-history-widget">
-                                    <div class="widget__inner manga-history-widget__inner c-widget-wrap">
-                                        <div class="widget-heading font-nav"><h5 class="heading">Reading History</h5></div><div class="widget-content">
-                                            <div class="my-history">
-                                                <!-- -->
-                                                <span class="no-histories" style="display:none">You don't have anything in histories</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <script type="text/javascript">
-			jQuery(document).on('ready', function(){
-				jQuery.ajax({
-					url: manga.ajax_url,
-					type: 'GET',
-					data: {
-						action: 'guest_histories',
-						count: 3					},
-					success: function(html){
-						if(html && html != "0") {
-							jQuery('#manga-history-id-5 .my-history').html(html);
-						} else {
-							jQuery('#manga-history-id-5 .no-histories').show();
-						}
-					},
-					complete: function(e){
-
-					}
-				});
-			});
-                            </script>
-                            <div class="row">
-                                <div id="c-w-posts-6" class="widget col-xs-12 col-md-12   background  no-icon heading-style-1 c-w-posts c-popular manga-widget widget-manga-recent">
-                                    <div class="widget__inner c-w-posts c-popular manga-widget widget-manga-recent__inner c-widget-wrap">
-                                        <div class="c-widget-content style-2">
-                                            <div class="widget-heading font-nav"><h5 class="heading">HOT TOPIC</h5></div><div class="widget-content">
-                                                <div class="popular-item-wrap">
-
-                                                    <div class="popular-img widget-thumbnail c-image-hover">
-                                                        <a title="This Story Behind Anime Will Haunt You Forever!" href="./this-story-behind-anime-will-haunt-you-forever/">
-                                                            <img width="300" height="165" data-src="./wp-content/uploads/2017/10/wallhaven-540070-300x165.jpg" data-srcset="./wp-content/uploads/2017/10/wallhaven-540070-300x165.jpg 300w, ./wp-content/uploads/2017/10/wallhaven-540070-254x140.jpg 254w" data-sizes="(max-width: 300px) 100vw, 300px" class="img-responsive effect-fade lazyloaded" src="./wp-content/uploads/2017/10/wallhaven-540070-300x165.jpg" style="padding-top:55%;" alt="wallhaven-540070" sizes="(max-width: 300px) 100vw, 300px" srcset="./wp-content/uploads/2017/10/wallhaven-540070-300x165.jpg 300w, ./wp-content/uploads/2017/10/wallhaven-540070-254x140.jpg 254w">
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="popular-content">
-                                                        <h5 class="widget-title">
-                                                            <a title="This Story Behind Anime Will Haunt You Forever!" href="./this-story-behind-anime-will-haunt-you-forever/">This Story Behind Anime Will Haunt You Forever!</a>
-                                                        </h5>
-
-                                                        <div class="posts-date">October 6, 2017</div>
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="popular-item-wrap">
-
-                                                    <div class="popular-img widget-thumbnail c-image-hover">
-                                                        <a title="The Latest Trend In Cosplay." href="./the-latest-trend-in-cosplay/">
-                                                            <img width="300" height="165" data-src="./wp-content/uploads/2017/10/wallhaven-550617-300x165.jpg" data-srcset="./wp-content/uploads/2017/10/wallhaven-550617-300x165.jpg 300w, ./wp-content/uploads/2017/10/wallhaven-550617-254x140.jpg 254w" data-sizes="(max-width: 300px) 100vw, 300px" class="img-responsive effect-fade lazyloaded" src="./wp-content/uploads/2017/10/wallhaven-550617-300x165.jpg" style="padding-top:55%;" alt="wallhaven-550617" sizes="(max-width: 300px) 100vw, 300px" srcset="./wp-content/uploads/2017/10/wallhaven-550617-300x165.jpg 300w, ./wp-content/uploads/2017/10/wallhaven-550617-254x140.jpg 254w">
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="popular-content">
-                                                        <h5 class="widget-title">
-                                                            <a title="The Latest Trend In Cosplay." href="./the-latest-trend-in-cosplay/">The Latest Trend In Cosplay.</a>
-                                                        </h5>
-
-                                                        <div class="posts-date">October 6, 2017</div>
-
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="popular-item-wrap">
-
-                                                    <div class="popular-img widget-thumbnail c-image-hover">
-                                                        <a title="Seven Things You Most Likely Didn’t Know About Cosplay." href="./seven-things-you-most-likely-didnt-know-about-cosplay/">
-                                                            <img width="300" height="165" data-src="./wp-content/uploads/2017/10/wallhaven-556142-300x165.jpg" data-srcset="./wp-content/uploads/2017/10/wallhaven-556142-300x165.jpg 300w, ./wp-content/uploads/2017/10/wallhaven-556142-254x140.jpg 254w" data-sizes="(max-width: 300px) 100vw, 300px" class="img-responsive effect-fade lazyloaded" src="./wp-content/uploads/2017/10/wallhaven-556142-300x165.jpg" style="padding-top:55%;" alt="wallhaven-556142" sizes="(max-width: 300px) 100vw, 300px" srcset="./wp-content/uploads/2017/10/wallhaven-556142-300x165.jpg 300w, ./wp-content/uploads/2017/10/wallhaven-556142-254x140.jpg 254w">
-                                                        </a>
-                                                    </div>
-
-                                                    <div class="popular-content">
-                                                        <h5 class="widget-title">
-                                                            <a title="Seven Things You Most Likely Didn’t Know About Cosplay." href="./seven-things-you-most-likely-didnt-know-about-cosplay/">Seven Things You Most Likely Didn’t Know About Cosplay.</a>
-                                                        </h5>
-
-                                                        <div class="posts-date">October 6, 2017</div>
-
-                                                    </div>
-
-                                                </div>
-
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
 
                 </div>

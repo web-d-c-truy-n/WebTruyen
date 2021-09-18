@@ -40,7 +40,7 @@ class ThanhVien extends React.Component {
         }
     }
     ThangChuc = async (maTV, vaiTro) => {
-        if (confirm(vaiTro == 1?"Bạn có muốn cắt chức nhóm trưởng thành viên này không?":"Bạn có muốn thăng chức thành viên này không?")) {
+        if (confirm(vaiTro == 1?"Bạn có muốn cách chức nhóm trưởng thành viên này không?":"Bạn có muốn thăng chức thành viên này không?")) {
             let rs = await API.thangChuc(maTV, maNhom)
             if (rs) {
                 readerTV()
@@ -52,7 +52,7 @@ class ThanhVien extends React.Component {
             <div class="action dropdown" onMouseEnter={this.mouseenter} onMouseLeave={this.mouseleave}>
                 <a href="javascript:void(0)" class="remove-manga-history" onClick={(e) => this.dropdown(e.target)}>...</a>
                 <div class="dropdown-menu" style={{ "display": "none" }}>
-                    <a class="dropdown-item" href="javascript:void(0)" onClick={() => this.ThangChuc(maTV, vaiTro)}>{vaiTro == 1 ? "Gián chức làm thành viên" : "Thăng làm nhóm trưởng"}</a>
+                    <a class="dropdown-item" href="javascript:void(0)" onClick={() => this.ThangChuc(maTV, vaiTro)}>{vaiTro == 1 ? "Giáng chức làm thành viên" : "Thăng làm nhóm trưởng"}</a>
                     <a class="dropdown-item" href="javascript:void(0)" onClick={() => this.XoaThanhVien(maTV)}>Xóa khỏi nhóm</a>
                 </div>
             </div>

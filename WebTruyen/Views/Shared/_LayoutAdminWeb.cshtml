@@ -67,7 +67,7 @@
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         @foreach (ThongBao thongBao in thongBaos)
                         {
-                            <a href="#" class="dropdown-item">
+                            <a href="#" class="dropdown-item text-wrap">
                                 @thongBao.ThongBao1
                                 <span class="float-right text-muted text-sm">@Commons.CovertSecondToTime(Commons.khoanCach2Giay(thongBao.NgayThongBao, DateTime.Now)) trước</span>
                             </a>

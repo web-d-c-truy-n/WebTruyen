@@ -3314,7 +3314,6 @@
     <Content Include="Views\Login\LoginAdmin.cshtml" />
     <Content Include="Views\AdminWeb\QLTaiKhoan.cshtml" />
     <Content Include="Views\Home\Tomtat.cshtml" />
-    <Content Include="Views\Home\Blog.cshtml" />
     <Content Include="Views\Home\ThongtinTK.cshtml" />
     <Content Include="Views\Home\Lichsu.cshtml" />
     <Content Include="Views\Home\Theodoi.cshtml" />

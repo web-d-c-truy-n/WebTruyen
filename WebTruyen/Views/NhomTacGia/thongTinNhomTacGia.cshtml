@@ -18,7 +18,7 @@
                 <div style="margin-left:20px">
                     <h1><a href="#suaThongTin" data-toggle="modal"><span id="tenNhom1">@Model.TenNhom </span> @Html.Raw(ViewBag.xemNhom?"": "<i class=\"fas fa-pencil-alt\" id=\"suaNhom\" style=\"cursor: pointer\"></i>")</a> </h1>
 
-                    <p>Số thành viêni: @Model.ThanhVienNhoms.ToList().Count</p>
+                    <p>Số thành viên: @Model.ThanhVienNhoms.ToList().Count</p>
                     <p id="khauHieu1">@Model.Khauhieu</p>
                     @if (ViewBag.xemNhom) { 
                         <button id="thamGia" class="btn btn-info">Tham gia</button>
