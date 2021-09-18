@@ -17,7 +17,6 @@ namespace WebTruyen.Models
             {
                 try
                 {
-                    if (!Auth.user().isTruyenCuaToi(MaTruyen)) return;
                     this.NgayTao = DateTime.Now;
                     this.DaDuyet = false;
                     this.Khoa = false;
@@ -168,13 +167,13 @@ namespace WebTruyen.Models
         public int luotXem()
         {
             webtruyenptEntities db = new webtruyenptEntities();
-            return db.LuotXems.Where(x => x.MaTruyen == this.MaTruyen).ToArray().Length;
+            return db.LuotXems.Where(x => x.MaTruyen == this.MaTruyen).ToList().Count;
         }
 
         public int luotThich()
         {
             webtruyenptEntities db = new webtruyenptEntities();
-            return db.LuotThichTruyens.Where(x => x.MaTruyen == this.MaTruyen).ToArray().Length;
+            return db.LuotThichTruyens.Where(x => x.MaTruyen == this.MaTruyen).ToList().Count;
         }
 
         public List<BinhLuan> binhLuan()

@@ -692,6 +692,10 @@
                     $("#truyenTranh").find("[maAnh]").each(function () {
                         noiDung += $(this).attr("maAnh") + ","
                     })
+                    if (noiDung == "") {
+                        alert("Vui lòng thêm ảnh vô truyện tranh")
+                        return
+                    }
                     $("#truyenTranh").html("")
                     noiDung = noiDung.substring(0, noiDung.length - 1)
                 }

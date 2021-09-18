@@ -104,7 +104,7 @@ namespace WebTruyen.Controllers
             public string Avatar { get; set; }
             public int Vaitro { get; set; }
         }
-        public ActionResult layTruyenNhom(int maNhom)//get
+        public ActionResult layTruyenNhom(int maNhom)
         {
             Truyen[] truyen = (from tg in db.TruyenTacGias
                              where tg.DangNhom == maNhom

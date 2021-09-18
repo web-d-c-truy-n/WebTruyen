@@ -240,8 +240,16 @@
 </div>
 
 @section js{
-    <script src="~/Scripts/getAPI.js"></script>
     <script>
+        function checkEmail(email) {
+            var filter = /^([a-zA-Z0-9_\.\-])+\@@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (!filter.test(email)) {
+                     return false;
+            }
+            else {
+                return true;
+            }
+        }
         $(document).ready(function () {
             $("#guidi").click(async function () {
                 debugger
@@ -269,6 +277,7 @@
             $("#name-input-submit,#email-input-submit,#phone-input-submit").click(async function () {
                 let hoTen = $("#user-new-name").val()
                 let email = $("#email-input").val()
+                if (email != "" && !checkEmail(email)) return
                 let SDT = $("#phone-input").val()
                 let rs = await API.CapNhatTKUser(hoTen, email, SDT)
                 if (rs) {

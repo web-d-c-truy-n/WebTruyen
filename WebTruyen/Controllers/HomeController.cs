@@ -105,8 +105,7 @@ namespace WebTruyen.Controllers
             List<vvTruyen> truyens = (from tr in db.vvTruyens
                                       join lx in db.LuotThichTruyens
                                       on tr.MaTruyen equals lx.MaTruyen
-                                      orderby lx.NgayThich descending
-                                      group tr by tr.MaTruyen).SelectMany(x => x).ToList();
+                                      orderby lx.NgayThich select tr).ToList();
             return PartialView(truyens);
         }
         // xuất ra các danh sách truyện hot ở trang chủ

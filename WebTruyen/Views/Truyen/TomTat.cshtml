@@ -186,10 +186,10 @@
                                         </div>
                                     </div>
                                     <div id="init-links" class="nav-links">                                        
-                                            <a href="@Url.Action("Truyen","Truyen",new {id=Commons.convertToUnSign3(Model.TenTruyen+"-"+Model.MaTruyen),Chuong = Model.ChuongTruyens.OrderBy(x=>x.SoChuong).First().SoChuong })" id="btn-read-first" class="c-btn c-btn_style-1">
+                                            <a href="@Url.Action("Truyen","Truyen",new {id=Commons.convertToUnSign3(Model.TenTruyen+"-"+Model.MaTruyen),Chuong = Model.ChuongTruyens?.OrderBy(x=>x.SoChuong).FirstOrDefault()?.SoChuong })" id="btn-read-first" class="c-btn c-btn_style-1">
                                                 Đọc trang đầu
                                             </a>
-                                            <a href="@Url.Action("Truyen","Truyen",new {id=Commons.convertToUnSign3(Model.TenTruyen+"-"+Model.MaTruyen),Chuong = Model.ChuongTruyens.OrderBy(x=>x.SoChuong).Last().SoChuong })" id="btn-read-last" class="c-btn c-btn_style-1">
+                                            <a href="@Url.Action("Truyen","Truyen",new {id=Commons.convertToUnSign3(Model.TenTruyen+"-"+Model.MaTruyen),Chuong = Model.ChuongTruyens?.OrderBy(x=>x.SoChuong).LastOrDefault()?.SoChuong })" id="btn-read-last" class="c-btn c-btn_style-1">
                                                 Đọc trang cuối
                                             </a>
                                     </div>
