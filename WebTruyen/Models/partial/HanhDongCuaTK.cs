@@ -131,7 +131,7 @@ namespace WebTruyen.Models
                 this.PhanHoi = traoDoiNhom.PhanHoi;
                 this.MaNhom = traoDoiNhom.MaNhom;
                 this.NgayHanhDong = DateTime.Now;
-                this.LoaiHD = hdTaiKhoan.binhLuan;
+                this.LoaiHD = hdTaiKhoan.traoDoi;
                 db.HanhDongCuaTKs.Add(this);
                 db.SaveChanges();
                 return this.MaHD;

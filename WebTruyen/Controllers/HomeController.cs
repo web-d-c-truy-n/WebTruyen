@@ -56,7 +56,7 @@ namespace WebTruyen.Controllers
         }
 
         public ActionResult testAPI()
-        {            
+        {
             return View();
         }
 

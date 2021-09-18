@@ -1,5 +1,6 @@
 ﻿@using WebTruyen.Helper
 @using WebTruyen.Models
+@model NhomTG
 @{
     ViewBag.Title = "Nhóm Tác Giả";
     Layout = "~/Views/Shared/_Layoutwebindex.cshtml";
@@ -248,6 +249,35 @@
             max-width: 1140px;
         }
     }
+    .card {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid rgba(0,0,0,.125);
+        border-radius: .25rem;
+    }
+
+    .direct-chat-text {
+        border-radius: .3rem;
+        background-color: #d2d6de;
+        border: 1px solid #d2d6de;
+        color: #444;
+        margin: 5px 0 0 50px;
+        padding: 5px 10px;
+        position: relative;
+    }
+
+    .direct-chat-primary .right > .direct-chat-text {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #fff;
+    }
 </style>
 <div class="site-content">
 
@@ -289,24 +319,24 @@
                                                             <a href="#ThanhVien" data-toggle="tab"><i class="far fa-address-book"></i>Thành viên</a>
                                                         </li>
                                                         @if (ViewBag.truongNhom == 1)
-                                                        { 
-                                                        <li class="">
-                                                            <a href="#DangTacPham" data-toggle="tab"><i class="fas fa-copy"></i>Đăng tác phẩm</a>
-                                                        </li>
-                                                        }                                                            
+                                                        {
+                                                            <li class="">
+                                                                <a href="#DangTacPham" data-toggle="tab"><i class="fas fa-copy"></i>Đăng tác phẩm</a>
+                                                            </li>
+                                                        }
                                                         <li class="">
                                                             <a href="#DangChuong" data-toggle="tab"><i class="fas fa-edit"></i>Đăng chương</a>
                                                         </li>
                                                         @if (ViewBag.truongNhom == 1)
                                                         {
-                                                        <li class="">
-                                                            <a href="#PheDuyet" data-toggle="tab"><i class="fas fa-pen-square"></i>Phê duyệt thành viên</a>
-                                                        </li>
+                                                            <li class="">
+                                                                <a href="#PheDuyet" data-toggle="tab"><i class="fas fa-pen-square"></i>Phê duyệt thành viên</a>
+                                                            </li>
                                                         }
                                                         <li class="">
                                                             <a href="#TraoDoi" data-toggle="tab"><i class="fas fa-comments"></i>Trao đổi</a>
                                                         </li>
-                                                        <li class="">
+                                                        <li class="" id="roiNhom">
                                                             <a href="javadcipt:void(0)"><i class="fas fa-sign-out-alt"></i>Rời nhóm</a>
                                                         </li>
                                                     </ul>
@@ -316,13 +346,15 @@
                                                 <div class="tabs-content-wrap">
                                                     <div class="tab-content">
                                                         @{
-                                                            if (ViewBag.truongNhom == 1) {
+                                                            if (ViewBag.truongNhom == 1)
+                                                            {
                                                                 Html.RenderAction("DangTacPham", "NhomTacGia");
                                                                 Html.RenderAction("PheDuyet", "NhomTacGia", new { maNhom = ViewBag.maNhom });
                                                             }
                                                             Html.RenderAction("thongTinNhomTacGia", "NhomTacGia", new { maNhom = ViewBag.maNhom });
                                                             Html.RenderAction("DangChuong", "NhomTacGia", new { maNhom = ViewBag.maNhom });
                                                             Html.RenderAction("ThanhVienNhom", "NhomTacGia", new { maNhom = ViewBag.maNhom });
+                                                            Html.RenderAction("traoDoi", "NhomTacGia", new { maNhom = ViewBag.maNhom });
 
                                                         }
                                                     </div>
@@ -440,7 +472,7 @@
         </div>
     </div>
 </div>
-<!--Modal tác giả-->
+<!--Modal sửa truyện-->
 <!-- The Modal -->
 <div class="modal fade" id="suaTruyen">
     <div class="modal-dialog modal2-xl" style="width: 80%">
@@ -461,11 +493,38 @@
         </div>
     </div>
 </div>
+<!--Modal sửa thông tin nhóm-->
+<!-- The Modal -->
+<div class="modal fade" id="suaThongTin">
+    <div class="modal-dialog modal2-xl" style="width: 80%">
+        <div class="modal-content2">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Sửa thông tin</h4>                
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-form-lable">Nhập tên nhóm</label>
+                    <input class="form-control" value="@Model.TenNhom" id="tenNhom" />
+                    <label class="col-form-lable">Nhập khẩu hiệu</label>
+                    <input class="form-control" value="@Model.Khauhieu" id="khauHieu" />
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="suaTT">Sửa</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+            </div>
+        </div>
+    </div>
+</div>
 @section js{
     <script src="~/Asset/TacGia/Trumbowyg-master/dist/trumbowyg.min.js"></script>
     <script src="~/Asset/TacGia/uploader-master/src/js/jquery.dm-uploader.js"></script>
     <script>
-        var maNhom = @ViewBag.maNhom
+        var maNhom = @ViewBag.maNhom;
+        var maTV = @Auth.MaTk();
     </script>
     <script>
         var anhTG = [
@@ -597,7 +656,7 @@
             debugger
             readerTV()
         }
-        async function xoaThanhVien(e, maTV) {            
+        async function xoaThanhVien(e, maTV) {
             let rs = await API.xoaThanhVien(maTV, maNhom)
             if (rs) {
                 $(e).parents("tr").remove()
@@ -704,4 +763,31 @@
             })
         })
     </script>
+    <script>
+        $(document).ready(function () {
+            $("#suaTT").click(async function () {
+                debugger
+                let tenNhom = $("#tenNhom").val()
+                let khauHieu = $("#khauHieu").val()
+                let rs = await API.suaTTNhom(maNhom, tenNhom, khauHieu)
+                if (rs) {
+                    $("#tenNhom1").text(tenNhom)
+                    $("#khauHieu1").text(khauHieu)
+                    alert("Sửa thành công")
+                }
+            })
+            $("#roiNhom").click(async function () {
+                if (confirm("Bạn có muốn rời nhóm chứ")) {
+                    let rs = await API.roiNhom(maNhom)
+                    if (rs) {
+                        window.location.href = "/"
+                    }
+                }                
+            })
+        })
+    </script>
+    <script src="~/Scripts/jquery.signalR-2.4.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script src="~/Scripts/react/reactTraoDoi.js" type="text/babel"></script>
+
 }

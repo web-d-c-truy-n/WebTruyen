@@ -22,7 +22,6 @@
         <EntityTypeShape EntityType="webtruyenptModel.TacGia" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="webtruyenptModel.TheodoTG" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="webtruyenptModel.ThongBao" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="webtruyenptModel.TraoDoiNhom" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="webtruyenptModel.vTruyen" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="webtruyenptModel.DanhGia" Width="1.5" PointX="10.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="webtruyenptModel.vvTruyen" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
@@ -41,6 +40,7 @@
         <AssociationConnector Association="webtruyenptModel.FK_TruyenTacGia_TaiKhoan" ManuallyRouted="false" />
         <AssociationConnector Association="webtruyenptModel.FK_Truyen_TheLoai" ManuallyRouted="false" />
         <AssociationConnector Association="webtruyenptModel.FK_TruyenTacGia_Truyen" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="webtruyenptModel.TraoDoiNhom" Width="1.5" PointX="13.375" PointY="5.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

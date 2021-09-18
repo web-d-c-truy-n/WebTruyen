@@ -210,6 +210,11 @@ namespace WebTruyen.Controllers
         {
             NhomTG nhomTG = db.NhomTGs.Find(id);
             ViewBag.xemNhom = true;
+            ViewBag.TacPham = (from tg in db.TruyenTacGias
+                               where tg.DangNhom == id
+                               join tr in db.vvTruyens
+                               on tg.MaTruyen equals tr.MaTruyen
+                               select tr);
             return PartialView("~/Views/NhomTacGia/thongTinNhomTacGia.cshtml",nhomTG);
         }
     }

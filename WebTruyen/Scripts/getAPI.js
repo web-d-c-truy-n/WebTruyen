@@ -718,12 +718,12 @@
         })
         return result
     },
-    roiNhom: async function (maTV, maNhom) {
+    roiNhom: async function (maNhom) {
         let result = false
         await $.ajax({
             type: "POST",
             url: '/NhomTacGia/roiNhom',
-            data: JSON.stringify({ maTV: maTV, maNhom: maNhom }),
+            data: JSON.stringify({maNhom: maNhom }),
             dataType: "json",
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
@@ -775,8 +775,31 @@
             }
         })
         return result
-    }
-
+    },
+    suaTTNhom: async function (maNhom,tenNhom,khauHieu) {
+        let result = false
+        await $.ajax({
+            type: "POST",
+            url: '/NhomTacGia/suaTTNhom',
+            data: JSON.stringify({ maNhom: maNhom, tenNhom: tenNhom, khauHieu: khauHieu }),
+            dataType: "json",
+            contentType: 'application/json; charset=utf-8', 
+            success: function (data) {
+                result = data
+            },
+            error: function () {
+                alert("Lỗi hệ thống")
+            }
+        })
+        return result
+    },
+    noiDungTraoDoi: async function (id) {
+        let result
+        await $.get("/NhomTacGia/noiDungTraoDoi/" + id, function (data) {
+            result = data
+        })
+        return result
+    },
 }
 
 const ttTaiKhoan = {

@@ -251,13 +251,15 @@ warning 6002: The table/view 'webtruyenpt.dbo.TraoDoiNhom' does not have a prima
             <PropertyRef Name="NgayViet" />
             <PropertyRef Name="LoaiHD" />
           </Key>
-          <Property Name="MaTraoDoi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaTraoDoi" Type="int" Nullable="false" />
           <Property Name="MaNhom" Type="int" />
           <Property Name="MaTV" Type="int" Nullable="false" />
+          <Property Name="Avatar" Type="varchar" MaxLength="200" />
           <Property Name="NoiDung" Type="ntext" />
           <Property Name="NgayViet" Type="datetime" Nullable="false" />
           <Property Name="PhanHoi" Type="int" />
           <Property Name="LoaiHD" Type="int" Nullable="false" />
+          <Property Name="ButDanh" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'webtruyenpt.dbo.vTruyen' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -610,10 +612,12 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
     [TraoDoiNhom].[MaTraoDoi] AS [MaTraoDoi], 
     [TraoDoiNhom].[MaNhom] AS [MaNhom], 
     [TraoDoiNhom].[MaTV] AS [MaTV], 
+    [TraoDoiNhom].[Avatar] AS [Avatar], 
     [TraoDoiNhom].[NoiDung] AS [NoiDung], 
     [TraoDoiNhom].[NgayViet] AS [NgayViet], 
     [TraoDoiNhom].[PhanHoi] AS [PhanHoi], 
-    [TraoDoiNhom].[LoaiHD] AS [LoaiHD]
+    [TraoDoiNhom].[LoaiHD] AS [LoaiHD], 
+    [TraoDoiNhom].[ButDanh] AS [ButDanh]
     FROM [dbo].[TraoDoiNhom] AS [TraoDoiNhom]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vTruyen" EntityType="Self.vTruyen" store:Type="Views" store:Schema="dbo">
@@ -977,21 +981,6 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
           <Property Name="MaNhom" Type="Int32" />
           <Property Name="PhanHoi" Type="Int32" />
         </EntityType>
-        <EntityType Name="TraoDoiNhom">
-          <Key>
-            <PropertyRef Name="MaTraoDoi" />
-            <PropertyRef Name="MaTV" />
-            <PropertyRef Name="NgayViet" />
-            <PropertyRef Name="LoaiHD" />
-          </Key>
-          <Property Name="MaTraoDoi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MaNhom" Type="Int32" />
-          <Property Name="MaTV" Type="Int32" Nullable="false" />
-          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NgayViet" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="PhanHoi" Type="Int32" />
-          <Property Name="LoaiHD" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="vTruyen">
           <Key>
             <PropertyRef Name="MaTruyen" />
@@ -1254,7 +1243,6 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
           <EntitySet Name="TacGias" EntityType="Self.TacGia" />
           <EntitySet Name="TheodoTGs" EntityType="Self.TheodoTG" />
           <EntitySet Name="ThongBaos" EntityType="Self.ThongBao" />
-          <EntitySet Name="TraoDoiNhoms" EntityType="Self.TraoDoiNhom" />
           <EntitySet Name="vTruyens" EntityType="Self.vTruyen" />
           <EntitySet Name="DanhGias" EntityType="Self.DanhGia" />
           <EntitySet Name="vvTruyens" EntityType="Self.vvTruyen" />
@@ -1322,6 +1310,7 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
             <Parameter Name="MANHOM" Mode="In" Type="Int32" />
             <Parameter Name="TIMKIEM" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="TraoDoiNhoms" EntityType="webtruyenptModel.TraoDoiNhom" />
         </EntityContainer>
         <ComplexType Name="TIMKIEMTV_Result">
           <Property Type="Int32" Name="MaTK" Nullable="false" />
@@ -1343,6 +1332,23 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
           <Property Type="String" Name="ButDanh" Nullable="true" MaxLength="50" />
           <Property Type="DateTime" Name="ngayDKTG" Nullable="true" Precision="23" />
         </ComplexType>
+        <EntityType Name="TraoDoiNhom">
+          <Key>
+            <PropertyRef Name="MaTraoDoi" />
+            <PropertyRef Name="MaTV" />
+            <PropertyRef Name="NgayViet" />
+            <PropertyRef Name="LoaiHD" />
+          </Key>
+          <Property Name="MaTraoDoi" Type="Int32" Nullable="false" />
+          <Property Name="MaNhom" Type="Int32" />
+          <Property Name="MaTV" Type="Int32" Nullable="false" />
+          <Property Name="Avatar" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NgayViet" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PhanHoi" Type="Int32" />
+          <Property Name="LoaiHD" Type="Int32" Nullable="false" />
+          <Property Name="ButDanh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1565,19 +1571,6 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TraoDoiNhoms">
-            <EntityTypeMapping TypeName="webtruyenptModel.TraoDoiNhom">
-              <MappingFragment StoreEntitySet="TraoDoiNhom">
-                <ScalarProperty Name="MaTraoDoi" ColumnName="MaTraoDoi" />
-                <ScalarProperty Name="MaNhom" ColumnName="MaNhom" />
-                <ScalarProperty Name="MaTV" ColumnName="MaTV" />
-                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-                <ScalarProperty Name="NgayViet" ColumnName="NgayViet" />
-                <ScalarProperty Name="PhanHoi" ColumnName="PhanHoi" />
-                <ScalarProperty Name="LoaiHD" ColumnName="LoaiHD" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vTruyens">
             <EntityTypeMapping TypeName="webtruyenptModel.vTruyen">
               <MappingFragment StoreEntitySet="vTruyen">
@@ -1653,6 +1646,21 @@ warning 6002: The table/view 'webtruyenpt.webtruyenpt.vvTruyen' does not have a 
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="TraoDoiNhoms">
+            <EntityTypeMapping TypeName="webtruyenptModel.TraoDoiNhom">
+              <MappingFragment StoreEntitySet="TraoDoiNhom">
+                <ScalarProperty Name="ButDanh" ColumnName="ButDanh" />
+                <ScalarProperty Name="LoaiHD" ColumnName="LoaiHD" />
+                <ScalarProperty Name="PhanHoi" ColumnName="PhanHoi" />
+                <ScalarProperty Name="NgayViet" ColumnName="NgayViet" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="MaTV" ColumnName="MaTV" />
+                <ScalarProperty Name="MaNhom" ColumnName="MaNhom" />
+                <ScalarProperty Name="MaTraoDoi" ColumnName="MaTraoDoi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

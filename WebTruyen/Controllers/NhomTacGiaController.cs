@@ -28,7 +28,7 @@ namespace WebTruyen.Controllers
             ViewBag.theLoai = db.TheLoais.ToList();
             ViewBag.anhCuaTG = db.QuanLyHinhAnhs.Where(x => x.MaTK == maTK).ToList();
             ViewBag.truongNhom = Auth.user().isTruongNhom(maNhom)?1:0;
-            return View();
+            return View(nhom);
         }
         public PartialViewResult thongTinNhomTacGia(int maNhom)
         {
@@ -88,6 +88,7 @@ namespace WebTruyen.Controllers
             List<TimKiemTV> thanhVien = db.Database.SqlQuery<TimKiemTV>($"TIMKIEMTV {maNhom},N'{timKiem}'").ToList();
             return Json(thanhVien.Select(x=>new {x.MaTK,x.ButDanh,x.Avatar, Ngayvaonhom= x.Ngayvaonhom.ToString("dd/MM/yyyy"), x.Vaitro }),JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
         public ActionResult thangChuc(int maTV, int maNhom)
         {
             int maTK = Auth.MaTk();
@@ -103,7 +104,7 @@ namespace WebTruyen.Controllers
             public string Avatar { get; set; }
             public int Vaitro { get; set; }
         }
-        public ActionResult layTruyenNhom(int maNhom)
+        public ActionResult layTruyenNhom(int maNhom)//get
         {
             Truyen[] truyen = (from tg in db.TruyenTacGias
                              where tg.DangNhom == maNhom
@@ -111,6 +112,24 @@ namespace WebTruyen.Controllers
                              on tg.MaTruyen equals tr.MaTruyen
                              select tr).ToArray();
             return Json(truyen.Select(x => new { x.MaTruyen, x.TenTruyen }));
-        }        
+        }    
+        [HttpPost]
+        public ActionResult suaTTNhom(int maNhom, string tenNhom, string khauHieu)
+        {
+            int maTK = Auth.MaTk();
+            ThanhVienNhom thanhVien = db.ThanhVienNhoms.FirstOrDefault(x => x.MaNhom == maNhom && x.MaTK == maTK);
+            thanhVien.suaTTNhom(tenNhom,khauHieu);
+            return Json(true);
+        }
+        public PartialViewResult traoDoi(int maNhom)
+        {
+            ViewBag.maNhom = maNhom;
+            return PartialView();
+        }
+        public ActionResult noiDungTraoDoi(int id)
+        {
+            List <TraoDoiNhom> traoDoiNhoms = db.TraoDoiNhoms.Where(x => x.MaNhom == id).ToList();
+            return Json(traoDoiNhoms.Select(x => new { x.MaNhom, x.MaTV, x.MaTraoDoi, x.NoiDung, x.PhanHoi, NgayViet = x.NgayViet.ToString("dd/MM/yyyy"), x.ButDanh, x.Avatar }),JsonRequestBehavior.AllowGet);
+        }
     }
 }

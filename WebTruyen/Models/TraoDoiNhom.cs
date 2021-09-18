@@ -17,9 +17,11 @@ namespace WebTruyen.Models
         public int MaTraoDoi { get; set; }
         public Nullable<int> MaNhom { get; set; }
         public int MaTV { get; set; }
+        public string Avatar { get; set; }
         public string NoiDung { get; set; }
         public System.DateTime NgayViet { get; set; }
         public Nullable<int> PhanHoi { get; set; }
         public int LoaiHD { get; set; }
+        public string ButDanh { get; set; }
     }
 }

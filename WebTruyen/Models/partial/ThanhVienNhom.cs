@@ -134,5 +134,25 @@ namespace WebTruyen.Models
             }
             
         }
+        /// <summary>
+        /// nhóm trưởng
+        /// </summary>
+        public void suaTTNhom(string tenNhom, string khauHieu)
+        {
+            if (this.Vaitro != vtNhom.nhomTruong) return;
+            try
+            {
+                webtruyenptEntities db = new webtruyenptEntities();
+                NhomTG nhomTG = db.NhomTGs.Find(MaNhom);
+                nhomTG.TenNhom = tenNhom;
+                nhomTG.Khauhieu = khauHieu;
+                db.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                SqlException Ex = ex.GetBaseException() as SqlException;
+                throw Ex;
+            }
+        }
     }
 }
