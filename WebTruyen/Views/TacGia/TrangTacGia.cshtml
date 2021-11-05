@@ -724,7 +724,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script>
         $(document).ready(async function () {
-            async function thongKe(ngay) {
+            async function thongKe(ngay) {                
                 let duLieu = await API.layThongKe(ngay)
                 let labelsThich = []
                 let dataThich = []
@@ -732,6 +732,9 @@
                 let dataXem = []
                 let labelsTheoDoi = []
                 let dataTheoDoi = []
+                $("#choCavasLuotThich").html('<canvas id="chartLuotThich" style="height:300px"></canvas>')
+                $("#choCavasLuotXem").html('<canvas id="chartLuotXem" style="height:300px"></canvas>')
+                $("#choCavasTheoDoi").html('<canvas id="chartLuotTheoDoi" style="height:300px"></canvas>')
                 duLieu.LuotThich.forEach(function (item, index) {
                     labelsThich.push(item.Ngay)
                     dataThich.push(item.SoLuong)

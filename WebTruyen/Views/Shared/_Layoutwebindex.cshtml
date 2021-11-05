@@ -920,6 +920,7 @@
 
         })
         async function getCaptCha() {
+            debugger
             let img = await API.getCaptcha();
             $("#captcha").attr("src", img)
         }

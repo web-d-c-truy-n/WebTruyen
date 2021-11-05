@@ -269,9 +269,6 @@
     <Compile Include="Models\ThongBao.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TIMKIEMTV_Result.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TraoDoiNhom.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

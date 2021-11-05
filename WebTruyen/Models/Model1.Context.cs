@@ -12,8 +12,6 @@ namespace WebTruyen.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Core.Objects;
-    using System.Linq;
     
     public partial class webtruyenptEntities : DbContext
     {
@@ -38,28 +36,15 @@ namespace WebTruyen.Models
         public virtual DbSet<TruyenTacGia> TruyenTacGias { get; set; }
         public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<BinhLuan> BinhLuans { get; set; }
+        public virtual DbSet<DanhGia> DanhGias { get; set; }
         public virtual DbSet<LuotThichChuong> LuotThichChuongs { get; set; }
         public virtual DbSet<LuotThichTruyen> LuotThichTruyens { get; set; }
         public virtual DbSet<LuotXem> LuotXems { get; set; }
         public virtual DbSet<TacGia> TacGias { get; set; }
         public virtual DbSet<TheodoTG> TheodoTGs { get; set; }
         public virtual DbSet<ThongBao> ThongBaos { get; set; }
-        public virtual DbSet<vTruyen> vTruyens { get; set; }
-        public virtual DbSet<DanhGia> DanhGias { get; set; }
-        public virtual DbSet<vvTruyen> vvTruyens { get; set; }
         public virtual DbSet<TraoDoiNhom> TraoDoiNhoms { get; set; }
-    
-        public virtual ObjectResult<TIMKIEMTV_Result> TIMKIEMTV(Nullable<int> mANHOM, string tIMKIEM)
-        {
-            var mANHOMParameter = mANHOM.HasValue ?
-                new ObjectParameter("MANHOM", mANHOM) :
-                new ObjectParameter("MANHOM", typeof(int));
-    
-            var tIMKIEMParameter = tIMKIEM != null ?
-                new ObjectParameter("TIMKIEM", tIMKIEM) :
-                new ObjectParameter("TIMKIEM", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<TIMKIEMTV_Result>("TIMKIEMTV", mANHOMParameter, tIMKIEMParameter);
-        }
+        public virtual DbSet<vTruyen> vTruyens { get; set; }
+        public virtual DbSet<vvTruyen> vvTruyens { get; set; }
     }
 }

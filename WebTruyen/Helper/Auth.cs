@@ -43,7 +43,7 @@ namespace WebTruyen.Helper
         }
         public static void login(TaiKhoan taiKhoan)
         {
-            login(taiKhoan.Mail, taiKhoan.MatKhau);
+            HttpContext.Current.Session["taiKhoan"] = taiKhoan.MaTK;
             themTKNoiBo(taiKhoan);
         }
 
